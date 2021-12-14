@@ -48,7 +48,7 @@ jobs:
 
     - name: List packages
       id: list_packages
-      run: echo ::set-output name=package_list::$(colcon list --names-only)
+      run: echo ::set-output name=package_list::$(colcon list --names-only | egrep -v "behavior_velocity_planner")
 
     - name: Retrieve default branch
       id: retrieve_branch
