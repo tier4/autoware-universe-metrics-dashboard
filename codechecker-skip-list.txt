@@ -1,0 +1,7 @@
+-*/build/*
+-*/install/*
+-*/log/*
+-/opt/*
+-/usr/*
+-*/dependency_packages/*
+-*/tmp/*
