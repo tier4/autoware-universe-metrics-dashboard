@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/accel_brake_map_calibrator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/accel_brake_map_calibrator_button_panel/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ad_service_state_monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/aip_x1_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/aip_x2_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/aip_xx1_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_auto_cmake/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_auto_common/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_auto_geometry/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_auto_perception_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_auto_tf2/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_lint_common/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_testing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/awapi_awiv_adapter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/behavior_path_planner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/behavior_velocity_planner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/common_sensor_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/compare_map_segmentation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/control_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/control_performance_analysis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/costmap_generator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/detected_object_feature_remover/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/detection_by_tracker/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/dummy_infrastructure/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ekf_localizer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/elevation_map_loader/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/emergency_handler/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/euclidean_cluster/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/external_cmd_converter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/external_cmd_selector/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/external_velocity_limit_selector/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/fake_test_node/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/fault_injection/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/freespace_planner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/freespace_planning_algorithms/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/geo_pos_conv/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/global_parameter_loader/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/gnss_poser/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/goal_distance_calculator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_cmake_helpers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_core/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_costmap_2d/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_cv/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_demos/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_filters/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_loader/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_octomap/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_pcl/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_ros/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_sdf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/grid_map_visualization/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ground_segmentation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/gyro_odometer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/had_map_utils/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/hash_library_vendor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/image_transport_decompressor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/imu_corrector/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/integration_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/interpolation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/joy_controller/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/kalman_filter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/lane_departure_checker/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/lanelet2_extension/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/laserscan_to_occupancy_grid_map/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/lidar_apollo_instance_segmentation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/lidar_centerpoint/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/livox_interfaces/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/livox_ros2_driver/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/livox_sdk_vendor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/livox_tag_filter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/localization_error_monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/localization_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/map_based_prediction/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/map_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/map_loader/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/map_tf_generator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/mission_planner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/motion_common/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/motion_testing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/motion_velocity_smoother/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/multi_object_tracker/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/mussp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ndt/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ndt_omp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ndt_pcl_modified/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ndt_scan_matcher/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/object_merger/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/object_range_splitter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/obstacle_avoidance_planner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/obstacle_collision_checker/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/obstacle_stop_planner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/occupancy_grid_map_outlier_filter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/osqp_interface/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pacmod_interface/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/path_distance_calculator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pcl_conversions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pcl_ros/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/perception_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/perception_pcl/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/planning_error_monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/planning_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pointcloud_preprocessor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pointcloud_to_laserscan/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pose2twist/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pose_initializer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/raw_vehicle_cmd_converter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/roi_cluster_fusion/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosapi/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosauth/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosbridge_library/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosbridge_server/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosbridge_suite/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/route_handler/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/scenario_selector/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/sensing_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/shape_estimation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/shift_decider/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/signal_processing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/simple_planning_simulator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/simulator_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/stop_filter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/surround_obstacle_checker/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/system_error_monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/system_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/system_monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tamagawa_imu_driver/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tensorrt_yolo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_api_utils/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_autoware_utils/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_datetime_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_debug_tools/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_localization_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_pcl_extensions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_perception_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_plannnig_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_state_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_vehicle_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/time_utils/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/topic_state_monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/topic_tools/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/traffic_light_classifier/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/traffic_light_map_based_detector/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/traffic_light_ssd_fine_detector/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/traffic_light_visualization/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/trajectory_follower/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/trajectory_follower_nodes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/vehicle_cmd_gate/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/vehicle_constants_manager/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/vehicle_info_util/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/vehicle_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/vehicle_velocity_converter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/velodyne_driver/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/velodyne_monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/velodyne_pointcloud/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/web_controller/</loc>
+  </url>
+  
+</urlset>
