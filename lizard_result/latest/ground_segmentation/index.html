@@ -1,0 +1,962 @@
+<!DOCTYPE HTML PUBLIC
+"-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Code complexity report</title>
+  <style>
+    h2
+    {
+          text-align: center;
+    }
+        td.footer
+        {
+          text-align: center;
+          padding-top: 3px;
+          font-family: sans-serif;
+        }
+    td.greater-value
+        {
+          padding-top: 2px;
+          text-align: center;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-family: sans-serif;
+          white-space: nowrap;
+      background-color: LightPink;
+        }
+    td.lesser-value
+        {
+          padding-top: 2px;
+          text-align: center;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-family: sans-serif;
+          white-space: nowrap;
+      background-color: LightGreen;
+        }
+    td.value
+        {
+          padding-top: 2px;
+          text-align: center;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-family: sans-serif;
+          white-space: nowrap;
+        }
+  </style>
+ </head>
+ <body>
+<h2>Code Complexity Report</h2>
+
+<center>
+
+<table>
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/launch/scan_ground_filter.launch.py</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">launch_setup</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">45</td>
+    
+
+    
+       <td class="value">201</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">generate_launch_description.add_launch_arg</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+
+    
+       <td class="value">20</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">generate_launch_description</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">19</td>
+    
+
+    
+       <td class="value">76</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/src/ray_ground_filter_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::RayGroundFilterComponent</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">27</td>
+    
+
+    
+       <td class="value">225</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::TransformPointCloud</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">23</td>
+    
+
+    
+       <td class="value">177</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::ConvertXYZIToRTZColor</td>
+    <td></td>
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="lesser-value">43</td>
+    
+
+    
+       <td class="value">455</td>
+    
+
+    
+       <td class="lesser-value">4</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::calcPointVehicleIntersection</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">14</td>
+    
+
+    
+       <td class="value">107</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::setVehicleFootprint</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">10</td>
+    
+
+    
+       <td class="value">112</td>
+    
+
+    
+       <td class="lesser-value">4</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::ClassifyPointCloud</td>
+    <td></td>
+    
+       <td class="lesser-value">17</td>
+    
+
+    
+       <td class="lesser-value">77</td>
+    
+
+    
+       <td class="value">442</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::ExtractPointsIndices</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">106</td>
+    
+
+    
+       <td class="lesser-value">4</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">46</td>
+    
+
+    
+       <td class="value">408</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RayGroundFilterComponent::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">14</td>
+    
+
+    
+       <td class="lesser-value">51</td>
+    
+
+    
+       <td class="value">377</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/src/scan_ground_filter_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::ScanGroundFilterComponent</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">18</td>
+    
+
+    
+       <td class="value">159</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::transformPointCloud</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">22</td>
+    
+
+    
+       <td class="value">163</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::convertPointcloud</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">24</td>
+    
+
+    
+       <td class="value">264</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::calcVirtualGroundOrigin</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">6</td>
+    
+
+    
+       <td class="value">32</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::classifyPointCloud</td>
+    <td></td>
+    
+       <td class="greater-value">21</td>
+    
+
+    
+       <td class="lesser-value">93</td>
+    
+
+    
+       <td class="value">723</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::extractObjectPoints</td>
+    <td></td>
+    
+       <td class="lesser-value">2</td>
+    
+
+    
+       <td class="lesser-value">8</td>
+    
+
+    
+       <td class="value">65</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">2</td>
+    
+
+    
+       <td class="lesser-value">28</td>
+    
+
+    
+       <td class="value">251</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::onParameter</td>
+    <td></td>
+    
+       <td class="lesser-value">8</td>
+    
+
+    
+       <td class="lesser-value">44</td>
+    
+
+    
+       <td class="value">301</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/src/ransac_ground_filter_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">getArbitraryOrthogonalVector</td>
+    <td></td>
+    
+       <td class="lesser-value">7</td>
+    
+
+    
+       <td class="lesser-value">27</td>
+    
+
+    
+       <td class="value">247</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">getPlaneBasis</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">8</td>
+    
+
+    
+       <td class="value">49</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">getDebugPose</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">130</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::RANSACGroundFilterComponent</td>
+    <td></td>
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="lesser-value">32</td>
+    
+
+    
+       <td class="value">260</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::setDebugPublisher</td>
+    <td></td>
+    
+       <td class="lesser-value">2</td>
+    
+
+    
+       <td class="lesser-value">11</td>
+    
+
+    
+       <td class="value">51</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::publishDebugMessage</td>
+    <td></td>
+    
+       <td class="lesser-value">2</td>
+    
+
+    
+       <td class="lesser-value">22</td>
+    
+
+    
+       <td class="value">189</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::transformPointCloud</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">22</td>
+    
+
+    
+       <td class="value">167</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::extractPointsIndices</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">106</td>
+    
+
+    
+       <td class="lesser-value">4</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::getPlaneAffine</td>
+    <td></td>
+    
+       <td class="lesser-value">2</td>
+    
+
+    
+       <td class="lesser-value">16</td>
+    
+
+    
+       <td class="value">182</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::applyRANSAC</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">14</td>
+    
+
+    
+       <td class="value">119</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">8</td>
+    
+
+    
+       <td class="lesser-value">77</td>
+    
+
+    
+       <td class="value">704</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::RANSACGroundFilterComponent::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">17</td>
+    
+
+    
+       <td class="lesser-value">57</td>
+    
+
+    
+       <td class="value">425</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/include/ground_segmentation/ray_ground_filter_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/include/ground_segmentation/scan_ground_filter_nodelet.hpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::PointsCentroid::PointsCentroid</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="value">38</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::PointsCentroid::initialize</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">8</td>
+    
+
+    
+       <td class="value">33</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::PointsCentroid::addPoint</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">8</td>
+    
+
+    
+       <td class="value">35</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::PointsCentroid::getAverageSlope</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="value">15</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::PointsCentroid::getAverageHeight</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="value">8</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ground_segmentation::ScanGroundFilterComponent::PointsCentroid::getAverageRadius</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="value">8</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/include/ground_segmentation/ransac_ground_filter_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/perception/ground_segmentation/include/ground_segmentation/gencolors.hpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ray_ground_filter::downsamplePoints</td>
+    <td></td>
+    
+       <td class="lesser-value">6</td>
+    
+
+    
+       <td class="lesser-value">35</td>
+    
+
+    
+       <td class="value">485</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">ray_ground_filter::generateColors</td>
+    <td></td>
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="lesser-value">29</td>
+    
+
+    
+       <td class="value">239</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+
+</table>
+<center>
+
+<br>
+<table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="footer">Generated by
+    <a href="http://www.lizard.ws/">Lizard</a> on 2021-12-15 08:01
+    </td></tr>
+</table>
+ </body>
+</html>
+
