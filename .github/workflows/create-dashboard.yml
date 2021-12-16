@@ -43,6 +43,10 @@ jobs:
 
     - uses: actions/checkout@v2
       with:
+        path: metrics_config_dir
+
+    - uses: actions/checkout@v2
+      with:
         ref: data
         path: ${{ env.ARTIFACTS_DIR }}
 
@@ -108,8 +112,8 @@ jobs:
           "**/dummy_perception_publisher/*"
           "**/initial_pose_button_panel/*"
           "**/polar_grid/*"
-        codechecker-config-path: "codechecker-config.json"
-        codechecker-skip-list: "codechecker-skip-list.txt"
+        codechecker-config-path: "metrics_config_dir/codechecker-config.json"
+        codechecker-skip-list: "metrics_config_dir/codechecker-skip-list.txt"
         target-repository: ${{ env.TARGET_REPO }}
 
     - name: Check results
