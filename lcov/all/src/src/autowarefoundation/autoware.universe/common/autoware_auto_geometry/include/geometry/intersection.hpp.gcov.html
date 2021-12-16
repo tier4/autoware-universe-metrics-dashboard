@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.filtered - src/src/autowarefoundation/autoware.universe/common/autoware_auto_geometry/include/geometry/intersection.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../../../../../index.html">top level</a> - <a href="index.html">src/src/autowarefoundation/autoware.universe/common/autoware_auto_geometry/include/geometry</a> - intersection.hpp<span style="font-size: 80%;"> (source / <a href="intersection.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.filtered</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">65</td>
+            <td class="headerCovTableEntry">66</td>
+            <td class="headerCovTableEntryHi">98.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-12-16 04:22:18</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+            | Branches:
+            <span class="coverLegendCov">+</span> taken
+            <span class="coverLegendNoCov">-</span> not taken
+            <span class="coverLegendNoCov">#</span> not executed
+</td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">46</td>
+            <td class="headerCovTableEntry">74</td>
+            <td class="headerCovTableEntryLo">62.2 %</td>
+          </tr>
+          <tr><td><img src="../../../../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : // Copyright 2020 Embotech AG, Zurich, Switzerland</a>
+<a name="2"><span class="lineNum">       2 </span>                :            : //</a>
+<a name="3"><span class="lineNum">       3 </span>                :            : // Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</a>
+<a name="4"><span class="lineNum">       4 </span>                :            : // you may not use this file except in compliance with the License.</a>
+<a name="5"><span class="lineNum">       5 </span>                :            : // You may obtain a copy of the License at</a>
+<a name="6"><span class="lineNum">       6 </span>                :            : //</a>
+<a name="7"><span class="lineNum">       7 </span>                :            : //     http://www.apache.org/licenses/LICENSE-2.0</a>
+<a name="8"><span class="lineNum">       8 </span>                :            : //</a>
+<a name="9"><span class="lineNum">       9 </span>                :            : // Unless required by applicable law or agreed to in writing, software</a>
+<a name="10"><span class="lineNum">      10 </span>                :            : // distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</a>
+<a name="11"><span class="lineNum">      11 </span>                :            : // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</a>
+<a name="12"><span class="lineNum">      12 </span>                :            : // See the License for the specific language governing permissions and</a>
+<a name="13"><span class="lineNum">      13 </span>                :            : // limitations under the License.</a>
+<a name="14"><span class="lineNum">      14 </span>                :            : //</a>
+<a name="15"><span class="lineNum">      15 </span>                :            : // Co-developed by Tier IV, Inc. and Apex.AI, Inc.</a>
+<a name="16"><span class="lineNum">      16 </span>                :            : </a>
+<a name="17"><span class="lineNum">      17 </span>                :            : #ifndef GEOMETRY__INTERSECTION_HPP_</a>
+<a name="18"><span class="lineNum">      18 </span>                :            : #define GEOMETRY__INTERSECTION_HPP_</a>
+<a name="19"><span class="lineNum">      19 </span>                :            : </a>
+<a name="20"><span class="lineNum">      20 </span>                :            : </a>
+<a name="21"><span class="lineNum">      21 </span>                :            : #include &lt;autoware_auto_vehicle_msgs/msg/vehicle_kinematic_state.hpp&gt;</a>
+<a name="22"><span class="lineNum">      22 </span>                :            : #include &lt;autoware_auto_perception_msgs/msg/bounding_box.hpp&gt;</a>
+<a name="23"><span class="lineNum">      23 </span>                :            : #include &lt;autoware_auto_planning_msgs/msg/trajectory_point.hpp&gt;</a>
+<a name="24"><span class="lineNum">      24 </span>                :            : #include &lt;geometry/convex_hull.hpp&gt;</a>
+<a name="25"><span class="lineNum">      25 </span>                :            : #include &lt;geometry/common_2d.hpp&gt;</a>
+<a name="26"><span class="lineNum">      26 </span>                :            : </a>
+<a name="27"><span class="lineNum">      27 </span>                :            : #include &lt;limits&gt;</a>
+<a name="28"><span class="lineNum">      28 </span>                :            : #include &lt;vector&gt;</a>
+<a name="29"><span class="lineNum">      29 </span>                :            : #include &lt;iostream&gt;</a>
+<a name="30"><span class="lineNum">      30 </span>                :            : #include &lt;list&gt;</a>
+<a name="31"><span class="lineNum">      31 </span>                :            : #include &lt;utility&gt;</a>
+<a name="32"><span class="lineNum">      32 </span>                :            : #include &lt;type_traits&gt;</a>
+<a name="33"><span class="lineNum">      33 </span>                :            : #include &lt;algorithm&gt;</a>
+<a name="34"><span class="lineNum">      34 </span>                :            : </a>
+<a name="35"><span class="lineNum">      35 </span>                :            : namespace autoware</a>
+<a name="36"><span class="lineNum">      36 </span>                :            : {</a>
+<a name="37"><span class="lineNum">      37 </span>                :            : namespace common</a>
+<a name="38"><span class="lineNum">      38 </span>                :            : {</a>
+<a name="39"><span class="lineNum">      39 </span>                :            : namespace geometry</a>
+<a name="40"><span class="lineNum">      40 </span>                :            : {</a>
+<a name="41"><span class="lineNum">      41 </span>                :            : using autoware_auto_planning_msgs::msg::TrajectoryPoint;</a>
+<a name="42"><span class="lineNum">      42 </span>                :            : using autoware_auto_perception_msgs::msg::BoundingBox;</a>
+<a name="43"><span class="lineNum">      43 </span>                :            : using autoware::common::geometry::convex_hull;</a>
+<a name="44"><span class="lineNum">      44 </span>                :            : using autoware::common::geometry::get_normal;</a>
+<a name="45"><span class="lineNum">      45 </span>                :            : using autoware::common::geometry::dot_2d;</a>
+<a name="46"><span class="lineNum">      46 </span>                :            : using autoware::common::geometry::minus_2d;</a>
+<a name="47"><span class="lineNum">      47 </span>                :            : using autoware::common::geometry::times_2d;</a>
+<a name="48"><span class="lineNum">      48 </span>                :            : using autoware::common::geometry::norm_2d;</a>
+<a name="49"><span class="lineNum">      49 </span>                :            : using autoware::common::geometry::closest_line_point_2d;</a>
+<a name="50"><span class="lineNum">      50 </span>                :            : </a>
+<a name="51"><span class="lineNum">      51 </span>                :            : using Point = geometry_msgs::msg::Point32;</a>
+<a name="52"><span class="lineNum">      52 </span>                :            : </a>
+<a name="53"><span class="lineNum">      53 </span>                :            : namespace details</a>
+<a name="54"><span class="lineNum">      54 </span>                :            : {</a>
+<a name="55"><span class="lineNum">      55 </span>                :            : </a>
+<a name="56"><span class="lineNum">      56 </span>                :            : /// Alias for a std::pair of two points</a>
+<a name="57"><span class="lineNum">      57 </span>                :            : using Line = std::pair&lt;Point, Point&gt;;</a>
+<a name="58"><span class="lineNum">      58 </span>                :            : </a>
+<a name="59"><span class="lineNum">      59 </span>                :            : /// \tparam Iter1 Iterator over point-types that must have point adapters</a>
+<a name="60"><span class="lineNum">      60 </span>                :            : //      defined or have float members x and y</a>
+<a name="61"><span class="lineNum">      61 </span>                :            : /// \brief Compute a sorted list of faces of a polyhedron given a list of points</a>
+<a name="62"><span class="lineNum">      62 </span>                :            : /// \param[in] start Start iterator of the list of points</a>
+<a name="63"><span class="lineNum">      63 </span>                :            : /// \param[in] end End iterator of the list of points</a>
+<a name="64"><span class="lineNum">      64 </span>                :            : /// \return The list of faces</a>
+<a name="65"><span class="lineNum">      65 </span>                :            : template&lt;typename Iter&gt;</a>
+<a name="66"><span class="lineNum">      66 </span>                :            : std::vector&lt;Line&gt; get_sorted_face_list(const Iter start, const Iter end)</a>
+<a name="67"><span class="lineNum">      67 </span>                :            : {</a>
+<a name="68"><span class="lineNum">      68 </span>                :            :   // First get a sorted list of points - convex_hull does that by modifying its argument</a>
+<a name="69"><span class="lineNum">      69 </span>                :            :   auto corner_list = std::list&lt;Point&gt;(start, end);</a>
+<a name="70"><span class="lineNum">      70 </span>                :            :   const auto first_interior_point = convex_hull(corner_list);</a>
+<a name="71"><span class="lineNum">      71 </span>                :            : </a>
+<a name="72"><span class="lineNum">      72 </span>                :            :   std::vector&lt;Line&gt; face_list{};</a>
+<a name="73"><span class="lineNum">      73 </span>                :            :   auto itLast = corner_list.begin();</a>
+<a name="74"><span class="lineNum">      74 </span>                :            :   auto itNext = std::next(itLast, 1);</a>
+<a name="75"><span class="lineNum">      75 </span>                :            :   do {</a>
+<a name="76"><span class="lineNum">      76 </span>                :            :     face_list.emplace_back(Line{*itLast, *itNext});</a>
+<a name="77"><span class="lineNum">      77 </span>                :            :     itLast = itNext;</a>
+<a name="78"><span class="lineNum">      78 </span>                :            :     itNext = std::next(itNext, 1);</a>
+<a name="79"><span class="lineNum">      79 </span>                :            :   } while ((itNext != first_interior_point) &amp;&amp; (itNext != corner_list.end()));</a>
+<a name="80"><span class="lineNum">      80 </span>                :            : </a>
+<a name="81"><span class="lineNum">      81 </span>                :            :   face_list.emplace_back(Line{*itLast, corner_list.front()});</a>
+<a name="82"><span class="lineNum">      82 </span>                :            : </a>
+<a name="83"><span class="lineNum">      83 </span>                :            :   return face_list;</a>
+<a name="84"><span class="lineNum">      84 </span>                :            : }</a>
+<a name="85"><span class="lineNum">      85 </span>                :            : </a>
+<a name="86"><span class="lineNum">      86 </span>                :            : /// \brief Append points of the polygon `internal` that are contained in the polygon `exernal`.</a>
+<a name="87"><span class="lineNum">      87 </span>                :            : template&lt;template&lt;typename ...&gt; class Iterable1T, template&lt;typename ...&gt; class Iterable2T,</a>
+<a name="88"><span class="lineNum">      88 </span>                :            :   typename PointT&gt;</a>
+<a name="89"><span class="lineNum">      89 </span>                :<span class="lineCov">         18 : void append_contained_points(</span></a>
+<a name="90"><span class="lineNum">      90 </span>                :            :   const Iterable1T&lt;PointT&gt; &amp; external,</a>
+<a name="91"><span class="lineNum">      91 </span>                :            :   const Iterable2T&lt;PointT&gt; &amp; internal,</a>
+<a name="92"><span class="lineNum">      92 </span>                :            :   std::list&lt;PointT&gt; &amp; result)</a>
+<a name="93"><span class="lineNum">      93 </span>                :            : {</a>
+<a name="94"><span class="lineNum">      94 </span>                :<span class="lineCov">         18 :   std::copy_if(</span></a>
+<a name="95"><span class="lineNum">      95 </span>                :            :     internal.begin(), internal.end(), std::back_inserter(result),</a>
+<a name="96"><span class="lineNum">      96 </span>                :<span class="lineCov">        128 :     [&amp;external](const auto &amp; pt) {</span></a>
+<a name="97"><span class="lineNum">      97 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         64 :       return common::geometry::is_point_inside_polygon_2d(external.begin(), external.end(), pt);</span></a>
+<a name="98"><span class="lineNum">      98 </span>                :            :     });</a>
+<a name="99"><span class="lineNum">      99 </span>                :<span class="lineCov">         18 : }</span></a>
+<a name="100"><span class="lineNum">     100 </span>                :            : </a>
+<a name="101"><span class="lineNum">     101 </span>                :            : /// \brief Append the intersecting points between two polygons into the output list.</a>
+<a name="102"><span class="lineNum">     102 </span>                :            : template&lt;template&lt;typename ...&gt; class Iterable1T, template&lt;typename ...&gt; class Iterable2T,</a>
+<a name="103"><span class="lineNum">     103 </span>                :            :   typename PointT&gt;</a>
+<a name="104"><span class="lineNum">     104 </span>                :<span class="lineCov">          9 : void append_intersection_points(</span></a>
+<a name="105"><span class="lineNum">     105 </span>                :            :   const Iterable1T&lt;PointT&gt; &amp; polygon1,</a>
+<a name="106"><span class="lineNum">     106 </span>                :            :   const Iterable2T&lt;PointT&gt; &amp; polygon2,</a>
+<a name="107"><span class="lineNum">     107 </span>                :            :   std::list&lt;PointT&gt; &amp; result)</a>
+<a name="108"><span class="lineNum">     108 </span>                :            : {</a>
+<a name="109"><span class="lineNum">     109 </span>                :            :   using FloatT = decltype(point_adapter::x_(std::declval&lt;PointT&gt;()));</a>
+<a name="110"><span class="lineNum">     110 </span>                :            :   using Interval = common::geometry::Interval&lt;float32_t&gt;;</a>
+<a name="111"><span class="lineNum">     111 </span>                :            : </a>
+<a name="112"><span class="lineNum">     112 </span>                :<span class="lineCov">        162 :   auto get_edge = [](const auto &amp; list, const auto &amp; iterator) {</span></a>
+<a name="113"><span class="lineNum">     113 </span>        [<span class="branchCov" title="Branch 0 was taken 162 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        162 :       const auto next_it = std::next(iterator);</span></a>
+<a name="114"><span class="lineNum">     114 </span>        [<span class="branchCov" title="Branch 0 was taken 120 times"> + </span><span class="branchCov" title="Branch 1 was taken 42 times"> + </span>]:<span class="lineCov">        162 :       const auto &amp; next_pt = (next_it != list.end()) ? *next_it : list.front();</span></a>
+<a name="115"><span class="lineNum">     115 </span>        [<span class="branchCov" title="Branch 0 was taken 162 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        324 :       return std::make_pair(*iterator, next_pt);</span></a>
+<a name="116"><span class="lineNum">     116 </span>                :            :     };</a>
+<a name="117"><span class="lineNum">     117 </span>                :            : </a>
+<a name="118"><span class="lineNum">     118 </span>                :            :   // Get the max absolute value out of two intervals and a scalar.</a>
+<a name="119"><span class="lineNum">     119 </span>                :<span class="lineCov">        182 :   auto compute_eps_scale = [](const auto &amp; i1, const auto &amp; i2, const auto val) {</span></a>
+<a name="120"><span class="lineNum">     120 </span>                :<span class="lineCov">        364 :       auto get_abs_max = [](const auto &amp; interval) {</span></a>
+<a name="121"><span class="lineNum">     121 </span>                :<span class="lineCov">        364 :           return std::max(std::fabs(Interval::min(interval)), std::fabs(Interval::max(interval)));</span></a>
+<a name="122"><span class="lineNum">     122 </span>                :            :         };</a>
+<a name="123"><span class="lineNum">     123 </span>  [<span class="branchCov" title="Branch 0 was taken 182 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 182 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">        182 :       return std::max(std::fabs(val), std::max(get_abs_max(i1), get_abs_max(i2)));</span></a>
+<a name="124"><span class="lineNum">     124 </span>                :            :     };</a>
+<a name="125"><span class="lineNum">     125 </span>                :            : </a>
+<a name="126"><span class="lineNum">     126 </span>                :            :   // Compare each edge from polygon1 to each edge from polygon2</a>
+<a name="127"><span class="lineNum">     127 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchCov" title="Branch 1 was taken 9 times"> + </span>]:<span class="lineCov">         43 :   for (auto corner1_it = polygon1.begin(); corner1_it != polygon1.end(); ++corner1_it) {</span></a>
+<a name="128"><span class="lineNum">     128 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :     const auto &amp; edge1 = get_edge(polygon1, corner1_it);</span></a>
+<a name="129"><span class="lineNum">     129 </span>                :            : </a>
+<a name="130"><span class="lineNum">     130 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :     Interval edge1_x_interval{</span></a>
+<a name="131"><span class="lineNum">     131 </span>                :<span class="lineCov">         34 :       std::min(point_adapter::x_(edge1.first), point_adapter::x_(edge1.second)),</span></a>
+<a name="132"><span class="lineNum">     132 </span>                :<span class="lineCov">         34 :       std::max(point_adapter::x_(edge1.first), point_adapter::x_(edge1.second))};</span></a>
+<a name="133"><span class="lineNum">     133 </span>                :            : </a>
+<a name="134"><span class="lineNum">     134 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :     Interval edge1_y_interval{</span></a>
+<a name="135"><span class="lineNum">     135 </span>                :<span class="lineCov">         34 :       std::min(point_adapter::y_(edge1.first), point_adapter::y_(edge1.second)),</span></a>
+<a name="136"><span class="lineNum">     136 </span>                :<span class="lineCov">         34 :       std::max(point_adapter::y_(edge1.first), point_adapter::y_(edge1.second))};</span></a>
+<a name="137"><span class="lineNum">     137 </span>                :            : </a>
+<a name="138"><span class="lineNum">     138 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 34 times"> + </span>]:<span class="lineCov">        162 :     for (auto corner2_it = polygon2.begin(); corner2_it != polygon2.end(); ++corner2_it) {</span></a>
+<a name="139"><span class="lineNum">     139 </span>                :            :       try {</a>
+<a name="140"><span class="lineNum">     140 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        128 :         const auto &amp; edge2 = get_edge(polygon2, corner2_it);</span></a>
+<a name="141"><span class="lineNum">     141 </span>                :<span class="lineCov">         91 :         const auto &amp; intersection =</span></a>
+<a name="142"><span class="lineNum">     142 </span>                :<span class="lineCov">        128 :           common::geometry::intersection_2d(</span></a>
+<a name="143"><span class="lineNum">     143 </span>        [<span class="branchCov" title="Branch 0 was taken 91 times"> + </span><span class="branchCov" title="Branch 1 was taken 37 times"> + </span>]:<span class="lineCov">        128 :           edge1.first, minus_2d(edge1.second, edge1.first),</span></a>
+<a name="144"><span class="lineNum">     144 </span>                :<span class="lineCov">        165 :           edge2.first, minus_2d(edge2.second, edge2.first));</span></a>
+<a name="145"><span class="lineNum">     145 </span>                :            : </a>
+<a name="146"><span class="lineNum">     146 </span>        [<span class="branchCov" title="Branch 0 was taken 91 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         91 :         Interval edge2_x_interval{</span></a>
+<a name="147"><span class="lineNum">     147 </span>                :<span class="lineCov">         91 :           std::min(point_adapter::x_(edge2.first), point_adapter::x_(edge2.second)),</span></a>
+<a name="148"><span class="lineNum">     148 </span>                :<span class="lineCov">         91 :           std::max(point_adapter::x_(edge2.first), point_adapter::x_(edge2.second))};</span></a>
+<a name="149"><span class="lineNum">     149 </span>                :            : </a>
+<a name="150"><span class="lineNum">     150 </span>        [<span class="branchCov" title="Branch 0 was taken 91 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         91 :         Interval edge2_y_interval{</span></a>
+<a name="151"><span class="lineNum">     151 </span>                :<span class="lineCov">         91 :           std::min(point_adapter::y_(edge2.first), point_adapter::y_(edge2.second)),</span></a>
+<a name="152"><span class="lineNum">     152 </span>                :<span class="lineCov">         91 :           std::max(point_adapter::y_(edge2.first), point_adapter::y_(edge2.second))};</span></a>
+<a name="153"><span class="lineNum">     153 </span>                :            : </a>
+<a name="154"><span class="lineNum">     154 </span>                :            :         // The accumulated floating point error depends on the magnitudes of each end of the</a>
+<a name="155"><span class="lineNum">     155 </span>                :            :         // intervals. Hence the upper bound of the absolute magnitude should be taken into account</a>
+<a name="156"><span class="lineNum">     156 </span>                :            :         // while computing the epsilon.</a>
+<a name="157"><span class="lineNum">     157 </span>                :<span class="lineCov">        182 :         const auto max_feps_scale = std::max(</span></a>
+<a name="158"><span class="lineNum">     158 </span>        [<span class="branchCov" title="Branch 0 was taken 91 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         91 :           compute_eps_scale(edge1_x_interval, edge2_x_interval, point_adapter::x_(intersection)),</span></a>
+<a name="159"><span class="lineNum">     159 </span>        [<span class="branchCov" title="Branch 0 was taken 91 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         91 :           compute_eps_scale(edge1_y_interval, edge2_y_interval, point_adapter::y_(intersection))</span></a>
+<a name="160"><span class="lineNum">     160 </span>                :            :         );</a>
+<a name="161"><span class="lineNum">     161 </span>                :<span class="lineCov">         91 :         const auto feps = max_feps_scale * std::numeric_limits&lt;FloatT&gt;::epsilon();</span></a>
+<a name="162"><span class="lineNum">     162 </span>                :            :         // Only accept intersections that lie on both of the line segments (edges)</a>
+<a name="163"><span class="lineNum">     163 </span>        [<span class="branchCov" title="Branch 0 was taken 91 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         91 :         if (Interval::contains(edge1_x_interval, point_adapter::x_(intersection), feps) &amp;&amp;</span></a>
+<a name="164"><span class="lineNum">     164 </span>  [<span class="branchCov" title="Branch 0 was taken 54 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 24 times"> + </span><span class="branchCov" title="Branch 3 was taken 30 times"> + </span>]:<span class="lineCov">         54 :           Interval::contains(edge2_x_interval, point_adapter::x_(intersection), feps) &amp;&amp;</span></a>
+<a name="165"><span class="lineNum">     165 </span>  [<span class="branchCov" title="Branch 0 was taken 54 times"> + </span><span class="branchCov" title="Branch 1 was taken 37 times"> + </span><span class="branchCov" title="Branch 2 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">        168 :           Interval::contains(edge1_y_interval, point_adapter::y_(intersection), feps) &amp;&amp;</span></a>
+<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 23 times"> + </span><span class="branchCov" title="Branch 5 was taken 1 time"> + </span>]
+<a name="166"><span class="lineNum">     166 </span>  [<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 10 times"> + </span><span class="branchCov" title="Branch 3 was taken 13 times"> + </span> :<span class="lineCov">        114 :           Interval::contains(edge2_y_interval, point_adapter::y_(intersection), feps))</span></a>
+<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 10 times"> + </span><span class="branchCov" title="Branch 5 was taken 81 times"> + </span>]
+<a name="167"><span class="lineNum">     167 </span>                :            :         {</a>
+<a name="168"><span class="lineNum">     168 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :           result.push_back(intersection);</span></a>
+<a name="169"><span class="lineNum">     169 </span>                :            :         }</a>
+<a name="170"><span class="lineNum">     170 </span>                :<span class="lineCov">         74 :       } catch (const std::runtime_error &amp;) {</span></a>
+<a name="171"><span class="lineNum">     171 </span>                :            :         // Parallel lines. TODO(yunus.caliskan): #1229</a>
+<a name="172"><span class="lineNum">     172 </span>                :<span class="lineCov">         37 :         continue;</span></a>
+<a name="173"><span class="lineNum">     173 </span>                :            :       }</a>
+<a name="174"><span class="lineNum">     174 </span>                :            :     }</a>
+<a name="175"><span class="lineNum">     175 </span>                :            :   }</a>
+<a name="176"><span class="lineNum">     176 </span>                :<span class="lineCov">          9 : }</span></a>
+<a name="177"><span class="lineNum">     177 </span>                :            : </a>
+<a name="178"><span class="lineNum">     178 </span>                :            : </a>
+<a name="179"><span class="lineNum">     179 </span>                :            : }  // namespace details</a>
+<a name="180"><span class="lineNum">     180 </span>                :            : </a>
+<a name="181"><span class="lineNum">     181 </span>                :            : // TODO(s.me) implement GJK(+EPA) algorithm as well as per Chris Ho's suggestion</a>
+<a name="182"><span class="lineNum">     182 </span>                :            : /// \tparam Iter Iterator over point-types that must have point adapters</a>
+<a name="183"><span class="lineNum">     183 </span>                :            : //      defined or have float members x and y</a>
+<a name="184"><span class="lineNum">     184 </span>                :            : /// \brief Check if polyhedra defined by two given sets of points intersect</a>
+<a name="185"><span class="lineNum">     185 </span>                :            : //    This uses SAT for doing the actual checking</a>
+<a name="186"><span class="lineNum">     186 </span>                :            : //    (https://en.wikipedia.org/wiki/Hyperplane_separation_theorem#Use_in_collision_detection)</a>
+<a name="187"><span class="lineNum">     187 </span>                :            : /// \param[in] begin1 Start iterator to first list of point types</a>
+<a name="188"><span class="lineNum">     188 </span>                :            : /// \param[in] end1   End iterator to first list of point types</a>
+<a name="189"><span class="lineNum">     189 </span>                :            : /// \param[in] begin2 Start iterator to first list of point types</a>
+<a name="190"><span class="lineNum">     190 </span>                :            : /// \param[in] end2   End iterator to first list of point types</a>
+<a name="191"><span class="lineNum">     191 </span>                :            : /// \return true if the boxes collide, false otherwise.</a>
+<a name="192"><span class="lineNum">     192 </span>                :            : template&lt;typename Iter&gt;</a>
+<a name="193"><span class="lineNum">     193 </span>                :            : bool intersect(const Iter begin1, const Iter end1, const Iter begin2, const Iter end2)</a>
+<a name="194"><span class="lineNum">     194 </span>                :            : {</a>
+<a name="195"><span class="lineNum">     195 </span>                :            :   // Obtain sorted lists of faces of both boxes, merge them into one big list of faces</a>
+<a name="196"><span class="lineNum">     196 </span>                :            :   auto faces = details::get_sorted_face_list(begin1, end1);</a>
+<a name="197"><span class="lineNum">     197 </span>                :            :   const auto faces_2 = details::get_sorted_face_list(begin2, end2);</a>
+<a name="198"><span class="lineNum">     198 </span>                :            :   faces.reserve(faces.size() + faces_2.size());</a>
+<a name="199"><span class="lineNum">     199 </span>                :            :   faces.insert(faces.end(), faces_2.begin(), faces_2.end() );</a>
+<a name="200"><span class="lineNum">     200 </span>                :            : </a>
+<a name="201"><span class="lineNum">     201 </span>                :            :   // Also look at last line</a>
+<a name="202"><span class="lineNum">     202 </span>                :            :   for (const auto &amp; face : faces) {</a>
+<a name="203"><span class="lineNum">     203 </span>                :            :     // Compute normal vector to the face and define a closure to get progress along it</a>
+<a name="204"><span class="lineNum">     204 </span>                :            :     const auto normal = get_normal(minus_2d(face.second, face.first));</a>
+<a name="205"><span class="lineNum">     205 </span>                :            :     auto get_position_along_line = [&amp;normal](auto point)</a>
+<a name="206"><span class="lineNum">     206 </span>                :            :       {</a>
+<a name="207"><span class="lineNum">     207 </span>                :            :         return dot_2d(normal, minus_2d(point, Point{}) );</a>
+<a name="208"><span class="lineNum">     208 </span>                :            :       };</a>
+<a name="209"><span class="lineNum">     209 </span>                :            : </a>
+<a name="210"><span class="lineNum">     210 </span>                :            :     // Define a function to get the minimum and maximum projected position of the corners</a>
+<a name="211"><span class="lineNum">     211 </span>                :            :     // of a given bounding box along the normal line of the face</a>
+<a name="212"><span class="lineNum">     212 </span>                :            :     auto get_projected_min_max = [&amp;get_position_along_line, &amp;normal](Iter begin, Iter end)</a>
+<a name="213"><span class="lineNum">     213 </span>                :            :       {</a>
+<a name="214"><span class="lineNum">     214 </span>                :            :         const auto zero_point = Point{};</a>
+<a name="215"><span class="lineNum">     215 </span>                :            :         auto min_corners =</a>
+<a name="216"><span class="lineNum">     216 </span>                :            :           get_position_along_line(closest_line_point_2d(normal, zero_point, *begin));</a>
+<a name="217"><span class="lineNum">     217 </span>                :            :         auto max_corners = min_corners;</a>
+<a name="218"><span class="lineNum">     218 </span>                :            : </a>
+<a name="219"><span class="lineNum">     219 </span>                :            :         for (auto &amp; point = begin; point != end; ++point) {</a>
+<a name="220"><span class="lineNum">     220 </span>                :            :           const auto point_projected = closest_line_point_2d(normal, zero_point, *point);</a>
+<a name="221"><span class="lineNum">     221 </span>                :            :           const auto position_along_line = get_position_along_line(point_projected);</a>
+<a name="222"><span class="lineNum">     222 </span>                :            :           min_corners = std::min(min_corners, position_along_line);</a>
+<a name="223"><span class="lineNum">     223 </span>                :            :           max_corners = std::max(max_corners, position_along_line);</a>
+<a name="224"><span class="lineNum">     224 </span>                :            :         }</a>
+<a name="225"><span class="lineNum">     225 </span>                :            :         return std::pair&lt;float, float&gt;{min_corners, max_corners};</a>
+<a name="226"><span class="lineNum">     226 </span>                :            :       };</a>
+<a name="227"><span class="lineNum">     227 </span>                :            : </a>
+<a name="228"><span class="lineNum">     228 </span>                :            :     // Perform the actual computations for the extent computation</a>
+<a name="229"><span class="lineNum">     229 </span>                :            :     auto minmax_1 = get_projected_min_max(begin1, end1);</a>
+<a name="230"><span class="lineNum">     230 </span>                :            :     auto minmax_2 = get_projected_min_max(begin2, end2);</a>
+<a name="231"><span class="lineNum">     231 </span>                :            : </a>
+<a name="232"><span class="lineNum">     232 </span>                :            :     // Check for any intersections</a>
+<a name="233"><span class="lineNum">     233 </span>                :            :     const auto eps = std::numeric_limits&lt;decltype(minmax_1.first)&gt;::epsilon();</a>
+<a name="234"><span class="lineNum">     234 </span>                :            :     if (minmax_1.first &gt; minmax_2.second + eps || minmax_2.first &gt; minmax_1.second + eps) {</a>
+<a name="235"><span class="lineNum">     235 </span>                :            :       // Found separating hyperplane, stop</a>
+<a name="236"><span class="lineNum">     236 </span>                :            :       return false;</a>
+<a name="237"><span class="lineNum">     237 </span>                :            :     }</a>
+<a name="238"><span class="lineNum">     238 </span>                :            :   }</a>
+<a name="239"><span class="lineNum">     239 </span>                :            : </a>
+<a name="240"><span class="lineNum">     240 </span>                :            :   // No separating hyperplane found, boxes collide</a>
+<a name="241"><span class="lineNum">     241 </span>                :            :   return true;</a>
+<a name="242"><span class="lineNum">     242 </span>                :            : }</a>
+<a name="243"><span class="lineNum">     243 </span>                :            : </a>
+<a name="244"><span class="lineNum">     244 </span>                :            : /// \brief Get the intersection between two polygons. The polygons should be provided in an</a>
+<a name="245"><span class="lineNum">     245 </span>                :            : /// identical format to the output of `convex_hull` function as in the corners should be ordered</a>
+<a name="246"><span class="lineNum">     246 </span>                :            : /// in a CCW fashion.</a>
+<a name="247"><span class="lineNum">     247 </span>                :            : /// The computation is done by:</a>
+<a name="248"><span class="lineNum">     248 </span>                :            : /// * Find the corners of each polygon that are contained by the other polygon.</a>
+<a name="249"><span class="lineNum">     249 </span>                :            : /// * Find the intersection points between two polygons</a>
+<a name="250"><span class="lineNum">     250 </span>                :            : /// * Combine these points and order CCW to get the final polygon.</a>
+<a name="251"><span class="lineNum">     251 </span>                :            : /// The criteria for intersection is better explained in:</a>
+<a name="252"><span class="lineNum">     252 </span>                :            : /// &quot;Area of intersection of arbitrary polygons&quot; (Livermore, Calif, 1977)</a>
+<a name="253"><span class="lineNum">     253 </span>                :            : /// See https://www.osti.gov/servlets/purl/7309916/, chapter II - B</a>
+<a name="254"><span class="lineNum">     254 </span>                :            : /// TODO(yunus.caliskan): This is a naive implementation. We should scan for a more efficient</a>
+<a name="255"><span class="lineNum">     255 </span>                :            : ///  algorithm: #1230</a>
+<a name="256"><span class="lineNum">     256 </span>                :            : /// \tparam Iterable1T A container class that has stl style iterators defined.</a>
+<a name="257"><span class="lineNum">     257 </span>                :            : /// \tparam Iterable2T A container class that has stl style iterators defined.</a>
+<a name="258"><span class="lineNum">     258 </span>                :            : /// \tparam PointT Point type that have the adapters for the x and y fields.</a>
+<a name="259"><span class="lineNum">     259 </span>                :            : /// set to `Point1T`</a>
+<a name="260"><span class="lineNum">     260 </span>                :            : /// \param polygon1 A convex polygon</a>
+<a name="261"><span class="lineNum">     261 </span>                :            : /// \param polygon2 A convex polygon</a>
+<a name="262"><span class="lineNum">     262 </span>                :            : /// \return The resulting conv</a>
+<a name="263"><span class="lineNum">     263 </span>                :            : template&lt;template&lt;typename ...&gt; class Iterable1T, template&lt;typename ...&gt; class Iterable2T,</a>
+<a name="264"><span class="lineNum">     264 </span>                :            :   typename PointT&gt;</a>
+<a name="265"><span class="lineNum">     265 </span>                :<span class="lineCov">          9 : std::list&lt;PointT&gt; convex_polygon_intersection2d(</span></a>
+<a name="266"><span class="lineNum">     266 </span>                :            :   const Iterable1T&lt;PointT&gt; &amp; polygon1,</a>
+<a name="267"><span class="lineNum">     267 </span>                :            :   const Iterable2T&lt;PointT&gt; &amp; polygon2)</a>
+<a name="268"><span class="lineNum">     268 </span>                :            : {</a>
+<a name="269"><span class="lineNum">     269 </span>                :<span class="lineCov">          9 :   std::list&lt;PointT&gt; result;</span></a>
+<a name="270"><span class="lineNum">     270 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          9 :   details::append_contained_points(polygon1, polygon2, result);</span></a>
+<a name="271"><span class="lineNum">     271 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          9 :   details::append_contained_points(polygon2, polygon1, result);</span></a>
+<a name="272"><span class="lineNum">     272 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          9 :   details::append_intersection_points(polygon1, polygon2, result);</span></a>
+<a name="273"><span class="lineNum">     273 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          9 :   const auto end_it = common::geometry::convex_hull(result);</span></a>
+<a name="274"><span class="lineNum">     274 </span>  [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          9 :   result.resize(static_cast&lt;uint32_t&gt;(std::distance(result.cbegin(), end_it)));</span></a>
+<a name="275"><span class="lineNum">     275 </span>                :<span class="lineCov">         18 :   return result;</span></a>
+<a name="276"><span class="lineNum">     276 </span>                :            : }</a>
+<a name="277"><span class="lineNum">     277 </span>                :            : </a>
+<a name="278"><span class="lineNum">     278 </span>                :            : </a>
+<a name="279"><span class="lineNum">     279 </span>                :            : /// \brief Compute the intersection over union of two 2d convex polygons. If any of the polygons</a>
+<a name="280"><span class="lineNum">     280 </span>                :            : /// span a zero area, the result is 0.0.</a>
+<a name="281"><span class="lineNum">     281 </span>                :            : /// \tparam Iterable1T A container class that has stl style iterators defined.</a>
+<a name="282"><span class="lineNum">     282 </span>                :            : /// \tparam Iterable2T A container class that has stl style iterators defined.</a>
+<a name="283"><span class="lineNum">     283 </span>                :            : /// \tparam Point1T Point type that have the adapters for the x and y fields.</a>
+<a name="284"><span class="lineNum">     284 </span>                :            : /// \tparam Point2T Point type that have the adapters for the x and y fields.</a>
+<a name="285"><span class="lineNum">     285 </span>                :            : /// \param polygon1 A convex polygon</a>
+<a name="286"><span class="lineNum">     286 </span>                :            : /// \param polygon2 A convex polygon</a>
+<a name="287"><span class="lineNum">     287 </span>                :            : /// \return (Intersection / Union) between two given polygons.</a>
+<a name="288"><span class="lineNum">     288 </span>                :            : /// \throws std::domain_error If there is any inconsistency on the undderlying geometrical</a>
+<a name="289"><span class="lineNum">     289 </span>                :            : /// computation.</a>
+<a name="290"><span class="lineNum">     290 </span>                :            : template&lt;template&lt;typename ...&gt; class Iterable1T, template&lt;typename ...&gt; class Iterable2T,</a>
+<a name="291"><span class="lineNum">     291 </span>                :            :   typename PointT&gt;</a>
+<a name="292"><span class="lineNum">     292 </span>                :<span class="lineCov">          2 : common::types::float32_t convex_intersection_over_union_2d(</span></a>
+<a name="293"><span class="lineNum">     293 </span>                :            :   const Iterable1T&lt;PointT&gt; &amp; polygon1,</a>
+<a name="294"><span class="lineNum">     294 </span>                :            :   const Iterable2T&lt;PointT&gt; &amp; polygon2</a>
+<a name="295"><span class="lineNum">     295 </span>                :            : )</a>
+<a name="296"><span class="lineNum">     296 </span>                :            : {</a>
+<a name="297"><span class="lineNum">     297 </span>                :<span class="lineCov">          2 :   constexpr auto eps = std::numeric_limits&lt;float32_t&gt;::epsilon();</span></a>
+<a name="298"><span class="lineNum">     298 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :   const auto intersection = convex_polygon_intersection2d(polygon1, polygon2);</span></a>
+<a name="299"><span class="lineNum">     299 </span>                :            : </a>
+<a name="300"><span class="lineNum">     300 </span>                :            :   const auto intersection_area =</a>
+<a name="301"><span class="lineNum">     301 </span>                :<span class="lineCov">          2 :     common::geometry::area_2d(intersection.begin(), intersection.end());</span></a>
+<a name="302"><span class="lineNum">     302 </span>                :            : </a>
+<a name="303"><span class="lineNum">     303 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :   if (intersection_area &lt; eps) {</span></a>
+<a name="304"><span class="lineNum">     304 </span>                :<span class="lineCov">          1 :     return 0.0F;  // There's either no intersection or the points are collinear</span></a>
+<a name="305"><span class="lineNum">     305 </span>                :            :   }</a>
+<a name="306"><span class="lineNum">     306 </span>                :            : </a>
+<a name="307"><span class="lineNum">     307 </span>                :            :   const auto polygon1_area =</a>
+<a name="308"><span class="lineNum">     308 </span>                :<span class="lineCov">          1 :     common::geometry::area_2d(polygon1.begin(), polygon1.end());</span></a>
+<a name="309"><span class="lineNum">     309 </span>                :            :   const auto polygon2_area =</a>
+<a name="310"><span class="lineNum">     310 </span>                :<span class="lineCov">          1 :     common::geometry::area_2d(polygon2.begin(), polygon2.end());</span></a>
+<a name="311"><span class="lineNum">     311 </span>                :            : </a>
+<a name="312"><span class="lineNum">     312 </span>                :<span class="lineCov">          1 :   const auto union_area = polygon1_area + polygon2_area - intersection_area;</span></a>
+<a name="313"><span class="lineNum">     313 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          1 :   if (union_area &lt; eps) {</span></a>
+<a name="314"><span class="lineNum">     314 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     throw std::domain_error(&quot;IoU is undefined for polygons with a zero union area&quot;);</span></a>
+<a name="315"><span class="lineNum">     315 </span>                :            :   }</a>
+<a name="316"><span class="lineNum">     316 </span>                :            : </a>
+<a name="317"><span class="lineNum">     317 </span>                :<span class="lineCov">          1 :   return intersection_area / union_area;</span></a>
+<a name="318"><span class="lineNum">     318 </span>                :            : }</a>
+<a name="319"><span class="lineNum">     319 </span>                :            : </a>
+<a name="320"><span class="lineNum">     320 </span>                :            : }  // namespace geometry</a>
+<a name="321"><span class="lineNum">     321 </span>                :            : }  // namespace common</a>
+<a name="322"><span class="lineNum">     322 </span>                :            : }  // namespace autoware</a>
+<a name="323"><span class="lineNum">     323 </span>                :            : </a>
+<a name="324"><span class="lineNum">     324 </span>                :            : #endif  // GEOMETRY__INTERSECTION_HPP_</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

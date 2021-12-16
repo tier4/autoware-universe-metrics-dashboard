@@ -47,10 +47,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_launch/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_lint_common/</loc>
   </url>
   
@@ -88,10 +84,6 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/control_launch/</loc>
   </url>
   
   <url>
@@ -255,10 +247,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/integration_launch/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/interpolation/</loc>
   </url>
   
@@ -311,15 +299,7 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/localization_launch/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/map_based_prediction/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/map_launch/</loc>
   </url>
   
   <url>
@@ -415,19 +395,11 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/perception_launch/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/perception_pcl/</loc>
   </url>
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/planning_error_monitor/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/planning_launch/</loc>
   </url>
   
   <url>
@@ -483,10 +455,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/sensing_launch/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/shape_estimation/</loc>
   </url>
   
@@ -503,10 +471,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/simulator_launch/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/stop_filter/</loc>
   </url>
   
@@ -516,10 +480,6 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/system_error_monitor/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/system_launch/</loc>
   </url>
   
   <url>
@@ -543,7 +503,15 @@
   </url>
   
   <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_autoware_launch/</loc>
+  </url>
+  
+  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_autoware_utils/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_control_launch/</loc>
   </url>
   
   <url>
@@ -555,7 +523,19 @@
   </url>
   
   <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_integration_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_localization_launch/</loc>
+  </url>
+  
+  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_localization_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_map_launch/</loc>
   </url>
   
   <url>
@@ -563,7 +543,15 @@
   </url>
   
   <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_perception_launch/</loc>
+  </url>
+  
+  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_perception_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_planning_launch/</loc>
   </url>
   
   <url>
@@ -571,7 +559,23 @@
   </url>
   
   <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_sensing_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_simulator_launch/</loc>
+  </url>
+  
+  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_state_rviz_plugin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_system_launch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_vehicle_launch/</loc>
   </url>
   
   <url>
@@ -624,10 +628,6 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/vehicle_info_util/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/vehicle_launch/</loc>
   </url>
   
   <url>
