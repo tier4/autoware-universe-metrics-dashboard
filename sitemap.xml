@@ -55,10 +55,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/awapi_awiv_adapter/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/behavior_path_planner/</loc>
   </url>
   
@@ -555,7 +551,7 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_plannnig_rviz_plugin/</loc>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_planning_rviz_plugin/</loc>
   </url>
   
   <url>
