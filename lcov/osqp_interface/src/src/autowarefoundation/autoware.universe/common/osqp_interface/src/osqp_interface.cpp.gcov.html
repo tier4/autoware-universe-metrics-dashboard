@@ -32,17 +32,17 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">66</td>
-            <td class="headerCovTableEntry">124</td>
-            <td class="headerCovTableEntryLo">53.2 %</td>
+            <td class="headerCovTableEntry">129</td>
+            <td class="headerCovTableEntryLo">51.2 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-19 20:31:47</td>
+            <td class="headerValue">2021-12-26 20:47:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">7</td>
-            <td class="headerCovTableEntry">19</td>
-            <td class="headerCovTableEntryLo">36.8 %</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryLo">35.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Legend:</td>
@@ -57,8 +57,8 @@
             <td></td>
             <td class="headerItem">Branches:</td>
             <td class="headerCovTableEntry">21</td>
-            <td class="headerCovTableEntry">74</td>
-            <td class="headerCovTableEntryLo">28.4 %</td>
+            <td class="headerCovTableEntry">78</td>
+            <td class="headerCovTableEntryLo">26.9 %</td>
           </tr>
           <tr><td><img src="../../../../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -166,188 +166,195 @@
 <a name="88"><span class="lineNum">      88 </span>                :<span class="lineNoCov">          0 :   return;</span></a>
 <a name="89"><span class="lineNum">      89 </span>                :            : }</a>
 <a name="90"><span class="lineNum">      90 </span>                :            : </a>
-<a name="91"><span class="lineNum">      91 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateL(const std::vector&lt;double&gt; &amp; l_new)</span></a>
+<a name="91"><span class="lineNum">      91 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateQ(const std::vector&lt;double&gt; &amp; q_new)</span></a>
 <a name="92"><span class="lineNum">      92 </span>                :            : {</a>
-<a name="93"><span class="lineNum">      93 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; l_tmp(l_new.begin(), l_new.end());</span></a>
-<a name="94"><span class="lineNum">      94 </span>                :<span class="lineNoCov">          0 :   double * l_dyn = l_tmp.data();</span></a>
-<a name="95"><span class="lineNum">      95 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   osqp_update_lower_bound(m_work, l_dyn);</span></a>
+<a name="93"><span class="lineNum">      93 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; q_tmp(q_new.begin(), q_new.end());</span></a>
+<a name="94"><span class="lineNum">      94 </span>                :<span class="lineNoCov">          0 :   double * q_dyn = q_tmp.data();</span></a>
+<a name="95"><span class="lineNum">      95 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   osqp_update_lin_cost(m_work, q_dyn);</span></a>
 <a name="96"><span class="lineNum">      96 </span>                :<span class="lineNoCov">          0 : }</span></a>
 <a name="97"><span class="lineNum">      97 </span>                :            : </a>
-<a name="98"><span class="lineNum">      98 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateU(const std::vector&lt;double&gt; &amp; u_new)</span></a>
+<a name="98"><span class="lineNum">      98 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateL(const std::vector&lt;double&gt; &amp; l_new)</span></a>
 <a name="99"><span class="lineNum">      99 </span>                :            : {</a>
-<a name="100"><span class="lineNum">     100 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; u_tmp(u_new.begin(), u_new.end());</span></a>
-<a name="101"><span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 :   double * u_dyn = u_tmp.data();</span></a>
-<a name="102"><span class="lineNum">     102 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   osqp_update_upper_bound(m_work, u_dyn);</span></a>
+<a name="100"><span class="lineNum">     100 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; l_tmp(l_new.begin(), l_new.end());</span></a>
+<a name="101"><span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 :   double * l_dyn = l_tmp.data();</span></a>
+<a name="102"><span class="lineNum">     102 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   osqp_update_lower_bound(m_work, l_dyn);</span></a>
 <a name="103"><span class="lineNum">     103 </span>                :<span class="lineNoCov">          0 : }</span></a>
 <a name="104"><span class="lineNum">     104 </span>                :            : </a>
-<a name="105"><span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateBounds(</span></a>
-<a name="106"><span class="lineNum">     106 </span>                :            :   const std::vector&lt;double&gt; &amp; l_new, const std::vector&lt;double&gt; &amp; u_new)</a>
-<a name="107"><span class="lineNum">     107 </span>                :            : {</a>
-<a name="108"><span class="lineNum">     108 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; l_tmp(l_new.begin(), l_new.end());</span></a>
-<a name="109"><span class="lineNum">     109 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; u_tmp(u_new.begin(), u_new.end());</span></a>
-<a name="110"><span class="lineNum">     110 </span>                :<span class="lineNoCov">          0 :   double * l_dyn = l_tmp.data();</span></a>
-<a name="111"><span class="lineNum">     111 </span>                :<span class="lineNoCov">          0 :   double * u_dyn = u_tmp.data();</span></a>
-<a name="112"><span class="lineNum">     112 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   osqp_update_bounds(m_work, l_dyn, u_dyn);</span></a>
-<a name="113"><span class="lineNum">     113 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="114"><span class="lineNum">     114 </span>                :            : </a>
-<a name="115"><span class="lineNum">     115 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateEpsAbs(const double eps_abs)</span></a>
-<a name="116"><span class="lineNum">     116 </span>                :            : {</a>
-<a name="117"><span class="lineNum">     117 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;eps_abs = eps_abs;  // for default setting</span></a>
-<a name="118"><span class="lineNum">     118 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
-<a name="119"><span class="lineNum">     119 </span>                :<span class="lineNoCov">          0 :     osqp_update_eps_abs(m_work, eps_abs);  // for current work</span></a>
-<a name="120"><span class="lineNum">     120 </span>                :            :   }</a>
-<a name="121"><span class="lineNum">     121 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="122"><span class="lineNum">     122 </span>                :            : </a>
-<a name="123"><span class="lineNum">     123 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateEpsRel(const double eps_rel)</span></a>
-<a name="124"><span class="lineNum">     124 </span>                :            : {</a>
-<a name="125"><span class="lineNum">     125 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;eps_rel = eps_rel;  // for default setting</span></a>
-<a name="126"><span class="lineNum">     126 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
-<a name="127"><span class="lineNum">     127 </span>                :<span class="lineNoCov">          0 :     osqp_update_eps_rel(m_work, eps_rel);  // for current work</span></a>
-<a name="128"><span class="lineNum">     128 </span>                :            :   }</a>
-<a name="129"><span class="lineNum">     129 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="130"><span class="lineNum">     130 </span>                :            : </a>
-<a name="131"><span class="lineNum">     131 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateMaxIter(const int max_iter)</span></a>
-<a name="132"><span class="lineNum">     132 </span>                :            : {</a>
-<a name="133"><span class="lineNum">     133 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;max_iter = max_iter;  // for default setting</span></a>
-<a name="134"><span class="lineNum">     134 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
-<a name="135"><span class="lineNum">     135 </span>                :<span class="lineNoCov">          0 :     osqp_update_max_iter(m_work, max_iter);  // for current work</span></a>
-<a name="136"><span class="lineNum">     136 </span>                :            :   }</a>
-<a name="137"><span class="lineNum">     137 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="138"><span class="lineNum">     138 </span>                :            : </a>
-<a name="139"><span class="lineNum">     139 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateVerbose(const bool is_verbose)</span></a>
-<a name="140"><span class="lineNum">     140 </span>                :            : {</a>
-<a name="141"><span class="lineNum">     141 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;verbose = is_verbose;  // for default setting</span></a>
-<a name="142"><span class="lineNum">     142 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
-<a name="143"><span class="lineNum">     143 </span>                :<span class="lineNoCov">          0 :     osqp_update_verbose(m_work, is_verbose);  // for current work</span></a>
-<a name="144"><span class="lineNum">     144 </span>                :            :   }</a>
-<a name="145"><span class="lineNum">     145 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="146"><span class="lineNum">     146 </span>                :            : </a>
-<a name="147"><span class="lineNum">     147 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateRhoInterval(const int rho_interval)</span></a>
-<a name="148"><span class="lineNum">     148 </span>                :            : {</a>
-<a name="149"><span class="lineNum">     149 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;adaptive_rho_interval = rho_interval;  // for default setting</span></a>
-<a name="150"><span class="lineNum">     150 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="151"><span class="lineNum">     151 </span>                :            : </a>
-<a name="152"><span class="lineNum">     152 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateRho(const double rho)</span></a>
-<a name="153"><span class="lineNum">     153 </span>                :            : {</a>
-<a name="154"><span class="lineNum">     154 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;rho = rho;</span></a>
-<a name="155"><span class="lineNum">     155 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
-<a name="156"><span class="lineNum">     156 </span>                :<span class="lineNoCov">          0 :     osqp_update_rho(m_work, rho);</span></a>
-<a name="157"><span class="lineNum">     157 </span>                :            :   }</a>
-<a name="158"><span class="lineNum">     158 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="159"><span class="lineNum">     159 </span>                :            : </a>
-<a name="160"><span class="lineNum">     160 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateAlpha(const double alpha)</span></a>
-<a name="161"><span class="lineNum">     161 </span>                :            : {</a>
-<a name="162"><span class="lineNum">     162 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;alpha = alpha;</span></a>
-<a name="163"><span class="lineNum">     163 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
-<a name="164"><span class="lineNum">     164 </span>                :<span class="lineNoCov">          0 :     osqp_update_alpha(m_work, alpha);</span></a>
-<a name="165"><span class="lineNum">     165 </span>                :            :   }</a>
-<a name="166"><span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="167"><span class="lineNum">     167 </span>                :            : </a>
-<a name="168"><span class="lineNum">     168 </span>                :<span class="lineCov">         10 : int64_t OSQPInterface::initializeProblem(</span></a>
-<a name="169"><span class="lineNum">     169 </span>                :            :   const Eigen::MatrixXd &amp; P, const Eigen::MatrixXd &amp; A, const std::vector&lt;float64_t&gt; &amp; q,</a>
-<a name="170"><span class="lineNum">     170 </span>                :            :   const std::vector&lt;float64_t&gt; &amp; l, const std::vector&lt;float64_t&gt; &amp; u)</a>
-<a name="171"><span class="lineNum">     171 </span>                :            : {</a>
-<a name="172"><span class="lineNum">     172 </span>                :            :   /*******************</a>
-<a name="173"><span class="lineNum">     173 </span>                :            :    * SET UP MATRICES</a>
-<a name="174"><span class="lineNum">     174 </span>                :            :    *******************/</a>
-<a name="175"><span class="lineNum">     175 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   CSC_Matrix P_csc = calCSCMatrixTrapezoidal(P);</span></a>
-<a name="176"><span class="lineNum">     176 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   CSC_Matrix A_csc = calCSCMatrix(A);</span></a>
-<a name="177"><span class="lineNum">     177 </span>                :            :   // Dynamic float arrays</a>
-<a name="178"><span class="lineNum">     178 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; q_tmp(q.begin(), q.end());</span></a>
-<a name="179"><span class="lineNum">     179 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; l_tmp(l.begin(), l.end());</span></a>
-<a name="180"><span class="lineNum">     180 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   std::vector&lt;float64_t&gt; u_tmp(u.begin(), u.end());</span></a>
-<a name="181"><span class="lineNum">     181 </span>                :<span class="lineCov">         10 :   float64_t * q_dyn = q_tmp.data();</span></a>
-<a name="182"><span class="lineNum">     182 </span>                :<span class="lineCov">         10 :   float64_t * l_dyn = l_tmp.data();</span></a>
-<a name="183"><span class="lineNum">     183 </span>                :<span class="lineCov">         10 :   float64_t * u_dyn = u_tmp.data();</span></a>
-<a name="184"><span class="lineNum">     184 </span>                :            : </a>
-<a name="185"><span class="lineNum">     185 </span>                :            :   /**********************</a>
-<a name="186"><span class="lineNum">     186 </span>                :            :    * OBJECTIVE FUNCTION</a>
-<a name="187"><span class="lineNum">     187 </span>                :            :    **********************/</a>
-<a name="188"><span class="lineNum">     188 </span>                :            :   // Number of constraints</a>
-<a name="189"><span class="lineNum">     189 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   c_int constr_m = A.rows();</span></a>
-<a name="190"><span class="lineNum">     190 </span>                :            :   // Number of parameters</a>
-<a name="191"><span class="lineNum">     191 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   m_param_n = P.rows();</span></a>
-<a name="192"><span class="lineNum">     192 </span>                :            : </a>
-<a name="193"><span class="lineNum">     193 </span>                :            :   /*****************</a>
-<a name="194"><span class="lineNum">     194 </span>                :            :    * POPULATE DATA</a>
-<a name="195"><span class="lineNum">     195 </span>                :            :    *****************/</a>
-<a name="196"><span class="lineNum">     196 </span>                :<span class="lineCov">         10 :   m_data-&gt;m = constr_m;</span></a>
-<a name="197"><span class="lineNum">     197 </span>                :<span class="lineCov">         10 :   m_data-&gt;n = m_param_n;</span></a>
-<a name="198"><span class="lineNum">     198 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   m_data-&gt;P = csc_matrix(</span></a>
-<a name="199"><span class="lineNum">     199 </span>                :<span class="lineCov">         10 :     m_data-&gt;n, m_data-&gt;n, static_cast&lt;c_int&gt;(P_csc.m_vals.size()), P_csc.m_vals.data(),</span></a>
-<a name="200"><span class="lineNum">     200 </span>                :            :     P_csc.m_row_idxs.data(), P_csc.m_col_idxs.data());</a>
-<a name="201"><span class="lineNum">     201 </span>                :<span class="lineCov">         10 :   m_data-&gt;q = q_dyn;</span></a>
-<a name="202"><span class="lineNum">     202 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   m_data-&gt;A = csc_matrix(</span></a>
-<a name="203"><span class="lineNum">     203 </span>                :<span class="lineCov">         10 :     m_data-&gt;m, m_data-&gt;n, static_cast&lt;c_int&gt;(A_csc.m_vals.size()), A_csc.m_vals.data(),</span></a>
-<a name="204"><span class="lineNum">     204 </span>                :            :     A_csc.m_row_idxs.data(), A_csc.m_col_idxs.data());</a>
-<a name="205"><span class="lineNum">     205 </span>                :<span class="lineCov">         10 :   m_data-&gt;l = l_dyn;</span></a>
-<a name="206"><span class="lineNum">     206 </span>                :<span class="lineCov">         10 :   m_data-&gt;u = u_dyn;</span></a>
-<a name="207"><span class="lineNum">     207 </span>                :            : </a>
-<a name="208"><span class="lineNum">     208 </span>                :            :   // Setup workspace</a>
-<a name="209"><span class="lineNum">     209 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   m_exitflag = osqp_setup(&amp;m_work, m_data.get(), m_settings.get());</span></a>
-<a name="210"><span class="lineNum">     210 </span>                :<span class="lineCov">         10 :   m_work_initialized = true;</span></a>
-<a name="211"><span class="lineNum">     211 </span>                :            : </a>
-<a name="212"><span class="lineNum">     212 </span>                :<span class="lineCov">         20 :   return m_exitflag;</span></a>
-<a name="213"><span class="lineNum">     213 </span>                :            : }</a>
+<a name="105"><span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateU(const std::vector&lt;double&gt; &amp; u_new)</span></a>
+<a name="106"><span class="lineNum">     106 </span>                :            : {</a>
+<a name="107"><span class="lineNum">     107 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; u_tmp(u_new.begin(), u_new.end());</span></a>
+<a name="108"><span class="lineNum">     108 </span>                :<span class="lineNoCov">          0 :   double * u_dyn = u_tmp.data();</span></a>
+<a name="109"><span class="lineNum">     109 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   osqp_update_upper_bound(m_work, u_dyn);</span></a>
+<a name="110"><span class="lineNum">     110 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="111"><span class="lineNum">     111 </span>                :            : </a>
+<a name="112"><span class="lineNum">     112 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateBounds(</span></a>
+<a name="113"><span class="lineNum">     113 </span>                :            :   const std::vector&lt;double&gt; &amp; l_new, const std::vector&lt;double&gt; &amp; u_new)</a>
+<a name="114"><span class="lineNum">     114 </span>                :            : {</a>
+<a name="115"><span class="lineNum">     115 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; l_tmp(l_new.begin(), l_new.end());</span></a>
+<a name="116"><span class="lineNum">     116 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; u_tmp(u_new.begin(), u_new.end());</span></a>
+<a name="117"><span class="lineNum">     117 </span>                :<span class="lineNoCov">          0 :   double * l_dyn = l_tmp.data();</span></a>
+<a name="118"><span class="lineNum">     118 </span>                :<span class="lineNoCov">          0 :   double * u_dyn = u_tmp.data();</span></a>
+<a name="119"><span class="lineNum">     119 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   osqp_update_bounds(m_work, l_dyn, u_dyn);</span></a>
+<a name="120"><span class="lineNum">     120 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="121"><span class="lineNum">     121 </span>                :            : </a>
+<a name="122"><span class="lineNum">     122 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateEpsAbs(const double eps_abs)</span></a>
+<a name="123"><span class="lineNum">     123 </span>                :            : {</a>
+<a name="124"><span class="lineNum">     124 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;eps_abs = eps_abs;  // for default setting</span></a>
+<a name="125"><span class="lineNum">     125 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
+<a name="126"><span class="lineNum">     126 </span>                :<span class="lineNoCov">          0 :     osqp_update_eps_abs(m_work, eps_abs);  // for current work</span></a>
+<a name="127"><span class="lineNum">     127 </span>                :            :   }</a>
+<a name="128"><span class="lineNum">     128 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="129"><span class="lineNum">     129 </span>                :            : </a>
+<a name="130"><span class="lineNum">     130 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateEpsRel(const double eps_rel)</span></a>
+<a name="131"><span class="lineNum">     131 </span>                :            : {</a>
+<a name="132"><span class="lineNum">     132 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;eps_rel = eps_rel;  // for default setting</span></a>
+<a name="133"><span class="lineNum">     133 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
+<a name="134"><span class="lineNum">     134 </span>                :<span class="lineNoCov">          0 :     osqp_update_eps_rel(m_work, eps_rel);  // for current work</span></a>
+<a name="135"><span class="lineNum">     135 </span>                :            :   }</a>
+<a name="136"><span class="lineNum">     136 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="137"><span class="lineNum">     137 </span>                :            : </a>
+<a name="138"><span class="lineNum">     138 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateMaxIter(const int max_iter)</span></a>
+<a name="139"><span class="lineNum">     139 </span>                :            : {</a>
+<a name="140"><span class="lineNum">     140 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;max_iter = max_iter;  // for default setting</span></a>
+<a name="141"><span class="lineNum">     141 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
+<a name="142"><span class="lineNum">     142 </span>                :<span class="lineNoCov">          0 :     osqp_update_max_iter(m_work, max_iter);  // for current work</span></a>
+<a name="143"><span class="lineNum">     143 </span>                :            :   }</a>
+<a name="144"><span class="lineNum">     144 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="145"><span class="lineNum">     145 </span>                :            : </a>
+<a name="146"><span class="lineNum">     146 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateVerbose(const bool is_verbose)</span></a>
+<a name="147"><span class="lineNum">     147 </span>                :            : {</a>
+<a name="148"><span class="lineNum">     148 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;verbose = is_verbose;  // for default setting</span></a>
+<a name="149"><span class="lineNum">     149 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
+<a name="150"><span class="lineNum">     150 </span>                :<span class="lineNoCov">          0 :     osqp_update_verbose(m_work, is_verbose);  // for current work</span></a>
+<a name="151"><span class="lineNum">     151 </span>                :            :   }</a>
+<a name="152"><span class="lineNum">     152 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="153"><span class="lineNum">     153 </span>                :            : </a>
+<a name="154"><span class="lineNum">     154 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateRhoInterval(const int rho_interval)</span></a>
+<a name="155"><span class="lineNum">     155 </span>                :            : {</a>
+<a name="156"><span class="lineNum">     156 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;adaptive_rho_interval = rho_interval;  // for default setting</span></a>
+<a name="157"><span class="lineNum">     157 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="158"><span class="lineNum">     158 </span>                :            : </a>
+<a name="159"><span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateRho(const double rho)</span></a>
+<a name="160"><span class="lineNum">     160 </span>                :            : {</a>
+<a name="161"><span class="lineNum">     161 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;rho = rho;</span></a>
+<a name="162"><span class="lineNum">     162 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
+<a name="163"><span class="lineNum">     163 </span>                :<span class="lineNoCov">          0 :     osqp_update_rho(m_work, rho);</span></a>
+<a name="164"><span class="lineNum">     164 </span>                :            :   }</a>
+<a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="166"><span class="lineNum">     166 </span>                :            : </a>
+<a name="167"><span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 : void OSQPInterface::updateAlpha(const double alpha)</span></a>
+<a name="168"><span class="lineNum">     168 </span>                :            : {</a>
+<a name="169"><span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 :   m_settings-&gt;alpha = alpha;</span></a>
+<a name="170"><span class="lineNum">     170 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (m_work_initialized) {</span></a>
+<a name="171"><span class="lineNum">     171 </span>                :<span class="lineNoCov">          0 :     osqp_update_alpha(m_work, alpha);</span></a>
+<a name="172"><span class="lineNum">     172 </span>                :            :   }</a>
+<a name="173"><span class="lineNum">     173 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="174"><span class="lineNum">     174 </span>                :            : </a>
+<a name="175"><span class="lineNum">     175 </span>                :<span class="lineCov">         10 : int64_t OSQPInterface::initializeProblem(</span></a>
+<a name="176"><span class="lineNum">     176 </span>                :            :   const Eigen::MatrixXd &amp; P, const Eigen::MatrixXd &amp; A, const std::vector&lt;float64_t&gt; &amp; q,</a>
+<a name="177"><span class="lineNum">     177 </span>                :            :   const std::vector&lt;float64_t&gt; &amp; l, const std::vector&lt;float64_t&gt; &amp; u)</a>
+<a name="178"><span class="lineNum">     178 </span>                :            : {</a>
+<a name="179"><span class="lineNum">     179 </span>                :            :   /*******************</a>
+<a name="180"><span class="lineNum">     180 </span>                :            :    * SET UP MATRICES</a>
+<a name="181"><span class="lineNum">     181 </span>                :            :    *******************/</a>
+<a name="182"><span class="lineNum">     182 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   CSC_Matrix P_csc = calCSCMatrixTrapezoidal(P);</span></a>
+<a name="183"><span class="lineNum">     183 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   CSC_Matrix A_csc = calCSCMatrix(A);</span></a>
+<a name="184"><span class="lineNum">     184 </span>                :            :   // Dynamic float arrays</a>
+<a name="185"><span class="lineNum">     185 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; q_tmp(q.begin(), q.end());</span></a>
+<a name="186"><span class="lineNum">     186 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; l_tmp(l.begin(), l.end());</span></a>
+<a name="187"><span class="lineNum">     187 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   std::vector&lt;float64_t&gt; u_tmp(u.begin(), u.end());</span></a>
+<a name="188"><span class="lineNum">     188 </span>                :<span class="lineCov">         10 :   float64_t * q_dyn = q_tmp.data();</span></a>
+<a name="189"><span class="lineNum">     189 </span>                :<span class="lineCov">         10 :   float64_t * l_dyn = l_tmp.data();</span></a>
+<a name="190"><span class="lineNum">     190 </span>                :<span class="lineCov">         10 :   float64_t * u_dyn = u_tmp.data();</span></a>
+<a name="191"><span class="lineNum">     191 </span>                :            : </a>
+<a name="192"><span class="lineNum">     192 </span>                :            :   /**********************</a>
+<a name="193"><span class="lineNum">     193 </span>                :            :    * OBJECTIVE FUNCTION</a>
+<a name="194"><span class="lineNum">     194 </span>                :            :    **********************/</a>
+<a name="195"><span class="lineNum">     195 </span>                :            :   // Number of constraints</a>
+<a name="196"><span class="lineNum">     196 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   c_int constr_m = A.rows();</span></a>
+<a name="197"><span class="lineNum">     197 </span>                :            :   // Number of parameters</a>
+<a name="198"><span class="lineNum">     198 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   m_param_n = P.rows();</span></a>
+<a name="199"><span class="lineNum">     199 </span>                :            : </a>
+<a name="200"><span class="lineNum">     200 </span>                :            :   /*****************</a>
+<a name="201"><span class="lineNum">     201 </span>                :            :    * POPULATE DATA</a>
+<a name="202"><span class="lineNum">     202 </span>                :            :    *****************/</a>
+<a name="203"><span class="lineNum">     203 </span>                :<span class="lineCov">         10 :   m_data-&gt;m = constr_m;</span></a>
+<a name="204"><span class="lineNum">     204 </span>                :<span class="lineCov">         10 :   m_data-&gt;n = m_param_n;</span></a>
+<a name="205"><span class="lineNum">     205 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   m_data-&gt;P = csc_matrix(</span></a>
+<a name="206"><span class="lineNum">     206 </span>                :<span class="lineCov">         10 :     m_data-&gt;n, m_data-&gt;n, static_cast&lt;c_int&gt;(P_csc.m_vals.size()), P_csc.m_vals.data(),</span></a>
+<a name="207"><span class="lineNum">     207 </span>                :            :     P_csc.m_row_idxs.data(), P_csc.m_col_idxs.data());</a>
+<a name="208"><span class="lineNum">     208 </span>                :<span class="lineCov">         10 :   m_data-&gt;q = q_dyn;</span></a>
+<a name="209"><span class="lineNum">     209 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   m_data-&gt;A = csc_matrix(</span></a>
+<a name="210"><span class="lineNum">     210 </span>                :<span class="lineCov">         10 :     m_data-&gt;m, m_data-&gt;n, static_cast&lt;c_int&gt;(A_csc.m_vals.size()), A_csc.m_vals.data(),</span></a>
+<a name="211"><span class="lineNum">     211 </span>                :            :     A_csc.m_row_idxs.data(), A_csc.m_col_idxs.data());</a>
+<a name="212"><span class="lineNum">     212 </span>                :<span class="lineCov">         10 :   m_data-&gt;l = l_dyn;</span></a>
+<a name="213"><span class="lineNum">     213 </span>                :<span class="lineCov">         10 :   m_data-&gt;u = u_dyn;</span></a>
 <a name="214"><span class="lineNum">     214 </span>                :            : </a>
-<a name="215"><span class="lineNum">     215 </span>                :<span class="lineCov">         11 : OSQPInterface::~OSQPInterface()</span></a>
-<a name="216"><span class="lineNum">     216 </span>                :            : {</a>
-<a name="217"><span class="lineNum">     217 </span>                :            :   // Cleanup dynamic OSQP memory</a>
-<a name="218"><span class="lineNum">     218 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         11 :   if (m_work) {</span></a>
-<a name="219"><span class="lineNum">     219 </span>                :<span class="lineCov">          9 :     osqp_cleanup(m_work);</span></a>
-<a name="220"><span class="lineNum">     220 </span>                :            :   }</a>
-<a name="221"><span class="lineNum">     221 </span>                :<span class="lineCov">         11 : }</span></a>
-<a name="222"><span class="lineNum">     222 </span>                :            : </a>
-<a name="223"><span class="lineNum">     223 </span>                :<span class="lineCov">         10 : std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; OSQPInterface::solve()</span></a>
-<a name="224"><span class="lineNum">     224 </span>                :            : {</a>
-<a name="225"><span class="lineNum">     225 </span>                :            :   // Solve Problem</a>
-<a name="226"><span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   osqp_solve(m_work);</span></a>
-<a name="227"><span class="lineNum">     227 </span>                :            : </a>
-<a name="228"><span class="lineNum">     228 </span>                :            :   /********************</a>
-<a name="229"><span class="lineNum">     229 </span>                :            :    * EXTRACT SOLUTION</a>
-<a name="230"><span class="lineNum">     230 </span>                :            :    ********************/</a>
-<a name="231"><span class="lineNum">     231 </span>                :<span class="lineCov">         10 :   float64_t * sol_x = m_work-&gt;solution-&gt;x;</span></a>
-<a name="232"><span class="lineNum">     232 </span>                :<span class="lineCov">         10 :   float64_t * sol_y = m_work-&gt;solution-&gt;y;</span></a>
-<a name="233"><span class="lineNum">     233 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; sol_primal(sol_x, sol_x + m_param_n);</span></a>
-<a name="234"><span class="lineNum">     234 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; sol_lagrange_multiplier(sol_y, sol_y + m_param_n);</span></a>
-<a name="235"><span class="lineNum">     235 </span>                :            :   // Solver polish status</a>
-<a name="236"><span class="lineNum">     236 </span>                :<span class="lineCov">         10 :   int64_t status_polish = m_work-&gt;info-&gt;status_polish;</span></a>
-<a name="237"><span class="lineNum">     237 </span>                :            :   // Solver solution status</a>
-<a name="238"><span class="lineNum">     238 </span>                :<span class="lineCov">         10 :   int64_t status_solution = m_work-&gt;info-&gt;status_val;</span></a>
-<a name="239"><span class="lineNum">     239 </span>                :            :   // Result tuple</a>
-<a name="240"><span class="lineNum">     240 </span>                :            :   std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; result =</a>
-<a name="241"><span class="lineNum">     241 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :     std::make_tuple(sol_primal, sol_lagrange_multiplier, status_polish, status_solution);</span></a>
-<a name="242"><span class="lineNum">     242 </span>                :            : </a>
-<a name="243"><span class="lineNum">     243 </span>                :<span class="lineCov">         10 :   m_latest_work_info = *(m_work-&gt;info);</span></a>
-<a name="244"><span class="lineNum">     244 </span>                :            : </a>
-<a name="245"><span class="lineNum">     245 </span>                :<span class="lineCov">         20 :   return result;</span></a>
-<a name="246"><span class="lineNum">     246 </span>                :            : }</a>
-<a name="247"><span class="lineNum">     247 </span>                :            : </a>
-<a name="248"><span class="lineNum">     248 </span>                :            : std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt;</a>
-<a name="249"><span class="lineNum">     249 </span>                :<span class="lineCov">          3 : OSQPInterface::optimize()</span></a>
-<a name="250"><span class="lineNum">     250 </span>                :            : {</a>
-<a name="251"><span class="lineNum">     251 </span>                :            :   // Run the solver on the stored problem representation.</a>
-<a name="252"><span class="lineNum">     252 </span>                :<span class="lineCov">          3 :   std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; result = solve();</span></a>
-<a name="253"><span class="lineNum">     253 </span>                :<span class="lineCov">          3 :   return result;</span></a>
-<a name="254"><span class="lineNum">     254 </span>                :            : }</a>
-<a name="255"><span class="lineNum">     255 </span>                :            : </a>
-<a name="256"><span class="lineNum">     256 </span>                :            : std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt;</a>
-<a name="257"><span class="lineNum">     257 </span>                :<span class="lineCov">          7 : OSQPInterface::optimize(</span></a>
-<a name="258"><span class="lineNum">     258 </span>                :            :   const Eigen::MatrixXd &amp; P, const Eigen::MatrixXd &amp; A, const std::vector&lt;float64_t&gt; &amp; q,</a>
-<a name="259"><span class="lineNum">     259 </span>                :            :   const std::vector&lt;float64_t&gt; &amp; l, const std::vector&lt;float64_t&gt; &amp; u)</a>
-<a name="260"><span class="lineNum">     260 </span>                :            : {</a>
-<a name="261"><span class="lineNum">     261 </span>                :            :   // Allocate memory for problem</a>
-<a name="262"><span class="lineNum">     262 </span>                :<span class="lineCov">          7 :   initializeProblem(P, A, q, l, u);</span></a>
-<a name="263"><span class="lineNum">     263 </span>                :            : </a>
-<a name="264"><span class="lineNum">     264 </span>                :            :   // Run the solver on the stored problem representation.</a>
-<a name="265"><span class="lineNum">     265 </span>                :<span class="lineCov">          7 :   std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; result = solve();</span></a>
-<a name="266"><span class="lineNum">     266 </span>                :            : </a>
-<a name="267"><span class="lineNum">     267 </span>                :<span class="lineCov">          7 :   return result;</span></a>
-<a name="268"><span class="lineNum">     268 </span>                :            : }</a>
-<a name="269"><span class="lineNum">     269 </span>                :            : </a>
-<a name="270"><span class="lineNum">     270 </span>                :            : }  // namespace osqp</a>
-<a name="271"><span class="lineNum">     271 </span>                :            : }  // namespace common</a>
-<a name="272"><span class="lineNum">     272 </span>                :            : }  // namespace autoware</a>
+<a name="215"><span class="lineNum">     215 </span>                :            :   // Setup workspace</a>
+<a name="216"><span class="lineNum">     216 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   m_exitflag = osqp_setup(&amp;m_work, m_data.get(), m_settings.get());</span></a>
+<a name="217"><span class="lineNum">     217 </span>                :<span class="lineCov">         10 :   m_work_initialized = true;</span></a>
+<a name="218"><span class="lineNum">     218 </span>                :            : </a>
+<a name="219"><span class="lineNum">     219 </span>                :<span class="lineCov">         20 :   return m_exitflag;</span></a>
+<a name="220"><span class="lineNum">     220 </span>                :            : }</a>
+<a name="221"><span class="lineNum">     221 </span>                :            : </a>
+<a name="222"><span class="lineNum">     222 </span>                :<span class="lineCov">         11 : OSQPInterface::~OSQPInterface()</span></a>
+<a name="223"><span class="lineNum">     223 </span>                :            : {</a>
+<a name="224"><span class="lineNum">     224 </span>                :            :   // Cleanup dynamic OSQP memory</a>
+<a name="225"><span class="lineNum">     225 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         11 :   if (m_work) {</span></a>
+<a name="226"><span class="lineNum">     226 </span>                :<span class="lineCov">          9 :     osqp_cleanup(m_work);</span></a>
+<a name="227"><span class="lineNum">     227 </span>                :            :   }</a>
+<a name="228"><span class="lineNum">     228 </span>                :<span class="lineCov">         11 : }</span></a>
+<a name="229"><span class="lineNum">     229 </span>                :            : </a>
+<a name="230"><span class="lineNum">     230 </span>                :<span class="lineCov">         10 : std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; OSQPInterface::solve()</span></a>
+<a name="231"><span class="lineNum">     231 </span>                :            : {</a>
+<a name="232"><span class="lineNum">     232 </span>                :            :   // Solve Problem</a>
+<a name="233"><span class="lineNum">     233 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :   osqp_solve(m_work);</span></a>
+<a name="234"><span class="lineNum">     234 </span>                :            : </a>
+<a name="235"><span class="lineNum">     235 </span>                :            :   /********************</a>
+<a name="236"><span class="lineNum">     236 </span>                :            :    * EXTRACT SOLUTION</a>
+<a name="237"><span class="lineNum">     237 </span>                :            :    ********************/</a>
+<a name="238"><span class="lineNum">     238 </span>                :<span class="lineCov">         10 :   float64_t * sol_x = m_work-&gt;solution-&gt;x;</span></a>
+<a name="239"><span class="lineNum">     239 </span>                :<span class="lineCov">         10 :   float64_t * sol_y = m_work-&gt;solution-&gt;y;</span></a>
+<a name="240"><span class="lineNum">     240 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; sol_primal(sol_x, sol_x + m_param_n);</span></a>
+<a name="241"><span class="lineNum">     241 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :   std::vector&lt;float64_t&gt; sol_lagrange_multiplier(sol_y, sol_y + m_param_n);</span></a>
+<a name="242"><span class="lineNum">     242 </span>                :            :   // Solver polish status</a>
+<a name="243"><span class="lineNum">     243 </span>                :<span class="lineCov">         10 :   int64_t status_polish = m_work-&gt;info-&gt;status_polish;</span></a>
+<a name="244"><span class="lineNum">     244 </span>                :            :   // Solver solution status</a>
+<a name="245"><span class="lineNum">     245 </span>                :<span class="lineCov">         10 :   int64_t status_solution = m_work-&gt;info-&gt;status_val;</span></a>
+<a name="246"><span class="lineNum">     246 </span>                :            :   // Result tuple</a>
+<a name="247"><span class="lineNum">     247 </span>                :            :   std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; result =</a>
+<a name="248"><span class="lineNum">     248 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :     std::make_tuple(sol_primal, sol_lagrange_multiplier, status_polish, status_solution);</span></a>
+<a name="249"><span class="lineNum">     249 </span>                :            : </a>
+<a name="250"><span class="lineNum">     250 </span>                :<span class="lineCov">         10 :   m_latest_work_info = *(m_work-&gt;info);</span></a>
+<a name="251"><span class="lineNum">     251 </span>                :            : </a>
+<a name="252"><span class="lineNum">     252 </span>                :<span class="lineCov">         20 :   return result;</span></a>
+<a name="253"><span class="lineNum">     253 </span>                :            : }</a>
+<a name="254"><span class="lineNum">     254 </span>                :            : </a>
+<a name="255"><span class="lineNum">     255 </span>                :            : std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt;</a>
+<a name="256"><span class="lineNum">     256 </span>                :<span class="lineCov">          3 : OSQPInterface::optimize()</span></a>
+<a name="257"><span class="lineNum">     257 </span>                :            : {</a>
+<a name="258"><span class="lineNum">     258 </span>                :            :   // Run the solver on the stored problem representation.</a>
+<a name="259"><span class="lineNum">     259 </span>                :<span class="lineCov">          3 :   std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; result = solve();</span></a>
+<a name="260"><span class="lineNum">     260 </span>                :<span class="lineCov">          3 :   return result;</span></a>
+<a name="261"><span class="lineNum">     261 </span>                :            : }</a>
+<a name="262"><span class="lineNum">     262 </span>                :            : </a>
+<a name="263"><span class="lineNum">     263 </span>                :            : std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt;</a>
+<a name="264"><span class="lineNum">     264 </span>                :<span class="lineCov">          7 : OSQPInterface::optimize(</span></a>
+<a name="265"><span class="lineNum">     265 </span>                :            :   const Eigen::MatrixXd &amp; P, const Eigen::MatrixXd &amp; A, const std::vector&lt;float64_t&gt; &amp; q,</a>
+<a name="266"><span class="lineNum">     266 </span>                :            :   const std::vector&lt;float64_t&gt; &amp; l, const std::vector&lt;float64_t&gt; &amp; u)</a>
+<a name="267"><span class="lineNum">     267 </span>                :            : {</a>
+<a name="268"><span class="lineNum">     268 </span>                :            :   // Allocate memory for problem</a>
+<a name="269"><span class="lineNum">     269 </span>                :<span class="lineCov">          7 :   initializeProblem(P, A, q, l, u);</span></a>
+<a name="270"><span class="lineNum">     270 </span>                :            : </a>
+<a name="271"><span class="lineNum">     271 </span>                :            :   // Run the solver on the stored problem representation.</a>
+<a name="272"><span class="lineNum">     272 </span>                :<span class="lineCov">          7 :   std::tuple&lt;std::vector&lt;float64_t&gt;, std::vector&lt;float64_t&gt;, int64_t, int64_t&gt; result = solve();</span></a>
+<a name="273"><span class="lineNum">     273 </span>                :            : </a>
+<a name="274"><span class="lineNum">     274 </span>                :<span class="lineCov">          7 :   return result;</span></a>
+<a name="275"><span class="lineNum">     275 </span>                :            : }</a>
+<a name="276"><span class="lineNum">     276 </span>                :            : </a>
+<a name="277"><span class="lineNum">     277 </span>                :            : }  // namespace osqp</a>
+<a name="278"><span class="lineNum">     278 </span>                :            : }  // namespace common</a>
+<a name="279"><span class="lineNum">     279 </span>                :            : }  // namespace autoware</a>
 </pre>
       </td>
     </tr>

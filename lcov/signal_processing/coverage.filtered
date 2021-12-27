@@ -4,10 +4,10 @@ FN:17,_ZN15LowpassFilter1dC2Edd
 FN:19,_ZN15LowpassFilter1d5resetEd
 FN:21,_ZNK15LowpassFilter1d8getValueEv
 FN:23,_ZN15LowpassFilter1d6filterEd
-FNDA:1,_ZN15LowpassFilter1d5resetEd
-FNDA:1,_ZN15LowpassFilter1dC2Edd
-FNDA:4,_ZN15LowpassFilter1d6filterEd
 FNDA:4,_ZNK15LowpassFilter1d8getValueEv
+FNDA:1,_ZN15LowpassFilter1dC2Edd
+FNDA:1,_ZN15LowpassFilter1d5resetEd
+FNDA:4,_ZN15LowpassFilter1d6filterEd
 FNF:4
 FNH:4
 DA:17,1

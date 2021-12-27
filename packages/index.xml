@@ -20,16 +20,6 @@
     </item>
     
     <item>
-      <title>accel_brake_map_calibrator_button_panel</title>
-      <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/accel_brake_map_calibrator_button_panel/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/accel_brake_map_calibrator_button_panel/</guid>
-      <description>accel_brake_map_calibrator_button_panel
- Test result Code coverage     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/accel_brake_map_calibrator_button_panel/coverage.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/accel_brake_map_calibrator_button_panel\/coverage.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/accel_brake_map_calibrator_button_panel/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/accel_brake_map_calibrator_button_panel\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/accel_brake_map_calibrator_button_panel/loc.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.</description>
-    </item>
-    
-    <item>
       <title>ad_service_state_monitor</title>
       <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ad_service_state_monitor/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -127,6 +117,16 @@
       <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_lint_common/</guid>
       <description>autoware_lint_common
  Test result Code coverage     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/autoware_lint_common/coverage.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/autoware_lint_common\/coverage.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/autoware_lint_common/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/autoware_lint_common\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/autoware_lint_common/loc.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.</description>
+    </item>
+    
+    <item>
+      <title>autoware_point_types</title>
+      <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_point_types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_point_types/</guid>
+      <description>autoware_point_types
+ Test result Code coverage     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/autoware_point_types/coverage.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/autoware_point_types\/coverage.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/autoware_point_types/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/autoware_point_types\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/autoware_point_types/loc.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.</description>
     </item>
     
     <item>
@@ -1227,6 +1227,16 @@
       <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_autoware_utils/</guid>
       <description>tier4_autoware_utils
  Test result Code coverage     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_autoware_utils/coverage.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_autoware_utils\/coverage.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_autoware_utils/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_autoware_utils\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_autoware_utils/loc.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.</description>
+    </item>
+    
+    <item>
+      <title>tier4_calibration_rviz_plugin</title>
+      <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_calibration_rviz_plugin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_calibration_rviz_plugin/</guid>
+      <description>tier4_calibration_rviz_plugin
+ Test result Code coverage     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_calibration_rviz_plugin/coverage.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_calibration_rviz_plugin\/coverage.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_calibration_rviz_plugin/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_calibration_rviz_plugin\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_calibration_rviz_plugin/loc.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.</description>
     </item>
     
     <item>

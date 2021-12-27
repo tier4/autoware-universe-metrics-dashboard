@@ -7,10 +7,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/accel_brake_map_calibrator_button_panel/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/ad_service_state_monitor/</loc>
   </url>
   
@@ -48,6 +44,10 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_lint_common/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_point_types/</loc>
   </url>
   
   <url>
@@ -504,6 +504,10 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_autoware_utils/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_calibration_rviz_plugin/</loc>
   </url>
   
   <url>
