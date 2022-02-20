@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:47:50</td>
+            <td class="headerValue">2022-02-20 20:17:47</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -270,8 +270,8 @@
 <a name="192"><span class="lineNum">     192 </span>                :<span class="lineNoCov">          0 : bool MapBasedPrediction::getPredictedPath(</span></a>
 <a name="193"><span class="lineNum">     193 </span>                :            :   const double height, const double current_d_position, const double current_d_velocity,</a>
 <a name="194"><span class="lineNum">     194 </span>                :            :   const double current_s_position, const double current_s_velocity,</a>
-<a name="195"><span class="lineNum">     195 </span>                :            :   const std_msgs::msg::Header &amp; origin_header, Spline2D &amp; spline2d,</a>
-<a name="196"><span class="lineNum">     196 </span>                :            :   autoware_auto_perception_msgs::msg::PredictedPath &amp; path)</a>
+<a name="195"><span class="lineNum">     195 </span>                :            :   [[maybe_unused]] const std_msgs::msg::Header &amp; origin_header, Spline2D &amp; spline2d,</a>
+<a name="196"><span class="lineNum">     196 </span>                :            :   autoware_auto_perception_msgs::msg::PredictedPath &amp; path) const</a>
 <a name="197"><span class="lineNum">     197 </span>                :            : {</a>
 <a name="198"><span class="lineNum">     198 </span>                :            :   // Quintic polynomial for d</a>
 <a name="199"><span class="lineNum">     199 </span>                :            :   // A = np.array([[T**3, T**4, T**5],</a>
@@ -347,7 +347,7 @@
 <a name="269"><span class="lineNum">     269 </span>                :            : </a>
 <a name="270"><span class="lineNum">     270 </span>                :<span class="lineNoCov">          0 : void MapBasedPrediction::getLinearPredictedPath(</span></a>
 <a name="271"><span class="lineNum">     271 </span>                :            :   const geometry_msgs::msg::Pose &amp; object_pose, const geometry_msgs::msg::Twist &amp; object_twist,</a>
-<a name="272"><span class="lineNum">     272 </span>                :            :   autoware_auto_perception_msgs::msg::PredictedPath &amp; predicted_path)</a>
+<a name="272"><span class="lineNum">     272 </span>                :            :   autoware_auto_perception_msgs::msg::PredictedPath &amp; predicted_path) const</a>
 <a name="273"><span class="lineNum">     273 </span>                :            : {</a>
 <a name="274"><span class="lineNum">     274 </span>                :<span class="lineNoCov">          0 :   const double &amp; sampling_delta_time = sampling_delta_time_;</span></a>
 <a name="275"><span class="lineNum">     275 </span>                :<span class="lineNoCov">          0 :   const double &amp; time_horizon = time_horizon_;</span></a>

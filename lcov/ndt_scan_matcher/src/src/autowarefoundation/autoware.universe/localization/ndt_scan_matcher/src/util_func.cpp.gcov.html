@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:47:52</td>
+            <td class="headerValue">2022-02-20 20:17:48</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -291,48 +291,47 @@
 <a name="213"><span class="lineNum">     213 </span>                :            : }</a>
 <a name="214"><span class="lineNum">     214 </span>                :            : </a>
 <a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 : std::vector&lt;geometry_msgs::msg::Pose&gt; createRandomPoseArray(</span></a>
-<a name="216"><span class="lineNum">     216 </span>                :            :   const geometry_msgs::msg::PoseWithCovarianceStamped &amp; base_pose_with_cov,</a>
-<a name="217"><span class="lineNum">     217 </span>                :            :   const size_t particle_num)</a>
-<a name="218"><span class="lineNum">     218 </span>                :            : {</a>
-<a name="219"><span class="lineNum">     219 </span>                :<span class="lineNoCov">          0 :   std::default_random_engine engine(seed_gen());</span></a>
-<a name="220"><span class="lineNum">     220 </span>                :            :   const Eigen::Map&lt;const RowMatrixXd&gt; covariance =</a>
-<a name="221"><span class="lineNum">     221 </span>                :<span class="lineNoCov">          0 :     makeEigenCovariance(base_pose_with_cov.pose.covariance);</span></a>
-<a name="222"><span class="lineNum">     222 </span>                :            : </a>
-<a name="223"><span class="lineNum">     223 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; x_distribution(0.0, covariance(0, 0));</span></a>
-<a name="224"><span class="lineNum">     224 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; y_distribution(0.0, covariance(1, 1));</span></a>
-<a name="225"><span class="lineNum">     225 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; z_distribution(0.0, covariance(2, 2));</span></a>
-<a name="226"><span class="lineNum">     226 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; roll_distribution(0.0, covariance(3, 3));</span></a>
-<a name="227"><span class="lineNum">     227 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; pitch_distribution(0.0, covariance(4, 4));</span></a>
-<a name="228"><span class="lineNum">     228 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; yaw_distribution(0.0, covariance(5, 5));</span></a>
-<a name="229"><span class="lineNum">     229 </span>                :            : </a>
-<a name="230"><span class="lineNum">     230 </span>                :<span class="lineNoCov">          0 :   const auto base_rpy = getRPY(base_pose_with_cov);</span></a>
-<a name="231"><span class="lineNum">     231 </span>                :            : </a>
-<a name="232"><span class="lineNum">     232 </span>                :<span class="lineNoCov">          0 :   std::vector&lt;geometry_msgs::msg::Pose&gt; poses;</span></a>
-<a name="233"><span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; particle_num; ++i) {</span></a>
-<a name="234"><span class="lineNum">     234 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Vector3 xyz;</span></a>
-<a name="235"><span class="lineNum">     235 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Vector3 rpy;</span></a>
-<a name="236"><span class="lineNum">     236 </span>                :            : </a>
-<a name="237"><span class="lineNum">     237 </span>                :<span class="lineNoCov">          0 :     xyz.x = base_pose_with_cov.pose.pose.position.x + x_distribution(engine);</span></a>
-<a name="238"><span class="lineNum">     238 </span>                :<span class="lineNoCov">          0 :     xyz.y = base_pose_with_cov.pose.pose.position.y + y_distribution(engine);</span></a>
-<a name="239"><span class="lineNum">     239 </span>                :<span class="lineNoCov">          0 :     xyz.z = base_pose_with_cov.pose.pose.position.z + z_distribution(engine);</span></a>
-<a name="240"><span class="lineNum">     240 </span>                :<span class="lineNoCov">          0 :     rpy.x = base_rpy.x + roll_distribution(engine);</span></a>
-<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :     rpy.y = base_rpy.y + pitch_distribution(engine);</span></a>
-<a name="242"><span class="lineNum">     242 </span>                :<span class="lineNoCov">          0 :     rpy.z = base_rpy.z + yaw_distribution(engine);</span></a>
-<a name="243"><span class="lineNum">     243 </span>                :            : </a>
-<a name="244"><span class="lineNum">     244 </span>                :<span class="lineNoCov">          0 :     tf2::Quaternion tf_quaternion;</span></a>
-<a name="245"><span class="lineNum">     245 </span>                :<span class="lineNoCov">          0 :     tf_quaternion.setRPY(rpy.x, rpy.y, rpy.z);</span></a>
-<a name="246"><span class="lineNum">     246 </span>                :            : </a>
-<a name="247"><span class="lineNum">     247 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Pose pose;</span></a>
-<a name="248"><span class="lineNum">     248 </span>                :<span class="lineNoCov">          0 :     pose.position.x = xyz.x;</span></a>
-<a name="249"><span class="lineNum">     249 </span>                :<span class="lineNoCov">          0 :     pose.position.y = xyz.y;</span></a>
-<a name="250"><span class="lineNum">     250 </span>                :<span class="lineNoCov">          0 :     pose.position.z = xyz.z;</span></a>
-<a name="251"><span class="lineNum">     251 </span>                :<span class="lineNoCov">          0 :     pose.orientation = tf2::toMsg(tf_quaternion);</span></a>
-<a name="252"><span class="lineNum">     252 </span>                :            : </a>
-<a name="253"><span class="lineNum">     253 </span>                :<span class="lineNoCov">          0 :     poses.push_back(pose);</span></a>
-<a name="254"><span class="lineNum">     254 </span>                :            :   }</a>
-<a name="255"><span class="lineNum">     255 </span>                :            : </a>
-<a name="256"><span class="lineNum">     256 </span>                :<span class="lineNoCov">          0 :   return poses;</span></a>
-<a name="257"><span class="lineNum">     257 </span>                :            : }</a>
+<a name="216"><span class="lineNum">     216 </span>                :            :   const geometry_msgs::msg::PoseWithCovarianceStamped &amp; base_pose_with_cov, const int particle_num)</a>
+<a name="217"><span class="lineNum">     217 </span>                :            : {</a>
+<a name="218"><span class="lineNum">     218 </span>                :<span class="lineNoCov">          0 :   std::default_random_engine engine(seed_gen());</span></a>
+<a name="219"><span class="lineNum">     219 </span>                :            :   const Eigen::Map&lt;const RowMatrixXd&gt; covariance =</a>
+<a name="220"><span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 :     makeEigenCovariance(base_pose_with_cov.pose.covariance);</span></a>
+<a name="221"><span class="lineNum">     221 </span>                :            : </a>
+<a name="222"><span class="lineNum">     222 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; x_distribution(0.0, std::sqrt(covariance(0, 0)));</span></a>
+<a name="223"><span class="lineNum">     223 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; y_distribution(0.0, std::sqrt(covariance(1, 1)));</span></a>
+<a name="224"><span class="lineNum">     224 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; z_distribution(0.0, std::sqrt(covariance(2, 2)));</span></a>
+<a name="225"><span class="lineNum">     225 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; roll_distribution(0.0, std::sqrt(covariance(3, 3)));</span></a>
+<a name="226"><span class="lineNum">     226 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; pitch_distribution(0.0, std::sqrt(covariance(4, 4)));</span></a>
+<a name="227"><span class="lineNum">     227 </span>                :<span class="lineNoCov">          0 :   std::normal_distribution&lt;&gt; yaw_distribution(0.0, std::sqrt(covariance(5, 5)));</span></a>
+<a name="228"><span class="lineNum">     228 </span>                :            : </a>
+<a name="229"><span class="lineNum">     229 </span>                :<span class="lineNoCov">          0 :   const auto base_rpy = getRPY(base_pose_with_cov);</span></a>
+<a name="230"><span class="lineNum">     230 </span>                :            : </a>
+<a name="231"><span class="lineNum">     231 </span>                :<span class="lineNoCov">          0 :   std::vector&lt;geometry_msgs::msg::Pose&gt; poses;</span></a>
+<a name="232"><span class="lineNum">     232 </span>                :<span class="lineNoCov">          0 :   for (int i = 0; i &lt; particle_num; ++i) {</span></a>
+<a name="233"><span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Vector3 xyz;</span></a>
+<a name="234"><span class="lineNum">     234 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Vector3 rpy;</span></a>
+<a name="235"><span class="lineNum">     235 </span>                :            : </a>
+<a name="236"><span class="lineNum">     236 </span>                :<span class="lineNoCov">          0 :     xyz.x = base_pose_with_cov.pose.pose.position.x + x_distribution(engine);</span></a>
+<a name="237"><span class="lineNum">     237 </span>                :<span class="lineNoCov">          0 :     xyz.y = base_pose_with_cov.pose.pose.position.y + y_distribution(engine);</span></a>
+<a name="238"><span class="lineNum">     238 </span>                :<span class="lineNoCov">          0 :     xyz.z = base_pose_with_cov.pose.pose.position.z + z_distribution(engine);</span></a>
+<a name="239"><span class="lineNum">     239 </span>                :<span class="lineNoCov">          0 :     rpy.x = base_rpy.x + roll_distribution(engine);</span></a>
+<a name="240"><span class="lineNum">     240 </span>                :<span class="lineNoCov">          0 :     rpy.y = base_rpy.y + pitch_distribution(engine);</span></a>
+<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :     rpy.z = base_rpy.z + yaw_distribution(engine);</span></a>
+<a name="242"><span class="lineNum">     242 </span>                :            : </a>
+<a name="243"><span class="lineNum">     243 </span>                :<span class="lineNoCov">          0 :     tf2::Quaternion tf_quaternion;</span></a>
+<a name="244"><span class="lineNum">     244 </span>                :<span class="lineNoCov">          0 :     tf_quaternion.setRPY(rpy.x, rpy.y, rpy.z);</span></a>
+<a name="245"><span class="lineNum">     245 </span>                :            : </a>
+<a name="246"><span class="lineNum">     246 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Pose pose;</span></a>
+<a name="247"><span class="lineNum">     247 </span>                :<span class="lineNoCov">          0 :     pose.position.x = xyz.x;</span></a>
+<a name="248"><span class="lineNum">     248 </span>                :<span class="lineNoCov">          0 :     pose.position.y = xyz.y;</span></a>
+<a name="249"><span class="lineNum">     249 </span>                :<span class="lineNoCov">          0 :     pose.position.z = xyz.z;</span></a>
+<a name="250"><span class="lineNum">     250 </span>                :<span class="lineNoCov">          0 :     pose.orientation = tf2::toMsg(tf_quaternion);</span></a>
+<a name="251"><span class="lineNum">     251 </span>                :            : </a>
+<a name="252"><span class="lineNum">     252 </span>                :<span class="lineNoCov">          0 :     poses.push_back(pose);</span></a>
+<a name="253"><span class="lineNum">     253 </span>                :            :   }</a>
+<a name="254"><span class="lineNum">     254 </span>                :            : </a>
+<a name="255"><span class="lineNum">     255 </span>                :<span class="lineNoCov">          0 :   return poses;</span></a>
+<a name="256"><span class="lineNum">     256 </span>                :            : }</a>
 </pre>
       </td>
     </tr>

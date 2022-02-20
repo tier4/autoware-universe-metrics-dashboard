@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:47:52</td>
+            <td class="headerValue">2022-02-20 20:17:48</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -126,16 +126,17 @@
 <a name="48"><span class="lineNum">      48 </span>                :            :   virtual boost::shared_ptr&lt;const pcl::PointCloud&lt;PointTarget&gt;&gt; getInputTarget() const = 0;</a>
 <a name="49"><span class="lineNum">      49 </span>                :            :   virtual boost::shared_ptr&lt;const pcl::PointCloud&lt;PointSource&gt;&gt; getInputSource() const = 0;</a>
 <a name="50"><span class="lineNum">      50 </span>                :            :   virtual Eigen::Matrix4f getFinalTransformation() const = 0;</a>
-<a name="51"><span class="lineNum">      51 </span>                :            :   virtual std::vector&lt;Eigen::Matrix4f&gt; getFinalTransformationArray() const = 0;</a>
-<a name="52"><span class="lineNum">      52 </span>                :            : </a>
-<a name="53"><span class="lineNum">      53 </span>                :            :   virtual Eigen::Matrix&lt;double, 6, 6&gt; getHessian() const = 0;</a>
-<a name="54"><span class="lineNum">      54 </span>                :            : </a>
-<a name="55"><span class="lineNum">      55 </span>                :            :   virtual boost::shared_ptr&lt;pcl::search::KdTree&lt;PointTarget&gt;&gt; getSearchMethodTarget() const = 0;</a>
-<a name="56"><span class="lineNum">      56 </span>                :            : };</a>
-<a name="57"><span class="lineNum">      57 </span>                :            : </a>
-<a name="58"><span class="lineNum">      58 </span>                :            : #include &quot;ndt/impl/base.hpp&quot;</a>
-<a name="59"><span class="lineNum">      59 </span>                :            : </a>
-<a name="60"><span class="lineNum">      60 </span>                :            : #endif</a>
+<a name="51"><span class="lineNum">      51 </span>                :            :   virtual std::vector&lt;Eigen::Matrix4f, Eigen::aligned_allocator&lt;Eigen::Matrix4f&gt;&gt;</a>
+<a name="52"><span class="lineNum">      52 </span>                :            :   getFinalTransformationArray() const = 0;</a>
+<a name="53"><span class="lineNum">      53 </span>                :            : </a>
+<a name="54"><span class="lineNum">      54 </span>                :            :   virtual Eigen::Matrix&lt;double, 6, 6&gt; getHessian() const = 0;</a>
+<a name="55"><span class="lineNum">      55 </span>                :            : </a>
+<a name="56"><span class="lineNum">      56 </span>                :            :   virtual boost::shared_ptr&lt;pcl::search::KdTree&lt;PointTarget&gt;&gt; getSearchMethodTarget() const = 0;</a>
+<a name="57"><span class="lineNum">      57 </span>                :            : };</a>
+<a name="58"><span class="lineNum">      58 </span>                :            : </a>
+<a name="59"><span class="lineNum">      59 </span>                :            : #include &quot;ndt/impl/base.hpp&quot;</a>
+<a name="60"><span class="lineNum">      60 </span>                :            : </a>
+<a name="61"><span class="lineNum">      61 </span>                :            : #endif</a>
 </pre>
       </td>
     </tr>

@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">198</td>
+            <td class="headerCovTableEntry">195</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -240,249 +240,246 @@
 <a name="162"><span class="lineNum">     162 </span>                :<span class="lineNoCov">          0 :     this-&gt;create_publisher&lt;nav_msgs::msg::OccupancyGrid&gt;(&quot;~/output/occupancy_grid&quot;, 1);</span></a>
 <a name="163"><span class="lineNum">     163 </span>                :            : </a>
 <a name="164"><span class="lineNum">     164 </span>                :            :   // Timer</a>
-<a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :   auto timer_callback = std::bind(&amp;CostmapGenerator::onTimer, this);</span></a>
-<a name="166"><span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 :   const auto period = rclcpp::Rate(update_rate_).period();</span></a>
-<a name="167"><span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 :   timer_ = std::make_shared&lt;rclcpp::GenericTimer&lt;decltype(timer_callback)&gt;&gt;(</span></a>
-<a name="168"><span class="lineNum">     168 </span>                :<span class="lineNoCov">          0 :     this-&gt;get_clock(), period, std::move(timer_callback),</span></a>
-<a name="169"><span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 :     this-&gt;get_node_base_interface()-&gt;get_context());</span></a>
-<a name="170"><span class="lineNum">     170 </span>                :<span class="lineNoCov">          0 :   this-&gt;get_node_timers_interface()-&gt;add_timer(timer_, nullptr);</span></a>
-<a name="171"><span class="lineNum">     171 </span>                :            : </a>
-<a name="172"><span class="lineNum">     172 </span>                :            :   // Initialize</a>
-<a name="173"><span class="lineNum">     173 </span>                :<span class="lineNoCov">          0 :   initGridmap();</span></a>
-<a name="174"><span class="lineNum">     174 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="175"><span class="lineNum">     175 </span>                :            : </a>
-<a name="176"><span class="lineNum">     176 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::loadRoadAreasFromLaneletMap(</span></a>
-<a name="177"><span class="lineNum">     177 </span>                :            :   const lanelet::LaneletMapPtr lanelet_map,</a>
-<a name="178"><span class="lineNum">     178 </span>                :            :   std::vector&lt;std::vector&lt;geometry_msgs::msg::Point&gt;&gt; * area_points)</a>
-<a name="179"><span class="lineNum">     179 </span>                :            : {</a>
-<a name="180"><span class="lineNum">     180 </span>                :            :   // use all lanelets in map of subtype road to give way area</a>
-<a name="181"><span class="lineNum">     181 </span>                :<span class="lineNoCov">          0 :   lanelet::ConstLanelets all_lanelets = lanelet::utils::query::laneletLayer(lanelet_map);</span></a>
-<a name="182"><span class="lineNum">     182 </span>                :<span class="lineNoCov">          0 :   lanelet::ConstLanelets road_lanelets = lanelet::utils::query::roadLanelets(all_lanelets);</span></a>
-<a name="183"><span class="lineNum">     183 </span>                :            : </a>
-<a name="184"><span class="lineNum">     184 </span>                :            :   // convert lanelets to polygons and put into area_points array</a>
-<a name="185"><span class="lineNum">     185 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; ll : road_lanelets) {</span></a>
-<a name="186"><span class="lineNum">     186 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Polygon poly;</span></a>
-<a name="187"><span class="lineNum">     187 </span>                :<span class="lineNoCov">          0 :     lanelet::visualization::lanelet2Polygon(ll, &amp;poly);</span></a>
-<a name="188"><span class="lineNum">     188 </span>                :<span class="lineNoCov">          0 :     area_points-&gt;push_back(poly2vector(poly));</span></a>
-<a name="189"><span class="lineNum">     189 </span>                :            :   }</a>
-<a name="190"><span class="lineNum">     190 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="191"><span class="lineNum">     191 </span>                :            : </a>
-<a name="192"><span class="lineNum">     192 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::loadParkingAreasFromLaneletMap(</span></a>
-<a name="193"><span class="lineNum">     193 </span>                :            :   const lanelet::LaneletMapPtr lanelet_map,</a>
-<a name="194"><span class="lineNum">     194 </span>                :            :   std::vector&lt;std::vector&lt;geometry_msgs::msg::Point&gt;&gt; * area_points)</a>
-<a name="195"><span class="lineNum">     195 </span>                :            : {</a>
-<a name="196"><span class="lineNum">     196 </span>                :            :   // Parking lots</a>
-<a name="197"><span class="lineNum">     197 </span>                :<span class="lineNoCov">          0 :   lanelet::ConstPolygons3d all_parking_lots = lanelet::utils::query::getAllParkingLots(lanelet_map);</span></a>
-<a name="198"><span class="lineNum">     198 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; ll_poly : all_parking_lots) {</span></a>
-<a name="199"><span class="lineNum">     199 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Polygon poly;</span></a>
-<a name="200"><span class="lineNum">     200 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::conversion::toGeomMsgPoly(ll_poly, &amp;poly);</span></a>
-<a name="201"><span class="lineNum">     201 </span>                :<span class="lineNoCov">          0 :     area_points-&gt;push_back(poly2vector(poly));</span></a>
-<a name="202"><span class="lineNum">     202 </span>                :            :   }</a>
-<a name="203"><span class="lineNum">     203 </span>                :            : </a>
-<a name="204"><span class="lineNum">     204 </span>                :            :   // Parking spaces</a>
-<a name="205"><span class="lineNum">     205 </span>                :            :   lanelet::ConstLineStrings3d all_parking_spaces =</a>
-<a name="206"><span class="lineNum">     206 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::query::getAllParkingSpaces(lanelet_map);</span></a>
-<a name="207"><span class="lineNum">     207 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; parking_space : all_parking_spaces) {</span></a>
-<a name="208"><span class="lineNum">     208 </span>                :<span class="lineNoCov">          0 :     lanelet::ConstPolygon3d ll_poly;</span></a>
-<a name="209"><span class="lineNum">     209 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::lineStringWithWidthToPolygon(parking_space, &amp;ll_poly);</span></a>
-<a name="210"><span class="lineNum">     210 </span>                :            : </a>
-<a name="211"><span class="lineNum">     211 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Polygon poly;</span></a>
-<a name="212"><span class="lineNum">     212 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::conversion::toGeomMsgPoly(ll_poly, &amp;poly);</span></a>
-<a name="213"><span class="lineNum">     213 </span>                :<span class="lineNoCov">          0 :     area_points-&gt;push_back(poly2vector(poly));</span></a>
-<a name="214"><span class="lineNum">     214 </span>                :            :   }</a>
-<a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="216"><span class="lineNum">     216 </span>                :            : </a>
-<a name="217"><span class="lineNum">     217 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onLaneletMapBin(</span></a>
-<a name="218"><span class="lineNum">     218 </span>                :            :   const autoware_auto_mapping_msgs::msg::HADMapBin::ConstSharedPtr msg)</a>
-<a name="219"><span class="lineNum">     219 </span>                :            : {</a>
-<a name="220"><span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 :   lanelet_map_ = std::make_shared&lt;lanelet::LaneletMap&gt;();</span></a>
-<a name="221"><span class="lineNum">     221 </span>                :<span class="lineNoCov">          0 :   lanelet::utils::conversion::fromBinMsg(*msg, lanelet_map_);</span></a>
-<a name="222"><span class="lineNum">     222 </span>                :            : </a>
-<a name="223"><span class="lineNum">     223 </span>                :<span class="lineNoCov">          0 :   if (use_wayarea_) {</span></a>
-<a name="224"><span class="lineNum">     224 </span>                :<span class="lineNoCov">          0 :     loadRoadAreasFromLaneletMap(lanelet_map_, &amp;area_points_);</span></a>
-<a name="225"><span class="lineNum">     225 </span>                :<span class="lineNoCov">          0 :     loadParkingAreasFromLaneletMap(lanelet_map_, &amp;area_points_);</span></a>
-<a name="226"><span class="lineNum">     226 </span>                :            :   }</a>
-<a name="227"><span class="lineNum">     227 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="228"><span class="lineNum">     228 </span>                :            : </a>
-<a name="229"><span class="lineNum">     229 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onObjects(</span></a>
-<a name="230"><span class="lineNum">     230 </span>                :            :   const autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr msg)</a>
-<a name="231"><span class="lineNum">     231 </span>                :            : {</a>
-<a name="232"><span class="lineNum">     232 </span>                :<span class="lineNoCov">          0 :   objects_ = msg;</span></a>
-<a name="233"><span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="234"><span class="lineNum">     234 </span>                :            : </a>
-<a name="235"><span class="lineNum">     235 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onPoints(const sensor_msgs::msg::PointCloud2::ConstSharedPtr msg)</span></a>
-<a name="236"><span class="lineNum">     236 </span>                :            : {</a>
-<a name="237"><span class="lineNum">     237 </span>                :<span class="lineNoCov">          0 :   points_ = msg;</span></a>
-<a name="238"><span class="lineNum">     238 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="239"><span class="lineNum">     239 </span>                :            : </a>
-<a name="240"><span class="lineNum">     240 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onScenario(const tier4_planning_msgs::msg::Scenario::ConstSharedPtr msg)</span></a>
-<a name="241"><span class="lineNum">     241 </span>                :            : {</a>
-<a name="242"><span class="lineNum">     242 </span>                :<span class="lineNoCov">          0 :   scenario_ = msg;</span></a>
-<a name="243"><span class="lineNum">     243 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="244"><span class="lineNum">     244 </span>                :            : </a>
-<a name="245"><span class="lineNum">     245 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onTimer()</span></a>
-<a name="246"><span class="lineNum">     246 </span>                :            : {</a>
-<a name="247"><span class="lineNum">     247 </span>                :<span class="lineNoCov">          0 :   if (!isActive(scenario_)) {</span></a>
-<a name="248"><span class="lineNum">     248 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="249"><span class="lineNum">     249 </span>                :            :   }</a>
-<a name="250"><span class="lineNum">     250 </span>                :            : </a>
-<a name="251"><span class="lineNum">     251 </span>                :            :   // Get current pose</a>
-<a name="252"><span class="lineNum">     252 </span>                :<span class="lineNoCov">          0 :   geometry_msgs::msg::TransformStamped tf;</span></a>
-<a name="253"><span class="lineNum">     253 </span>                :            :   try {</a>
-<a name="254"><span class="lineNum">     254 </span>                :<span class="lineNoCov">          0 :     tf = tf_buffer_.lookupTransform(</span></a>
-<a name="255"><span class="lineNum">     255 </span>                :<span class="lineNoCov">          0 :       costmap_frame_, vehicle_frame_, rclcpp::Time(0), rclcpp::Duration::from_seconds(1.0));</span></a>
-<a name="256"><span class="lineNum">     256 </span>                :<span class="lineNoCov">          0 :   } catch (tf2::TransformException &amp; ex) {</span></a>
-<a name="257"><span class="lineNum">     257 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(this-&gt;get_logger(), &quot;%s&quot;, ex.what());</span></a>
-<a name="258"><span class="lineNum">     258 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="259"><span class="lineNum">     259 </span>                :            :   }</a>
-<a name="260"><span class="lineNum">     260 </span>                :            : </a>
-<a name="261"><span class="lineNum">     261 </span>                :            :   // Set grid center</a>
-<a name="262"><span class="lineNum">     262 </span>                :<span class="lineNoCov">          0 :   grid_map::Position p;</span></a>
-<a name="263"><span class="lineNum">     263 </span>                :<span class="lineNoCov">          0 :   p.x() = tf.transform.translation.x;</span></a>
-<a name="264"><span class="lineNum">     264 </span>                :<span class="lineNoCov">          0 :   p.y() = tf.transform.translation.y;</span></a>
-<a name="265"><span class="lineNum">     265 </span>                :<span class="lineNoCov">          0 :   costmap_.setPosition(p);</span></a>
-<a name="266"><span class="lineNum">     266 </span>                :            : </a>
-<a name="267"><span class="lineNum">     267 </span>                :<span class="lineNoCov">          0 :   if (use_wayarea_ &amp;&amp; lanelet_map_) {</span></a>
-<a name="268"><span class="lineNum">     268 </span>                :<span class="lineNoCov">          0 :     costmap_[LayerName::wayarea] = generateWayAreaCostmap();</span></a>
-<a name="269"><span class="lineNum">     269 </span>                :            :   }</a>
-<a name="270"><span class="lineNum">     270 </span>                :            : </a>
-<a name="271"><span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 :   if (use_objects_ &amp;&amp; objects_) {</span></a>
-<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :     costmap_[LayerName::objects] = generateObjectsCostmap(objects_);</span></a>
-<a name="273"><span class="lineNum">     273 </span>                :            :   }</a>
-<a name="274"><span class="lineNum">     274 </span>                :            : </a>
-<a name="275"><span class="lineNum">     275 </span>                :<span class="lineNoCov">          0 :   if (use_points_ &amp;&amp; points_) {</span></a>
-<a name="276"><span class="lineNum">     276 </span>                :<span class="lineNoCov">          0 :     costmap_[LayerName::points] = generatePointsCostmap(points_);</span></a>
-<a name="277"><span class="lineNum">     277 </span>                :            :   }</a>
-<a name="278"><span class="lineNum">     278 </span>                :            : </a>
-<a name="279"><span class="lineNum">     279 </span>                :<span class="lineNoCov">          0 :   costmap_[LayerName::combined] = generateCombinedCostmap();</span></a>
+<a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :   const auto period_ns = rclcpp::Rate(update_rate_).period();</span></a>
+<a name="166"><span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 :   timer_ = rclcpp::create_timer(this, get_clock(), period_ns,</span></a>
+<a name="167"><span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 :     std::bind(&amp;CostmapGenerator::onTimer, this));</span></a>
+<a name="168"><span class="lineNum">     168 </span>                :            : </a>
+<a name="169"><span class="lineNum">     169 </span>                :            :   // Initialize</a>
+<a name="170"><span class="lineNum">     170 </span>                :<span class="lineNoCov">          0 :   initGridmap();</span></a>
+<a name="171"><span class="lineNum">     171 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="172"><span class="lineNum">     172 </span>                :            : </a>
+<a name="173"><span class="lineNum">     173 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::loadRoadAreasFromLaneletMap(</span></a>
+<a name="174"><span class="lineNum">     174 </span>                :            :   const lanelet::LaneletMapPtr lanelet_map,</a>
+<a name="175"><span class="lineNum">     175 </span>                :            :   std::vector&lt;std::vector&lt;geometry_msgs::msg::Point&gt;&gt; * area_points)</a>
+<a name="176"><span class="lineNum">     176 </span>                :            : {</a>
+<a name="177"><span class="lineNum">     177 </span>                :            :   // use all lanelets in map of subtype road to give way area</a>
+<a name="178"><span class="lineNum">     178 </span>                :<span class="lineNoCov">          0 :   lanelet::ConstLanelets all_lanelets = lanelet::utils::query::laneletLayer(lanelet_map);</span></a>
+<a name="179"><span class="lineNum">     179 </span>                :<span class="lineNoCov">          0 :   lanelet::ConstLanelets road_lanelets = lanelet::utils::query::roadLanelets(all_lanelets);</span></a>
+<a name="180"><span class="lineNum">     180 </span>                :            : </a>
+<a name="181"><span class="lineNum">     181 </span>                :            :   // convert lanelets to polygons and put into area_points array</a>
+<a name="182"><span class="lineNum">     182 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; ll : road_lanelets) {</span></a>
+<a name="183"><span class="lineNum">     183 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Polygon poly;</span></a>
+<a name="184"><span class="lineNum">     184 </span>                :<span class="lineNoCov">          0 :     lanelet::visualization::lanelet2Polygon(ll, &amp;poly);</span></a>
+<a name="185"><span class="lineNum">     185 </span>                :<span class="lineNoCov">          0 :     area_points-&gt;push_back(poly2vector(poly));</span></a>
+<a name="186"><span class="lineNum">     186 </span>                :            :   }</a>
+<a name="187"><span class="lineNum">     187 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="188"><span class="lineNum">     188 </span>                :            : </a>
+<a name="189"><span class="lineNum">     189 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::loadParkingAreasFromLaneletMap(</span></a>
+<a name="190"><span class="lineNum">     190 </span>                :            :   const lanelet::LaneletMapPtr lanelet_map,</a>
+<a name="191"><span class="lineNum">     191 </span>                :            :   std::vector&lt;std::vector&lt;geometry_msgs::msg::Point&gt;&gt; * area_points)</a>
+<a name="192"><span class="lineNum">     192 </span>                :            : {</a>
+<a name="193"><span class="lineNum">     193 </span>                :            :   // Parking lots</a>
+<a name="194"><span class="lineNum">     194 </span>                :<span class="lineNoCov">          0 :   lanelet::ConstPolygons3d all_parking_lots = lanelet::utils::query::getAllParkingLots(lanelet_map);</span></a>
+<a name="195"><span class="lineNum">     195 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; ll_poly : all_parking_lots) {</span></a>
+<a name="196"><span class="lineNum">     196 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Polygon poly;</span></a>
+<a name="197"><span class="lineNum">     197 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::conversion::toGeomMsgPoly(ll_poly, &amp;poly);</span></a>
+<a name="198"><span class="lineNum">     198 </span>                :<span class="lineNoCov">          0 :     area_points-&gt;push_back(poly2vector(poly));</span></a>
+<a name="199"><span class="lineNum">     199 </span>                :            :   }</a>
+<a name="200"><span class="lineNum">     200 </span>                :            : </a>
+<a name="201"><span class="lineNum">     201 </span>                :            :   // Parking spaces</a>
+<a name="202"><span class="lineNum">     202 </span>                :            :   lanelet::ConstLineStrings3d all_parking_spaces =</a>
+<a name="203"><span class="lineNum">     203 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::query::getAllParkingSpaces(lanelet_map);</span></a>
+<a name="204"><span class="lineNum">     204 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; parking_space : all_parking_spaces) {</span></a>
+<a name="205"><span class="lineNum">     205 </span>                :<span class="lineNoCov">          0 :     lanelet::ConstPolygon3d ll_poly;</span></a>
+<a name="206"><span class="lineNum">     206 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::lineStringWithWidthToPolygon(parking_space, &amp;ll_poly);</span></a>
+<a name="207"><span class="lineNum">     207 </span>                :            : </a>
+<a name="208"><span class="lineNum">     208 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::Polygon poly;</span></a>
+<a name="209"><span class="lineNum">     209 </span>                :<span class="lineNoCov">          0 :     lanelet::utils::conversion::toGeomMsgPoly(ll_poly, &amp;poly);</span></a>
+<a name="210"><span class="lineNum">     210 </span>                :<span class="lineNoCov">          0 :     area_points-&gt;push_back(poly2vector(poly));</span></a>
+<a name="211"><span class="lineNum">     211 </span>                :            :   }</a>
+<a name="212"><span class="lineNum">     212 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="213"><span class="lineNum">     213 </span>                :            : </a>
+<a name="214"><span class="lineNum">     214 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onLaneletMapBin(</span></a>
+<a name="215"><span class="lineNum">     215 </span>                :            :   const autoware_auto_mapping_msgs::msg::HADMapBin::ConstSharedPtr msg)</a>
+<a name="216"><span class="lineNum">     216 </span>                :            : {</a>
+<a name="217"><span class="lineNum">     217 </span>                :<span class="lineNoCov">          0 :   lanelet_map_ = std::make_shared&lt;lanelet::LaneletMap&gt;();</span></a>
+<a name="218"><span class="lineNum">     218 </span>                :<span class="lineNoCov">          0 :   lanelet::utils::conversion::fromBinMsg(*msg, lanelet_map_);</span></a>
+<a name="219"><span class="lineNum">     219 </span>                :            : </a>
+<a name="220"><span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 :   if (use_wayarea_) {</span></a>
+<a name="221"><span class="lineNum">     221 </span>                :<span class="lineNoCov">          0 :     loadRoadAreasFromLaneletMap(lanelet_map_, &amp;area_points_);</span></a>
+<a name="222"><span class="lineNum">     222 </span>                :<span class="lineNoCov">          0 :     loadParkingAreasFromLaneletMap(lanelet_map_, &amp;area_points_);</span></a>
+<a name="223"><span class="lineNum">     223 </span>                :            :   }</a>
+<a name="224"><span class="lineNum">     224 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="225"><span class="lineNum">     225 </span>                :            : </a>
+<a name="226"><span class="lineNum">     226 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onObjects(</span></a>
+<a name="227"><span class="lineNum">     227 </span>                :            :   const autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr msg)</a>
+<a name="228"><span class="lineNum">     228 </span>                :            : {</a>
+<a name="229"><span class="lineNum">     229 </span>                :<span class="lineNoCov">          0 :   objects_ = msg;</span></a>
+<a name="230"><span class="lineNum">     230 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="231"><span class="lineNum">     231 </span>                :            : </a>
+<a name="232"><span class="lineNum">     232 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onPoints(const sensor_msgs::msg::PointCloud2::ConstSharedPtr msg)</span></a>
+<a name="233"><span class="lineNum">     233 </span>                :            : {</a>
+<a name="234"><span class="lineNum">     234 </span>                :<span class="lineNoCov">          0 :   points_ = msg;</span></a>
+<a name="235"><span class="lineNum">     235 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="236"><span class="lineNum">     236 </span>                :            : </a>
+<a name="237"><span class="lineNum">     237 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onScenario(const tier4_planning_msgs::msg::Scenario::ConstSharedPtr msg)</span></a>
+<a name="238"><span class="lineNum">     238 </span>                :            : {</a>
+<a name="239"><span class="lineNum">     239 </span>                :<span class="lineNoCov">          0 :   scenario_ = msg;</span></a>
+<a name="240"><span class="lineNum">     240 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="241"><span class="lineNum">     241 </span>                :            : </a>
+<a name="242"><span class="lineNum">     242 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::onTimer()</span></a>
+<a name="243"><span class="lineNum">     243 </span>                :            : {</a>
+<a name="244"><span class="lineNum">     244 </span>                :<span class="lineNoCov">          0 :   if (!isActive(scenario_)) {</span></a>
+<a name="245"><span class="lineNum">     245 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="246"><span class="lineNum">     246 </span>                :            :   }</a>
+<a name="247"><span class="lineNum">     247 </span>                :            : </a>
+<a name="248"><span class="lineNum">     248 </span>                :            :   // Get current pose</a>
+<a name="249"><span class="lineNum">     249 </span>                :<span class="lineNoCov">          0 :   geometry_msgs::msg::TransformStamped tf;</span></a>
+<a name="250"><span class="lineNum">     250 </span>                :            :   try {</a>
+<a name="251"><span class="lineNum">     251 </span>                :<span class="lineNoCov">          0 :     tf = tf_buffer_.lookupTransform(</span></a>
+<a name="252"><span class="lineNum">     252 </span>                :<span class="lineNoCov">          0 :       costmap_frame_, vehicle_frame_, rclcpp::Time(0), rclcpp::Duration::from_seconds(1.0));</span></a>
+<a name="253"><span class="lineNum">     253 </span>                :<span class="lineNoCov">          0 :   } catch (tf2::TransformException &amp; ex) {</span></a>
+<a name="254"><span class="lineNum">     254 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(this-&gt;get_logger(), &quot;%s&quot;, ex.what());</span></a>
+<a name="255"><span class="lineNum">     255 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="256"><span class="lineNum">     256 </span>                :            :   }</a>
+<a name="257"><span class="lineNum">     257 </span>                :            : </a>
+<a name="258"><span class="lineNum">     258 </span>                :            :   // Set grid center</a>
+<a name="259"><span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :   grid_map::Position p;</span></a>
+<a name="260"><span class="lineNum">     260 </span>                :<span class="lineNoCov">          0 :   p.x() = tf.transform.translation.x;</span></a>
+<a name="261"><span class="lineNum">     261 </span>                :<span class="lineNoCov">          0 :   p.y() = tf.transform.translation.y;</span></a>
+<a name="262"><span class="lineNum">     262 </span>                :<span class="lineNoCov">          0 :   costmap_.setPosition(p);</span></a>
+<a name="263"><span class="lineNum">     263 </span>                :            : </a>
+<a name="264"><span class="lineNum">     264 </span>                :<span class="lineNoCov">          0 :   if (use_wayarea_ &amp;&amp; lanelet_map_) {</span></a>
+<a name="265"><span class="lineNum">     265 </span>                :<span class="lineNoCov">          0 :     costmap_[LayerName::wayarea] = generateWayAreaCostmap();</span></a>
+<a name="266"><span class="lineNum">     266 </span>                :            :   }</a>
+<a name="267"><span class="lineNum">     267 </span>                :            : </a>
+<a name="268"><span class="lineNum">     268 </span>                :<span class="lineNoCov">          0 :   if (use_objects_ &amp;&amp; objects_) {</span></a>
+<a name="269"><span class="lineNum">     269 </span>                :<span class="lineNoCov">          0 :     costmap_[LayerName::objects] = generateObjectsCostmap(objects_);</span></a>
+<a name="270"><span class="lineNum">     270 </span>                :            :   }</a>
+<a name="271"><span class="lineNum">     271 </span>                :            : </a>
+<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :   if (use_points_ &amp;&amp; points_) {</span></a>
+<a name="273"><span class="lineNum">     273 </span>                :<span class="lineNoCov">          0 :     costmap_[LayerName::points] = generatePointsCostmap(points_);</span></a>
+<a name="274"><span class="lineNum">     274 </span>                :            :   }</a>
+<a name="275"><span class="lineNum">     275 </span>                :            : </a>
+<a name="276"><span class="lineNum">     276 </span>                :<span class="lineNoCov">          0 :   costmap_[LayerName::combined] = generateCombinedCostmap();</span></a>
+<a name="277"><span class="lineNum">     277 </span>                :            : </a>
+<a name="278"><span class="lineNum">     278 </span>                :<span class="lineNoCov">          0 :   publishCostmap(costmap_);</span></a>
+<a name="279"><span class="lineNum">     279 </span>                :            : }</a>
 <a name="280"><span class="lineNum">     280 </span>                :            : </a>
-<a name="281"><span class="lineNum">     281 </span>                :<span class="lineNoCov">          0 :   publishCostmap(costmap_);</span></a>
-<a name="282"><span class="lineNum">     282 </span>                :            : }</a>
-<a name="283"><span class="lineNum">     283 </span>                :            : </a>
-<a name="284"><span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::initGridmap()</span></a>
-<a name="285"><span class="lineNum">     285 </span>                :            : {</a>
-<a name="286"><span class="lineNum">     286 </span>                :<span class="lineNoCov">          0 :   costmap_.setFrameId(costmap_frame_);</span></a>
-<a name="287"><span class="lineNum">     287 </span>                :<span class="lineNoCov">          0 :   costmap_.setGeometry(</span></a>
-<a name="288"><span class="lineNum">     288 </span>                :<span class="lineNoCov">          0 :     grid_map::Length(grid_length_x_, grid_length_y_), grid_resolution_,</span></a>
-<a name="289"><span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :     grid_map::Position(grid_position_x_, grid_position_y_));</span></a>
-<a name="290"><span class="lineNum">     290 </span>                :            : </a>
-<a name="291"><span class="lineNum">     291 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::points, grid_min_value_);</span></a>
-<a name="292"><span class="lineNum">     292 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::objects, grid_min_value_);</span></a>
-<a name="293"><span class="lineNum">     293 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::wayarea, grid_min_value_);</span></a>
-<a name="294"><span class="lineNum">     294 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::combined, grid_min_value_);</span></a>
-<a name="295"><span class="lineNum">     295 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="296"><span class="lineNum">     296 </span>                :            : </a>
-<a name="297"><span class="lineNum">     297 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generatePointsCostmap(</span></a>
-<a name="298"><span class="lineNum">     298 </span>                :            :   const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp; in_points)</a>
-<a name="299"><span class="lineNum">     299 </span>                :            : {</a>
-<a name="300"><span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :   geometry_msgs::msg::TransformStamped points2costmap;</span></a>
-<a name="301"><span class="lineNum">     301 </span>                :            :   try {</a>
-<a name="302"><span class="lineNum">     302 </span>                :            :     points2costmap =</a>
-<a name="303"><span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :       tf_buffer_.lookupTransform(costmap_frame_, in_points-&gt;header.frame_id, tf2::TimePointZero);</span></a>
-<a name="304"><span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :   } catch (const tf2::TransformException &amp; ex) {</span></a>
-<a name="305"><span class="lineNum">     305 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(rclcpp::get_logger(&quot;costmap_generator&quot;), &quot;%s&quot;, ex.what());</span></a>
-<a name="306"><span class="lineNum">     306 </span>                :            :   }</a>
-<a name="307"><span class="lineNum">     307 </span>                :            : </a>
-<a name="308"><span class="lineNum">     308 </span>                :<span class="lineNoCov">          0 :   const auto transformed_points = getTransformedPointCloud(*in_points, points2costmap.transform);</span></a>
-<a name="309"><span class="lineNum">     309 </span>                :            : </a>
-<a name="310"><span class="lineNum">     310 </span>                :            :   grid_map::Matrix points_costmap = points2costmap_.makeCostmapFromPoints(</a>
-<a name="311"><span class="lineNum">     311 </span>                :            :     maximum_lidar_height_thres_, minimum_lidar_height_thres_, grid_min_value_, grid_max_value_,</a>
-<a name="312"><span class="lineNum">     312 </span>                :<span class="lineNoCov">          0 :     costmap_, LayerName::points, transformed_points);</span></a>
+<a name="281"><span class="lineNum">     281 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::initGridmap()</span></a>
+<a name="282"><span class="lineNum">     282 </span>                :            : {</a>
+<a name="283"><span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 :   costmap_.setFrameId(costmap_frame_);</span></a>
+<a name="284"><span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :   costmap_.setGeometry(</span></a>
+<a name="285"><span class="lineNum">     285 </span>                :<span class="lineNoCov">          0 :     grid_map::Length(grid_length_x_, grid_length_y_), grid_resolution_,</span></a>
+<a name="286"><span class="lineNum">     286 </span>                :<span class="lineNoCov">          0 :     grid_map::Position(grid_position_x_, grid_position_y_));</span></a>
+<a name="287"><span class="lineNum">     287 </span>                :            : </a>
+<a name="288"><span class="lineNum">     288 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::points, grid_min_value_);</span></a>
+<a name="289"><span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::objects, grid_min_value_);</span></a>
+<a name="290"><span class="lineNum">     290 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::wayarea, grid_min_value_);</span></a>
+<a name="291"><span class="lineNum">     291 </span>                :<span class="lineNoCov">          0 :   costmap_.add(LayerName::combined, grid_min_value_);</span></a>
+<a name="292"><span class="lineNum">     292 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="293"><span class="lineNum">     293 </span>                :            : </a>
+<a name="294"><span class="lineNum">     294 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generatePointsCostmap(</span></a>
+<a name="295"><span class="lineNum">     295 </span>                :            :   const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp; in_points)</a>
+<a name="296"><span class="lineNum">     296 </span>                :            : {</a>
+<a name="297"><span class="lineNum">     297 </span>                :<span class="lineNoCov">          0 :   geometry_msgs::msg::TransformStamped points2costmap;</span></a>
+<a name="298"><span class="lineNum">     298 </span>                :            :   try {</a>
+<a name="299"><span class="lineNum">     299 </span>                :            :     points2costmap =</a>
+<a name="300"><span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :       tf_buffer_.lookupTransform(costmap_frame_, in_points-&gt;header.frame_id, tf2::TimePointZero);</span></a>
+<a name="301"><span class="lineNum">     301 </span>                :<span class="lineNoCov">          0 :   } catch (const tf2::TransformException &amp; ex) {</span></a>
+<a name="302"><span class="lineNum">     302 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(rclcpp::get_logger(&quot;costmap_generator&quot;), &quot;%s&quot;, ex.what());</span></a>
+<a name="303"><span class="lineNum">     303 </span>                :            :   }</a>
+<a name="304"><span class="lineNum">     304 </span>                :            : </a>
+<a name="305"><span class="lineNum">     305 </span>                :<span class="lineNoCov">          0 :   const auto transformed_points = getTransformedPointCloud(*in_points, points2costmap.transform);</span></a>
+<a name="306"><span class="lineNum">     306 </span>                :            : </a>
+<a name="307"><span class="lineNum">     307 </span>                :            :   grid_map::Matrix points_costmap = points2costmap_.makeCostmapFromPoints(</a>
+<a name="308"><span class="lineNum">     308 </span>                :            :     maximum_lidar_height_thres_, minimum_lidar_height_thres_, grid_min_value_, grid_max_value_,</a>
+<a name="309"><span class="lineNum">     309 </span>                :<span class="lineNoCov">          0 :     costmap_, LayerName::points, transformed_points);</span></a>
+<a name="310"><span class="lineNum">     310 </span>                :            : </a>
+<a name="311"><span class="lineNum">     311 </span>                :<span class="lineNoCov">          0 :   return points_costmap;</span></a>
+<a name="312"><span class="lineNum">     312 </span>                :            : }</a>
 <a name="313"><span class="lineNum">     313 </span>                :            : </a>
-<a name="314"><span class="lineNum">     314 </span>                :<span class="lineNoCov">          0 :   return points_costmap;</span></a>
-<a name="315"><span class="lineNum">     315 </span>                :            : }</a>
-<a name="316"><span class="lineNum">     316 </span>                :            : </a>
-<a name="317"><span class="lineNum">     317 </span>                :<span class="lineNoCov">          0 : autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr transformObjects(</span></a>
-<a name="318"><span class="lineNum">     318 </span>                :            :   const tf2_ros::Buffer &amp; tf_buffer,</a>
-<a name="319"><span class="lineNum">     319 </span>                :            :   const autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr in_objects,</a>
-<a name="320"><span class="lineNum">     320 </span>                :            :   const std::string &amp; target_frame_id, const std::string &amp; src_frame_id)</a>
-<a name="321"><span class="lineNum">     321 </span>                :            : {</a>
-<a name="322"><span class="lineNum">     322 </span>                :<span class="lineNoCov">          0 :   auto objects = new autoware_auto_perception_msgs::msg::PredictedObjects();</span></a>
-<a name="323"><span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 :   *objects = *in_objects;</span></a>
-<a name="324"><span class="lineNum">     324 </span>                :<span class="lineNoCov">          0 :   objects-&gt;header.frame_id = target_frame_id;</span></a>
-<a name="325"><span class="lineNum">     325 </span>                :            : </a>
-<a name="326"><span class="lineNum">     326 </span>                :<span class="lineNoCov">          0 :   geometry_msgs::msg::TransformStamped objects2costmap;</span></a>
-<a name="327"><span class="lineNum">     327 </span>                :            :   try {</a>
-<a name="328"><span class="lineNum">     328 </span>                :<span class="lineNoCov">          0 :     objects2costmap = tf_buffer.lookupTransform(target_frame_id, src_frame_id, tf2::TimePointZero);</span></a>
-<a name="329"><span class="lineNum">     329 </span>                :<span class="lineNoCov">          0 :   } catch (const tf2::TransformException &amp; ex) {</span></a>
-<a name="330"><span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(rclcpp::get_logger(&quot;costmap_generator&quot;), &quot;%s&quot;, ex.what());</span></a>
-<a name="331"><span class="lineNum">     331 </span>                :            :   }</a>
-<a name="332"><span class="lineNum">     332 </span>                :            : </a>
-<a name="333"><span class="lineNum">     333 </span>                :<span class="lineNoCov">          0 :   for (auto &amp; object : objects-&gt;objects) {</span></a>
-<a name="334"><span class="lineNum">     334 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::PoseStamped output_stamped, input_stamped;</span></a>
-<a name="335"><span class="lineNum">     335 </span>                :<span class="lineNoCov">          0 :     input_stamped.pose = object.kinematics.initial_pose_with_covariance.pose;</span></a>
-<a name="336"><span class="lineNum">     336 </span>                :<span class="lineNoCov">          0 :     tf2::doTransform(input_stamped, output_stamped, objects2costmap);</span></a>
-<a name="337"><span class="lineNum">     337 </span>                :<span class="lineNoCov">          0 :     object.kinematics.initial_pose_with_covariance.pose = output_stamped.pose;</span></a>
-<a name="338"><span class="lineNum">     338 </span>                :            :   }</a>
+<a name="314"><span class="lineNum">     314 </span>                :<span class="lineNoCov">          0 : autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr transformObjects(</span></a>
+<a name="315"><span class="lineNum">     315 </span>                :            :   const tf2_ros::Buffer &amp; tf_buffer,</a>
+<a name="316"><span class="lineNum">     316 </span>                :            :   const autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr in_objects,</a>
+<a name="317"><span class="lineNum">     317 </span>                :            :   const std::string &amp; target_frame_id, const std::string &amp; src_frame_id)</a>
+<a name="318"><span class="lineNum">     318 </span>                :            : {</a>
+<a name="319"><span class="lineNum">     319 </span>                :<span class="lineNoCov">          0 :   auto objects = new autoware_auto_perception_msgs::msg::PredictedObjects();</span></a>
+<a name="320"><span class="lineNum">     320 </span>                :<span class="lineNoCov">          0 :   *objects = *in_objects;</span></a>
+<a name="321"><span class="lineNum">     321 </span>                :<span class="lineNoCov">          0 :   objects-&gt;header.frame_id = target_frame_id;</span></a>
+<a name="322"><span class="lineNum">     322 </span>                :            : </a>
+<a name="323"><span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 :   geometry_msgs::msg::TransformStamped objects2costmap;</span></a>
+<a name="324"><span class="lineNum">     324 </span>                :            :   try {</a>
+<a name="325"><span class="lineNum">     325 </span>                :<span class="lineNoCov">          0 :     objects2costmap = tf_buffer.lookupTransform(target_frame_id, src_frame_id, tf2::TimePointZero);</span></a>
+<a name="326"><span class="lineNum">     326 </span>                :<span class="lineNoCov">          0 :   } catch (const tf2::TransformException &amp; ex) {</span></a>
+<a name="327"><span class="lineNum">     327 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(rclcpp::get_logger(&quot;costmap_generator&quot;), &quot;%s&quot;, ex.what());</span></a>
+<a name="328"><span class="lineNum">     328 </span>                :            :   }</a>
+<a name="329"><span class="lineNum">     329 </span>                :            : </a>
+<a name="330"><span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :   for (auto &amp; object : objects-&gt;objects) {</span></a>
+<a name="331"><span class="lineNum">     331 </span>                :<span class="lineNoCov">          0 :     geometry_msgs::msg::PoseStamped output_stamped, input_stamped;</span></a>
+<a name="332"><span class="lineNum">     332 </span>                :<span class="lineNoCov">          0 :     input_stamped.pose = object.kinematics.initial_pose_with_covariance.pose;</span></a>
+<a name="333"><span class="lineNum">     333 </span>                :<span class="lineNoCov">          0 :     tf2::doTransform(input_stamped, output_stamped, objects2costmap);</span></a>
+<a name="334"><span class="lineNum">     334 </span>                :<span class="lineNoCov">          0 :     object.kinematics.initial_pose_with_covariance.pose = output_stamped.pose;</span></a>
+<a name="335"><span class="lineNum">     335 </span>                :            :   }</a>
+<a name="336"><span class="lineNum">     336 </span>                :            : </a>
+<a name="337"><span class="lineNum">     337 </span>                :<span class="lineNoCov">          0 :   return autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr(objects);</span></a>
+<a name="338"><span class="lineNum">     338 </span>                :            : }</a>
 <a name="339"><span class="lineNum">     339 </span>                :            : </a>
-<a name="340"><span class="lineNum">     340 </span>                :<span class="lineNoCov">          0 :   return autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr(objects);</span></a>
-<a name="341"><span class="lineNum">     341 </span>                :            : }</a>
-<a name="342"><span class="lineNum">     342 </span>                :            : </a>
-<a name="343"><span class="lineNum">     343 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generateObjectsCostmap(</span></a>
-<a name="344"><span class="lineNum">     344 </span>                :            :   const autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr in_objects)</a>
-<a name="345"><span class="lineNum">     345 </span>                :            : {</a>
-<a name="346"><span class="lineNum">     346 </span>                :<span class="lineNoCov">          0 :   const auto object_frame = in_objects-&gt;header.frame_id;</span></a>
-<a name="347"><span class="lineNum">     347 </span>                :            :   const auto transformed_objects =</a>
-<a name="348"><span class="lineNum">     348 </span>                :<span class="lineNoCov">          0 :     transformObjects(tf_buffer_, in_objects, costmap_frame_, object_frame);</span></a>
+<a name="340"><span class="lineNum">     340 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generateObjectsCostmap(</span></a>
+<a name="341"><span class="lineNum">     341 </span>                :            :   const autoware_auto_perception_msgs::msg::PredictedObjects::ConstSharedPtr in_objects)</a>
+<a name="342"><span class="lineNum">     342 </span>                :            : {</a>
+<a name="343"><span class="lineNum">     343 </span>                :<span class="lineNoCov">          0 :   const auto object_frame = in_objects-&gt;header.frame_id;</span></a>
+<a name="344"><span class="lineNum">     344 </span>                :            :   const auto transformed_objects =</a>
+<a name="345"><span class="lineNum">     345 </span>                :<span class="lineNoCov">          0 :     transformObjects(tf_buffer_, in_objects, costmap_frame_, object_frame);</span></a>
+<a name="346"><span class="lineNum">     346 </span>                :            : </a>
+<a name="347"><span class="lineNum">     347 </span>                :            :   grid_map::Matrix objects_costmap = objects2costmap_.makeCostmapFromObjects(</a>
+<a name="348"><span class="lineNum">     348 </span>                :<span class="lineNoCov">          0 :     costmap_, expand_polygon_size_, size_of_expansion_kernel_, transformed_objects);</span></a>
 <a name="349"><span class="lineNum">     349 </span>                :            : </a>
-<a name="350"><span class="lineNum">     350 </span>                :            :   grid_map::Matrix objects_costmap = objects2costmap_.makeCostmapFromObjects(</a>
-<a name="351"><span class="lineNum">     351 </span>                :<span class="lineNoCov">          0 :     costmap_, expand_polygon_size_, size_of_expansion_kernel_, transformed_objects);</span></a>
+<a name="350"><span class="lineNum">     350 </span>                :<span class="lineNoCov">          0 :   return objects_costmap;</span></a>
+<a name="351"><span class="lineNum">     351 </span>                :            : }</a>
 <a name="352"><span class="lineNum">     352 </span>                :            : </a>
-<a name="353"><span class="lineNum">     353 </span>                :<span class="lineNoCov">          0 :   return objects_costmap;</span></a>
-<a name="354"><span class="lineNum">     354 </span>                :            : }</a>
-<a name="355"><span class="lineNum">     355 </span>                :            : </a>
-<a name="356"><span class="lineNum">     356 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generateWayAreaCostmap()</span></a>
-<a name="357"><span class="lineNum">     357 </span>                :            : {</a>
-<a name="358"><span class="lineNum">     358 </span>                :<span class="lineNoCov">          0 :   grid_map::GridMap lanelet2_costmap = costmap_;</span></a>
-<a name="359"><span class="lineNum">     359 </span>                :<span class="lineNoCov">          0 :   if (!area_points_.empty()) {</span></a>
-<a name="360"><span class="lineNum">     360 </span>                :<span class="lineNoCov">          0 :     object_map::FillPolygonAreas(</span></a>
-<a name="361"><span class="lineNum">     361 </span>                :<span class="lineNoCov">          0 :       lanelet2_costmap, area_points_, LayerName::wayarea, grid_max_value_, grid_min_value_,</span></a>
-<a name="362"><span class="lineNum">     362 </span>                :<span class="lineNoCov">          0 :       grid_min_value_, grid_max_value_, costmap_frame_, map_frame_, tf_buffer_);</span></a>
-<a name="363"><span class="lineNum">     363 </span>                :            :   }</a>
-<a name="364"><span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :   return lanelet2_costmap[LayerName::wayarea];</span></a>
-<a name="365"><span class="lineNum">     365 </span>                :            : }</a>
-<a name="366"><span class="lineNum">     366 </span>                :            : </a>
-<a name="367"><span class="lineNum">     367 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generateCombinedCostmap()</span></a>
-<a name="368"><span class="lineNum">     368 </span>                :            : {</a>
-<a name="369"><span class="lineNum">     369 </span>                :            :   // assuming combined_costmap is calculated by element wise max operation</a>
-<a name="370"><span class="lineNum">     370 </span>                :<span class="lineNoCov">          0 :   grid_map::GridMap combined_costmap = costmap_;</span></a>
-<a name="371"><span class="lineNum">     371 </span>                :            : </a>
-<a name="372"><span class="lineNum">     372 </span>                :<span class="lineNoCov">          0 :   combined_costmap[LayerName::combined].setConstant(grid_min_value_);</span></a>
+<a name="353"><span class="lineNum">     353 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generateWayAreaCostmap()</span></a>
+<a name="354"><span class="lineNum">     354 </span>                :            : {</a>
+<a name="355"><span class="lineNum">     355 </span>                :<span class="lineNoCov">          0 :   grid_map::GridMap lanelet2_costmap = costmap_;</span></a>
+<a name="356"><span class="lineNum">     356 </span>                :<span class="lineNoCov">          0 :   if (!area_points_.empty()) {</span></a>
+<a name="357"><span class="lineNum">     357 </span>                :<span class="lineNoCov">          0 :     object_map::FillPolygonAreas(</span></a>
+<a name="358"><span class="lineNum">     358 </span>                :<span class="lineNoCov">          0 :       lanelet2_costmap, area_points_, LayerName::wayarea, grid_max_value_, grid_min_value_,</span></a>
+<a name="359"><span class="lineNum">     359 </span>                :<span class="lineNoCov">          0 :       grid_min_value_, grid_max_value_, costmap_frame_, map_frame_, tf_buffer_);</span></a>
+<a name="360"><span class="lineNum">     360 </span>                :            :   }</a>
+<a name="361"><span class="lineNum">     361 </span>                :<span class="lineNoCov">          0 :   return lanelet2_costmap[LayerName::wayarea];</span></a>
+<a name="362"><span class="lineNum">     362 </span>                :            : }</a>
+<a name="363"><span class="lineNum">     363 </span>                :            : </a>
+<a name="364"><span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 : grid_map::Matrix CostmapGenerator::generateCombinedCostmap()</span></a>
+<a name="365"><span class="lineNum">     365 </span>                :            : {</a>
+<a name="366"><span class="lineNum">     366 </span>                :            :   // assuming combined_costmap is calculated by element wise max operation</a>
+<a name="367"><span class="lineNum">     367 </span>                :<span class="lineNoCov">          0 :   grid_map::GridMap combined_costmap = costmap_;</span></a>
+<a name="368"><span class="lineNum">     368 </span>                :            : </a>
+<a name="369"><span class="lineNum">     369 </span>                :<span class="lineNoCov">          0 :   combined_costmap[LayerName::combined].setConstant(grid_min_value_);</span></a>
+<a name="370"><span class="lineNum">     370 </span>                :            : </a>
+<a name="371"><span class="lineNum">     371 </span>                :<span class="lineNoCov">          0 :   combined_costmap[LayerName::combined] =</span></a>
+<a name="372"><span class="lineNum">     372 </span>                :<span class="lineNoCov">          0 :     combined_costmap[LayerName::combined].cwiseMax(combined_costmap[LayerName::points]);</span></a>
 <a name="373"><span class="lineNum">     373 </span>                :            : </a>
 <a name="374"><span class="lineNum">     374 </span>                :<span class="lineNoCov">          0 :   combined_costmap[LayerName::combined] =</span></a>
-<a name="375"><span class="lineNum">     375 </span>                :<span class="lineNoCov">          0 :     combined_costmap[LayerName::combined].cwiseMax(combined_costmap[LayerName::points]);</span></a>
+<a name="375"><span class="lineNum">     375 </span>                :<span class="lineNoCov">          0 :     combined_costmap[LayerName::combined].cwiseMax(combined_costmap[LayerName::wayarea]);</span></a>
 <a name="376"><span class="lineNum">     376 </span>                :            : </a>
 <a name="377"><span class="lineNum">     377 </span>                :<span class="lineNoCov">          0 :   combined_costmap[LayerName::combined] =</span></a>
-<a name="378"><span class="lineNum">     378 </span>                :<span class="lineNoCov">          0 :     combined_costmap[LayerName::combined].cwiseMax(combined_costmap[LayerName::wayarea]);</span></a>
+<a name="378"><span class="lineNum">     378 </span>                :<span class="lineNoCov">          0 :     combined_costmap[LayerName::combined].cwiseMax(combined_costmap[LayerName::objects]);</span></a>
 <a name="379"><span class="lineNum">     379 </span>                :            : </a>
-<a name="380"><span class="lineNum">     380 </span>                :<span class="lineNoCov">          0 :   combined_costmap[LayerName::combined] =</span></a>
-<a name="381"><span class="lineNum">     381 </span>                :<span class="lineNoCov">          0 :     combined_costmap[LayerName::combined].cwiseMax(combined_costmap[LayerName::objects]);</span></a>
+<a name="380"><span class="lineNum">     380 </span>                :<span class="lineNoCov">          0 :   return combined_costmap[LayerName::combined];</span></a>
+<a name="381"><span class="lineNum">     381 </span>                :            : }</a>
 <a name="382"><span class="lineNum">     382 </span>                :            : </a>
-<a name="383"><span class="lineNum">     383 </span>                :<span class="lineNoCov">          0 :   return combined_costmap[LayerName::combined];</span></a>
-<a name="384"><span class="lineNum">     384 </span>                :            : }</a>
-<a name="385"><span class="lineNum">     385 </span>                :            : </a>
-<a name="386"><span class="lineNum">     386 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::publishCostmap(const grid_map::GridMap &amp; costmap)</span></a>
-<a name="387"><span class="lineNum">     387 </span>                :            : {</a>
-<a name="388"><span class="lineNum">     388 </span>                :            :   // Set header</a>
-<a name="389"><span class="lineNum">     389 </span>                :<span class="lineNoCov">          0 :   std_msgs::msg::Header header;</span></a>
-<a name="390"><span class="lineNum">     390 </span>                :<span class="lineNoCov">          0 :   header.frame_id = costmap_frame_;</span></a>
-<a name="391"><span class="lineNum">     391 </span>                :<span class="lineNoCov">          0 :   header.stamp = this-&gt;now();</span></a>
-<a name="392"><span class="lineNum">     392 </span>                :            : </a>
-<a name="393"><span class="lineNum">     393 </span>                :            :   // Publish OccupancyGrid</a>
-<a name="394"><span class="lineNum">     394 </span>                :<span class="lineNoCov">          0 :   nav_msgs::msg::OccupancyGrid out_occupancy_grid;</span></a>
-<a name="395"><span class="lineNum">     395 </span>                :<span class="lineNoCov">          0 :   grid_map::GridMapRosConverter::toOccupancyGrid(</span></a>
-<a name="396"><span class="lineNum">     396 </span>                :<span class="lineNoCov">          0 :     costmap, LayerName::combined, grid_min_value_, grid_max_value_, out_occupancy_grid);</span></a>
-<a name="397"><span class="lineNum">     397 </span>                :<span class="lineNoCov">          0 :   out_occupancy_grid.header = header;</span></a>
-<a name="398"><span class="lineNum">     398 </span>                :<span class="lineNoCov">          0 :   pub_occupancy_grid_-&gt;publish(out_occupancy_grid);</span></a>
-<a name="399"><span class="lineNum">     399 </span>                :            : </a>
-<a name="400"><span class="lineNum">     400 </span>                :            :   // Publish GridMap</a>
-<a name="401"><span class="lineNum">     401 </span>                :<span class="lineNoCov">          0 :   auto out_gridmap_msg = grid_map::GridMapRosConverter::toMessage(costmap);</span></a>
-<a name="402"><span class="lineNum">     402 </span>                :<span class="lineNoCov">          0 :   out_gridmap_msg-&gt;header = header;</span></a>
-<a name="403"><span class="lineNum">     403 </span>                :<span class="lineNoCov">          0 :   pub_costmap_-&gt;publish(*out_gridmap_msg);</span></a>
-<a name="404"><span class="lineNum">     404 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="405"><span class="lineNum">     405 </span>                :            : </a>
-<a name="406"><span class="lineNum">     406 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
-<a name="407"><span class="lineNum">     407 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(CostmapGenerator)</span></a>
+<a name="383"><span class="lineNum">     383 </span>                :<span class="lineNoCov">          0 : void CostmapGenerator::publishCostmap(const grid_map::GridMap &amp; costmap)</span></a>
+<a name="384"><span class="lineNum">     384 </span>                :            : {</a>
+<a name="385"><span class="lineNum">     385 </span>                :            :   // Set header</a>
+<a name="386"><span class="lineNum">     386 </span>                :<span class="lineNoCov">          0 :   std_msgs::msg::Header header;</span></a>
+<a name="387"><span class="lineNum">     387 </span>                :<span class="lineNoCov">          0 :   header.frame_id = costmap_frame_;</span></a>
+<a name="388"><span class="lineNum">     388 </span>                :<span class="lineNoCov">          0 :   header.stamp = this-&gt;now();</span></a>
+<a name="389"><span class="lineNum">     389 </span>                :            : </a>
+<a name="390"><span class="lineNum">     390 </span>                :            :   // Publish OccupancyGrid</a>
+<a name="391"><span class="lineNum">     391 </span>                :<span class="lineNoCov">          0 :   nav_msgs::msg::OccupancyGrid out_occupancy_grid;</span></a>
+<a name="392"><span class="lineNum">     392 </span>                :<span class="lineNoCov">          0 :   grid_map::GridMapRosConverter::toOccupancyGrid(</span></a>
+<a name="393"><span class="lineNum">     393 </span>                :<span class="lineNoCov">          0 :     costmap, LayerName::combined, grid_min_value_, grid_max_value_, out_occupancy_grid);</span></a>
+<a name="394"><span class="lineNum">     394 </span>                :<span class="lineNoCov">          0 :   out_occupancy_grid.header = header;</span></a>
+<a name="395"><span class="lineNum">     395 </span>                :<span class="lineNoCov">          0 :   pub_occupancy_grid_-&gt;publish(out_occupancy_grid);</span></a>
+<a name="396"><span class="lineNum">     396 </span>                :            : </a>
+<a name="397"><span class="lineNum">     397 </span>                :            :   // Publish GridMap</a>
+<a name="398"><span class="lineNum">     398 </span>                :<span class="lineNoCov">          0 :   auto out_gridmap_msg = grid_map::GridMapRosConverter::toMessage(costmap);</span></a>
+<a name="399"><span class="lineNum">     399 </span>                :<span class="lineNoCov">          0 :   out_gridmap_msg-&gt;header = header;</span></a>
+<a name="400"><span class="lineNum">     400 </span>                :<span class="lineNoCov">          0 :   pub_costmap_-&gt;publish(*out_gridmap_msg);</span></a>
+<a name="401"><span class="lineNum">     401 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="402"><span class="lineNum">     402 </span>                :            : </a>
+<a name="403"><span class="lineNum">     403 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
+<a name="404"><span class="lineNum">     404 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(CostmapGenerator)</span></a>
 </pre>
       </td>
     </tr>

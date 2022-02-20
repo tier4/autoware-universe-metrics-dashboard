@@ -32,16 +32,16 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">179</td>
+            <td class="headerCovTableEntry">198</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:47:59</td>
+            <td class="headerValue">2022-02-20 20:17:53</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">7</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
@@ -234,8 +234,8 @@
 <a name="156"><span class="lineNum">     156 </span>                :            : </a>
 <a name="157"><span class="lineNum">     157 </span>                :<span class="lineNoCov">          0 :   for (auto itr = hdd_params_.begin(); itr != hdd_params_.end(); ++itr, ++index) {</span></a>
 <a name="158"><span class="lineNum">     158 </span>                :            :     // Retrieve HDD information</a>
-<a name="159"><span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 :     auto itrh = list.find(itr-&gt;first);</span></a>
-<a name="160"><span class="lineNum">     160 </span>                :<span class="lineNoCov">          0 :     if (itrh == list.end()) {</span></a>
+<a name="159"><span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 :     auto hdd_itr = list.find(itr-&gt;second.device_);</span></a>
+<a name="160"><span class="lineNum">     160 </span>                :<span class="lineNoCov">          0 :     if (hdd_itr == list.end()) {</span></a>
 <a name="161"><span class="lineNum">     161 </span>                :<span class="lineNoCov">          0 :       stat.add(fmt::format(&quot;HDD {}: status&quot;, index), &quot;hdd_reader error&quot;);</span></a>
 <a name="162"><span class="lineNum">     162 </span>                :<span class="lineNoCov">          0 :       stat.add(fmt::format(&quot;HDD {}: name&quot;, index), itr-&gt;first.c_str());</span></a>
 <a name="163"><span class="lineNum">     163 </span>                :<span class="lineNoCov">          0 :       stat.add(fmt::format(&quot;HDD {}: hdd_reader&quot;, index), strerror(ENOENT));</span></a>
@@ -243,15 +243,15 @@
 <a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :       continue;</span></a>
 <a name="166"><span class="lineNum">     166 </span>                :            :     }</a>
 <a name="167"><span class="lineNum">     167 </span>                :            : </a>
-<a name="168"><span class="lineNum">     168 </span>                :<span class="lineNoCov">          0 :     if (itrh-&gt;second.error_code_ != 0) {</span></a>
+<a name="168"><span class="lineNum">     168 </span>                :<span class="lineNoCov">          0 :     if (hdd_itr-&gt;second.error_code_ != 0) {</span></a>
 <a name="169"><span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 :       stat.add(fmt::format(&quot;HDD {}: status&quot;, index), &quot;hdd_reader error&quot;);</span></a>
 <a name="170"><span class="lineNum">     170 </span>                :<span class="lineNoCov">          0 :       stat.add(fmt::format(&quot;HDD {}: name&quot;, index), itr-&gt;first.c_str());</span></a>
-<a name="171"><span class="lineNum">     171 </span>                :<span class="lineNoCov">          0 :       stat.add(fmt::format(&quot;HDD {}: hdd_reader&quot;, index), strerror(itrh-&gt;second.error_code_));</span></a>
+<a name="171"><span class="lineNum">     171 </span>                :<span class="lineNoCov">          0 :       stat.add(fmt::format(&quot;HDD {}: hdd_reader&quot;, index), strerror(hdd_itr-&gt;second.error_code_));</span></a>
 <a name="172"><span class="lineNum">     172 </span>                :<span class="lineNoCov">          0 :       error_str = &quot;hdd_reader error&quot;;</span></a>
 <a name="173"><span class="lineNum">     173 </span>                :<span class="lineNoCov">          0 :       continue;</span></a>
 <a name="174"><span class="lineNum">     174 </span>                :            :     }</a>
 <a name="175"><span class="lineNum">     175 </span>                :            : </a>
-<a name="176"><span class="lineNum">     176 </span>                :<span class="lineNoCov">          0 :     float temp = static_cast&lt;float&gt;(itrh-&gt;second.temp_);</span></a>
+<a name="176"><span class="lineNum">     176 </span>                :<span class="lineNoCov">          0 :     float temp = static_cast&lt;float&gt;(hdd_itr-&gt;second.temp_);</span></a>
 <a name="177"><span class="lineNum">     177 </span>                :            : </a>
 <a name="178"><span class="lineNum">     178 </span>                :<span class="lineNoCov">          0 :     level = DiagStatus::OK;</span></a>
 <a name="179"><span class="lineNum">     179 </span>                :<span class="lineNoCov">          0 :     if (temp &gt;= itr-&gt;second.temp_error_) {</span></a>
@@ -261,9 +261,9 @@
 <a name="183"><span class="lineNum">     183 </span>                :            :     }</a>
 <a name="184"><span class="lineNum">     184 </span>                :            : </a>
 <a name="185"><span class="lineNum">     185 </span>                :<span class="lineNoCov">          0 :     stat.add(fmt::format(&quot;HDD {}: status&quot;, index), temp_dict_.at(level));</span></a>
-<a name="186"><span class="lineNum">     186 </span>                :<span class="lineNoCov">          0 :     stat.add(fmt::format(&quot;HDD {}: name&quot;, index), itr-&gt;first.c_str());</span></a>
-<a name="187"><span class="lineNum">     187 </span>                :<span class="lineNoCov">          0 :     stat.add(fmt::format(&quot;HDD {}: model&quot;, index), itrh-&gt;second.model_.c_str());</span></a>
-<a name="188"><span class="lineNum">     188 </span>                :<span class="lineNoCov">          0 :     stat.add(fmt::format(&quot;HDD {}: serial&quot;, index), itrh-&gt;second.serial_.c_str());</span></a>
+<a name="186"><span class="lineNum">     186 </span>                :<span class="lineNoCov">          0 :     stat.add(fmt::format(&quot;HDD {}: name&quot;, index), itr-&gt;second.device_.c_str());</span></a>
+<a name="187"><span class="lineNum">     187 </span>                :<span class="lineNoCov">          0 :     stat.add(fmt::format(&quot;HDD {}: model&quot;, index), hdd_itr-&gt;second.model_.c_str());</span></a>
+<a name="188"><span class="lineNum">     188 </span>                :<span class="lineNoCov">          0 :     stat.add(fmt::format(&quot;HDD {}: serial&quot;, index), hdd_itr-&gt;second.serial_.c_str());</span></a>
 <a name="189"><span class="lineNum">     189 </span>                :<span class="lineNoCov">          0 :     stat.addf(fmt::format(&quot;HDD {}: temperature&quot;, index), &quot;%.1f DegC&quot;, temp);</span></a>
 <a name="190"><span class="lineNum">     190 </span>                :            : </a>
 <a name="191"><span class="lineNum">     191 </span>                :<span class="lineNoCov">          0 :     whole_level = std::max(whole_level, level);</span></a>
@@ -379,21 +379,55 @@
 <a name="301"><span class="lineNum">     301 </span>                :<span class="lineNoCov">          0 :   const auto num_disks = this-&gt;declare_parameter(&quot;num_disks&quot;, 0);</span></a>
 <a name="302"><span class="lineNum">     302 </span>                :<span class="lineNoCov">          0 :   for (auto i = 0; i &lt; num_disks; ++i) {</span></a>
 <a name="303"><span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :     const auto prefix = &quot;disks.disk&quot; + std::to_string(i);</span></a>
-<a name="304"><span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :     HDDParam param;</span></a>
-<a name="305"><span class="lineNum">     305 </span>                :<span class="lineNoCov">          0 :     param.temp_warn_ = declare_parameter&lt;float&gt;(prefix + &quot;.temp_warn&quot;);</span></a>
-<a name="306"><span class="lineNum">     306 </span>                :<span class="lineNoCov">          0 :     param.temp_error_ = declare_parameter&lt;float&gt;(prefix + &quot;.temp_error&quot;);</span></a>
-<a name="307"><span class="lineNum">     307 </span>                :<span class="lineNoCov">          0 :     param.free_warn_ = declare_parameter&lt;int&gt;(prefix + &quot;.free_warn&quot;);</span></a>
-<a name="308"><span class="lineNum">     308 </span>                :<span class="lineNoCov">          0 :     param.free_error_ = declare_parameter&lt;int&gt;(prefix + &quot;.free_error&quot;);</span></a>
-<a name="309"><span class="lineNum">     309 </span>                :<span class="lineNoCov">          0 :     const auto name = declare_parameter&lt;std::string&gt;(prefix + &quot;.name&quot;);</span></a>
-<a name="310"><span class="lineNum">     310 </span>                :            : </a>
-<a name="311"><span class="lineNum">     311 </span>                :<span class="lineNoCov">          0 :     hdd_params_[name] = param;</span></a>
-<a name="312"><span class="lineNum">     312 </span>                :            : </a>
-<a name="313"><span class="lineNum">     313 </span>                :<span class="lineNoCov">          0 :     hdd_devices_.push_back(name);</span></a>
-<a name="314"><span class="lineNum">     314 </span>                :            :   }</a>
-<a name="315"><span class="lineNum">     315 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="316"><span class="lineNum">     316 </span>                :            : </a>
-<a name="317"><span class="lineNum">     317 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
-<a name="318"><span class="lineNum">     318 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(HDDMonitor)</span></a>
+<a name="304"><span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :     const auto name = declare_parameter&lt;std::string&gt;(prefix + &quot;.name&quot;);</span></a>
+<a name="305"><span class="lineNum">     305 </span>                :            : </a>
+<a name="306"><span class="lineNum">     306 </span>                :            :     // Get device name from mount point</a>
+<a name="307"><span class="lineNum">     307 </span>                :<span class="lineNoCov">          0 :     const auto device_name = getDeviceFromMountPoint(name);</span></a>
+<a name="308"><span class="lineNum">     308 </span>                :<span class="lineNoCov">          0 :     if (device_name.empty()) {</span></a>
+<a name="309"><span class="lineNum">     309 </span>                :<span class="lineNoCov">          0 :       continue;</span></a>
+<a name="310"><span class="lineNum">     310 </span>                :            :     }</a>
+<a name="311"><span class="lineNum">     311 </span>                :            : </a>
+<a name="312"><span class="lineNum">     312 </span>                :<span class="lineNoCov">          0 :     HDDParam param;</span></a>
+<a name="313"><span class="lineNum">     313 </span>                :<span class="lineNoCov">          0 :     param.temp_warn_ = declare_parameter&lt;float&gt;(prefix + &quot;.temp_warn&quot;);</span></a>
+<a name="314"><span class="lineNum">     314 </span>                :<span class="lineNoCov">          0 :     param.temp_error_ = declare_parameter&lt;float&gt;(prefix + &quot;.temp_error&quot;);</span></a>
+<a name="315"><span class="lineNum">     315 </span>                :<span class="lineNoCov">          0 :     param.free_warn_ = declare_parameter&lt;int&gt;(prefix + &quot;.free_warn&quot;);</span></a>
+<a name="316"><span class="lineNum">     316 </span>                :<span class="lineNoCov">          0 :     param.free_error_ = declare_parameter&lt;int&gt;(prefix + &quot;.free_error&quot;);</span></a>
+<a name="317"><span class="lineNum">     317 </span>                :            : </a>
+<a name="318"><span class="lineNum">     318 </span>                :            :     // Remove index number for passing device name to hdd-reader</a>
+<a name="319"><span class="lineNum">     319 </span>                :<span class="lineNoCov">          0 :     const std::regex pattern(&quot;\\d+$&quot;);</span></a>
+<a name="320"><span class="lineNum">     320 </span>                :<span class="lineNoCov">          0 :     param.device_ = std::regex_replace(device_name, pattern, &quot;&quot;);</span></a>
+<a name="321"><span class="lineNum">     321 </span>                :<span class="lineNoCov">          0 :     hdd_params_[device_name] = param;</span></a>
+<a name="322"><span class="lineNum">     322 </span>                :            : </a>
+<a name="323"><span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 :     hdd_devices_.push_back(param.device_);</span></a>
+<a name="324"><span class="lineNum">     324 </span>                :            :   }</a>
+<a name="325"><span class="lineNum">     325 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="326"><span class="lineNum">     326 </span>                :            : </a>
+<a name="327"><span class="lineNum">     327 </span>                :<span class="lineNoCov">          0 : std::string HDDMonitor::getDeviceFromMountPoint(const std::string &amp; mount_point)</span></a>
+<a name="328"><span class="lineNum">     328 </span>                :            : {</a>
+<a name="329"><span class="lineNum">     329 </span>                :<span class="lineNoCov">          0 :   std::string ret;</span></a>
+<a name="330"><span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :   bp::ipstream is_out;</span></a>
+<a name="331"><span class="lineNum">     331 </span>                :<span class="lineNoCov">          0 :   bp::ipstream is_err;</span></a>
+<a name="332"><span class="lineNum">     332 </span>                :            : </a>
+<a name="333"><span class="lineNum">     333 </span>                :            :   bp::child c(</a>
+<a name="334"><span class="lineNum">     334 </span>                :<span class="lineNoCov">          0 :     &quot;/bin/sh&quot;, &quot;-c&quot;, fmt::format(&quot;findmnt -n -o SOURCE {}&quot;, mount_point.c_str()),</span></a>
+<a name="335"><span class="lineNum">     335 </span>                :<span class="lineNoCov">          0 :     bp::std_out &gt; is_out, bp::std_err &gt; is_err);</span></a>
+<a name="336"><span class="lineNum">     336 </span>                :<span class="lineNoCov">          0 :   c.wait();</span></a>
+<a name="337"><span class="lineNum">     337 </span>                :            : </a>
+<a name="338"><span class="lineNum">     338 </span>                :<span class="lineNoCov">          0 :   if (c.exit_code() != 0) {</span></a>
+<a name="339"><span class="lineNum">     339 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(get_logger(), &quot;Failed to execute findmnt. %s&quot;, mount_point.c_str());</span></a>
+<a name="340"><span class="lineNum">     340 </span>                :<span class="lineNoCov">          0 :     return &quot;&quot;;</span></a>
+<a name="341"><span class="lineNum">     341 </span>                :            :   }</a>
+<a name="342"><span class="lineNum">     342 </span>                :            : </a>
+<a name="343"><span class="lineNum">     343 </span>                :<span class="lineNoCov">          0 :   if (!std::getline(is_out, ret)) {</span></a>
+<a name="344"><span class="lineNum">     344 </span>                :<span class="lineNoCov">          0 :     RCLCPP_ERROR(get_logger(), &quot;Failed to find device name. %s&quot;, mount_point.c_str());</span></a>
+<a name="345"><span class="lineNum">     345 </span>                :<span class="lineNoCov">          0 :     return &quot;&quot;;</span></a>
+<a name="346"><span class="lineNum">     346 </span>                :            :   }</a>
+<a name="347"><span class="lineNum">     347 </span>                :            : </a>
+<a name="348"><span class="lineNum">     348 </span>                :<span class="lineNoCov">          0 :   return ret;</span></a>
+<a name="349"><span class="lineNum">     349 </span>                :            : }</a>
+<a name="350"><span class="lineNum">     350 </span>                :            : </a>
+<a name="351"><span class="lineNum">     351 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
+<a name="352"><span class="lineNum">     352 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(HDDMonitor)</span></a>
 </pre>
       </td>
     </tr>

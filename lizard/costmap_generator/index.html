@@ -55,16 +55,6 @@
 <table>
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/include/costmap_generator/points_to_costmap.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/include/costmap_generator/object_map_utils.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
   Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/include/costmap_generator/objects_to_costmap.hpp</b></td></tr>
 
   
@@ -75,7 +65,17 @@
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/nodes/costmap_generator/object_map_utils.cpp</b></td></tr>
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/include/costmap_generator/object_map_utils.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/include/costmap_generator/points_to_costmap.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/nodes/costmap_generator/points_to_costmap.cpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
 Cyclomatic complexity
@@ -88,27 +88,47 @@ Cyclomatic complexity
 
   
   <tr>
-    <td style="background-color:LightSteelBlue">object_map::PublishGridMap</td>
+    <td style="background-color:LightSteelBlue">PointsToCostmap::initGridmapParam</td>
     <td></td>
     
        <td class="lesser-value">1</td>
     
 
     
-       <td class="lesser-value">7</td>
+       <td class="lesser-value">8</td>
     
 
     
-       <td class="value">46</td>
+       <td class="value">69</td>
     
 
     
-       <td class="lesser-value">2</td>
+       <td class="lesser-value">1</td>
     
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">object_map::PublishOccupancyGrid</td>
+    <td style="background-color:LightSteelBlue">PointsToCostmap::isValidInd</td>
+    <td></td>
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="lesser-value">12</td>
+    
+
+    
+       <td class="value">85</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">PointsToCostmap::fetchGridIndexFromPoint</td>
     <td></td>
     
        <td class="lesser-value">1</td>
@@ -119,31 +139,71 @@ Cyclomatic complexity
     
 
     
-       <td class="value">85</td>
+       <td class="value">100</td>
     
 
     
-       <td class="lesser-value">6</td>
+       <td class="lesser-value">1</td>
     
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">object_map::FillPolygonAreas</td>
+    <td style="background-color:LightSteelBlue">PointsToCostmap::assignPoints2GridCell</td>
     <td></td>
     
-       <td class="lesser-value">4</td>
+       <td class="lesser-value">3</td>
     
 
     
-       <td class="lesser-value">46</td>
+       <td class="lesser-value">16</td>
     
 
     
-       <td class="value">450</td>
+       <td class="value">155</td>
     
 
     
-       <td class="greater-value">10</td>
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">PointsToCostmap::calculateCostmap</td>
+    <td></td>
+    
+       <td class="lesser-value">7</td>
+    
+
+    
+       <td class="lesser-value">24</td>
+    
+
+    
+       <td class="value">182</td>
+    
+
+    
+       <td class="greater-value">7</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">PointsToCostmap::makeCostmapFromPoints</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">12</td>
+    
+
+    
+       <td class="value">101</td>
+    
+
+    
+       <td class="greater-value">7</td>
     
   </tr>
   
@@ -303,6 +363,80 @@ Cyclomatic complexity
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/nodes/costmap_generator/object_map_utils.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">object_map::PublishGridMap</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">7</td>
+    
+
+    
+       <td class="value">46</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">object_map::PublishOccupancyGrid</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">11</td>
+    
+
+    
+       <td class="value">85</td>
+    
+
+    
+       <td class="lesser-value">6</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">object_map::FillPolygonAreas</td>
+    <td></td>
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="lesser-value">46</td>
+    
+
+    
+       <td class="value">450</td>
+    
+
+    
+       <td class="greater-value">10</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
   Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/nodes/costmap_generator/costmap_generator_node.cpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
@@ -383,11 +517,11 @@ Cyclomatic complexity
     
 
     
-       <td class="lesser-value">52</td>
+       <td class="lesser-value">49</td>
     
 
     
-       <td class="value">645</td>
+       <td class="value">601</td>
     
 
     
@@ -676,147 +810,13 @@ Cyclomatic complexity
   </tr>
   
 
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/costmap_generator/nodes/costmap_generator/points_to_costmap.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">PointsToCostmap::initGridmapParam</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">8</td>
-    
-
-    
-       <td class="value">69</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">PointsToCostmap::isValidInd</td>
-    <td></td>
-    
-       <td class="lesser-value">5</td>
-    
-
-    
-       <td class="lesser-value">12</td>
-    
-
-    
-       <td class="value">85</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">PointsToCostmap::fetchGridIndexFromPoint</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">11</td>
-    
-
-    
-       <td class="value">100</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">PointsToCostmap::assignPoints2GridCell</td>
-    <td></td>
-    
-       <td class="lesser-value">3</td>
-    
-
-    
-       <td class="lesser-value">16</td>
-    
-
-    
-       <td class="value">155</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">PointsToCostmap::calculateCostmap</td>
-    <td></td>
-    
-       <td class="lesser-value">7</td>
-    
-
-    
-       <td class="lesser-value">24</td>
-    
-
-    
-       <td class="value">182</td>
-    
-
-    
-       <td class="greater-value">7</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">PointsToCostmap::makeCostmapFromPoints</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">12</td>
-    
-
-    
-       <td class="value">101</td>
-    
-
-    
-       <td class="greater-value">7</td>
-    
-  </tr>
-  
-
 </table>
 <center>
 
 <br>
 <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="footer">Generated by
-    <a href="http://www.lizard.ws/">Lizard</a> on 2021-12-26 20:49
+    <a href="http://www.lizard.ws/">Lizard</a> on 2022-02-20 20:18
     </td></tr>
 </table>
  </body>

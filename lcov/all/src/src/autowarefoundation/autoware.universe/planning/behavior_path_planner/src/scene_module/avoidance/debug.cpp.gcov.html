@@ -32,16 +32,16 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">352</td>
+            <td class="headerCovTableEntry">409</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">19</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
@@ -559,61 +559,136 @@
 <a name="481"><span class="lineNum">     481 </span>                :            : </a>
 <a name="482"><span class="lineNum">     482 </span>                :<span class="lineNoCov">          0 :   return msg;</span></a>
 <a name="483"><span class="lineNum">     483 </span>                :            : }</a>
-<a name="484"><span class="lineNum">     484 </span>                :            : </a>
-<a name="485"><span class="lineNum">     485 </span>                :            : }  // namespace marker_utils</a>
-<a name="486"><span class="lineNum">     486 </span>                :            : </a>
-<a name="487"><span class="lineNum">     487 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::ShiftPointArray &amp; sp_arr)</span></a>
-<a name="488"><span class="lineNum">     488 </span>                :            : {</a>
-<a name="489"><span class="lineNum">     489 </span>                :<span class="lineNoCov">          0 :   if (sp_arr.empty()) {</span></a>
-<a name="490"><span class="lineNum">     490 </span>                :<span class="lineNoCov">          0 :     return &quot;point is empty&quot;;</span></a>
-<a name="491"><span class="lineNum">     491 </span>                :            :   }</a>
-<a name="492"><span class="lineNum">     492 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
-<a name="493"><span class="lineNum">     493 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; sp : sp_arr) {</span></a>
-<a name="494"><span class="lineNum">     494 </span>                :<span class="lineNoCov">          0 :     ss &lt;&lt; std::endl &lt;&lt; toStrInfo(sp);</span></a>
-<a name="495"><span class="lineNum">     495 </span>                :            :   }</a>
-<a name="496"><span class="lineNum">     496 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
-<a name="497"><span class="lineNum">     497 </span>                :            : }</a>
-<a name="498"><span class="lineNum">     498 </span>                :            : </a>
-<a name="499"><span class="lineNum">     499 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::ShiftPoint &amp; sp)</span></a>
-<a name="500"><span class="lineNum">     500 </span>                :            : {</a>
-<a name="501"><span class="lineNum">     501 </span>                :<span class="lineNoCov">          0 :   const auto &amp; ps = sp.start.position;</span></a>
-<a name="502"><span class="lineNum">     502 </span>                :<span class="lineNoCov">          0 :   const auto &amp; pe = sp.end.position;</span></a>
-<a name="503"><span class="lineNum">     503 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
-<a name="504"><span class="lineNum">     504 </span>                :<span class="lineNoCov">          0 :   ss &lt;&lt; &quot;shift length: &quot; &lt;&lt; sp.length &lt;&lt; &quot;, start_idx: &quot; &lt;&lt; sp.start_idx</span></a>
-<a name="505"><span class="lineNum">     505 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, end_idx: &quot; &lt;&lt; sp.end_idx &lt;&lt; &quot;, start: (&quot; &lt;&lt; ps.x &lt;&lt; &quot;, &quot; &lt;&lt; ps.y &lt;&lt; &quot;), end: (&quot; &lt;&lt; pe.x</span></a>
-<a name="506"><span class="lineNum">     506 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, &quot; &lt;&lt; pe.y &lt;&lt; &quot;)&quot;;</span></a>
-<a name="507"><span class="lineNum">     507 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
-<a name="508"><span class="lineNum">     508 </span>                :            : }</a>
-<a name="509"><span class="lineNum">     509 </span>                :            : </a>
-<a name="510"><span class="lineNum">     510 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::AvoidPointArray &amp; ap_arr)</span></a>
-<a name="511"><span class="lineNum">     511 </span>                :            : {</a>
-<a name="512"><span class="lineNum">     512 </span>                :<span class="lineNoCov">          0 :   if (ap_arr.empty()) {</span></a>
-<a name="513"><span class="lineNum">     513 </span>                :<span class="lineNoCov">          0 :     return &quot;point is empty&quot;;</span></a>
-<a name="514"><span class="lineNum">     514 </span>                :            :   }</a>
-<a name="515"><span class="lineNum">     515 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
-<a name="516"><span class="lineNum">     516 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; ap : ap_arr) {</span></a>
-<a name="517"><span class="lineNum">     517 </span>                :<span class="lineNoCov">          0 :     ss &lt;&lt; std::endl &lt;&lt; toStrInfo(ap);</span></a>
-<a name="518"><span class="lineNum">     518 </span>                :            :   }</a>
-<a name="519"><span class="lineNum">     519 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
-<a name="520"><span class="lineNum">     520 </span>                :            : }</a>
+<a name="484"><span class="lineNum">     484 </span>                :<span class="lineNoCov">          0 : MarkerArray makeOverhangToRoadShoulderMarkerArray(</span></a>
+<a name="485"><span class="lineNum">     485 </span>                :            :   const behavior_path_planner::ObjectDataArray &amp; objects)</a>
+<a name="486"><span class="lineNum">     486 </span>                :            : {</a>
+<a name="487"><span class="lineNum">     487 </span>                :<span class="lineNoCov">          0 :   const auto current_time = rclcpp::Clock{RCL_ROS_TIME}.now();</span></a>
+<a name="488"><span class="lineNum">     488 </span>                :<span class="lineNoCov">          0 :   MarkerArray msg;</span></a>
+<a name="489"><span class="lineNum">     489 </span>                :            : </a>
+<a name="490"><span class="lineNum">     490 </span>                :<span class="lineNoCov">          0 :   Marker marker{};</span></a>
+<a name="491"><span class="lineNum">     491 </span>                :<span class="lineNoCov">          0 :   marker.header.frame_id = &quot;map&quot;;</span></a>
+<a name="492"><span class="lineNum">     492 </span>                :<span class="lineNoCov">          0 :   marker.header.stamp = current_time;</span></a>
+<a name="493"><span class="lineNum">     493 </span>                :<span class="lineNoCov">          0 :   marker.ns = &quot;overhang&quot;;</span></a>
+<a name="494"><span class="lineNum">     494 </span>                :            : </a>
+<a name="495"><span class="lineNum">     495 </span>                :<span class="lineNoCov">          0 :   const auto normal_color = tier4_autoware_utils::createMarkerColor(1.0, 1.0, 0.0, 1.0);</span></a>
+<a name="496"><span class="lineNum">     496 </span>                :            : </a>
+<a name="497"><span class="lineNum">     497 </span>                :<span class="lineNoCov">          0 :   int32_t i = 0;</span></a>
+<a name="498"><span class="lineNum">     498 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; object : objects) {</span></a>
+<a name="499"><span class="lineNum">     499 </span>                :<span class="lineNoCov">          0 :     marker.id = i++;</span></a>
+<a name="500"><span class="lineNum">     500 </span>                :<span class="lineNoCov">          0 :     marker.lifetime = rclcpp::Duration::from_seconds(0.2);</span></a>
+<a name="501"><span class="lineNum">     501 </span>                :<span class="lineNoCov">          0 :     marker.type = Marker::TEXT_VIEW_FACING;</span></a>
+<a name="502"><span class="lineNum">     502 </span>                :            :     // marker.action = Marker::ADD;</a>
+<a name="503"><span class="lineNum">     503 </span>                :<span class="lineNoCov">          0 :     marker.pose = object.overhang_pose;</span></a>
+<a name="504"><span class="lineNum">     504 </span>                :<span class="lineNoCov">          0 :     marker.scale = tier4_autoware_utils::createMarkerScale(1.0, 1.0, 1.0);</span></a>
+<a name="505"><span class="lineNum">     505 </span>                :<span class="lineNoCov">          0 :     marker.color = normal_color;</span></a>
+<a name="506"><span class="lineNum">     506 </span>                :<span class="lineNoCov">          0 :     std::ostringstream string_stream;</span></a>
+<a name="507"><span class="lineNum">     507 </span>                :<span class="lineNoCov">          0 :     string_stream &lt;&lt; &quot;(to_road_shoulder_distance = &quot; &lt;&lt; object.to_road_shoulder_distance &lt;&lt; &quot; [m])&quot;;</span></a>
+<a name="508"><span class="lineNum">     508 </span>                :<span class="lineNoCov">          0 :     marker.text = string_stream.str();</span></a>
+<a name="509"><span class="lineNum">     509 </span>                :<span class="lineNoCov">          0 :     msg.markers.push_back(marker);</span></a>
+<a name="510"><span class="lineNum">     510 </span>                :            :   }</a>
+<a name="511"><span class="lineNum">     511 </span>                :            : </a>
+<a name="512"><span class="lineNum">     512 </span>                :<span class="lineNoCov">          0 :   return msg;</span></a>
+<a name="513"><span class="lineNum">     513 </span>                :            : }</a>
+<a name="514"><span class="lineNum">     514 </span>                :            : </a>
+<a name="515"><span class="lineNum">     515 </span>                :<span class="lineNoCov">          0 : MarkerArray createOvehangFurthestLineStringMarkerArray(</span></a>
+<a name="516"><span class="lineNum">     516 </span>                :            :   const lanelet::ConstLineStrings3d &amp; linestrings, const std::string &amp; ns, const double r,</a>
+<a name="517"><span class="lineNum">     517 </span>                :            :   const double g, const double b)</a>
+<a name="518"><span class="lineNum">     518 </span>                :            : {</a>
+<a name="519"><span class="lineNum">     519 </span>                :<span class="lineNoCov">          0 :   const auto current_time = rclcpp::Clock{RCL_ROS_TIME}.now();</span></a>
+<a name="520"><span class="lineNum">     520 </span>                :<span class="lineNoCov">          0 :   MarkerArray msg;</span></a>
 <a name="521"><span class="lineNum">     521 </span>                :            : </a>
-<a name="522"><span class="lineNum">     522 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::AvoidPoint &amp; ap)</span></a>
-<a name="523"><span class="lineNum">     523 </span>                :            : {</a>
-<a name="524"><span class="lineNum">     524 </span>                :<span class="lineNoCov">          0 :   std::stringstream pids;</span></a>
-<a name="525"><span class="lineNum">     525 </span>                :<span class="lineNoCov">          0 :   for (const auto pid : ap.parent_ids) {</span></a>
-<a name="526"><span class="lineNum">     526 </span>                :<span class="lineNoCov">          0 :     pids &lt;&lt; pid &lt;&lt; &quot;, &quot;;</span></a>
-<a name="527"><span class="lineNum">     527 </span>                :            :   }</a>
-<a name="528"><span class="lineNum">     528 </span>                :<span class="lineNoCov">          0 :   const auto &amp; ps = ap.start.position;</span></a>
-<a name="529"><span class="lineNum">     529 </span>                :<span class="lineNoCov">          0 :   const auto &amp; pe = ap.end.position;</span></a>
-<a name="530"><span class="lineNum">     530 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
-<a name="531"><span class="lineNum">     531 </span>                :<span class="lineNoCov">          0 :   ss &lt;&lt; &quot;id = &quot; &lt;&lt; ap.id &lt;&lt; &quot;, shift length: &quot; &lt;&lt; ap.length &lt;&lt; &quot;, start_idx: &quot; &lt;&lt; ap.start_idx</span></a>
-<a name="532"><span class="lineNum">     532 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, end_idx: &quot; &lt;&lt; ap.end_idx &lt;&lt; &quot;, start_dist = &quot; &lt;&lt; ap.start_longitudinal</span></a>
-<a name="533"><span class="lineNum">     533 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, end_dist = &quot; &lt;&lt; ap.end_longitudinal &lt;&lt; &quot;, start_length: &quot; &lt;&lt; ap.start_length</span></a>
-<a name="534"><span class="lineNum">     534 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, start: (&quot; &lt;&lt; ps.x &lt;&lt; &quot;, &quot; &lt;&lt; ps.y &lt;&lt; &quot;), end: (&quot; &lt;&lt; pe.x &lt;&lt; &quot;, &quot; &lt;&lt; pe.y</span></a>
-<a name="535"><span class="lineNum">     535 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;), relative_length: &quot; &lt;&lt; ap.getRelativeLength() &lt;&lt; &quot;, grad = &quot; &lt;&lt; ap.getGradient()</span></a>
-<a name="536"><span class="lineNum">     536 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, parent_ids = [&quot; &lt;&lt; pids.str() &lt;&lt; &quot;]&quot;;</span></a>
-<a name="537"><span class="lineNum">     537 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
-<a name="538"><span class="lineNum">     538 </span>                :            : }</a>
+<a name="522"><span class="lineNum">     522 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; linestring : linestrings) {</span></a>
+<a name="523"><span class="lineNum">     523 </span>                :<span class="lineNoCov">          0 :     Marker marker{};</span></a>
+<a name="524"><span class="lineNum">     524 </span>                :<span class="lineNoCov">          0 :     marker.header.frame_id = &quot;map&quot;;</span></a>
+<a name="525"><span class="lineNum">     525 </span>                :<span class="lineNoCov">          0 :     marker.header.stamp = current_time;</span></a>
+<a name="526"><span class="lineNum">     526 </span>                :            : </a>
+<a name="527"><span class="lineNum">     527 </span>                :<span class="lineNoCov">          0 :     marker.ns = ns;</span></a>
+<a name="528"><span class="lineNum">     528 </span>                :<span class="lineNoCov">          0 :     marker.id = linestring.id();</span></a>
+<a name="529"><span class="lineNum">     529 </span>                :<span class="lineNoCov">          0 :     marker.lifetime = rclcpp::Duration::from_seconds(0.2);</span></a>
+<a name="530"><span class="lineNum">     530 </span>                :<span class="lineNoCov">          0 :     marker.type = Marker::LINE_STRIP;</span></a>
+<a name="531"><span class="lineNum">     531 </span>                :<span class="lineNoCov">          0 :     marker.action = Marker::ADD;</span></a>
+<a name="532"><span class="lineNum">     532 </span>                :<span class="lineNoCov">          0 :     marker.pose.orientation = tier4_autoware_utils::createMarkerOrientation(0, 0, 0, 1.0);</span></a>
+<a name="533"><span class="lineNum">     533 </span>                :<span class="lineNoCov">          0 :     marker.scale = tier4_autoware_utils::createMarkerScale(0.4, 0.0, 0.0);</span></a>
+<a name="534"><span class="lineNum">     534 </span>                :<span class="lineNoCov">          0 :     marker.color = tier4_autoware_utils::createMarkerColor(r, g, b, 0.999);</span></a>
+<a name="535"><span class="lineNum">     535 </span>                :<span class="lineNoCov">          0 :     for (const auto &amp; p : linestring.basicLineString()) {</span></a>
+<a name="536"><span class="lineNum">     536 </span>                :<span class="lineNoCov">          0 :       Point point;</span></a>
+<a name="537"><span class="lineNum">     537 </span>                :<span class="lineNoCov">          0 :       point.x = p.x();</span></a>
+<a name="538"><span class="lineNum">     538 </span>                :<span class="lineNoCov">          0 :       point.y = p.y();</span></a>
+<a name="539"><span class="lineNum">     539 </span>                :<span class="lineNoCov">          0 :       point.z = p.z();</span></a>
+<a name="540"><span class="lineNum">     540 </span>                :<span class="lineNoCov">          0 :       marker.points.push_back(point);</span></a>
+<a name="541"><span class="lineNum">     541 </span>                :            :     }</a>
+<a name="542"><span class="lineNum">     542 </span>                :<span class="lineNoCov">          0 :     msg.markers.push_back(marker);</span></a>
+<a name="543"><span class="lineNum">     543 </span>                :<span class="lineNoCov">          0 :     marker.ns = &quot;linestring id&quot;;</span></a>
+<a name="544"><span class="lineNum">     544 </span>                :<span class="lineNoCov">          0 :     marker.type = Marker::TEXT_VIEW_FACING;</span></a>
+<a name="545"><span class="lineNum">     545 </span>                :<span class="lineNoCov">          0 :     Pose text_id_pose;</span></a>
+<a name="546"><span class="lineNum">     546 </span>                :<span class="lineNoCov">          0 :     marker.scale = tier4_autoware_utils::createMarkerScale(1.5, 1.5, 1.5);</span></a>
+<a name="547"><span class="lineNum">     547 </span>                :<span class="lineNoCov">          0 :     marker.color = tier4_autoware_utils::createMarkerColor(1.0, 1.0, 1.0, 0.8);</span></a>
+<a name="548"><span class="lineNum">     548 </span>                :<span class="lineNoCov">          0 :     text_id_pose.position.x = linestring.front().x();</span></a>
+<a name="549"><span class="lineNum">     549 </span>                :<span class="lineNoCov">          0 :     text_id_pose.position.y = linestring.front().y();</span></a>
+<a name="550"><span class="lineNum">     550 </span>                :<span class="lineNoCov">          0 :     text_id_pose.position.z = linestring.front().z();</span></a>
+<a name="551"><span class="lineNum">     551 </span>                :<span class="lineNoCov">          0 :     marker.pose = text_id_pose;</span></a>
+<a name="552"><span class="lineNum">     552 </span>                :<span class="lineNoCov">          0 :     std::ostringstream ss;</span></a>
+<a name="553"><span class="lineNum">     553 </span>                :<span class="lineNoCov">          0 :     ss &lt;&lt; &quot;(ID : &quot; &lt;&lt; linestring.id() &lt;&lt; &quot;) &quot;;</span></a>
+<a name="554"><span class="lineNum">     554 </span>                :<span class="lineNoCov">          0 :     marker.text = ss.str();</span></a>
+<a name="555"><span class="lineNum">     555 </span>                :<span class="lineNoCov">          0 :     msg.markers.push_back(marker);</span></a>
+<a name="556"><span class="lineNum">     556 </span>                :            :   }</a>
+<a name="557"><span class="lineNum">     557 </span>                :            : </a>
+<a name="558"><span class="lineNum">     558 </span>                :<span class="lineNoCov">          0 :   return msg;</span></a>
+<a name="559"><span class="lineNum">     559 </span>                :            : }</a>
+<a name="560"><span class="lineNum">     560 </span>                :            : }  // namespace marker_utils</a>
+<a name="561"><span class="lineNum">     561 </span>                :            : </a>
+<a name="562"><span class="lineNum">     562 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::ShiftPointArray &amp; sp_arr)</span></a>
+<a name="563"><span class="lineNum">     563 </span>                :            : {</a>
+<a name="564"><span class="lineNum">     564 </span>                :<span class="lineNoCov">          0 :   if (sp_arr.empty()) {</span></a>
+<a name="565"><span class="lineNum">     565 </span>                :<span class="lineNoCov">          0 :     return &quot;point is empty&quot;;</span></a>
+<a name="566"><span class="lineNum">     566 </span>                :            :   }</a>
+<a name="567"><span class="lineNum">     567 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
+<a name="568"><span class="lineNum">     568 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; sp : sp_arr) {</span></a>
+<a name="569"><span class="lineNum">     569 </span>                :<span class="lineNoCov">          0 :     ss &lt;&lt; std::endl &lt;&lt; toStrInfo(sp);</span></a>
+<a name="570"><span class="lineNum">     570 </span>                :            :   }</a>
+<a name="571"><span class="lineNum">     571 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
+<a name="572"><span class="lineNum">     572 </span>                :            : }</a>
+<a name="573"><span class="lineNum">     573 </span>                :            : </a>
+<a name="574"><span class="lineNum">     574 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::ShiftPoint &amp; sp)</span></a>
+<a name="575"><span class="lineNum">     575 </span>                :            : {</a>
+<a name="576"><span class="lineNum">     576 </span>                :<span class="lineNoCov">          0 :   const auto &amp; ps = sp.start.position;</span></a>
+<a name="577"><span class="lineNum">     577 </span>                :<span class="lineNoCov">          0 :   const auto &amp; pe = sp.end.position;</span></a>
+<a name="578"><span class="lineNum">     578 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
+<a name="579"><span class="lineNum">     579 </span>                :<span class="lineNoCov">          0 :   ss &lt;&lt; &quot;shift length: &quot; &lt;&lt; sp.length &lt;&lt; &quot;, start_idx: &quot; &lt;&lt; sp.start_idx</span></a>
+<a name="580"><span class="lineNum">     580 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, end_idx: &quot; &lt;&lt; sp.end_idx &lt;&lt; &quot;, start: (&quot; &lt;&lt; ps.x &lt;&lt; &quot;, &quot; &lt;&lt; ps.y &lt;&lt; &quot;), end: (&quot; &lt;&lt; pe.x</span></a>
+<a name="581"><span class="lineNum">     581 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, &quot; &lt;&lt; pe.y &lt;&lt; &quot;)&quot;;</span></a>
+<a name="582"><span class="lineNum">     582 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
+<a name="583"><span class="lineNum">     583 </span>                :            : }</a>
+<a name="584"><span class="lineNum">     584 </span>                :            : </a>
+<a name="585"><span class="lineNum">     585 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::AvoidPointArray &amp; ap_arr)</span></a>
+<a name="586"><span class="lineNum">     586 </span>                :            : {</a>
+<a name="587"><span class="lineNum">     587 </span>                :<span class="lineNoCov">          0 :   if (ap_arr.empty()) {</span></a>
+<a name="588"><span class="lineNum">     588 </span>                :<span class="lineNoCov">          0 :     return &quot;point is empty&quot;;</span></a>
+<a name="589"><span class="lineNum">     589 </span>                :            :   }</a>
+<a name="590"><span class="lineNum">     590 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
+<a name="591"><span class="lineNum">     591 </span>                :<span class="lineNoCov">          0 :   for (const auto &amp; ap : ap_arr) {</span></a>
+<a name="592"><span class="lineNum">     592 </span>                :<span class="lineNoCov">          0 :     ss &lt;&lt; std::endl &lt;&lt; toStrInfo(ap);</span></a>
+<a name="593"><span class="lineNum">     593 </span>                :            :   }</a>
+<a name="594"><span class="lineNum">     594 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
+<a name="595"><span class="lineNum">     595 </span>                :            : }</a>
+<a name="596"><span class="lineNum">     596 </span>                :            : </a>
+<a name="597"><span class="lineNum">     597 </span>                :<span class="lineNoCov">          0 : std::string toStrInfo(const behavior_path_planner::AvoidPoint &amp; ap)</span></a>
+<a name="598"><span class="lineNum">     598 </span>                :            : {</a>
+<a name="599"><span class="lineNum">     599 </span>                :<span class="lineNoCov">          0 :   std::stringstream pids;</span></a>
+<a name="600"><span class="lineNum">     600 </span>                :<span class="lineNoCov">          0 :   for (const auto pid : ap.parent_ids) {</span></a>
+<a name="601"><span class="lineNum">     601 </span>                :<span class="lineNoCov">          0 :     pids &lt;&lt; pid &lt;&lt; &quot;, &quot;;</span></a>
+<a name="602"><span class="lineNum">     602 </span>                :            :   }</a>
+<a name="603"><span class="lineNum">     603 </span>                :<span class="lineNoCov">          0 :   const auto &amp; ps = ap.start.position;</span></a>
+<a name="604"><span class="lineNum">     604 </span>                :<span class="lineNoCov">          0 :   const auto &amp; pe = ap.end.position;</span></a>
+<a name="605"><span class="lineNum">     605 </span>                :<span class="lineNoCov">          0 :   std::stringstream ss;</span></a>
+<a name="606"><span class="lineNum">     606 </span>                :<span class="lineNoCov">          0 :   ss &lt;&lt; &quot;id = &quot; &lt;&lt; ap.id &lt;&lt; &quot;, shift length: &quot; &lt;&lt; ap.length &lt;&lt; &quot;, start_idx: &quot; &lt;&lt; ap.start_idx</span></a>
+<a name="607"><span class="lineNum">     607 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, end_idx: &quot; &lt;&lt; ap.end_idx &lt;&lt; &quot;, start_dist = &quot; &lt;&lt; ap.start_longitudinal</span></a>
+<a name="608"><span class="lineNum">     608 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, end_dist = &quot; &lt;&lt; ap.end_longitudinal &lt;&lt; &quot;, start_length: &quot; &lt;&lt; ap.start_length</span></a>
+<a name="609"><span class="lineNum">     609 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, start: (&quot; &lt;&lt; ps.x &lt;&lt; &quot;, &quot; &lt;&lt; ps.y &lt;&lt; &quot;), end: (&quot; &lt;&lt; pe.x &lt;&lt; &quot;, &quot; &lt;&lt; pe.y</span></a>
+<a name="610"><span class="lineNum">     610 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;), relative_length: &quot; &lt;&lt; ap.getRelativeLength() &lt;&lt; &quot;, grad = &quot; &lt;&lt; ap.getGradient()</span></a>
+<a name="611"><span class="lineNum">     611 </span>                :<span class="lineNoCov">          0 :      &lt;&lt; &quot;, parent_ids = [&quot; &lt;&lt; pids.str() &lt;&lt; &quot;]&quot;;</span></a>
+<a name="612"><span class="lineNum">     612 </span>                :<span class="lineNoCov">          0 :   return ss.str();</span></a>
+<a name="613"><span class="lineNum">     613 </span>                :            : }</a>
 </pre>
       </td>
     </tr>

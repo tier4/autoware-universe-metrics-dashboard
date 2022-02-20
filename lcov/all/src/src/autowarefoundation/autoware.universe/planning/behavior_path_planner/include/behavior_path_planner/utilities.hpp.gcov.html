@@ -32,16 +32,16 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">25</td>
+            <td class="headerCovTableEntry">27</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">6</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
@@ -133,278 +133,285 @@
 <a name="55"><span class="lineNum">      55 </span>                :            : namespace tier4_autoware_utils</a>
 <a name="56"><span class="lineNum">      56 </span>                :            : {</a>
 <a name="57"><span class="lineNum">      57 </span>                :            : template &lt;&gt;</a>
-<a name="58"><span class="lineNum">      58 </span>                :<span class="lineNoCov">          0 : inline geometry_msgs::msg::Pose getPose(</span></a>
+<a name="58"><span class="lineNum">      58 </span>                :<span class="lineNoCov">          0 : inline geometry_msgs::msg::Point getPoint(</span></a>
 <a name="59"><span class="lineNum">      59 </span>                :            :   const autoware_auto_planning_msgs::msg::PathPointWithLaneId &amp; p)</a>
 <a name="60"><span class="lineNum">      60 </span>                :            : {</a>
-<a name="61"><span class="lineNum">      61 </span>                :<span class="lineNoCov">          0 :   return p.point.pose;</span></a>
+<a name="61"><span class="lineNum">      61 </span>                :<span class="lineNoCov">          0 :   return p.point.pose.position;</span></a>
 <a name="62"><span class="lineNum">      62 </span>                :            : }</a>
-<a name="63"><span class="lineNum">      63 </span>                :            : }  // namespace tier4_autoware_utils</a>
-<a name="64"><span class="lineNum">      64 </span>                :            : </a>
-<a name="65"><span class="lineNum">      65 </span>                :            : namespace tf2</a>
-<a name="66"><span class="lineNum">      66 </span>                :            : {</a>
-<a name="67"><span class="lineNum">      67 </span>                :<span class="lineNoCov">          0 : inline void fromMsg(const geometry_msgs::msg::PoseStamped &amp; msg, tf2::Stamped&lt;tf2::Transform&gt; &amp; out)</span></a>
-<a name="68"><span class="lineNum">      68 </span>                :            : {</a>
-<a name="69"><span class="lineNum">      69 </span>                :<span class="lineNoCov">          0 :   out.stamp_ = tf2_ros::fromMsg(msg.header.stamp);</span></a>
-<a name="70"><span class="lineNum">      70 </span>                :<span class="lineNoCov">          0 :   out.frame_id_ = msg.header.frame_id;</span></a>
-<a name="71"><span class="lineNum">      71 </span>                :<span class="lineNoCov">          0 :   tf2::Transform tmp;</span></a>
-<a name="72"><span class="lineNum">      72 </span>                :<span class="lineNoCov">          0 :   fromMsg(msg.pose, tmp);</span></a>
-<a name="73"><span class="lineNum">      73 </span>                :<span class="lineNoCov">          0 :   out.setData(tmp);</span></a>
-<a name="74"><span class="lineNum">      74 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="75"><span class="lineNum">      75 </span>                :            : </a>
-<a name="76"><span class="lineNum">      76 </span>                :            : // Remove after this commit is released</a>
-<a name="77"><span class="lineNum">      77 </span>                :            : // https://github.com/ros2/geometry2/commit/e9da371d81e388a589540357c050e262442f1b4a</a>
-<a name="78"><span class="lineNum">      78 </span>                :<span class="lineNoCov">          0 : inline geometry_msgs::msg::Point &amp; toMsg(const tf2::Vector3 &amp; in, geometry_msgs::msg::Point &amp; out)</span></a>
-<a name="79"><span class="lineNum">      79 </span>                :            : {</a>
-<a name="80"><span class="lineNum">      80 </span>                :<span class="lineNoCov">          0 :   out.x = in.getX();</span></a>
-<a name="81"><span class="lineNum">      81 </span>                :<span class="lineNoCov">          0 :   out.y = in.getY();</span></a>
-<a name="82"><span class="lineNum">      82 </span>                :<span class="lineNoCov">          0 :   out.z = in.getZ();</span></a>
-<a name="83"><span class="lineNum">      83 </span>                :<span class="lineNoCov">          0 :   return out;</span></a>
-<a name="84"><span class="lineNum">      84 </span>                :            : }</a>
-<a name="85"><span class="lineNum">      85 </span>                :            : </a>
-<a name="86"><span class="lineNum">      86 </span>                :            : // Remove after this commit is released</a>
-<a name="87"><span class="lineNum">      87 </span>                :            : // https://github.com/ros2/geometry2/commit/e9da371d81e388a589540357c050e262442f1b4a</a>
-<a name="88"><span class="lineNum">      88 </span>                :<span class="lineNoCov">          0 : inline void fromMsg(const geometry_msgs::msg::Point &amp; in, tf2::Vector3 &amp; out)</span></a>
-<a name="89"><span class="lineNum">      89 </span>                :            : {</a>
-<a name="90"><span class="lineNum">      90 </span>                :<span class="lineNoCov">          0 :   out = tf2::Vector3(in.x, in.y, in.z);</span></a>
-<a name="91"><span class="lineNum">      91 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="63"><span class="lineNum">      63 </span>                :            : </a>
+<a name="64"><span class="lineNum">      64 </span>                :            : template &lt;&gt;</a>
+<a name="65"><span class="lineNum">      65 </span>                :<span class="lineNoCov">          0 : inline geometry_msgs::msg::Pose getPose(</span></a>
+<a name="66"><span class="lineNum">      66 </span>                :            :   const autoware_auto_planning_msgs::msg::PathPointWithLaneId &amp; p)</a>
+<a name="67"><span class="lineNum">      67 </span>                :            : {</a>
+<a name="68"><span class="lineNum">      68 </span>                :<span class="lineNoCov">          0 :   return p.point.pose;</span></a>
+<a name="69"><span class="lineNum">      69 </span>                :            : }</a>
+<a name="70"><span class="lineNum">      70 </span>                :            : }  // namespace tier4_autoware_utils</a>
+<a name="71"><span class="lineNum">      71 </span>                :            : </a>
+<a name="72"><span class="lineNum">      72 </span>                :            : namespace tf2</a>
+<a name="73"><span class="lineNum">      73 </span>                :            : {</a>
+<a name="74"><span class="lineNum">      74 </span>                :<span class="lineNoCov">          0 : inline void fromMsg(const geometry_msgs::msg::PoseStamped &amp; msg, tf2::Stamped&lt;tf2::Transform&gt; &amp; out)</span></a>
+<a name="75"><span class="lineNum">      75 </span>                :            : {</a>
+<a name="76"><span class="lineNum">      76 </span>                :<span class="lineNoCov">          0 :   out.stamp_ = tf2_ros::fromMsg(msg.header.stamp);</span></a>
+<a name="77"><span class="lineNum">      77 </span>                :<span class="lineNoCov">          0 :   out.frame_id_ = msg.header.frame_id;</span></a>
+<a name="78"><span class="lineNum">      78 </span>                :<span class="lineNoCov">          0 :   tf2::Transform tmp;</span></a>
+<a name="79"><span class="lineNum">      79 </span>                :<span class="lineNoCov">          0 :   fromMsg(msg.pose, tmp);</span></a>
+<a name="80"><span class="lineNum">      80 </span>                :<span class="lineNoCov">          0 :   out.setData(tmp);</span></a>
+<a name="81"><span class="lineNum">      81 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="82"><span class="lineNum">      82 </span>                :            : </a>
+<a name="83"><span class="lineNum">      83 </span>                :            : // Remove after this commit is released</a>
+<a name="84"><span class="lineNum">      84 </span>                :            : // https://github.com/ros2/geometry2/commit/e9da371d81e388a589540357c050e262442f1b4a</a>
+<a name="85"><span class="lineNum">      85 </span>                :<span class="lineNoCov">          0 : inline geometry_msgs::msg::Point &amp; toMsg(const tf2::Vector3 &amp; in, geometry_msgs::msg::Point &amp; out)</span></a>
+<a name="86"><span class="lineNum">      86 </span>                :            : {</a>
+<a name="87"><span class="lineNum">      87 </span>                :<span class="lineNoCov">          0 :   out.x = in.getX();</span></a>
+<a name="88"><span class="lineNum">      88 </span>                :<span class="lineNoCov">          0 :   out.y = in.getY();</span></a>
+<a name="89"><span class="lineNum">      89 </span>                :<span class="lineNoCov">          0 :   out.z = in.getZ();</span></a>
+<a name="90"><span class="lineNum">      90 </span>                :<span class="lineNoCov">          0 :   return out;</span></a>
+<a name="91"><span class="lineNum">      91 </span>                :            : }</a>
 <a name="92"><span class="lineNum">      92 </span>                :            : </a>
-<a name="93"><span class="lineNum">      93 </span>                :            : template &lt;&gt;</a>
-<a name="94"><span class="lineNum">      94 </span>                :<span class="lineNoCov">          0 : inline void doTransform(</span></a>
-<a name="95"><span class="lineNum">      95 </span>                :            :   const geometry_msgs::msg::Point &amp; t_in, geometry_msgs::msg::Point &amp; t_out,</a>
-<a name="96"><span class="lineNum">      96 </span>                :            :   const geometry_msgs::msg::TransformStamped &amp; transform)</a>
-<a name="97"><span class="lineNum">      97 </span>                :            : {</a>
-<a name="98"><span class="lineNum">      98 </span>                :<span class="lineNoCov">          0 :   tf2::Transform t;</span></a>
-<a name="99"><span class="lineNum">      99 </span>                :<span class="lineNoCov">          0 :   fromMsg(transform.transform, t);</span></a>
-<a name="100"><span class="lineNum">     100 </span>                :<span class="lineNoCov">          0 :   tf2::Vector3 v_in;</span></a>
-<a name="101"><span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 :   fromMsg(t_in, v_in);</span></a>
-<a name="102"><span class="lineNum">     102 </span>                :<span class="lineNoCov">          0 :   tf2::Vector3 v_out = t * v_in;</span></a>
-<a name="103"><span class="lineNum">     103 </span>                :<span class="lineNoCov">          0 :   toMsg(v_out, t_out);</span></a>
-<a name="104"><span class="lineNum">     104 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="105"><span class="lineNum">     105 </span>                :            : }  // namespace tf2</a>
-<a name="106"><span class="lineNum">     106 </span>                :            : </a>
-<a name="107"><span class="lineNum">     107 </span>                :            : namespace behavior_path_planner</a>
-<a name="108"><span class="lineNum">     108 </span>                :            : {</a>
-<a name="109"><span class="lineNum">     109 </span>                :            : namespace util</a>
-<a name="110"><span class="lineNum">     110 </span>                :            : {</a>
-<a name="111"><span class="lineNum">     111 </span>                :            : using autoware_auto_perception_msgs::msg::ObjectClassification;</a>
-<a name="112"><span class="lineNum">     112 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedObject;</a>
-<a name="113"><span class="lineNum">     113 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedObjects;</a>
-<a name="114"><span class="lineNum">     114 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedPath;</a>
-<a name="115"><span class="lineNum">     115 </span>                :            : using autoware_auto_planning_msgs::msg::Path;</a>
-<a name="116"><span class="lineNum">     116 </span>                :            : using autoware_auto_planning_msgs::msg::PathPointWithLaneId;</a>
-<a name="117"><span class="lineNum">     117 </span>                :            : using autoware_auto_planning_msgs::msg::PathWithLaneId;</a>
-<a name="118"><span class="lineNum">     118 </span>                :            : using geometry_msgs::msg::Point;</a>
-<a name="119"><span class="lineNum">     119 </span>                :            : using geometry_msgs::msg::Pose;</a>
-<a name="120"><span class="lineNum">     120 </span>                :            : using geometry_msgs::msg::PoseArray;</a>
-<a name="121"><span class="lineNum">     121 </span>                :            : using geometry_msgs::msg::PoseStamped;</a>
-<a name="122"><span class="lineNum">     122 </span>                :            : using geometry_msgs::msg::Twist;</a>
-<a name="123"><span class="lineNum">     123 </span>                :            : using geometry_msgs::msg::Vector3;</a>
-<a name="124"><span class="lineNum">     124 </span>                :            : using nav_msgs::msg::OccupancyGrid;</a>
-<a name="125"><span class="lineNum">     125 </span>                :            : using route_handler::RouteHandler;</a>
-<a name="126"><span class="lineNum">     126 </span>                :            : using tier4_autoware_utils::LineString2d;</a>
-<a name="127"><span class="lineNum">     127 </span>                :            : using tier4_autoware_utils::Point2d;</a>
-<a name="128"><span class="lineNum">     128 </span>                :            : using tier4_autoware_utils::Polygon2d;</a>
-<a name="129"><span class="lineNum">     129 </span>                :            : </a>
-<a name="130"><span class="lineNum">     130 </span>                :            : struct FrenetCoordinate3d</a>
-<a name="131"><span class="lineNum">     131 </span>                :            : {</a>
-<a name="132"><span class="lineNum">     132 </span>                :            :   double length{0.0};    // longitudinal</a>
-<a name="133"><span class="lineNum">     133 </span>                :            :   double distance{0.0};  // lateral</a>
-<a name="134"><span class="lineNum">     134 </span>                :            : };</a>
-<a name="135"><span class="lineNum">     135 </span>                :            : </a>
-<a name="136"><span class="lineNum">     136 </span>                :            : // data conversions</a>
-<a name="137"><span class="lineNum">     137 </span>                :            : </a>
-<a name="138"><span class="lineNum">     138 </span>                :            : Path convertToPathFromPathWithLaneId(const PathWithLaneId &amp; path_with_lane_id);</a>
-<a name="139"><span class="lineNum">     139 </span>                :            : </a>
-<a name="140"><span class="lineNum">     140 </span>                :            : std::vector&lt;Point&gt; convertToPointArray(const PathWithLaneId &amp; path);</a>
-<a name="141"><span class="lineNum">     141 </span>                :            : </a>
-<a name="142"><span class="lineNum">     142 </span>                :            : std::vector&lt;Point&gt; convertToGeometryPointArray(const PathWithLaneId &amp; path);</a>
-<a name="143"><span class="lineNum">     143 </span>                :            : </a>
-<a name="144"><span class="lineNum">     144 </span>                :            : PoseArray convertToGeometryPoseArray(const PathWithLaneId &amp; path);</a>
-<a name="145"><span class="lineNum">     145 </span>                :            : </a>
-<a name="146"><span class="lineNum">     146 </span>                :            : PredictedPath convertToPredictedPath(</a>
-<a name="147"><span class="lineNum">     147 </span>                :            :   const PathWithLaneId &amp; path, const Twist &amp; vehicle_twist, const Pose &amp; vehicle_pose,</a>
-<a name="148"><span class="lineNum">     148 </span>                :            :   const double duration, const double resolution, const double acceleration);</a>
-<a name="149"><span class="lineNum">     149 </span>                :            : </a>
-<a name="150"><span class="lineNum">     150 </span>                :            : bool convertToFrenetCoordinate3d(</a>
-<a name="151"><span class="lineNum">     151 </span>                :            :   const PathWithLaneId &amp; path, const Point &amp; search_point_geom,</a>
-<a name="152"><span class="lineNum">     152 </span>                :            :   FrenetCoordinate3d * frenet_coordinate);</a>
-<a name="153"><span class="lineNum">     153 </span>                :            : </a>
-<a name="154"><span class="lineNum">     154 </span>                :            : bool convertToFrenetCoordinate3d(</a>
-<a name="155"><span class="lineNum">     155 </span>                :            :   const std::vector&lt;Point&gt; &amp; linestring, const Point search_point_geom,</a>
-<a name="156"><span class="lineNum">     156 </span>                :            :   FrenetCoordinate3d * frenet_coordinate);</a>
-<a name="157"><span class="lineNum">     157 </span>                :            : </a>
-<a name="158"><span class="lineNum">     158 </span>                :            : std::vector&lt;uint64_t&gt; getIds(const lanelet::ConstLanelets &amp; lanelets);</a>
-<a name="159"><span class="lineNum">     159 </span>                :            : </a>
-<a name="160"><span class="lineNum">     160 </span>                :            : // distance (arclength) calculation</a>
-<a name="161"><span class="lineNum">     161 </span>                :            : </a>
-<a name="162"><span class="lineNum">     162 </span>                :            : double l2Norm(const Vector3 vector);</a>
-<a name="163"><span class="lineNum">     163 </span>                :            : </a>
-<a name="164"><span class="lineNum">     164 </span>                :            : double getDistanceToEndOfLane(const Pose &amp; current_pose, const lanelet::ConstLanelets &amp; lanelets);</a>
-<a name="165"><span class="lineNum">     165 </span>                :            : </a>
-<a name="166"><span class="lineNum">     166 </span>                :            : double getDistanceToNextIntersection(</a>
-<a name="167"><span class="lineNum">     167 </span>                :            :   const Pose &amp; current_pose, const lanelet::ConstLanelets &amp; lanelets);</a>
+<a name="93"><span class="lineNum">      93 </span>                :            : // Remove after this commit is released</a>
+<a name="94"><span class="lineNum">      94 </span>                :            : // https://github.com/ros2/geometry2/commit/e9da371d81e388a589540357c050e262442f1b4a</a>
+<a name="95"><span class="lineNum">      95 </span>                :<span class="lineNoCov">          0 : inline void fromMsg(const geometry_msgs::msg::Point &amp; in, tf2::Vector3 &amp; out)</span></a>
+<a name="96"><span class="lineNum">      96 </span>                :            : {</a>
+<a name="97"><span class="lineNum">      97 </span>                :<span class="lineNoCov">          0 :   out = tf2::Vector3(in.x, in.y, in.z);</span></a>
+<a name="98"><span class="lineNum">      98 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="99"><span class="lineNum">      99 </span>                :            : </a>
+<a name="100"><span class="lineNum">     100 </span>                :            : template &lt;&gt;</a>
+<a name="101"><span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 : inline void doTransform(</span></a>
+<a name="102"><span class="lineNum">     102 </span>                :            :   const geometry_msgs::msg::Point &amp; t_in, geometry_msgs::msg::Point &amp; t_out,</a>
+<a name="103"><span class="lineNum">     103 </span>                :            :   const geometry_msgs::msg::TransformStamped &amp; transform)</a>
+<a name="104"><span class="lineNum">     104 </span>                :            : {</a>
+<a name="105"><span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 :   tf2::Transform t;</span></a>
+<a name="106"><span class="lineNum">     106 </span>                :<span class="lineNoCov">          0 :   fromMsg(transform.transform, t);</span></a>
+<a name="107"><span class="lineNum">     107 </span>                :<span class="lineNoCov">          0 :   tf2::Vector3 v_in;</span></a>
+<a name="108"><span class="lineNum">     108 </span>                :<span class="lineNoCov">          0 :   fromMsg(t_in, v_in);</span></a>
+<a name="109"><span class="lineNum">     109 </span>                :<span class="lineNoCov">          0 :   tf2::Vector3 v_out = t * v_in;</span></a>
+<a name="110"><span class="lineNum">     110 </span>                :<span class="lineNoCov">          0 :   toMsg(v_out, t_out);</span></a>
+<a name="111"><span class="lineNum">     111 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="112"><span class="lineNum">     112 </span>                :            : }  // namespace tf2</a>
+<a name="113"><span class="lineNum">     113 </span>                :            : </a>
+<a name="114"><span class="lineNum">     114 </span>                :            : namespace behavior_path_planner</a>
+<a name="115"><span class="lineNum">     115 </span>                :            : {</a>
+<a name="116"><span class="lineNum">     116 </span>                :            : namespace util</a>
+<a name="117"><span class="lineNum">     117 </span>                :            : {</a>
+<a name="118"><span class="lineNum">     118 </span>                :            : using autoware_auto_perception_msgs::msg::ObjectClassification;</a>
+<a name="119"><span class="lineNum">     119 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedObject;</a>
+<a name="120"><span class="lineNum">     120 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedObjects;</a>
+<a name="121"><span class="lineNum">     121 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedPath;</a>
+<a name="122"><span class="lineNum">     122 </span>                :            : using autoware_auto_planning_msgs::msg::Path;</a>
+<a name="123"><span class="lineNum">     123 </span>                :            : using autoware_auto_planning_msgs::msg::PathPointWithLaneId;</a>
+<a name="124"><span class="lineNum">     124 </span>                :            : using autoware_auto_planning_msgs::msg::PathWithLaneId;</a>
+<a name="125"><span class="lineNum">     125 </span>                :            : using geometry_msgs::msg::Point;</a>
+<a name="126"><span class="lineNum">     126 </span>                :            : using geometry_msgs::msg::Pose;</a>
+<a name="127"><span class="lineNum">     127 </span>                :            : using geometry_msgs::msg::PoseArray;</a>
+<a name="128"><span class="lineNum">     128 </span>                :            : using geometry_msgs::msg::PoseStamped;</a>
+<a name="129"><span class="lineNum">     129 </span>                :            : using geometry_msgs::msg::Twist;</a>
+<a name="130"><span class="lineNum">     130 </span>                :            : using geometry_msgs::msg::Vector3;</a>
+<a name="131"><span class="lineNum">     131 </span>                :            : using nav_msgs::msg::OccupancyGrid;</a>
+<a name="132"><span class="lineNum">     132 </span>                :            : using route_handler::RouteHandler;</a>
+<a name="133"><span class="lineNum">     133 </span>                :            : using tier4_autoware_utils::LineString2d;</a>
+<a name="134"><span class="lineNum">     134 </span>                :            : using tier4_autoware_utils::Point2d;</a>
+<a name="135"><span class="lineNum">     135 </span>                :            : using tier4_autoware_utils::Polygon2d;</a>
+<a name="136"><span class="lineNum">     136 </span>                :            : </a>
+<a name="137"><span class="lineNum">     137 </span>                :            : struct FrenetCoordinate3d</a>
+<a name="138"><span class="lineNum">     138 </span>                :            : {</a>
+<a name="139"><span class="lineNum">     139 </span>                :            :   double length{0.0};    // longitudinal</a>
+<a name="140"><span class="lineNum">     140 </span>                :            :   double distance{0.0};  // lateral</a>
+<a name="141"><span class="lineNum">     141 </span>                :            : };</a>
+<a name="142"><span class="lineNum">     142 </span>                :            : </a>
+<a name="143"><span class="lineNum">     143 </span>                :            : // data conversions</a>
+<a name="144"><span class="lineNum">     144 </span>                :            : </a>
+<a name="145"><span class="lineNum">     145 </span>                :            : Path convertToPathFromPathWithLaneId(const PathWithLaneId &amp; path_with_lane_id);</a>
+<a name="146"><span class="lineNum">     146 </span>                :            : </a>
+<a name="147"><span class="lineNum">     147 </span>                :            : std::vector&lt;Point&gt; convertToPointArray(const PathWithLaneId &amp; path);</a>
+<a name="148"><span class="lineNum">     148 </span>                :            : </a>
+<a name="149"><span class="lineNum">     149 </span>                :            : std::vector&lt;Point&gt; convertToGeometryPointArray(const PathWithLaneId &amp; path);</a>
+<a name="150"><span class="lineNum">     150 </span>                :            : </a>
+<a name="151"><span class="lineNum">     151 </span>                :            : PoseArray convertToGeometryPoseArray(const PathWithLaneId &amp; path);</a>
+<a name="152"><span class="lineNum">     152 </span>                :            : </a>
+<a name="153"><span class="lineNum">     153 </span>                :            : PredictedPath convertToPredictedPath(</a>
+<a name="154"><span class="lineNum">     154 </span>                :            :   const PathWithLaneId &amp; path, const Twist &amp; vehicle_twist, const Pose &amp; vehicle_pose,</a>
+<a name="155"><span class="lineNum">     155 </span>                :            :   const double duration, const double resolution, const double acceleration);</a>
+<a name="156"><span class="lineNum">     156 </span>                :            : </a>
+<a name="157"><span class="lineNum">     157 </span>                :            : bool convertToFrenetCoordinate3d(</a>
+<a name="158"><span class="lineNum">     158 </span>                :            :   const PathWithLaneId &amp; path, const Point &amp; search_point_geom,</a>
+<a name="159"><span class="lineNum">     159 </span>                :            :   FrenetCoordinate3d * frenet_coordinate);</a>
+<a name="160"><span class="lineNum">     160 </span>                :            : </a>
+<a name="161"><span class="lineNum">     161 </span>                :            : bool convertToFrenetCoordinate3d(</a>
+<a name="162"><span class="lineNum">     162 </span>                :            :   const std::vector&lt;Point&gt; &amp; linestring, const Point search_point_geom,</a>
+<a name="163"><span class="lineNum">     163 </span>                :            :   FrenetCoordinate3d * frenet_coordinate);</a>
+<a name="164"><span class="lineNum">     164 </span>                :            : </a>
+<a name="165"><span class="lineNum">     165 </span>                :            : std::vector&lt;uint64_t&gt; getIds(const lanelet::ConstLanelets &amp; lanelets);</a>
+<a name="166"><span class="lineNum">     166 </span>                :            : </a>
+<a name="167"><span class="lineNum">     167 </span>                :            : // distance (arclength) calculation</a>
 <a name="168"><span class="lineNum">     168 </span>                :            : </a>
-<a name="169"><span class="lineNum">     169 </span>                :            : double getDistanceToCrosswalk(</a>
-<a name="170"><span class="lineNum">     170 </span>                :            :   const Pose &amp; current_pose, const lanelet::ConstLanelets &amp; lanelets,</a>
-<a name="171"><span class="lineNum">     171 </span>                :            :   const lanelet::routing::RoutingGraphContainer &amp; overall_graphs);</a>
+<a name="169"><span class="lineNum">     169 </span>                :            : double l2Norm(const Vector3 vector);</a>
+<a name="170"><span class="lineNum">     170 </span>                :            : </a>
+<a name="171"><span class="lineNum">     171 </span>                :            : double getDistanceToEndOfLane(const Pose &amp; current_pose, const lanelet::ConstLanelets &amp; lanelets);</a>
 <a name="172"><span class="lineNum">     172 </span>                :            : </a>
-<a name="173"><span class="lineNum">     173 </span>                :            : double getSignedDistance(</a>
-<a name="174"><span class="lineNum">     174 </span>                :            :   const Pose &amp; current_pose, const Pose &amp; goal_pose, const lanelet::ConstLanelets &amp; lanelets);</a>
+<a name="173"><span class="lineNum">     173 </span>                :            : double getDistanceToNextIntersection(</a>
+<a name="174"><span class="lineNum">     174 </span>                :            :   const Pose &amp; current_pose, const lanelet::ConstLanelets &amp; lanelets);</a>
 <a name="175"><span class="lineNum">     175 </span>                :            : </a>
-<a name="176"><span class="lineNum">     176 </span>                :            : double getArcLengthToTargetLanelet(</a>
-<a name="177"><span class="lineNum">     177 </span>                :            :   const lanelet::ConstLanelets &amp; current_lanes, const lanelet::ConstLanelet &amp; target_lane,</a>
-<a name="178"><span class="lineNum">     178 </span>                :            :   const Pose &amp; pose);</a>
+<a name="176"><span class="lineNum">     176 </span>                :            : double getDistanceToCrosswalk(</a>
+<a name="177"><span class="lineNum">     177 </span>                :            :   const Pose &amp; current_pose, const lanelet::ConstLanelets &amp; lanelets,</a>
+<a name="178"><span class="lineNum">     178 </span>                :            :   const lanelet::routing::RoutingGraphContainer &amp; overall_graphs);</a>
 <a name="179"><span class="lineNum">     179 </span>                :            : </a>
-<a name="180"><span class="lineNum">     180 </span>                :            : // object collision check</a>
-<a name="181"><span class="lineNum">     181 </span>                :            : </a>
-<a name="182"><span class="lineNum">     182 </span>                :            : Pose lerpByPose(const Pose &amp; p1, const Pose &amp; p2, const double t);</a>
-<a name="183"><span class="lineNum">     183 </span>                :            : </a>
-<a name="184"><span class="lineNum">     184 </span>                :            : Point lerpByLength(const std::vector&lt;Point&gt; &amp; array, const double length);</a>
-<a name="185"><span class="lineNum">     185 </span>                :            : </a>
-<a name="186"><span class="lineNum">     186 </span>                :            : bool lerpByTimeStamp(const PredictedPath &amp; path, const double t, Pose * lerped_pt);</a>
-<a name="187"><span class="lineNum">     187 </span>                :            : </a>
-<a name="188"><span class="lineNum">     188 </span>                :            : bool lerpByDistance(</a>
-<a name="189"><span class="lineNum">     189 </span>                :            :   const behavior_path_planner::PullOutPath &amp; path, const double &amp; s, Pose * lerped_pt,</a>
-<a name="190"><span class="lineNum">     190 </span>                :            :   const lanelet::ConstLanelets &amp; road_lanes);</a>
-<a name="191"><span class="lineNum">     191 </span>                :            : </a>
-<a name="192"><span class="lineNum">     192 </span>                :            : bool calcObjectPolygon(const PredictedObject &amp; object, Polygon2d * object_polygon);</a>
-<a name="193"><span class="lineNum">     193 </span>                :            : </a>
-<a name="194"><span class="lineNum">     194 </span>                :            : PredictedPath resamplePredictedPath(</a>
-<a name="195"><span class="lineNum">     195 </span>                :            :   const PredictedPath &amp; input_path, const double resolution, const double duration);</a>
-<a name="196"><span class="lineNum">     196 </span>                :            : </a>
-<a name="197"><span class="lineNum">     197 </span>                :            : double getDistanceBetweenPredictedPaths(</a>
-<a name="198"><span class="lineNum">     198 </span>                :            :   const PredictedPath &amp; path1, const PredictedPath &amp; path2, const double start_time,</a>
-<a name="199"><span class="lineNum">     199 </span>                :            :   const double end_time, const double resolution);</a>
+<a name="180"><span class="lineNum">     180 </span>                :            : double getSignedDistance(</a>
+<a name="181"><span class="lineNum">     181 </span>                :            :   const Pose &amp; current_pose, const Pose &amp; goal_pose, const lanelet::ConstLanelets &amp; lanelets);</a>
+<a name="182"><span class="lineNum">     182 </span>                :            : </a>
+<a name="183"><span class="lineNum">     183 </span>                :            : double getArcLengthToTargetLanelet(</a>
+<a name="184"><span class="lineNum">     184 </span>                :            :   const lanelet::ConstLanelets &amp; current_lanes, const lanelet::ConstLanelet &amp; target_lane,</a>
+<a name="185"><span class="lineNum">     185 </span>                :            :   const Pose &amp; pose);</a>
+<a name="186"><span class="lineNum">     186 </span>                :            : </a>
+<a name="187"><span class="lineNum">     187 </span>                :            : // object collision check</a>
+<a name="188"><span class="lineNum">     188 </span>                :            : </a>
+<a name="189"><span class="lineNum">     189 </span>                :            : Pose lerpByPose(const Pose &amp; p1, const Pose &amp; p2, const double t);</a>
+<a name="190"><span class="lineNum">     190 </span>                :            : </a>
+<a name="191"><span class="lineNum">     191 </span>                :            : Point lerpByLength(const std::vector&lt;Point&gt; &amp; array, const double length);</a>
+<a name="192"><span class="lineNum">     192 </span>                :            : </a>
+<a name="193"><span class="lineNum">     193 </span>                :            : bool lerpByTimeStamp(const PredictedPath &amp; path, const double t, Pose * lerped_pt);</a>
+<a name="194"><span class="lineNum">     194 </span>                :            : </a>
+<a name="195"><span class="lineNum">     195 </span>                :            : bool lerpByDistance(</a>
+<a name="196"><span class="lineNum">     196 </span>                :            :   const behavior_path_planner::PullOutPath &amp; path, const double &amp; s, Pose * lerped_pt,</a>
+<a name="197"><span class="lineNum">     197 </span>                :            :   const lanelet::ConstLanelets &amp; road_lanes);</a>
+<a name="198"><span class="lineNum">     198 </span>                :            : </a>
+<a name="199"><span class="lineNum">     199 </span>                :            : bool calcObjectPolygon(const PredictedObject &amp; object, Polygon2d * object_polygon);</a>
 <a name="200"><span class="lineNum">     200 </span>                :            : </a>
-<a name="201"><span class="lineNum">     201 </span>                :            : double getDistanceBetweenPredictedPathAndObject(</a>
-<a name="202"><span class="lineNum">     202 </span>                :            :   const PredictedObject &amp; object, const PredictedPath &amp; path, const double start_time,</a>
-<a name="203"><span class="lineNum">     203 </span>                :            :   const double end_time, const double resolution);</a>
-<a name="204"><span class="lineNum">     204 </span>                :            : </a>
-<a name="205"><span class="lineNum">     205 </span>                :            : double getDistanceBetweenPredictedPathAndObjectPolygon(</a>
-<a name="206"><span class="lineNum">     206 </span>                :            :   const PredictedObject &amp; object, const PullOutPath &amp; ego_path,</a>
-<a name="207"><span class="lineNum">     207 </span>                :            :   const tier4_autoware_utils::LinearRing2d &amp; vehicle_footprint, double distance_resolution,</a>
-<a name="208"><span class="lineNum">     208 </span>                :            :   const lanelet::ConstLanelets &amp; road_lanes);</a>
-<a name="209"><span class="lineNum">     209 </span>                :            : </a>
-<a name="210"><span class="lineNum">     210 </span>                :            : /**</a>
-<a name="211"><span class="lineNum">     211 </span>                :            :  * @brief Get index of the obstacles inside the lanelets with start and end length</a>
-<a name="212"><span class="lineNum">     212 </span>                :            :  * @return Indices corresponding to the obstacle inside the lanelets</a>
-<a name="213"><span class="lineNum">     213 </span>                :            :  */</a>
-<a name="214"><span class="lineNum">     214 </span>                :            : std::vector&lt;size_t&gt; filterObjectsByLanelets(</a>
-<a name="215"><span class="lineNum">     215 </span>                :            :   const PredictedObjects &amp; objects, const lanelet::ConstLanelets &amp; lanelets,</a>
-<a name="216"><span class="lineNum">     216 </span>                :            :   const double start_arc_length, const double end_arc_length);</a>
-<a name="217"><span class="lineNum">     217 </span>                :            : </a>
-<a name="218"><span class="lineNum">     218 </span>                :            : /**</a>
-<a name="219"><span class="lineNum">     219 </span>                :            :  * @brief Get index of the obstacles inside the lanelets</a>
-<a name="220"><span class="lineNum">     220 </span>                :            :  * @return Indices corresponding to the obstacle inside the lanelets</a>
-<a name="221"><span class="lineNum">     221 </span>                :            :  */</a>
-<a name="222"><span class="lineNum">     222 </span>                :            : std::vector&lt;size_t&gt; filterObjectsByLanelets(</a>
-<a name="223"><span class="lineNum">     223 </span>                :            :   const PredictedObjects &amp; objects, const lanelet::ConstLanelets &amp; target_lanelets);</a>
+<a name="201"><span class="lineNum">     201 </span>                :            : PredictedPath resamplePredictedPath(</a>
+<a name="202"><span class="lineNum">     202 </span>                :            :   const PredictedPath &amp; input_path, const double resolution, const double duration);</a>
+<a name="203"><span class="lineNum">     203 </span>                :            : </a>
+<a name="204"><span class="lineNum">     204 </span>                :            : double getDistanceBetweenPredictedPaths(</a>
+<a name="205"><span class="lineNum">     205 </span>                :            :   const PredictedPath &amp; path1, const PredictedPath &amp; path2, const double start_time,</a>
+<a name="206"><span class="lineNum">     206 </span>                :            :   const double end_time, const double resolution);</a>
+<a name="207"><span class="lineNum">     207 </span>                :            : </a>
+<a name="208"><span class="lineNum">     208 </span>                :            : double getDistanceBetweenPredictedPathAndObject(</a>
+<a name="209"><span class="lineNum">     209 </span>                :            :   const PredictedObject &amp; object, const PredictedPath &amp; path, const double start_time,</a>
+<a name="210"><span class="lineNum">     210 </span>                :            :   const double end_time, const double resolution);</a>
+<a name="211"><span class="lineNum">     211 </span>                :            : </a>
+<a name="212"><span class="lineNum">     212 </span>                :            : double getDistanceBetweenPredictedPathAndObjectPolygon(</a>
+<a name="213"><span class="lineNum">     213 </span>                :            :   const PredictedObject &amp; object, const PullOutPath &amp; ego_path,</a>
+<a name="214"><span class="lineNum">     214 </span>                :            :   const tier4_autoware_utils::LinearRing2d &amp; vehicle_footprint, double distance_resolution,</a>
+<a name="215"><span class="lineNum">     215 </span>                :            :   const lanelet::ConstLanelets &amp; road_lanes);</a>
+<a name="216"><span class="lineNum">     216 </span>                :            : </a>
+<a name="217"><span class="lineNum">     217 </span>                :            : /**</a>
+<a name="218"><span class="lineNum">     218 </span>                :            :  * @brief Get index of the obstacles inside the lanelets with start and end length</a>
+<a name="219"><span class="lineNum">     219 </span>                :            :  * @return Indices corresponding to the obstacle inside the lanelets</a>
+<a name="220"><span class="lineNum">     220 </span>                :            :  */</a>
+<a name="221"><span class="lineNum">     221 </span>                :            : std::vector&lt;size_t&gt; filterObjectsByLanelets(</a>
+<a name="222"><span class="lineNum">     222 </span>                :            :   const PredictedObjects &amp; objects, const lanelet::ConstLanelets &amp; lanelets,</a>
+<a name="223"><span class="lineNum">     223 </span>                :            :   const double start_arc_length, const double end_arc_length);</a>
 <a name="224"><span class="lineNum">     224 </span>                :            : </a>
-<a name="225"><span class="lineNum">     225 </span>                :            : std::vector&lt;size_t&gt; filterObjectsByPath(</a>
-<a name="226"><span class="lineNum">     226 </span>                :            :   const PredictedObjects &amp; objects, const std::vector&lt;size_t&gt; &amp; object_indices,</a>
-<a name="227"><span class="lineNum">     227 </span>                :            :   const PathWithLaneId &amp; ego_path, const double vehicle_width);</a>
-<a name="228"><span class="lineNum">     228 </span>                :            : </a>
-<a name="229"><span class="lineNum">     229 </span>                :            : PredictedObjects filterObjectsByVelocity(const PredictedObjects &amp; objects, double lim_v);</a>
-<a name="230"><span class="lineNum">     230 </span>                :            : </a>
-<a name="231"><span class="lineNum">     231 </span>                :            : PredictedObjects filterObjectsByVelocity(</a>
-<a name="232"><span class="lineNum">     232 </span>                :            :   const PredictedObjects &amp; objects, double min_v, double max_v);</a>
-<a name="233"><span class="lineNum">     233 </span>                :            : </a>
-<a name="234"><span class="lineNum">     234 </span>                :            : // drivable area generation</a>
+<a name="225"><span class="lineNum">     225 </span>                :            : /**</a>
+<a name="226"><span class="lineNum">     226 </span>                :            :  * @brief Get index of the obstacles inside the lanelets</a>
+<a name="227"><span class="lineNum">     227 </span>                :            :  * @return Indices corresponding to the obstacle inside the lanelets</a>
+<a name="228"><span class="lineNum">     228 </span>                :            :  */</a>
+<a name="229"><span class="lineNum">     229 </span>                :            : std::vector&lt;size_t&gt; filterObjectsByLanelets(</a>
+<a name="230"><span class="lineNum">     230 </span>                :            :   const PredictedObjects &amp; objects, const lanelet::ConstLanelets &amp; target_lanelets);</a>
+<a name="231"><span class="lineNum">     231 </span>                :            : </a>
+<a name="232"><span class="lineNum">     232 </span>                :            : std::vector&lt;size_t&gt; filterObjectsByPath(</a>
+<a name="233"><span class="lineNum">     233 </span>                :            :   const PredictedObjects &amp; objects, const std::vector&lt;size_t&gt; &amp; object_indices,</a>
+<a name="234"><span class="lineNum">     234 </span>                :            :   const PathWithLaneId &amp; ego_path, const double vehicle_width);</a>
 <a name="235"><span class="lineNum">     235 </span>                :            : </a>
-<a name="236"><span class="lineNum">     236 </span>                :            : void occupancyGridToImage(const OccupancyGrid &amp; occupancy_grid, cv::Mat * cv_image);</a>
+<a name="236"><span class="lineNum">     236 </span>                :            : PredictedObjects filterObjectsByVelocity(const PredictedObjects &amp; objects, double lim_v);</a>
 <a name="237"><span class="lineNum">     237 </span>                :            : </a>
-<a name="238"><span class="lineNum">     238 </span>                :            : void imageToOccupancyGrid(const cv::Mat &amp; cv_image, OccupancyGrid * occupancy_grid);</a>
-<a name="239"><span class="lineNum">     239 </span>                :            : </a>
-<a name="240"><span class="lineNum">     240 </span>                :            : cv::Point toCVPoint(</a>
-<a name="241"><span class="lineNum">     241 </span>                :            :   const Point &amp; geom_point, const double width_m, const double height_m, const double resolution);</a>
+<a name="238"><span class="lineNum">     238 </span>                :            : PredictedObjects filterObjectsByVelocity(</a>
+<a name="239"><span class="lineNum">     239 </span>                :            :   const PredictedObjects &amp; objects, double min_v, double max_v);</a>
+<a name="240"><span class="lineNum">     240 </span>                :            : </a>
+<a name="241"><span class="lineNum">     241 </span>                :            : // drivable area generation</a>
 <a name="242"><span class="lineNum">     242 </span>                :            : </a>
-<a name="243"><span class="lineNum">     243 </span>                :            : OccupancyGrid generateDrivableArea(</a>
-<a name="244"><span class="lineNum">     244 </span>                :            :   const lanelet::ConstLanelets &amp; lanes, const PoseStamped &amp; current_pose, const double width,</a>
-<a name="245"><span class="lineNum">     245 </span>                :            :   const double height, const double resolution, const double vehicle_length,</a>
-<a name="246"><span class="lineNum">     246 </span>                :            :   const RouteHandler &amp; route_handler);</a>
-<a name="247"><span class="lineNum">     247 </span>                :            : </a>
-<a name="248"><span class="lineNum">     248 </span>                :            : // goal management</a>
+<a name="243"><span class="lineNum">     243 </span>                :            : void occupancyGridToImage(const OccupancyGrid &amp; occupancy_grid, cv::Mat * cv_image);</a>
+<a name="244"><span class="lineNum">     244 </span>                :            : </a>
+<a name="245"><span class="lineNum">     245 </span>                :            : void imageToOccupancyGrid(const cv::Mat &amp; cv_image, OccupancyGrid * occupancy_grid);</a>
+<a name="246"><span class="lineNum">     246 </span>                :            : </a>
+<a name="247"><span class="lineNum">     247 </span>                :            : cv::Point toCVPoint(</a>
+<a name="248"><span class="lineNum">     248 </span>                :            :   const Point &amp; geom_point, const double width_m, const double height_m, const double resolution);</a>
 <a name="249"><span class="lineNum">     249 </span>                :            : </a>
-<a name="250"><span class="lineNum">     250 </span>                :            : /**</a>
-<a name="251"><span class="lineNum">     251 </span>                :            :  * @brief Modify the path points near the goal to smoothly connect the input path and the goal point</a>
-<a name="252"><span class="lineNum">     252 </span>                :            :  * @details Remove the path points that are forward from the goal by the distance of</a>
-<a name="253"><span class="lineNum">     253 </span>                :            :  * search_radius_range. Then insert the goal into the path. The previous goal point generated</a>
-<a name="254"><span class="lineNum">     254 </span>                :            :  * from the goal posture information is also inserted for the smooth connection of the goal pose.</a>
-<a name="255"><span class="lineNum">     255 </span>                :            :  * @param [in] search_radius_range distance on path to be modified for goal insertion</a>
-<a name="256"><span class="lineNum">     256 </span>                :            :  * @param [in] search_rad_range [unused]</a>
-<a name="257"><span class="lineNum">     257 </span>                :            :  * @param [in] input original path</a>
-<a name="258"><span class="lineNum">     258 </span>                :            :  * @param [in] goal original goal pose</a>
-<a name="259"><span class="lineNum">     259 </span>                :            :  * @param [in] goal_lane_id [unused]</a>
-<a name="260"><span class="lineNum">     260 </span>                :            :  * @param [in] output_ptr output path with modified points for the goal</a>
-<a name="261"><span class="lineNum">     261 </span>                :            :  */</a>
-<a name="262"><span class="lineNum">     262 </span>                :            : bool setGoal(</a>
-<a name="263"><span class="lineNum">     263 </span>                :            :   const double search_radius_range, const double search_rad_range, const PathWithLaneId &amp; input,</a>
-<a name="264"><span class="lineNum">     264 </span>                :            :   const Pose &amp; goal, const int64_t goal_lane_id, PathWithLaneId * output_ptr);</a>
-<a name="265"><span class="lineNum">     265 </span>                :            : </a>
-<a name="266"><span class="lineNum">     266 </span>                :            : /**</a>
-<a name="267"><span class="lineNum">     267 </span>                :            :  * @brief Recreate the goal pose to prevent the goal point being too far from the lanelet, which</a>
-<a name="268"><span class="lineNum">     268 </span>                :            :  *  causes the path to twist near the goal.</a>
-<a name="269"><span class="lineNum">     269 </span>                :            :  * @details Return the goal point projected on the straight line of the segment of lanelet</a>
-<a name="270"><span class="lineNum">     270 </span>                :            :  *  closest to the original goal.</a>
-<a name="271"><span class="lineNum">     271 </span>                :            :  * @param [in] goal original goal pose</a>
-<a name="272"><span class="lineNum">     272 </span>                :            :  * @param [in] goal_lanelet lanelet containing the goal pose</a>
-<a name="273"><span class="lineNum">     273 </span>                :            :  */</a>
-<a name="274"><span class="lineNum">     274 </span>                :            : const Pose refineGoal(const Pose &amp; goal, const lanelet::ConstLanelet &amp; goal_lanelet);</a>
-<a name="275"><span class="lineNum">     275 </span>                :            : </a>
-<a name="276"><span class="lineNum">     276 </span>                :            : PathWithLaneId refinePathForGoal(</a>
-<a name="277"><span class="lineNum">     277 </span>                :            :   const double search_radius_range, const double search_rad_range, const PathWithLaneId &amp; input,</a>
-<a name="278"><span class="lineNum">     278 </span>                :            :   const Pose &amp; goal, const int64_t goal_lane_id);</a>
-<a name="279"><span class="lineNum">     279 </span>                :            : </a>
-<a name="280"><span class="lineNum">     280 </span>                :            : PathWithLaneId removeOverlappingPoints(const PathWithLaneId &amp; input_path);</a>
-<a name="281"><span class="lineNum">     281 </span>                :            : </a>
-<a name="282"><span class="lineNum">     282 </span>                :            : bool containsGoal(const lanelet::ConstLanelets &amp; lanes, const lanelet::Id &amp; goal_id);</a>
-<a name="283"><span class="lineNum">     283 </span>                :            : </a>
-<a name="284"><span class="lineNum">     284 </span>                :            : // path management</a>
-<a name="285"><span class="lineNum">     285 </span>                :            : </a>
-<a name="286"><span class="lineNum">     286 </span>                :            : // TODO(Horibe) There is a similar function in route_handler. Check.</a>
-<a name="287"><span class="lineNum">     287 </span>                :            : std::shared_ptr&lt;PathWithLaneId&gt; generateCenterLinePath(</a>
-<a name="288"><span class="lineNum">     288 </span>                :            :   const std::shared_ptr&lt;const PlannerData&gt; &amp; planner_data);</a>
-<a name="289"><span class="lineNum">     289 </span>                :            : </a>
-<a name="290"><span class="lineNum">     290 </span>                :            : PathPointWithLaneId insertStopPoint(double length, PathWithLaneId * path);</a>
-<a name="291"><span class="lineNum">     291 </span>                :            : </a>
-<a name="292"><span class="lineNum">     292 </span>                :            : double getDistanceToShoulderBoundary(</a>
-<a name="293"><span class="lineNum">     293 </span>                :            :   const lanelet::ConstLanelets &amp; shoulder_lanelets, const Pose &amp; pose);</a>
-<a name="294"><span class="lineNum">     294 </span>                :            : </a>
-<a name="295"><span class="lineNum">     295 </span>                :            : // misc</a>
+<a name="250"><span class="lineNum">     250 </span>                :            : OccupancyGrid generateDrivableArea(</a>
+<a name="251"><span class="lineNum">     251 </span>                :            :   const lanelet::ConstLanelets &amp; lanes, const PoseStamped &amp; current_pose, const double width,</a>
+<a name="252"><span class="lineNum">     252 </span>                :            :   const double height, const double resolution, const double vehicle_length,</a>
+<a name="253"><span class="lineNum">     253 </span>                :            :   const RouteHandler &amp; route_handler);</a>
+<a name="254"><span class="lineNum">     254 </span>                :            : </a>
+<a name="255"><span class="lineNum">     255 </span>                :            : // goal management</a>
+<a name="256"><span class="lineNum">     256 </span>                :            : </a>
+<a name="257"><span class="lineNum">     257 </span>                :            : /**</a>
+<a name="258"><span class="lineNum">     258 </span>                :            :  * @brief Modify the path points near the goal to smoothly connect the input path and the goal point</a>
+<a name="259"><span class="lineNum">     259 </span>                :            :  * @details Remove the path points that are forward from the goal by the distance of</a>
+<a name="260"><span class="lineNum">     260 </span>                :            :  * search_radius_range. Then insert the goal into the path. The previous goal point generated</a>
+<a name="261"><span class="lineNum">     261 </span>                :            :  * from the goal posture information is also inserted for the smooth connection of the goal pose.</a>
+<a name="262"><span class="lineNum">     262 </span>                :            :  * @param [in] search_radius_range distance on path to be modified for goal insertion</a>
+<a name="263"><span class="lineNum">     263 </span>                :            :  * @param [in] search_rad_range [unused]</a>
+<a name="264"><span class="lineNum">     264 </span>                :            :  * @param [in] input original path</a>
+<a name="265"><span class="lineNum">     265 </span>                :            :  * @param [in] goal original goal pose</a>
+<a name="266"><span class="lineNum">     266 </span>                :            :  * @param [in] goal_lane_id [unused]</a>
+<a name="267"><span class="lineNum">     267 </span>                :            :  * @param [in] output_ptr output path with modified points for the goal</a>
+<a name="268"><span class="lineNum">     268 </span>                :            :  */</a>
+<a name="269"><span class="lineNum">     269 </span>                :            : bool setGoal(</a>
+<a name="270"><span class="lineNum">     270 </span>                :            :   const double search_radius_range, const double search_rad_range, const PathWithLaneId &amp; input,</a>
+<a name="271"><span class="lineNum">     271 </span>                :            :   const Pose &amp; goal, const int64_t goal_lane_id, PathWithLaneId * output_ptr);</a>
+<a name="272"><span class="lineNum">     272 </span>                :            : </a>
+<a name="273"><span class="lineNum">     273 </span>                :            : /**</a>
+<a name="274"><span class="lineNum">     274 </span>                :            :  * @brief Recreate the goal pose to prevent the goal point being too far from the lanelet, which</a>
+<a name="275"><span class="lineNum">     275 </span>                :            :  *  causes the path to twist near the goal.</a>
+<a name="276"><span class="lineNum">     276 </span>                :            :  * @details Return the goal point projected on the straight line of the segment of lanelet</a>
+<a name="277"><span class="lineNum">     277 </span>                :            :  *  closest to the original goal.</a>
+<a name="278"><span class="lineNum">     278 </span>                :            :  * @param [in] goal original goal pose</a>
+<a name="279"><span class="lineNum">     279 </span>                :            :  * @param [in] goal_lanelet lanelet containing the goal pose</a>
+<a name="280"><span class="lineNum">     280 </span>                :            :  */</a>
+<a name="281"><span class="lineNum">     281 </span>                :            : const Pose refineGoal(const Pose &amp; goal, const lanelet::ConstLanelet &amp; goal_lanelet);</a>
+<a name="282"><span class="lineNum">     282 </span>                :            : </a>
+<a name="283"><span class="lineNum">     283 </span>                :            : PathWithLaneId refinePathForGoal(</a>
+<a name="284"><span class="lineNum">     284 </span>                :            :   const double search_radius_range, const double search_rad_range, const PathWithLaneId &amp; input,</a>
+<a name="285"><span class="lineNum">     285 </span>                :            :   const Pose &amp; goal, const int64_t goal_lane_id);</a>
+<a name="286"><span class="lineNum">     286 </span>                :            : </a>
+<a name="287"><span class="lineNum">     287 </span>                :            : PathWithLaneId removeOverlappingPoints(const PathWithLaneId &amp; input_path);</a>
+<a name="288"><span class="lineNum">     288 </span>                :            : </a>
+<a name="289"><span class="lineNum">     289 </span>                :            : bool containsGoal(const lanelet::ConstLanelets &amp; lanes, const lanelet::Id &amp; goal_id);</a>
+<a name="290"><span class="lineNum">     290 </span>                :            : </a>
+<a name="291"><span class="lineNum">     291 </span>                :            : // path management</a>
+<a name="292"><span class="lineNum">     292 </span>                :            : </a>
+<a name="293"><span class="lineNum">     293 </span>                :            : // TODO(Horibe) There is a similar function in route_handler. Check.</a>
+<a name="294"><span class="lineNum">     294 </span>                :            : std::shared_ptr&lt;PathWithLaneId&gt; generateCenterLinePath(</a>
+<a name="295"><span class="lineNum">     295 </span>                :            :   const std::shared_ptr&lt;const PlannerData&gt; &amp; planner_data);</a>
 <a name="296"><span class="lineNum">     296 </span>                :            : </a>
-<a name="297"><span class="lineNum">     297 </span>                :            : lanelet::Polygon3d getVehiclePolygon(</a>
-<a name="298"><span class="lineNum">     298 </span>                :            :   const Pose &amp; vehicle_pose, const double vehicle_width, const double base_link2front);</a>
-<a name="299"><span class="lineNum">     299 </span>                :            : </a>
-<a name="300"><span class="lineNum">     300 </span>                :            : std::vector&lt;Polygon2d&gt; getTargetLaneletPolygons(</a>
-<a name="301"><span class="lineNum">     301 </span>                :            :   const lanelet::ConstLanelets &amp; lanelets, const Pose &amp; pose, const double check_length,</a>
-<a name="302"><span class="lineNum">     302 </span>                :            :   const std::string &amp; target_type);</a>
+<a name="297"><span class="lineNum">     297 </span>                :            : PathPointWithLaneId insertStopPoint(double length, PathWithLaneId * path);</a>
+<a name="298"><span class="lineNum">     298 </span>                :            : </a>
+<a name="299"><span class="lineNum">     299 </span>                :            : double getDistanceToShoulderBoundary(</a>
+<a name="300"><span class="lineNum">     300 </span>                :            :   const lanelet::ConstLanelets &amp; shoulder_lanelets, const Pose &amp; pose);</a>
+<a name="301"><span class="lineNum">     301 </span>                :            : </a>
+<a name="302"><span class="lineNum">     302 </span>                :            : // misc</a>
 <a name="303"><span class="lineNum">     303 </span>                :            : </a>
-<a name="304"><span class="lineNum">     304 </span>                :            : void shiftPose(Pose * pose, double shift_length);</a>
-<a name="305"><span class="lineNum">     305 </span>                :            : </a>
-<a name="306"><span class="lineNum">     306 </span>                :            : // route handler</a>
-<a name="307"><span class="lineNum">     307 </span>                :            : PathWithLaneId getCenterLinePath(</a>
-<a name="308"><span class="lineNum">     308 </span>                :            :   const RouteHandler &amp; route_handler, const lanelet::ConstLanelets &amp; lanelet_sequence,</a>
-<a name="309"><span class="lineNum">     309 </span>                :            :   const Pose &amp; pose, const double backward_path_length, const double forward_path_length,</a>
-<a name="310"><span class="lineNum">     310 </span>                :            :   const BehaviorPathPlannerParameters &amp; parameter);</a>
-<a name="311"><span class="lineNum">     311 </span>                :            : </a>
-<a name="312"><span class="lineNum">     312 </span>                :            : PathWithLaneId setDecelerationVelocity(</a>
-<a name="313"><span class="lineNum">     313 </span>                :            :   const RouteHandler &amp; route_handler, const PathWithLaneId &amp; input,</a>
-<a name="314"><span class="lineNum">     314 </span>                :            :   const lanelet::ConstLanelets &amp; lanelet_sequence, const double lane_change_prepare_duration,</a>
-<a name="315"><span class="lineNum">     315 </span>                :            :   const double lane_change_buffer);</a>
-<a name="316"><span class="lineNum">     316 </span>                :            : </a>
-<a name="317"><span class="lineNum">     317 </span>                :            : PathWithLaneId setDecelerationVelocity(</a>
-<a name="318"><span class="lineNum">     318 </span>                :            :   const RouteHandler &amp; route_handler, const PathWithLaneId &amp; input,</a>
-<a name="319"><span class="lineNum">     319 </span>                :            :   const lanelet::ConstLanelets &amp; lanelet_sequence, const double distance_after_pullover,</a>
-<a name="320"><span class="lineNum">     320 </span>                :            :   const double pullover_distance_min, const double distance_before_pull_over,</a>
-<a name="321"><span class="lineNum">     321 </span>                :            :   const double deceleration_interval, Pose goal_pose);</a>
-<a name="322"><span class="lineNum">     322 </span>                :            : </a>
-<a name="323"><span class="lineNum">     323 </span>                :            : // object label</a>
-<a name="324"><span class="lineNum">     324 </span>                :            : std::uint8_t getHighestProbLabel(const std::vector&lt;ObjectClassification&gt; &amp; classification);</a>
-<a name="325"><span class="lineNum">     325 </span>                :            : </a>
-<a name="326"><span class="lineNum">     326 </span>                :            : }  // namespace util</a>
-<a name="327"><span class="lineNum">     327 </span>                :            : }  // namespace behavior_path_planner</a>
-<a name="328"><span class="lineNum">     328 </span>                :            : </a>
-<a name="329"><span class="lineNum">     329 </span>                :            : #endif  // BEHAVIOR_PATH_PLANNER__UTILITIES_HPP_</a>
+<a name="304"><span class="lineNum">     304 </span>                :            : lanelet::Polygon3d getVehiclePolygon(</a>
+<a name="305"><span class="lineNum">     305 </span>                :            :   const Pose &amp; vehicle_pose, const double vehicle_width, const double base_link2front);</a>
+<a name="306"><span class="lineNum">     306 </span>                :            : </a>
+<a name="307"><span class="lineNum">     307 </span>                :            : std::vector&lt;Polygon2d&gt; getTargetLaneletPolygons(</a>
+<a name="308"><span class="lineNum">     308 </span>                :            :   const lanelet::ConstLanelets &amp; lanelets, const Pose &amp; pose, const double check_length,</a>
+<a name="309"><span class="lineNum">     309 </span>                :            :   const std::string &amp; target_type);</a>
+<a name="310"><span class="lineNum">     310 </span>                :            : </a>
+<a name="311"><span class="lineNum">     311 </span>                :            : void shiftPose(Pose * pose, double shift_length);</a>
+<a name="312"><span class="lineNum">     312 </span>                :            : </a>
+<a name="313"><span class="lineNum">     313 </span>                :            : // route handler</a>
+<a name="314"><span class="lineNum">     314 </span>                :            : PathWithLaneId getCenterLinePath(</a>
+<a name="315"><span class="lineNum">     315 </span>                :            :   const RouteHandler &amp; route_handler, const lanelet::ConstLanelets &amp; lanelet_sequence,</a>
+<a name="316"><span class="lineNum">     316 </span>                :            :   const Pose &amp; pose, const double backward_path_length, const double forward_path_length,</a>
+<a name="317"><span class="lineNum">     317 </span>                :            :   const BehaviorPathPlannerParameters &amp; parameter);</a>
+<a name="318"><span class="lineNum">     318 </span>                :            : </a>
+<a name="319"><span class="lineNum">     319 </span>                :            : PathWithLaneId setDecelerationVelocity(</a>
+<a name="320"><span class="lineNum">     320 </span>                :            :   const RouteHandler &amp; route_handler, const PathWithLaneId &amp; input,</a>
+<a name="321"><span class="lineNum">     321 </span>                :            :   const lanelet::ConstLanelets &amp; lanelet_sequence, const double lane_change_prepare_duration,</a>
+<a name="322"><span class="lineNum">     322 </span>                :            :   const double lane_change_buffer);</a>
+<a name="323"><span class="lineNum">     323 </span>                :            : </a>
+<a name="324"><span class="lineNum">     324 </span>                :            : PathWithLaneId setDecelerationVelocity(</a>
+<a name="325"><span class="lineNum">     325 </span>                :            :   const RouteHandler &amp; route_handler, const PathWithLaneId &amp; input,</a>
+<a name="326"><span class="lineNum">     326 </span>                :            :   const lanelet::ConstLanelets &amp; lanelet_sequence, const double distance_after_pullover,</a>
+<a name="327"><span class="lineNum">     327 </span>                :            :   const double pullover_distance_min, const double distance_before_pull_over,</a>
+<a name="328"><span class="lineNum">     328 </span>                :            :   const double deceleration_interval, Pose goal_pose);</a>
+<a name="329"><span class="lineNum">     329 </span>                :            : </a>
+<a name="330"><span class="lineNum">     330 </span>                :            : // object label</a>
+<a name="331"><span class="lineNum">     331 </span>                :            : std::uint8_t getHighestProbLabel(const std::vector&lt;ObjectClassification&gt; &amp; classification);</a>
+<a name="332"><span class="lineNum">     332 </span>                :            : </a>
+<a name="333"><span class="lineNum">     333 </span>                :            : }  // namespace util</a>
+<a name="334"><span class="lineNum">     334 </span>                :            : }  // namespace behavior_path_planner</a>
+<a name="335"><span class="lineNum">     335 </span>                :            : </a>
+<a name="336"><span class="lineNum">     336 </span>                :            : #endif  // BEHAVIOR_PATH_PLANNER__UTILITIES_HPP_</a>
 </pre>
       </td>
     </tr>

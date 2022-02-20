@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">33</td>
+            <td class="headerCovTableEntry">29</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -147,17 +147,14 @@
 <a name="69"><span class="lineNum">      69 </span>                :            : </a>
 <a name="70"><span class="lineNum">      70 </span>                :<span class="lineNoCov">          0 : void ShiftDecider::initTimer(double period_s)</span></a>
 <a name="71"><span class="lineNum">      71 </span>                :            : {</a>
-<a name="72"><span class="lineNum">      72 </span>                :<span class="lineNoCov">          0 :   auto timer_callback = std::bind(&amp;ShiftDecider::onTimer, this);</span></a>
-<a name="73"><span class="lineNum">      73 </span>                :            :   const auto period_ns =</a>
-<a name="74"><span class="lineNum">      74 </span>                :<span class="lineNoCov">          0 :     std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(std::chrono::duration&lt;double&gt;(period_s));</span></a>
-<a name="75"><span class="lineNum">      75 </span>                :<span class="lineNoCov">          0 :   timer_ = std::make_shared&lt;rclcpp::GenericTimer&lt;decltype(timer_callback)&gt;&gt;(</span></a>
-<a name="76"><span class="lineNum">      76 </span>                :<span class="lineNoCov">          0 :     this-&gt;get_clock(), period_ns, std::move(timer_callback),</span></a>
-<a name="77"><span class="lineNum">      77 </span>                :<span class="lineNoCov">          0 :     this-&gt;get_node_base_interface()-&gt;get_context());</span></a>
-<a name="78"><span class="lineNum">      78 </span>                :<span class="lineNoCov">          0 :   this-&gt;get_node_timers_interface()-&gt;add_timer(timer_, nullptr);</span></a>
-<a name="79"><span class="lineNum">      79 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="80"><span class="lineNum">      80 </span>                :            : </a>
-<a name="81"><span class="lineNum">      81 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
-<a name="82"><span class="lineNum">      82 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(ShiftDecider)</span></a>
+<a name="72"><span class="lineNum">      72 </span>                :            :   const auto period_ns =</a>
+<a name="73"><span class="lineNum">      73 </span>                :<span class="lineNoCov">          0 :     std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(std::chrono::duration&lt;double&gt;(period_s));</span></a>
+<a name="74"><span class="lineNum">      74 </span>                :            :   timer_ =</a>
+<a name="75"><span class="lineNum">      75 </span>                :<span class="lineNoCov">          0 :     rclcpp::create_timer(this, get_clock(), period_ns, std::bind(&amp;ShiftDecider::onTimer, this));</span></a>
+<a name="76"><span class="lineNum">      76 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="77"><span class="lineNum">      77 </span>                :            : </a>
+<a name="78"><span class="lineNum">      78 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
+<a name="79"><span class="lineNum">      79 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(ShiftDecider)</span></a>
 </pre>
       </td>
     </tr>

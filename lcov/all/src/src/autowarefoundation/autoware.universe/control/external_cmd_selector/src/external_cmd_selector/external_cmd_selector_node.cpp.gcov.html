@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">103</td>
+            <td class="headerCovTableEntry">101</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -179,108 +179,105 @@
 <a name="101"><span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 :   });</span></a>
 <a name="102"><span class="lineNum">     102 </span>                :            : </a>
 <a name="103"><span class="lineNum">     103 </span>                :            :   // Timer</a>
-<a name="104"><span class="lineNum">     104 </span>                :<span class="lineNoCov">          0 :   auto timer_callback = std::bind(&amp;ExternalCmdSelector::onTimer, this);</span></a>
-<a name="105"><span class="lineNum">     105 </span>                :            :   auto period = std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(</a>
-<a name="106"><span class="lineNum">     106 </span>                :<span class="lineNoCov">          0 :     std::chrono::duration&lt;double&gt;(1.0 / update_rate));</span></a>
-<a name="107"><span class="lineNum">     107 </span>                :<span class="lineNoCov">          0 :   timer_ = std::make_shared&lt;rclcpp::GenericTimer&lt;decltype(timer_callback)&gt;&gt;(</span></a>
-<a name="108"><span class="lineNum">     108 </span>                :<span class="lineNoCov">          0 :     get_clock(), period, std::move(timer_callback), get_node_base_interface()-&gt;get_context());</span></a>
-<a name="109"><span class="lineNum">     109 </span>                :<span class="lineNoCov">          0 :   get_node_timers_interface()-&gt;add_timer(timer_, callback_group_subscribers_);</span></a>
-<a name="110"><span class="lineNum">     110 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="111"><span class="lineNum">     111 </span>                :            : </a>
-<a name="112"><span class="lineNum">     112 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalControlCmd(const ExternalControlCommand::ConstSharedPtr msg)</span></a>
-<a name="113"><span class="lineNum">     113 </span>                :            : {</a>
-<a name="114"><span class="lineNum">     114 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
-<a name="115"><span class="lineNum">     115 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="116"><span class="lineNum">     116 </span>                :            :   }</a>
-<a name="117"><span class="lineNum">     117 </span>                :<span class="lineNoCov">          0 :   pub_control_cmd_-&gt;publish(*msg);</span></a>
-<a name="118"><span class="lineNum">     118 </span>                :            : }</a>
-<a name="119"><span class="lineNum">     119 </span>                :            : </a>
-<a name="120"><span class="lineNum">     120 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalShiftCmd(const ExternalGearShift::ConstSharedPtr msg)</span></a>
-<a name="121"><span class="lineNum">     121 </span>                :            : {</a>
-<a name="122"><span class="lineNum">     122 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
-<a name="123"><span class="lineNum">     123 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="124"><span class="lineNum">     124 </span>                :            :   }</a>
-<a name="125"><span class="lineNum">     125 </span>                :<span class="lineNoCov">          0 :   pub_shift_cmd_-&gt;publish(convert(*msg));</span></a>
-<a name="126"><span class="lineNum">     126 </span>                :            : }</a>
-<a name="127"><span class="lineNum">     127 </span>                :            : </a>
-<a name="128"><span class="lineNum">     128 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalTurnSignalCmd(const ExternalTurnSignal::ConstSharedPtr msg)</span></a>
-<a name="129"><span class="lineNum">     129 </span>                :            : {</a>
-<a name="130"><span class="lineNum">     130 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
-<a name="131"><span class="lineNum">     131 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="132"><span class="lineNum">     132 </span>                :            :   }</a>
-<a name="133"><span class="lineNum">     133 </span>                :<span class="lineNoCov">          0 :   auto light_signal = tier4_auto_msgs_converter::convert(*msg);</span></a>
-<a name="134"><span class="lineNum">     134 </span>                :<span class="lineNoCov">          0 :   pub_turn_signal_cmd_-&gt;publish(light_signal.turn_signal);</span></a>
-<a name="135"><span class="lineNum">     135 </span>                :<span class="lineNoCov">          0 :   pub_hazard_signal_cmd_-&gt;publish(light_signal.hazard_signal);</span></a>
-<a name="136"><span class="lineNum">     136 </span>                :            : }</a>
-<a name="137"><span class="lineNum">     137 </span>                :            : </a>
-<a name="138"><span class="lineNum">     138 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalHeartbeat(const ExternalHeartbeat::ConstSharedPtr msg)</span></a>
-<a name="139"><span class="lineNum">     139 </span>                :            : {</a>
-<a name="140"><span class="lineNum">     140 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
-<a name="141"><span class="lineNum">     141 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="142"><span class="lineNum">     142 </span>                :            :   }</a>
-<a name="143"><span class="lineNum">     143 </span>                :<span class="lineNoCov">          0 :   pub_heartbeat_-&gt;publish(convert(*msg));</span></a>
-<a name="144"><span class="lineNum">     144 </span>                :            : }</a>
-<a name="145"><span class="lineNum">     145 </span>                :            : </a>
-<a name="146"><span class="lineNum">     146 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteControlCmd(const ExternalControlCommand::ConstSharedPtr msg)</span></a>
-<a name="147"><span class="lineNum">     147 </span>                :            : {</a>
-<a name="148"><span class="lineNum">     148 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
-<a name="149"><span class="lineNum">     149 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="150"><span class="lineNum">     150 </span>                :            :   }</a>
-<a name="151"><span class="lineNum">     151 </span>                :<span class="lineNoCov">          0 :   pub_control_cmd_-&gt;publish(*msg);</span></a>
-<a name="152"><span class="lineNum">     152 </span>                :            : }</a>
-<a name="153"><span class="lineNum">     153 </span>                :            : </a>
-<a name="154"><span class="lineNum">     154 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteShiftCmd(const ExternalGearShift::ConstSharedPtr msg)</span></a>
-<a name="155"><span class="lineNum">     155 </span>                :            : {</a>
-<a name="156"><span class="lineNum">     156 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
-<a name="157"><span class="lineNum">     157 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="158"><span class="lineNum">     158 </span>                :            :   }</a>
-<a name="159"><span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 :   pub_shift_cmd_-&gt;publish(convert(*msg));</span></a>
-<a name="160"><span class="lineNum">     160 </span>                :            : }</a>
-<a name="161"><span class="lineNum">     161 </span>                :            : </a>
-<a name="162"><span class="lineNum">     162 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteTurnSignalCmd(const ExternalTurnSignal::ConstSharedPtr msg)</span></a>
-<a name="163"><span class="lineNum">     163 </span>                :            : {</a>
-<a name="164"><span class="lineNum">     164 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
-<a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="166"><span class="lineNum">     166 </span>                :            :   }</a>
-<a name="167"><span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 :   auto light_signal = tier4_auto_msgs_converter::convert(*msg);</span></a>
-<a name="168"><span class="lineNum">     168 </span>                :<span class="lineNoCov">          0 :   pub_turn_signal_cmd_-&gt;publish(light_signal.turn_signal);</span></a>
-<a name="169"><span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 :   pub_hazard_signal_cmd_-&gt;publish(light_signal.hazard_signal);</span></a>
-<a name="170"><span class="lineNum">     170 </span>                :            : }</a>
-<a name="171"><span class="lineNum">     171 </span>                :            : </a>
-<a name="172"><span class="lineNum">     172 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteHeartbeat(const ExternalHeartbeat::ConstSharedPtr msg)</span></a>
-<a name="173"><span class="lineNum">     173 </span>                :            : {</a>
-<a name="174"><span class="lineNum">     174 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
-<a name="175"><span class="lineNum">     175 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="176"><span class="lineNum">     176 </span>                :            :   }</a>
-<a name="177"><span class="lineNum">     177 </span>                :<span class="lineNoCov">          0 :   pub_heartbeat_-&gt;publish(convert(*msg));</span></a>
-<a name="178"><span class="lineNum">     178 </span>                :            : }</a>
-<a name="179"><span class="lineNum">     179 </span>                :            : </a>
-<a name="180"><span class="lineNum">     180 </span>                :<span class="lineNoCov">          0 : bool ExternalCmdSelector::onSelectExternalCommandService(</span></a>
-<a name="181"><span class="lineNum">     181 </span>                :            :   const CommandSourceSelect::Request::SharedPtr req,</a>
-<a name="182"><span class="lineNum">     182 </span>                :            :   const CommandSourceSelect::Response::SharedPtr res)</a>
-<a name="183"><span class="lineNum">     183 </span>                :            : {</a>
-<a name="184"><span class="lineNum">     184 </span>                :<span class="lineNoCov">          0 :   current_selector_mode_.data = req-&gt;mode.data;</span></a>
-<a name="185"><span class="lineNum">     185 </span>                :<span class="lineNoCov">          0 :   res-&gt;success = true;</span></a>
-<a name="186"><span class="lineNum">     186 </span>                :<span class="lineNoCov">          0 :   res-&gt;message = &quot;Success.&quot;;</span></a>
-<a name="187"><span class="lineNum">     187 </span>                :<span class="lineNoCov">          0 :   return true;</span></a>
-<a name="188"><span class="lineNum">     188 </span>                :            : }</a>
-<a name="189"><span class="lineNum">     189 </span>                :            : </a>
-<a name="190"><span class="lineNum">     190 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onTimer() { pub_current_selector_mode_-&gt;publish(current_selector_mode_); }</span></a>
-<a name="191"><span class="lineNum">     191 </span>                :            : </a>
-<a name="192"><span class="lineNum">     192 </span>                :<span class="lineNoCov">          0 : ExternalCmdSelector::InternalGearShift ExternalCmdSelector::convert(</span></a>
-<a name="193"><span class="lineNum">     193 </span>                :            :   const ExternalGearShift &amp; command)</a>
-<a name="194"><span class="lineNum">     194 </span>                :            : {</a>
-<a name="195"><span class="lineNum">     195 </span>                :<span class="lineNoCov">          0 :   return tier4_auto_msgs_converter::convert(command);</span></a>
-<a name="196"><span class="lineNum">     196 </span>                :            : }</a>
-<a name="197"><span class="lineNum">     197 </span>                :            : </a>
-<a name="198"><span class="lineNum">     198 </span>                :<span class="lineNoCov">          0 : ExternalCmdSelector::InternalHeartbeat ExternalCmdSelector::convert(</span></a>
-<a name="199"><span class="lineNum">     199 </span>                :            :   const ExternalHeartbeat &amp; command)</a>
-<a name="200"><span class="lineNum">     200 </span>                :            : {</a>
-<a name="201"><span class="lineNum">     201 </span>                :<span class="lineNoCov">          0 :   return command;</span></a>
-<a name="202"><span class="lineNum">     202 </span>                :            : }</a>
-<a name="203"><span class="lineNum">     203 </span>                :            : </a>
-<a name="204"><span class="lineNum">     204 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
-<a name="205"><span class="lineNum">     205 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(ExternalCmdSelector)</span></a>
+<a name="104"><span class="lineNum">     104 </span>                :<span class="lineNoCov">          0 :   const auto period_ns = rclcpp::Rate(update_rate).period();</span></a>
+<a name="105"><span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 :   timer_ = rclcpp::create_timer(</span></a>
+<a name="106"><span class="lineNum">     106 </span>                :<span class="lineNoCov">          0 :     this, get_clock(), period_ns, std::bind(&amp;ExternalCmdSelector::onTimer, this));</span></a>
+<a name="107"><span class="lineNum">     107 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="108"><span class="lineNum">     108 </span>                :            : </a>
+<a name="109"><span class="lineNum">     109 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalControlCmd(const ExternalControlCommand::ConstSharedPtr msg)</span></a>
+<a name="110"><span class="lineNum">     110 </span>                :            : {</a>
+<a name="111"><span class="lineNum">     111 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
+<a name="112"><span class="lineNum">     112 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="113"><span class="lineNum">     113 </span>                :            :   }</a>
+<a name="114"><span class="lineNum">     114 </span>                :<span class="lineNoCov">          0 :   pub_control_cmd_-&gt;publish(*msg);</span></a>
+<a name="115"><span class="lineNum">     115 </span>                :            : }</a>
+<a name="116"><span class="lineNum">     116 </span>                :            : </a>
+<a name="117"><span class="lineNum">     117 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalShiftCmd(const ExternalGearShift::ConstSharedPtr msg)</span></a>
+<a name="118"><span class="lineNum">     118 </span>                :            : {</a>
+<a name="119"><span class="lineNum">     119 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
+<a name="120"><span class="lineNum">     120 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="121"><span class="lineNum">     121 </span>                :            :   }</a>
+<a name="122"><span class="lineNum">     122 </span>                :<span class="lineNoCov">          0 :   pub_shift_cmd_-&gt;publish(convert(*msg));</span></a>
+<a name="123"><span class="lineNum">     123 </span>                :            : }</a>
+<a name="124"><span class="lineNum">     124 </span>                :            : </a>
+<a name="125"><span class="lineNum">     125 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalTurnSignalCmd(const ExternalTurnSignal::ConstSharedPtr msg)</span></a>
+<a name="126"><span class="lineNum">     126 </span>                :            : {</a>
+<a name="127"><span class="lineNum">     127 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
+<a name="128"><span class="lineNum">     128 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="129"><span class="lineNum">     129 </span>                :            :   }</a>
+<a name="130"><span class="lineNum">     130 </span>                :<span class="lineNoCov">          0 :   auto light_signal = tier4_auto_msgs_converter::convert(*msg);</span></a>
+<a name="131"><span class="lineNum">     131 </span>                :<span class="lineNoCov">          0 :   pub_turn_signal_cmd_-&gt;publish(light_signal.turn_signal);</span></a>
+<a name="132"><span class="lineNum">     132 </span>                :<span class="lineNoCov">          0 :   pub_hazard_signal_cmd_-&gt;publish(light_signal.hazard_signal);</span></a>
+<a name="133"><span class="lineNum">     133 </span>                :            : }</a>
+<a name="134"><span class="lineNum">     134 </span>                :            : </a>
+<a name="135"><span class="lineNum">     135 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onLocalHeartbeat(const ExternalHeartbeat::ConstSharedPtr msg)</span></a>
+<a name="136"><span class="lineNum">     136 </span>                :            : {</a>
+<a name="137"><span class="lineNum">     137 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::LOCAL) {</span></a>
+<a name="138"><span class="lineNum">     138 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="139"><span class="lineNum">     139 </span>                :            :   }</a>
+<a name="140"><span class="lineNum">     140 </span>                :<span class="lineNoCov">          0 :   pub_heartbeat_-&gt;publish(convert(*msg));</span></a>
+<a name="141"><span class="lineNum">     141 </span>                :            : }</a>
+<a name="142"><span class="lineNum">     142 </span>                :            : </a>
+<a name="143"><span class="lineNum">     143 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteControlCmd(const ExternalControlCommand::ConstSharedPtr msg)</span></a>
+<a name="144"><span class="lineNum">     144 </span>                :            : {</a>
+<a name="145"><span class="lineNum">     145 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
+<a name="146"><span class="lineNum">     146 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="147"><span class="lineNum">     147 </span>                :            :   }</a>
+<a name="148"><span class="lineNum">     148 </span>                :<span class="lineNoCov">          0 :   pub_control_cmd_-&gt;publish(*msg);</span></a>
+<a name="149"><span class="lineNum">     149 </span>                :            : }</a>
+<a name="150"><span class="lineNum">     150 </span>                :            : </a>
+<a name="151"><span class="lineNum">     151 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteShiftCmd(const ExternalGearShift::ConstSharedPtr msg)</span></a>
+<a name="152"><span class="lineNum">     152 </span>                :            : {</a>
+<a name="153"><span class="lineNum">     153 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
+<a name="154"><span class="lineNum">     154 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="155"><span class="lineNum">     155 </span>                :            :   }</a>
+<a name="156"><span class="lineNum">     156 </span>                :<span class="lineNoCov">          0 :   pub_shift_cmd_-&gt;publish(convert(*msg));</span></a>
+<a name="157"><span class="lineNum">     157 </span>                :            : }</a>
+<a name="158"><span class="lineNum">     158 </span>                :            : </a>
+<a name="159"><span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteTurnSignalCmd(const ExternalTurnSignal::ConstSharedPtr msg)</span></a>
+<a name="160"><span class="lineNum">     160 </span>                :            : {</a>
+<a name="161"><span class="lineNum">     161 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
+<a name="162"><span class="lineNum">     162 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="163"><span class="lineNum">     163 </span>                :            :   }</a>
+<a name="164"><span class="lineNum">     164 </span>                :<span class="lineNoCov">          0 :   auto light_signal = tier4_auto_msgs_converter::convert(*msg);</span></a>
+<a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :   pub_turn_signal_cmd_-&gt;publish(light_signal.turn_signal);</span></a>
+<a name="166"><span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 :   pub_hazard_signal_cmd_-&gt;publish(light_signal.hazard_signal);</span></a>
+<a name="167"><span class="lineNum">     167 </span>                :            : }</a>
+<a name="168"><span class="lineNum">     168 </span>                :            : </a>
+<a name="169"><span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onRemoteHeartbeat(const ExternalHeartbeat::ConstSharedPtr msg)</span></a>
+<a name="170"><span class="lineNum">     170 </span>                :            : {</a>
+<a name="171"><span class="lineNum">     171 </span>                :<span class="lineNoCov">          0 :   if (current_selector_mode_.data != CommandSourceMode::REMOTE) {</span></a>
+<a name="172"><span class="lineNum">     172 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
+<a name="173"><span class="lineNum">     173 </span>                :            :   }</a>
+<a name="174"><span class="lineNum">     174 </span>                :<span class="lineNoCov">          0 :   pub_heartbeat_-&gt;publish(convert(*msg));</span></a>
+<a name="175"><span class="lineNum">     175 </span>                :            : }</a>
+<a name="176"><span class="lineNum">     176 </span>                :            : </a>
+<a name="177"><span class="lineNum">     177 </span>                :<span class="lineNoCov">          0 : bool ExternalCmdSelector::onSelectExternalCommandService(</span></a>
+<a name="178"><span class="lineNum">     178 </span>                :            :   const CommandSourceSelect::Request::SharedPtr req,</a>
+<a name="179"><span class="lineNum">     179 </span>                :            :   const CommandSourceSelect::Response::SharedPtr res)</a>
+<a name="180"><span class="lineNum">     180 </span>                :            : {</a>
+<a name="181"><span class="lineNum">     181 </span>                :<span class="lineNoCov">          0 :   current_selector_mode_.data = req-&gt;mode.data;</span></a>
+<a name="182"><span class="lineNum">     182 </span>                :<span class="lineNoCov">          0 :   res-&gt;success = true;</span></a>
+<a name="183"><span class="lineNum">     183 </span>                :<span class="lineNoCov">          0 :   res-&gt;message = &quot;Success.&quot;;</span></a>
+<a name="184"><span class="lineNum">     184 </span>                :<span class="lineNoCov">          0 :   return true;</span></a>
+<a name="185"><span class="lineNum">     185 </span>                :            : }</a>
+<a name="186"><span class="lineNum">     186 </span>                :            : </a>
+<a name="187"><span class="lineNum">     187 </span>                :<span class="lineNoCov">          0 : void ExternalCmdSelector::onTimer() { pub_current_selector_mode_-&gt;publish(current_selector_mode_); }</span></a>
+<a name="188"><span class="lineNum">     188 </span>                :            : </a>
+<a name="189"><span class="lineNum">     189 </span>                :<span class="lineNoCov">          0 : ExternalCmdSelector::InternalGearShift ExternalCmdSelector::convert(</span></a>
+<a name="190"><span class="lineNum">     190 </span>                :            :   const ExternalGearShift &amp; command)</a>
+<a name="191"><span class="lineNum">     191 </span>                :            : {</a>
+<a name="192"><span class="lineNum">     192 </span>                :<span class="lineNoCov">          0 :   return tier4_auto_msgs_converter::convert(command);</span></a>
+<a name="193"><span class="lineNum">     193 </span>                :            : }</a>
+<a name="194"><span class="lineNum">     194 </span>                :            : </a>
+<a name="195"><span class="lineNum">     195 </span>                :<span class="lineNoCov">          0 : ExternalCmdSelector::InternalHeartbeat ExternalCmdSelector::convert(</span></a>
+<a name="196"><span class="lineNum">     196 </span>                :            :   const ExternalHeartbeat &amp; command)</a>
+<a name="197"><span class="lineNum">     197 </span>                :            : {</a>
+<a name="198"><span class="lineNum">     198 </span>                :<span class="lineNoCov">          0 :   return command;</span></a>
+<a name="199"><span class="lineNum">     199 </span>                :            : }</a>
+<a name="200"><span class="lineNum">     200 </span>                :            : </a>
+<a name="201"><span class="lineNum">     201 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
+<a name="202"><span class="lineNum">     202 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(ExternalCmdSelector)</span></a>
 </pre>
       </td>
     </tr>

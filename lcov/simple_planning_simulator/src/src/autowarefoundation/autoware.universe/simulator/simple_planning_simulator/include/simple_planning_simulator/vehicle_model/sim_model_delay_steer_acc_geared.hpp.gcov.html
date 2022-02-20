@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:47:59</td>
+            <td class="headerValue">2022-02-20 20:17:52</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -220,14 +220,16 @@
 <a name="142"><span class="lineNum">     142 </span>                :            :   Eigen::VectorXd calcModel(const Eigen::VectorXd &amp; state, const Eigen::VectorXd &amp; input) override;</a>
 <a name="143"><span class="lineNum">     143 </span>                :            : </a>
 <a name="144"><span class="lineNum">     144 </span>                :            :   /**</a>
-<a name="145"><span class="lineNum">     145 </span>                :            :    * @brief calculate velocity with considering current velocity and gear</a>
+<a name="145"><span class="lineNum">     145 </span>                :            :    * @brief update state considering current gear</a>
 <a name="146"><span class="lineNum">     146 </span>                :            :    * @param [in] state current state</a>
-<a name="147"><span class="lineNum">     147 </span>                :            :    * @param [in] gear current gear (defined in autoware_auto_msgs/GearCommand)</a>
-<a name="148"><span class="lineNum">     148 </span>                :            :    */</a>
-<a name="149"><span class="lineNum">     149 </span>                :            :   float64_t calcVelocityWithGear(const Eigen::VectorXd &amp; state, const uint8_t gear) const;</a>
-<a name="150"><span class="lineNum">     150 </span>                :            : };</a>
-<a name="151"><span class="lineNum">     151 </span>                :            : </a>
-<a name="152"><span class="lineNum">     152 </span>                :            : #endif  // SIMPLE_PLANNING_SIMULATOR__VEHICLE_MODEL__SIM_MODEL_DELAY_STEER_ACC_GEARED_HPP_</a>
+<a name="147"><span class="lineNum">     147 </span>                :            :    * @param [in] prev_state previous state</a>
+<a name="148"><span class="lineNum">     148 </span>                :            :    * @param [in] gear current gear (defined in autoware_auto_msgs/GearCommand)</a>
+<a name="149"><span class="lineNum">     149 </span>                :            :    * @param [in] dt delta time to update state</a>
+<a name="150"><span class="lineNum">     150 </span>                :            :    */</a>
+<a name="151"><span class="lineNum">     151 </span>                :            :   void updateStateWithGear(Eigen::VectorXd &amp; state, const Eigen::VectorXd &amp; prev_state, const uint8_t gear, const double dt);</a>
+<a name="152"><span class="lineNum">     152 </span>                :            : };</a>
+<a name="153"><span class="lineNum">     153 </span>                :            : </a>
+<a name="154"><span class="lineNum">     154 </span>                :            : #endif  // SIMPLE_PLANNING_SIMULATOR__VEHICLE_MODEL__SIM_MODEL_DELAY_STEER_ACC_GEARED_HPP_</a>
 </pre>
       </td>
     </tr>

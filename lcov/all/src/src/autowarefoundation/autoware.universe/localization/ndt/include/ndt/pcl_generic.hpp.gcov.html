@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -129,19 +129,20 @@
 <a name="51"><span class="lineNum">      51 </span>                :            :   boost::shared_ptr&lt;const pcl::PointCloud&lt;PointTarget&gt;&gt; getInputTarget() const override;</a>
 <a name="52"><span class="lineNum">      52 </span>                :            :   boost::shared_ptr&lt;const pcl::PointCloud&lt;PointSource&gt;&gt; getInputSource() const override;</a>
 <a name="53"><span class="lineNum">      53 </span>                :            :   Eigen::Matrix4f getFinalTransformation() const override;</a>
-<a name="54"><span class="lineNum">      54 </span>                :            :   std::vector&lt;Eigen::Matrix4f&gt; getFinalTransformationArray() const override;</a>
-<a name="55"><span class="lineNum">      55 </span>                :            : </a>
-<a name="56"><span class="lineNum">      56 </span>                :            :   Eigen::Matrix&lt;double, 6, 6&gt; getHessian() const override;</a>
-<a name="57"><span class="lineNum">      57 </span>                :            : </a>
-<a name="58"><span class="lineNum">      58 </span>                :            :   boost::shared_ptr&lt;pcl::search::KdTree&lt;PointTarget&gt;&gt; getSearchMethodTarget() const override;</a>
-<a name="59"><span class="lineNum">      59 </span>                :            : </a>
-<a name="60"><span class="lineNum">      60 </span>                :            : private:</a>
-<a name="61"><span class="lineNum">      61 </span>                :            :   boost::shared_ptr&lt;pcl::NormalDistributionsTransform&lt;PointSource, PointTarget&gt;&gt; ndt_ptr_;</a>
-<a name="62"><span class="lineNum">      62 </span>                :            : };</a>
-<a name="63"><span class="lineNum">      63 </span>                :            : </a>
-<a name="64"><span class="lineNum">      64 </span>                :            : #include &quot;ndt/impl/pcl_generic.hpp&quot;</a>
-<a name="65"><span class="lineNum">      65 </span>                :            : </a>
-<a name="66"><span class="lineNum">      66 </span>                :            : #endif</a>
+<a name="54"><span class="lineNum">      54 </span>                :            :   std::vector&lt;Eigen::Matrix4f, Eigen::aligned_allocator&lt;Eigen::Matrix4f&gt;&gt;</a>
+<a name="55"><span class="lineNum">      55 </span>                :            :   getFinalTransformationArray() const override;</a>
+<a name="56"><span class="lineNum">      56 </span>                :            : </a>
+<a name="57"><span class="lineNum">      57 </span>                :            :   Eigen::Matrix&lt;double, 6, 6&gt; getHessian() const override;</a>
+<a name="58"><span class="lineNum">      58 </span>                :            : </a>
+<a name="59"><span class="lineNum">      59 </span>                :            :   boost::shared_ptr&lt;pcl::search::KdTree&lt;PointTarget&gt;&gt; getSearchMethodTarget() const override;</a>
+<a name="60"><span class="lineNum">      60 </span>                :            : </a>
+<a name="61"><span class="lineNum">      61 </span>                :            : private:</a>
+<a name="62"><span class="lineNum">      62 </span>                :            :   boost::shared_ptr&lt;pcl::NormalDistributionsTransform&lt;PointSource, PointTarget&gt;&gt; ndt_ptr_;</a>
+<a name="63"><span class="lineNum">      63 </span>                :            : };</a>
+<a name="64"><span class="lineNum">      64 </span>                :            : </a>
+<a name="65"><span class="lineNum">      65 </span>                :            : #include &quot;ndt/impl/pcl_generic.hpp&quot;</a>
+<a name="66"><span class="lineNum">      66 </span>                :            : </a>
+<a name="67"><span class="lineNum">      67 </span>                :            : #endif</a>
 </pre>
       </td>
     </tr>

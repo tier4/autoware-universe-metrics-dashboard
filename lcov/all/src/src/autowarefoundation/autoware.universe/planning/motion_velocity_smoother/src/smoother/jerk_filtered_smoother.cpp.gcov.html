@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">248</td>
+            <td class="headerCovTableEntry">249</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -502,46 +502,49 @@
 <a name="424"><span class="lineNum">     424 </span>                :<span class="lineNoCov">          0 :   if (getVx(backward_filtered, 0) &lt; v0) {</span></a>
 <a name="425"><span class="lineNum">     425 </span>                :<span class="lineNoCov">          0 :     double current_vel = v0;</span></a>
 <a name="426"><span class="lineNum">     426 </span>                :<span class="lineNoCov">          0 :     double current_acc = a0;</span></a>
-<a name="427"><span class="lineNum">     427 </span>                :<span class="lineNoCov">          0 :     while (getVx(backward_filtered, i) &lt; current_vel &amp;&amp; current_vel &lt;= getVx(forward_filtered, i) &amp;&amp;</span></a>
-<a name="428"><span class="lineNum">     428 </span>                :<span class="lineNoCov">          0 :            i &lt; merged.size() - 1) {</span></a>
-<a name="429"><span class="lineNum">     429 </span>                :<span class="lineNoCov">          0 :       merged.at(i).longitudinal_velocity_mps = current_vel;</span></a>
-<a name="430"><span class="lineNum">     430 </span>                :<span class="lineNoCov">          0 :       merged.at(i).acceleration_mps2 = current_acc;</span></a>
-<a name="431"><span class="lineNum">     431 </span>                :            : </a>
-<a name="432"><span class="lineNum">     432 </span>                :            :       const double ds =</a>
-<a name="433"><span class="lineNum">     433 </span>                :<span class="lineNoCov">          0 :         tier4_autoware_utils::calcDistance2d(forward_filtered.at(i + 1), forward_filtered.at(i));</span></a>
-<a name="434"><span class="lineNum">     434 </span>                :            :       const double max_dt =</a>
-<a name="435"><span class="lineNum">     435 </span>                :<span class="lineNoCov">          0 :         std::pow(6.0 * ds / std::fabs(j_min), 1.0 / 3.0);  // assuming v0 = a0 = 0.</span></a>
-<a name="436"><span class="lineNum">     436 </span>                :<span class="lineNoCov">          0 :       const double dt = std::min(ds / std::max(current_vel, 1.0e-6), max_dt);</span></a>
-<a name="437"><span class="lineNum">     437 </span>                :            : </a>
-<a name="438"><span class="lineNum">     438 </span>                :<span class="lineNoCov">          0 :       if (current_acc + j_min * dt &lt; a_min) {</span></a>
-<a name="439"><span class="lineNum">     439 </span>                :<span class="lineNoCov">          0 :         const double tmp_jerk = std::max((a_min - current_acc) / dt, j_min);</span></a>
-<a name="440"><span class="lineNum">     440 </span>                :<span class="lineNoCov">          0 :         current_vel = current_vel + current_acc * dt + 0.5 * tmp_jerk * dt * dt;</span></a>
-<a name="441"><span class="lineNum">     441 </span>                :<span class="lineNoCov">          0 :         current_acc = std::max(current_acc + tmp_jerk * dt, a_min);</span></a>
-<a name="442"><span class="lineNum">     442 </span>                :            :       } else {</a>
-<a name="443"><span class="lineNum">     443 </span>                :<span class="lineNoCov">          0 :         current_vel = current_vel + current_acc * dt + 0.5 * j_min * dt * dt;</span></a>
-<a name="444"><span class="lineNum">     444 </span>                :<span class="lineNoCov">          0 :         current_acc = current_acc + j_min * dt;</span></a>
-<a name="445"><span class="lineNum">     445 </span>                :            :       }</a>
-<a name="446"><span class="lineNum">     446 </span>                :<span class="lineNoCov">          0 :       ++i;</span></a>
-<a name="447"><span class="lineNum">     447 </span>                :            :     }</a>
-<a name="448"><span class="lineNum">     448 </span>                :            :   }</a>
-<a name="449"><span class="lineNum">     449 </span>                :            : </a>
-<a name="450"><span class="lineNum">     450 </span>                :            :   // take smaller velocity point</a>
-<a name="451"><span class="lineNum">     451 </span>                :<span class="lineNoCov">          0 :   for (; i &lt; merged.size(); ++i) {</span></a>
-<a name="452"><span class="lineNum">     452 </span>                :<span class="lineNoCov">          0 :     merged.at(i) = (getVx(forward_filtered, i) &lt; getVx(backward_filtered, i))</span></a>
-<a name="453"><span class="lineNum">     453 </span>                :<span class="lineNoCov">          0 :                      ? forward_filtered.at(i)</span></a>
-<a name="454"><span class="lineNum">     454 </span>                :<span class="lineNoCov">          0 :                      : backward_filtered.at(i);</span></a>
-<a name="455"><span class="lineNum">     455 </span>                :            :   }</a>
-<a name="456"><span class="lineNum">     456 </span>                :<span class="lineNoCov">          0 :   return merged;</span></a>
-<a name="457"><span class="lineNum">     457 </span>                :            : }</a>
-<a name="458"><span class="lineNum">     458 </span>                :            : </a>
-<a name="459"><span class="lineNum">     459 </span>                :<span class="lineNoCov">          0 : boost::optional&lt;TrajectoryPoints&gt; JerkFilteredSmoother::resampleTrajectory(</span></a>
-<a name="460"><span class="lineNum">     460 </span>                :            :   const TrajectoryPoints &amp; input, const double /*v_current*/, const int closest_id) const</a>
-<a name="461"><span class="lineNum">     461 </span>                :            : {</a>
-<a name="462"><span class="lineNum">     462 </span>                :            :   return resampling::resampleTrajectory(</a>
-<a name="463"><span class="lineNum">     463 </span>                :<span class="lineNoCov">          0 :     input, closest_id, base_param_.resample_param, smoother_param_.jerk_filter_ds);</span></a>
-<a name="464"><span class="lineNum">     464 </span>                :            : }</a>
-<a name="465"><span class="lineNum">     465 </span>                :            : </a>
-<a name="466"><span class="lineNum">     466 </span>                :            : }  // namespace motion_velocity_smoother</a>
+<a name="427"><span class="lineNum">     427 </span>                :<span class="lineNoCov">          0 :     while (getVx(backward_filtered, i) &lt; current_vel &amp;&amp; i &lt; merged.size() - 1) {</span></a>
+<a name="428"><span class="lineNum">     428 </span>                :<span class="lineNoCov">          0 :       merged.at(i).longitudinal_velocity_mps = current_vel;</span></a>
+<a name="429"><span class="lineNum">     429 </span>                :<span class="lineNoCov">          0 :       merged.at(i).acceleration_mps2 = current_acc;</span></a>
+<a name="430"><span class="lineNum">     430 </span>                :            : </a>
+<a name="431"><span class="lineNum">     431 </span>                :            :       const double ds =</a>
+<a name="432"><span class="lineNum">     432 </span>                :<span class="lineNoCov">          0 :         tier4_autoware_utils::calcDistance2d(forward_filtered.at(i + 1), forward_filtered.at(i));</span></a>
+<a name="433"><span class="lineNum">     433 </span>                :            :       const double max_dt =</a>
+<a name="434"><span class="lineNum">     434 </span>                :<span class="lineNoCov">          0 :         std::pow(6.0 * ds / std::fabs(j_min), 1.0 / 3.0);  // assuming v0 = a0 = 0.</span></a>
+<a name="435"><span class="lineNum">     435 </span>                :<span class="lineNoCov">          0 :       const double dt = std::min(ds / std::max(current_vel, 1.0e-6), max_dt);</span></a>
+<a name="436"><span class="lineNum">     436 </span>                :            : </a>
+<a name="437"><span class="lineNum">     437 </span>                :<span class="lineNoCov">          0 :       if (current_acc + j_min * dt &lt; a_min) {</span></a>
+<a name="438"><span class="lineNum">     438 </span>                :<span class="lineNoCov">          0 :         const double tmp_jerk = std::max((a_min - current_acc) / dt, j_min);</span></a>
+<a name="439"><span class="lineNum">     439 </span>                :<span class="lineNoCov">          0 :         current_vel = current_vel + current_acc * dt + 0.5 * tmp_jerk * dt * dt;</span></a>
+<a name="440"><span class="lineNum">     440 </span>                :<span class="lineNoCov">          0 :         current_acc = std::max(current_acc + tmp_jerk * dt, a_min);</span></a>
+<a name="441"><span class="lineNum">     441 </span>                :            :       } else {</a>
+<a name="442"><span class="lineNum">     442 </span>                :<span class="lineNoCov">          0 :         current_vel = current_vel + current_acc * dt + 0.5 * j_min * dt * dt;</span></a>
+<a name="443"><span class="lineNum">     443 </span>                :<span class="lineNoCov">          0 :         current_acc = current_acc + j_min * dt;</span></a>
+<a name="444"><span class="lineNum">     444 </span>                :            :       }</a>
+<a name="445"><span class="lineNum">     445 </span>                :            : </a>
+<a name="446"><span class="lineNum">     446 </span>                :<span class="lineNoCov">          0 :       if (current_vel &gt; getVx(forward_filtered, i)) {</span></a>
+<a name="447"><span class="lineNum">     447 </span>                :<span class="lineNoCov">          0 :         current_vel = getVx(forward_filtered, i);</span></a>
+<a name="448"><span class="lineNum">     448 </span>                :            :       }</a>
+<a name="449"><span class="lineNum">     449 </span>                :<span class="lineNoCov">          0 :       ++i;</span></a>
+<a name="450"><span class="lineNum">     450 </span>                :            :     }</a>
+<a name="451"><span class="lineNum">     451 </span>                :            :   }</a>
+<a name="452"><span class="lineNum">     452 </span>                :            : </a>
+<a name="453"><span class="lineNum">     453 </span>                :            :   // take smaller velocity point</a>
+<a name="454"><span class="lineNum">     454 </span>                :<span class="lineNoCov">          0 :   for (; i &lt; merged.size(); ++i) {</span></a>
+<a name="455"><span class="lineNum">     455 </span>                :<span class="lineNoCov">          0 :     merged.at(i) = (getVx(forward_filtered, i) &lt; getVx(backward_filtered, i))</span></a>
+<a name="456"><span class="lineNum">     456 </span>                :<span class="lineNoCov">          0 :                      ? forward_filtered.at(i)</span></a>
+<a name="457"><span class="lineNum">     457 </span>                :<span class="lineNoCov">          0 :                      : backward_filtered.at(i);</span></a>
+<a name="458"><span class="lineNum">     458 </span>                :            :   }</a>
+<a name="459"><span class="lineNum">     459 </span>                :<span class="lineNoCov">          0 :   return merged;</span></a>
+<a name="460"><span class="lineNum">     460 </span>                :            : }</a>
+<a name="461"><span class="lineNum">     461 </span>                :            : </a>
+<a name="462"><span class="lineNum">     462 </span>                :<span class="lineNoCov">          0 : boost::optional&lt;TrajectoryPoints&gt; JerkFilteredSmoother::resampleTrajectory(</span></a>
+<a name="463"><span class="lineNum">     463 </span>                :            :   const TrajectoryPoints &amp; input, const double /*v_current*/, const int closest_id) const</a>
+<a name="464"><span class="lineNum">     464 </span>                :            : {</a>
+<a name="465"><span class="lineNum">     465 </span>                :            :   return resampling::resampleTrajectory(</a>
+<a name="466"><span class="lineNum">     466 </span>                :<span class="lineNoCov">          0 :     input, closest_id, base_param_.resample_param, smoother_param_.jerk_filter_ds);</span></a>
+<a name="467"><span class="lineNum">     467 </span>                :            : }</a>
+<a name="468"><span class="lineNum">     468 </span>                :            : </a>
+<a name="469"><span class="lineNum">     469 </span>                :            : }  // namespace motion_velocity_smoother</a>
 </pre>
       </td>
     </tr>

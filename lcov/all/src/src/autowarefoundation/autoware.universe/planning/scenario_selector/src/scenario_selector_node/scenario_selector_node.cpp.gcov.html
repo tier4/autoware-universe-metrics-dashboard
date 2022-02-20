@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">177</td>
+            <td class="headerCovTableEntry">174</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-12-26 20:48:08</td>
+            <td class="headerValue">2022-02-20 20:17:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -424,7 +424,7 @@
 <a name="346"><span class="lineNum">     346 </span>                :<span class="lineNoCov">          0 :     &quot;input/lanelet_map&quot;, rclcpp::QoS{1}.transient_local(),</span></a>
 <a name="347"><span class="lineNum">     347 </span>                :<span class="lineNoCov">          0 :     std::bind(&amp;ScenarioSelectorNode::onMap, this, std::placeholders::_1));</span></a>
 <a name="348"><span class="lineNum">     348 </span>                :<span class="lineNoCov">          0 :   sub_route_ = this-&gt;create_subscription&lt;autoware_auto_planning_msgs::msg::HADMapRoute&gt;(</span></a>
-<a name="349"><span class="lineNum">     349 </span>                :<span class="lineNoCov">          0 :     &quot;input/route&quot;, rclcpp::QoS{1},</span></a>
+<a name="349"><span class="lineNum">     349 </span>                :<span class="lineNoCov">          0 :     &quot;input/route&quot;, rclcpp::QoS{1}.transient_local(),</span></a>
 <a name="350"><span class="lineNum">     350 </span>                :<span class="lineNoCov">          0 :     std::bind(&amp;ScenarioSelectorNode::onRoute, this, std::placeholders::_1));</span></a>
 <a name="351"><span class="lineNum">     351 </span>                :<span class="lineNoCov">          0 :   sub_odom_ = this-&gt;create_subscription&lt;nav_msgs::msg::Odometry&gt;(</span></a>
 <a name="352"><span class="lineNum">     352 </span>                :<span class="lineNoCov">          0 :     &quot;input/odometry&quot;, rclcpp::QoS{100},</span></a>
@@ -437,29 +437,25 @@
 <a name="359"><span class="lineNum">     359 </span>                :<span class="lineNoCov">          0 :     &quot;output/trajectory&quot;, rclcpp::QoS{1});</span></a>
 <a name="360"><span class="lineNum">     360 </span>                :            : </a>
 <a name="361"><span class="lineNum">     361 </span>                :            :   // Timer Callback</a>
-<a name="362"><span class="lineNum">     362 </span>                :<span class="lineNoCov">          0 :   auto timer_callback = std::bind(&amp;ScenarioSelectorNode::onTimer, this);</span></a>
-<a name="363"><span class="lineNum">     363 </span>                :            :   auto period = std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(</a>
-<a name="364"><span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :     std::chrono::duration&lt;double&gt;(1.0 / static_cast&lt;double&gt;(update_rate_)));</span></a>
-<a name="365"><span class="lineNum">     365 </span>                :            : </a>
-<a name="366"><span class="lineNum">     366 </span>                :<span class="lineNoCov">          0 :   timer_ = std::make_shared&lt;rclcpp::GenericTimer&lt;decltype(timer_callback)&gt;&gt;(</span></a>
-<a name="367"><span class="lineNum">     367 </span>                :<span class="lineNoCov">          0 :     this-&gt;get_clock(), period, std::move(timer_callback),</span></a>
-<a name="368"><span class="lineNum">     368 </span>                :<span class="lineNoCov">          0 :     this-&gt;get_node_base_interface()-&gt;get_context());</span></a>
-<a name="369"><span class="lineNum">     369 </span>                :<span class="lineNoCov">          0 :   this-&gt;get_node_timers_interface()-&gt;add_timer(timer_, nullptr);</span></a>
-<a name="370"><span class="lineNum">     370 </span>                :            : </a>
-<a name="371"><span class="lineNum">     371 </span>                :            :   // Wait for first tf</a>
-<a name="372"><span class="lineNum">     372 </span>                :<span class="lineNoCov">          0 :   while (rclcpp::ok()) {</span></a>
-<a name="373"><span class="lineNum">     373 </span>                :            :     try {</a>
-<a name="374"><span class="lineNum">     374 </span>                :<span class="lineNoCov">          0 :       tf_buffer_.lookupTransform(&quot;map&quot;, &quot;base_link&quot;, tf2::TimePointZero);</span></a>
-<a name="375"><span class="lineNum">     375 </span>                :<span class="lineNoCov">          0 :       break;</span></a>
-<a name="376"><span class="lineNum">     376 </span>                :<span class="lineNoCov">          0 :     } catch (tf2::TransformException &amp; ex) {</span></a>
-<a name="377"><span class="lineNum">     377 </span>                :<span class="lineNoCov">          0 :       RCLCPP_DEBUG(this-&gt;get_logger(), &quot;waiting for initial pose...&quot;);</span></a>
-<a name="378"><span class="lineNum">     378 </span>                :<span class="lineNoCov">          0 :       rclcpp::sleep_for(std::chrono::milliseconds(100));</span></a>
-<a name="379"><span class="lineNum">     379 </span>                :            :     }</a>
-<a name="380"><span class="lineNum">     380 </span>                :            :   }</a>
-<a name="381"><span class="lineNum">     381 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="382"><span class="lineNum">     382 </span>                :            : </a>
-<a name="383"><span class="lineNum">     383 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
-<a name="384"><span class="lineNum">     384 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(ScenarioSelectorNode)</span></a>
+<a name="362"><span class="lineNum">     362 </span>                :<span class="lineNoCov">          0 :   const auto period_ns = rclcpp::Rate(static_cast&lt;double&gt;(update_rate_)).period();</span></a>
+<a name="363"><span class="lineNum">     363 </span>                :            : </a>
+<a name="364"><span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :   timer_ = rclcpp::create_timer(</span></a>
+<a name="365"><span class="lineNum">     365 </span>                :<span class="lineNoCov">          0 :     this, get_clock(), period_ns, std::bind(&amp;ScenarioSelectorNode::onTimer, this));</span></a>
+<a name="366"><span class="lineNum">     366 </span>                :            : </a>
+<a name="367"><span class="lineNum">     367 </span>                :            :   // Wait for first tf</a>
+<a name="368"><span class="lineNum">     368 </span>                :<span class="lineNoCov">          0 :   while (rclcpp::ok()) {</span></a>
+<a name="369"><span class="lineNum">     369 </span>                :            :     try {</a>
+<a name="370"><span class="lineNum">     370 </span>                :<span class="lineNoCov">          0 :       tf_buffer_.lookupTransform(&quot;map&quot;, &quot;base_link&quot;, tf2::TimePointZero);</span></a>
+<a name="371"><span class="lineNum">     371 </span>                :<span class="lineNoCov">          0 :       break;</span></a>
+<a name="372"><span class="lineNum">     372 </span>                :<span class="lineNoCov">          0 :     } catch (tf2::TransformException &amp; ex) {</span></a>
+<a name="373"><span class="lineNum">     373 </span>                :<span class="lineNoCov">          0 :       RCLCPP_DEBUG(this-&gt;get_logger(), &quot;waiting for initial pose...&quot;);</span></a>
+<a name="374"><span class="lineNum">     374 </span>                :<span class="lineNoCov">          0 :       rclcpp::sleep_for(std::chrono::milliseconds(100));</span></a>
+<a name="375"><span class="lineNum">     375 </span>                :            :     }</a>
+<a name="376"><span class="lineNum">     376 </span>                :            :   }</a>
+<a name="377"><span class="lineNum">     377 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="378"><span class="lineNum">     378 </span>                :            : </a>
+<a name="379"><span class="lineNum">     379 </span>                :            : #include &lt;rclcpp_components/register_node_macro.hpp&gt;</a>
+<a name="380"><span class="lineNum">     380 </span>                :<span class="lineNoCov">          0 : RCLCPP_COMPONENTS_REGISTER_NODE(ScenarioSelectorNode)</span></a>
 </pre>
       </td>
     </tr>

@@ -11,18 +11,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/aip_x1_launch/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/aip_x2_launch/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/aip_xx1_launch/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/autoware_auto_cmake/</loc>
   </url>
   
@@ -68,10 +56,6 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/common_sensor_launch/</loc>
   </url>
   
   <url>
@@ -231,10 +215,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/hash_library_vendor/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/image_transport_decompressor/</loc>
   </url>
   
@@ -272,18 +252,6 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/lidar_centerpoint/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/livox_interfaces/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/livox_ros2_driver/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/livox_sdk_vendor/</loc>
   </url>
   
   <url>
@@ -375,23 +343,7 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pacmod_interface/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/path_distance_calculator/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pcl_conversions/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pcl_ros/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/perception_pcl/</loc>
   </url>
   
   <url>
@@ -399,11 +351,11 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pointcloud_preprocessor/</loc>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/planning_evaluator/</loc>
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pointcloud_to_laserscan/</loc>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pointcloud_preprocessor/</loc>
   </url>
   
   <url>
@@ -415,31 +367,15 @@
   </url>
   
   <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pure_pursuit/</loc>
+  </url>
+  
+  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/raw_vehicle_cmd_converter/</loc>
   </url>
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/roi_cluster_fusion/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosapi/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosauth/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosbridge_library/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosbridge_server/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/rosbridge_suite/</loc>
   </url>
   
   <url>
@@ -484,10 +420,6 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tamagawa_imu_driver/</loc>
   </url>
   
   <url>
@@ -563,6 +495,10 @@
   </url>
   
   <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_simulated_clock_rviz_plugin/</loc>
+  </url>
+  
+  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_simulator_launch/</loc>
   </url>
   
@@ -588,10 +524,6 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/topic_state_monitor/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/topic_tools/</loc>
   </url>
   
   <url>
@@ -635,15 +567,7 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/velodyne_driver/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/velodyne_monitor/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/velodyne_pointcloud/</loc>
   </url>
   
   <url>

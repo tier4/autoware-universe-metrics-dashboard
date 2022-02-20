@@ -55,7 +55,7 @@
 <table>
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/launch/preprocessor.launch.py</b></td></tr>
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/distortion_corrector/distortion_corrector.cpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
 Cyclomatic complexity
@@ -68,41 +68,7 @@ Cyclomatic complexity
 
   
   <tr>
-    <td style="background-color:LightSteelBlue">generate_launch_description</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">83</td>
-    
-
-    
-       <td class="value">285</td>
-    
-
-    
-       <td class="lesser-value">0</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/downsample_filter/approximate_downsample_filter_nodelet.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::ApproximateDownsampleFilterComponent::ApproximateDownsampleFilterComponent</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::DistortionCorrectorComponent</td>
     <td></td>
     
        <td class="lesser-value">1</td>
@@ -113,7 +79,7 @@ Cyclomatic complexity
     
 
     
-       <td class="value">101</td>
+       <td class="value">115</td>
     
 
     
@@ -122,18 +88,58 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::ApproximateDownsampleFilterComponent::filter</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::onVelocityReport</td>
     <td></td>
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="lesser-value">17</td>
+    
+
+    
+       <td class="value">117</td>
+    
+
     
        <td class="lesser-value">1</td>
     
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::onPointCloud</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
 
     
-       <td class="lesser-value">15</td>
+       <td class="lesser-value">14</td>
     
 
     
-       <td class="value">155</td>
+       <td class="value">88</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::getTransform</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">23</td>
+    
+
+    
+       <td class="value">218</td>
     
 
     
@@ -142,22 +148,22 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::ApproximateDownsampleFilterComponent::paramCallback</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::undistortPointCloud</td>
     <td></td>
     
-       <td class="lesser-value">4</td>
+       <td class="lesser-value">9</td>
     
 
     
-       <td class="lesser-value">18</td>
+       <td class="lesser-value">75</td>
     
 
     
-       <td class="value">122</td>
+       <td class="value">669</td>
     
 
     
-       <td class="lesser-value">1</td>
+       <td class="lesser-value">3</td>
     
   </tr>
   
@@ -217,6 +223,80 @@ Cyclomatic complexity
   
   <tr>
     <td style="background-color:LightSteelBlue">pointcloud_preprocessor::VoxelGridDownsampleFilterComponent::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="lesser-value">18</td>
+    
+
+    
+       <td class="value">122</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/downsample_filter/approximate_downsample_filter_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::ApproximateDownsampleFilterComponent::ApproximateDownsampleFilterComponent</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">101</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::ApproximateDownsampleFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">15</td>
+    
+
+    
+       <td class="value">155</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::ApproximateDownsampleFilterComponent::paramCallback</td>
     <td></td>
     
        <td class="lesser-value">4</td>
@@ -405,7 +485,7 @@ Cyclomatic complexity
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/passthrough_filter/passthrough_uint16.cpp</b></td></tr>
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/dual_return_outlier_filter_nodelet.cpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
 Cyclomatic complexity
@@ -418,52 +498,18 @@ Cyclomatic complexity
 
   
   <tr>
-    <td style="background-color:LightSteelBlue">pcl::PassThroughUInt16<pcl::PCLPointCloud2>::applyFilter</td>
-    <td></td>
-    
-       <td class="greater-value">39</td>
-    
-
-    
-       <td class="lesser-value">167</td>
-    
-
-    
-       <td class="value">1363</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/passthrough_filter/passthrough_filter_nodelet.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterComponent::PassThroughFilterComponent</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::DualReturnOutlierFilterComponent</td>
     <td></td>
     
        <td class="lesser-value">1</td>
     
 
     
-       <td class="lesser-value">7</td>
+       <td class="lesser-value">30</td>
     
 
     
-       <td class="value">48</td>
+       <td class="value">240</td>
     
 
     
@@ -472,18 +518,38 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterComponent::filter</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::onVisibilityChecker</td>
     <td></td>
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">83</td>
+    
+
     
        <td class="lesser-value">1</td>
     
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="greater-value">29</td>
+    
 
     
-       <td class="lesser-value">7</td>
+       <td class="lesser-value">141</td>
     
 
     
-       <td class="value">40</td>
+       <td class="value">1268</td>
     
 
     
@@ -492,18 +558,18 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterComponent::paramCallback</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::paramCallback</td>
     <td></td>
     
-       <td class="lesser-value">1</td>
+       <td class="lesser-value">6</td>
     
 
     
-       <td class="lesser-value">9</td>
+       <td class="lesser-value">28</td>
     
 
     
-       <td class="value">55</td>
+       <td class="value">170</td>
     
 
     
@@ -513,7 +579,7 @@ Cyclomatic complexity
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/passthrough_filter/passthrough_filter_uint16_nodelet.cpp</b></td></tr>
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/voxel_grid_outlier_filter_nodelet.cpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
 Cyclomatic complexity
@@ -526,18 +592,18 @@ Cyclomatic complexity
 
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterUInt16Component::PassThroughFilterUInt16Component</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::VoxelGridOutlierFilterComponent::VoxelGridOutlierFilterComponent</td>
     <td></td>
     
        <td class="lesser-value">1</td>
     
 
     
-       <td class="lesser-value">18</td>
+       <td class="lesser-value">14</td>
     
 
     
-       <td class="value">147</td>
+       <td class="value">116</td>
     
 
     
@@ -546,7 +612,209 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterUInt16Component::filter</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::VoxelGridOutlierFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">26</td>
+    
+
+    
+       <td class="value">297</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::VoxelGridOutlierFilterComponent::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="lesser-value">21</td>
+    
+
+    
+       <td class="value">146</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/radius_search_2d_outlier_filter_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RadiusSearch2DOutlierFilterComponent::RadiusSearch2DOutlierFilterComponent</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">103</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RadiusSearch2DOutlierFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="lesser-value">26</td>
+    
+
+    
+       <td class="value">309</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RadiusSearch2DOutlierFilterComponent::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">15</td>
+    
+
+    
+       <td class="value">98</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/ring_outlier_filter_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RingOutlierFilterComponent::RingOutlierFilterComponent</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">99</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RingOutlierFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">14</td>
+    
+
+    
+       <td class="lesser-value">71</td>
+    
+
+    
+       <td class="value">625</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RingOutlierFilterComponent::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="lesser-value">19</td>
+    
+
+    
+       <td class="value">122</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/pointcloud_accumulator/pointcloud_accumulator_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointcloudAccumulatorComponent::PointcloudAccumulatorComponent</td>
     <td></td>
     
        <td class="lesser-value">1</td>
@@ -557,7 +825,27 @@ Cyclomatic complexity
     
 
     
-       <td class="value">93</td>
+       <td class="value">85</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointcloudAccumulatorComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">19</td>
+    
+
+    
+       <td class="value">156</td>
     
 
     
@@ -566,18 +854,18 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterUInt16Component::paramCallback</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointcloudAccumulatorComponent::paramCallback</td>
     <td></td>
     
-       <td class="lesser-value">8</td>
+       <td class="lesser-value">3</td>
     
 
     
-       <td class="lesser-value">45</td>
+       <td class="lesser-value">17</td>
     
 
     
-       <td class="value">272</td>
+       <td class="value">111</td>
     
 
     
@@ -781,6 +1069,188 @@ Cyclomatic complexity
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/passthrough_filter/passthrough_filter_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterComponent::PassThroughFilterComponent</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">7</td>
+    
+
+    
+       <td class="value">48</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterComponent::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">7</td>
+    
+
+    
+       <td class="value">40</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterComponent::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">9</td>
+    
+
+    
+       <td class="value">55</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/passthrough_filter/passthrough_uint16.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pcl::PassThroughUInt16<pcl::PCLPointCloud2>::applyFilter</td>
+    <td></td>
+    
+       <td class="greater-value">39</td>
+    
+
+    
+       <td class="lesser-value">167</td>
+    
+
+    
+       <td class="value">1363</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/passthrough_filter/passthrough_filter_uint16_nodelet.cpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterUInt16Component::PassThroughFilterUInt16Component</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">18</td>
+    
+
+    
+       <td class="value">147</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterUInt16Component::filter</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">12</td>
+    
+
+    
+       <td class="value">93</td>
+    
+
+    
+       <td class="lesser-value">3</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PassThroughFilterUInt16Component::paramCallback</td>
+    <td></td>
+    
+       <td class="lesser-value">8</td>
+    
+
+    
+       <td class="lesser-value">45</td>
+    
+
+    
+       <td class="value">292</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
   Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/concatenate_data/concatenate_data_nodelet.cpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
@@ -801,11 +1271,11 @@ Cyclomatic complexity
     
 
     
-       <td class="lesser-value">78</td>
+       <td class="lesser-value">77</td>
     
 
     
-       <td class="value">641</td>
+       <td class="value">604</td>
     
 
     
@@ -874,18 +1344,18 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointCloudConcatenateDataSynchronizerComponent::removeRADTFields</td>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointCloudConcatenateDataSynchronizerComponent::convertToXYZICloud</td>
     <td></td>
     
-       <td class="lesser-value">5</td>
+       <td class="lesser-value">4</td>
     
 
     
-       <td class="lesser-value">20</td>
+       <td class="lesser-value">34</td>
     
 
     
-       <td class="value">176</td>
+       <td class="value">300</td>
     
 
     
@@ -917,15 +1387,15 @@ Cyclomatic complexity
     <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointCloudConcatenateDataSynchronizerComponent::cloud_callback</td>
     <td></td>
     
-       <td class="lesser-value">9</td>
+       <td class="lesser-value">10</td>
     
 
     
-       <td class="lesser-value">53</td>
+       <td class="lesser-value">55</td>
     
 
     
-       <td class="value">466</td>
+       <td class="value">480</td>
     
 
     
@@ -986,510 +1456,6 @@ Cyclomatic complexity
 
     
        <td class="value">102</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/distortion_corrector/distortion_corrector.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::DistortionCorrectorComponent</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">13</td>
-    
-
-    
-       <td class="value">115</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::onVelocityReport</td>
-    <td></td>
-    
-       <td class="lesser-value">4</td>
-    
-
-    
-       <td class="lesser-value">17</td>
-    
-
-    
-       <td class="value">117</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::onPointCloud</td>
-    <td></td>
-    
-       <td class="lesser-value">3</td>
-    
-
-    
-       <td class="lesser-value">14</td>
-    
-
-    
-       <td class="value">88</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::getTransform</td>
-    <td></td>
-    
-       <td class="lesser-value">3</td>
-    
-
-    
-       <td class="lesser-value">23</td>
-    
-
-    
-       <td class="value">218</td>
-    
-
-    
-       <td class="lesser-value">3</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DistortionCorrectorComponent::undistortPointCloud</td>
-    <td></td>
-    
-       <td class="lesser-value">9</td>
-    
-
-    
-       <td class="lesser-value">75</td>
-    
-
-    
-       <td class="value">669</td>
-    
-
-    
-       <td class="lesser-value">3</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/pointcloud_accumulator/pointcloud_accumulator_nodelet.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointcloudAccumulatorComponent::PointcloudAccumulatorComponent</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">12</td>
-    
-
-    
-       <td class="value">85</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointcloudAccumulatorComponent::filter</td>
-    <td></td>
-    
-       <td class="lesser-value">3</td>
-    
-
-    
-       <td class="lesser-value">19</td>
-    
-
-    
-       <td class="value">156</td>
-    
-
-    
-       <td class="lesser-value">3</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::PointcloudAccumulatorComponent::paramCallback</td>
-    <td></td>
-    
-       <td class="lesser-value">3</td>
-    
-
-    
-       <td class="lesser-value">17</td>
-    
-
-    
-       <td class="value">111</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/ring_outlier_filter_nodelet.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RingOutlierFilterComponent::RingOutlierFilterComponent</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">13</td>
-    
-
-    
-       <td class="value">99</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RingOutlierFilterComponent::filter</td>
-    <td></td>
-    
-       <td class="lesser-value">15</td>
-    
-
-    
-       <td class="lesser-value">72</td>
-    
-
-    
-       <td class="value">768</td>
-    
-
-    
-       <td class="lesser-value">3</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RingOutlierFilterComponent::paramCallback</td>
-    <td></td>
-    
-       <td class="lesser-value">4</td>
-    
-
-    
-       <td class="lesser-value">19</td>
-    
-
-    
-       <td class="value">122</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/dual_return_outlier_filter_nodelet.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::DualReturnOutlierFilterComponent</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">30</td>
-    
-
-    
-       <td class="value">240</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::onVisibilityChecker</td>
-    <td></td>
-    
-       <td class="lesser-value">4</td>
-    
-
-    
-       <td class="lesser-value">13</td>
-    
-
-    
-       <td class="value">83</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::filter</td>
-    <td></td>
-    
-       <td class="greater-value">29</td>
-    
-
-    
-       <td class="lesser-value">139</td>
-    
-
-    
-       <td class="value">1251</td>
-    
-
-    
-       <td class="lesser-value">3</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::DualReturnOutlierFilterComponent::paramCallback</td>
-    <td></td>
-    
-       <td class="lesser-value">6</td>
-    
-
-    
-       <td class="lesser-value">28</td>
-    
-
-    
-       <td class="value">170</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/radius_search_2d_outlier_filter_nodelet.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RadiusSearch2DOutlierFilterComponent::RadiusSearch2DOutlierFilterComponent</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">13</td>
-    
-
-    
-       <td class="value">103</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RadiusSearch2DOutlierFilterComponent::filter</td>
-    <td></td>
-    
-       <td class="lesser-value">4</td>
-    
-
-    
-       <td class="lesser-value">26</td>
-    
-
-    
-       <td class="value">309</td>
-    
-
-    
-       <td class="lesser-value">3</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RadiusSearch2DOutlierFilterComponent::paramCallback</td>
-    <td></td>
-    
-       <td class="lesser-value">3</td>
-    
-
-    
-       <td class="lesser-value">15</td>
-    
-
-    
-       <td class="value">98</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/src/outlier_filter/voxel_grid_outlier_filter_nodelet.cpp</b></td></tr>
-
-<tr><th>Function name</th><th></th><th>
-Cyclomatic complexity
-(20)
-</th><th>LOC (200)</th><th>
-    
-       Token count
-    
-</th><th>Parameter count (6)</th></tr>
-
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::VoxelGridOutlierFilterComponent::VoxelGridOutlierFilterComponent</td>
-    <td></td>
-    
-       <td class="lesser-value">1</td>
-    
-
-    
-       <td class="lesser-value">14</td>
-    
-
-    
-       <td class="value">116</td>
-    
-
-    
-       <td class="lesser-value">1</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::VoxelGridOutlierFilterComponent::filter</td>
-    <td></td>
-    
-       <td class="lesser-value">3</td>
-    
-
-    
-       <td class="lesser-value">26</td>
-    
-
-    
-       <td class="value">297</td>
-    
-
-    
-       <td class="lesser-value">3</td>
-    
-  </tr>
-  
-  <tr>
-    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::VoxelGridOutlierFilterComponent::paramCallback</td>
-    <td></td>
-    
-       <td class="lesser-value">5</td>
-    
-
-    
-       <td class="lesser-value">21</td>
-    
-
-    
-       <td class="value">146</td>
     
 
     
@@ -1653,12 +1619,51 @@ Cyclomatic complexity
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/downsample_filter/random_downsample_filter_nodelet.hpp</b></td></tr>
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/launch/preprocessor.launch.py</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">generate_launch_description</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">83</td>
+    
+
+    
+       <td class="value">285</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/distortion_corrector/distortion_corrector.hpp</b></td></tr>
 
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
   Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/downsample_filter/voxel_grid_downsample_filter_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/downsample_filter/random_downsample_filter_nodelet.hpp</b></td></tr>
 
   
 
@@ -1669,6 +1674,65 @@ Cyclomatic complexity
 
   <tr><td colspan="7" style="background-color:LightBlue;">
   Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/crop_box_filter/crop_box_filter_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/dual_return_outlier_filter_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/radius_search_2d_outlier_filter_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/ring_outlier_filter_nodelet.hpp</b></td></tr>
+
+<tr><th>Function name</th><th></th><th>
+Cyclomatic complexity
+(20)
+</th><th>LOC (200)</th><th>
+    
+       Token count
+    
+</th><th>Parameter count (6)</th></tr>
+
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">pointcloud_preprocessor::RingOutlierFilterComponent::isCluster</td>
+    <td></td>
+    
+       <td class="lesser-value">2</td>
+    
+
+    
+       <td class="lesser-value">13</td>
+    
+
+    
+       <td class="value">145</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/voxel_grid_outlier_filter_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/pointcloud_accumulator/pointcloud_accumulator_nodelet.hpp</b></td></tr>
+
+  
+
+  <tr><td colspan="7" style="background-color:LightBlue;">
+  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/vector_map_filter/lanelet2_map_filter_nodelet.hpp</b></td></tr>
 
   
 
@@ -2137,11 +2201,6 @@ Cyclomatic complexity
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/vector_map_filter/lanelet2_map_filter_nodelet.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
   Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/concatenate_data/concatenate_data_nodelet.hpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
@@ -2173,36 +2232,6 @@ Cyclomatic complexity
        <td class="lesser-value">0</td>
     
   </tr>
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/distortion_corrector/distortion_corrector.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/pointcloud_accumulator/pointcloud_accumulator_nodelet.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/dual_return_outlier_filter_nodelet.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/voxel_grid_outlier_filter_nodelet.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/radius_search_2d_outlier_filter_nodelet.hpp</b></td></tr>
-
-  
-
-  <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/sensing/pointcloud_preprocessor/include/pointcloud_preprocessor/outlier_filter/ring_outlier_filter_nodelet.hpp</b></td></tr>
-
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
@@ -2305,7 +2334,7 @@ Cyclomatic complexity
 <br>
 <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="footer">Generated by
-    <a href="http://www.lizard.ws/">Lizard</a> on 2021-12-26 20:49
+    <a href="http://www.lizard.ws/">Lizard</a> on 2022-02-20 20:18
     </td></tr>
 </table>
  </body>
