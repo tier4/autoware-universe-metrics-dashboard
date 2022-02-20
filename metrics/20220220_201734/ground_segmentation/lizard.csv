@@ -1,0 +1,15 @@
+type,value
+CCN(worst),21
+CCN(average),4.0
+CCN(violate),1
+LOC(worst),93
+LOC(average),25.3
+LOC(violate),0
+Parameter(worst),4
+Parameter(average),1.9
+Parameter(violate),0
+Token(worst),723
+Token(average),203.9
+CCN(warning),4
+LOC(warning),5
+Parameter(warning),0
