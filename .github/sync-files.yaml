@@ -1,0 +1,7 @@
+- repository: autowarefoundation/autoware
+  files:
+    - source: .clang-tidy
+
+- repository: autowarefoundation/autoware_common
+  files:
+    - source: .github/workflows/sync-files.yaml
