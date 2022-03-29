@@ -37,15 +37,15 @@ jobs:
       with:
         required-ros-distributions: ${{ env.ROS_DISTRO }}
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         repository: ${{ env.TARGET_REPO }}
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         path: metrics_config_dir
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: data
         path: ${{ env.ARTIFACTS_DIR }}
