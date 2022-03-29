@@ -112,7 +112,6 @@ jobs:
           "**/dummy_perception_publisher/*"
           "**/initial_pose_button_panel/*"
           "**/polar_grid/*"
-        codechecker-config-path: "metrics_config_dir/codechecker-config.json"
         codechecker-skip-list: "metrics_config_dir/codechecker-skip-list.txt"
         target-repository: ${{ env.TARGET_REPO }}
 
