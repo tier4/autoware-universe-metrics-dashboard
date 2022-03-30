@@ -66,6 +66,10 @@ jobs:
         if: ${{ steps.get-self-packages.outputs.self-packages != '' }}
         id: test
         uses: autowarefoundation/autoware-github-actions/colcon-test@v1
+        with:
+          rosdistro: galactic
+          target-packages: ${{ steps.get-self-packages.outputs.self-packages }}
+          build-depends-repos: ${{ env.REPOS_FILE }}
 
       - id: metrics-reporter
         uses: tier4/ros-metrics-reporter@v0.4
