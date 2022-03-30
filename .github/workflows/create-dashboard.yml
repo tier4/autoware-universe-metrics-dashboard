@@ -71,11 +71,14 @@ jobs:
           target-packages: ${{ steps.get-self-packages.outputs.self-packages }}
           build-depends-repos: ${{ env.REPOS_FILE }}
 
+      - name: Copy .clang-tidy to root
+        run: |
+          cp metrics_config_dir/.clang-tidy .clang-tidy
+
       - id: metrics-reporter
         uses: tier4/ros-metrics-reporter@v0.4
         with:
           artifacts-dir: ${{ env.ARTIFACTS_DIR }}
-          target-dir: ${{ steps.build_and_test.outputs.ros-workspace-directory-name }}
           base-url: "https://tier4.github.io/autoware-universe-metrics-dashboard/"
           title: ${{ env.TARGET_REPO }}
           ros-distro: ${{ env.ROS_DISTRO }}
