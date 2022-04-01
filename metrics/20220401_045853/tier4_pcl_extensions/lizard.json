@@ -1,0 +1,27 @@
+{
+  "package": "tier4_pcl_extensions",
+  "worst_value": {
+    "ccn": 38,
+    "nloc": 190,
+    "parameter": 6,
+    "token": 2025
+  },
+  "average_value": {
+    "ccn": 4.1,
+    "nloc": 19.6,
+    "parameter": 1.6,
+    "token": 183.2
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

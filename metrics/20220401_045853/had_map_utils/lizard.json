@@ -1,0 +1,27 @@
+{
+  "package": "had_map_utils",
+  "worst_value": {
+    "ccn": 18,
+    "nloc": 74,
+    "parameter": 9,
+    "token": 562
+  },
+  "average_value": {
+    "ccn": 3.0,
+    "nloc": 18.0,
+    "parameter": 2.9,
+    "token": 142.2
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 3,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 2,
+    "parameter": 3,
+    "token": 0
+  }
+}

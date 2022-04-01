@@ -1,0 +1,27 @@
+{
+  "package": "accel_brake_map_calibrator",
+  "worst_value": {
+    "ccn": 23,
+    "nloc": 149,
+    "parameter": 15,
+    "token": 1333
+  },
+  "average_value": {
+    "ccn": 3.3,
+    "nloc": 20.1,
+    "parameter": 2.7,
+    "token": 155.9
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 6,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 5,
+    "nloc": 10,
+    "parameter": 6,
+    "token": 0
+  }
+}

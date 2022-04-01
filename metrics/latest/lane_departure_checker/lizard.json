@@ -1,0 +1,27 @@
+{
+  "package": "lane_departure_checker",
+  "worst_value": {
+    "ccn": 15,
+    "nloc": 91,
+    "parameter": 4,
+    "token": 826
+  },
+  "average_value": {
+    "ccn": 2.9,
+    "nloc": 17.8,
+    "parameter": 1.5,
+    "token": 143.5
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 2,
+    "parameter": 0,
+    "token": 0
+  }
+}

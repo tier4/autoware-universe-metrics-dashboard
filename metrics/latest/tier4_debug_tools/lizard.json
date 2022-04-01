@@ -1,0 +1,27 @@
+{
+  "package": "tier4_debug_tools",
+  "worst_value": {
+    "ccn": 8,
+    "nloc": 74,
+    "parameter": 4,
+    "token": 647
+  },
+  "average_value": {
+    "ccn": 1.9,
+    "nloc": 11.3,
+    "parameter": 1.9,
+    "token": 95.5
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

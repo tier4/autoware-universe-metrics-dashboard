@@ -1,0 +1,27 @@
+{
+  "package": "tier4_autoware_utils",
+  "worst_value": {
+    "ccn": 7,
+    "nloc": 28,
+    "parameter": 7,
+    "token": 220
+  },
+  "average_value": {
+    "ccn": 1.5,
+    "nloc": 7.9,
+    "parameter": 2.0,
+    "token": 61.3
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 1,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 1,
+    "token": 0
+  }
+}

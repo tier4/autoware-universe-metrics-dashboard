@@ -1,0 +1,27 @@
+{
+  "package": "system_monitor",
+  "worst_value": {
+    "ccn": 21,
+    "nloc": 131,
+    "parameter": 4,
+    "token": 1136
+  },
+  "average_value": {
+    "ccn": 3.7,
+    "nloc": 21.6,
+    "parameter": 1.0,
+    "token": 163.7
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 12,
+    "nloc": 16,
+    "parameter": 0,
+    "token": 0
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "package": "planning_error_monitor",
+  "value": [
+    {
+      "label": "all",
+      "line": 76.1,
+      "function": 86.4,
+      "branch": 51.7
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "package": "trajectory_follower_nodes",
+  "worst_value": {
+    "ccn": 20,
+    "nloc": 123,
+    "parameter": 3,
+    "token": 1014
+  },
+  "average_value": {
+    "ccn": 3.3,
+    "nloc": 25.7,
+    "parameter": 1.2,
+    "token": 189.1
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 6,
+    "parameter": 0,
+    "token": 0
+  }
+}

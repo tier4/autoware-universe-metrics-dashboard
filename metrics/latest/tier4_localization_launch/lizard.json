@@ -1,0 +1,27 @@
+{
+  "package": "tier4_localization_launch",
+  "worst_value": {
+    "ccn": 1,
+    "nloc": 51,
+    "parameter": 3,
+    "token": 239
+  },
+  "average_value": {
+    "ccn": 1.0,
+    "nloc": 26.3,
+    "parameter": 1.8,
+    "token": 109.8
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

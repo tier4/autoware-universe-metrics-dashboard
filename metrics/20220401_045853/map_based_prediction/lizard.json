@@ -1,0 +1,27 @@
+{
+  "package": "map_based_prediction",
+  "worst_value": {
+    "ccn": 22,
+    "nloc": 127,
+    "parameter": 6,
+    "token": 899
+  },
+  "average_value": {
+    "ccn": 4.3,
+    "nloc": 25.2,
+    "parameter": 2.0,
+    "token": 207.3
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 3,
+    "nloc": 4,
+    "parameter": 0,
+    "token": 0
+  }
+}

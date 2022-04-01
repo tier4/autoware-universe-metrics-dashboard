@@ -1,0 +1,27 @@
+{
+  "package": "roi_cluster_fusion",
+  "worst_value": {
+    "ccn": 34,
+    "nloc": 155,
+    "parameter": 9,
+    "token": 1460
+  },
+  "average_value": {
+    "ccn": 8.3,
+    "nloc": 41.7,
+    "parameter": 2.8,
+    "token": 412.0
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 1,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 3,
+    "parameter": 1,
+    "token": 0
+  }
+}

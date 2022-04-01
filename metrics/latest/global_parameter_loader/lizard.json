@@ -1,0 +1,27 @@
+{
+  "package": "global_parameter_loader",
+  "worst_value": {
+    "ccn": 1,
+    "nloc": 17,
+    "parameter": 3,
+    "token": 84
+  },
+  "average_value": {
+    "ccn": 1.0,
+    "nloc": 12.0,
+    "parameter": 1.5,
+    "token": 55.0
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

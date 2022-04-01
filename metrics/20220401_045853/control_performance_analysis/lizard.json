@@ -1,0 +1,27 @@
+{
+  "package": "control_performance_analysis",
+  "worst_value": {
+    "ccn": 10,
+    "nloc": 50,
+    "parameter": 3,
+    "token": 461
+  },
+  "average_value": {
+    "ccn": 2.3,
+    "nloc": 15.1,
+    "parameter": 0.9,
+    "token": 121.5
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

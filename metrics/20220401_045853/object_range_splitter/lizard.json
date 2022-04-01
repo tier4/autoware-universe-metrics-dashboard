@@ -1,0 +1,27 @@
+{
+  "package": "object_range_splitter",
+  "worst_value": {
+    "ccn": 5,
+    "nloc": 24,
+    "parameter": 1,
+    "token": 156
+  },
+  "average_value": {
+    "ccn": 3.0,
+    "nloc": 19.0,
+    "parameter": 1.0,
+    "token": 138.5
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

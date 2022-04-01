@@ -1,0 +1,27 @@
+{
+  "package": "freespace_planning_algorithms",
+  "worst_value": {
+    "ccn": 17,
+    "nloc": 120,
+    "parameter": 7,
+    "token": 1334
+  },
+  "average_value": {
+    "ccn": 3.0,
+    "nloc": 16.2,
+    "parameter": 2.4,
+    "token": 155.6
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 1,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 4,
+    "parameter": 1,
+    "token": 0
+  }
+}

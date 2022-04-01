@@ -1,0 +1,27 @@
+{
+  "package": "tier4_map_launch",
+  "worst_value": {
+    "ccn": 1,
+    "nloc": 107,
+    "parameter": 3,
+    "token": 416
+  },
+  "average_value": {
+    "ccn": 1.0,
+    "nloc": 54.5,
+    "parameter": 1.5,
+    "token": 222.0
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

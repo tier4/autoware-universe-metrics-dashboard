@@ -1,0 +1,27 @@
+{
+  "package": "behavior_path_planner",
+  "worst_value": {
+    "ccn": 26,
+    "nloc": 174,
+    "parameter": 10,
+    "token": 1371
+  },
+  "average_value": {
+    "ccn": 3.4,
+    "nloc": 21.2,
+    "parameter": 1.7,
+    "token": 161.9
+  },
+  "over_threshold_count": {
+    "ccn": 4,
+    "nloc": 0,
+    "parameter": 20,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 25,
+    "nloc": 34,
+    "parameter": 20,
+    "token": 0
+  }
+}

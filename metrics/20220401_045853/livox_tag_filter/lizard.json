@@ -1,0 +1,27 @@
+{
+  "package": "livox_tag_filter",
+  "worst_value": {
+    "ccn": 5,
+    "nloc": 24,
+    "parameter": 1,
+    "token": 160
+  },
+  "average_value": {
+    "ccn": 3.0,
+    "nloc": 17.0,
+    "parameter": 1.0,
+    "token": 132.5
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

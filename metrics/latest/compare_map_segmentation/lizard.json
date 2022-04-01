@@ -1,0 +1,27 @@
+{
+  "package": "compare_map_segmentation",
+  "worst_value": {
+    "ccn": 30,
+    "nloc": 171,
+    "parameter": 5,
+    "token": 1219
+  },
+  "average_value": {
+    "ccn": 3.8,
+    "nloc": 24.6,
+    "parameter": 1.7,
+    "token": 196.9
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

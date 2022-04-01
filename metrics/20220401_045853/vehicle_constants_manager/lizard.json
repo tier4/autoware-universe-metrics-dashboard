@@ -1,0 +1,27 @@
+{
+  "package": "vehicle_constants_manager",
+  "worst_value": {
+    "ccn": 5,
+    "nloc": 72,
+    "parameter": 15,
+    "token": 444
+  },
+  "average_value": {
+    "ccn": 3.0,
+    "nloc": 49.0,
+    "parameter": 5.3,
+    "token": 373.3
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 1,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 1,
+    "parameter": 1,
+    "token": 0
+  }
+}

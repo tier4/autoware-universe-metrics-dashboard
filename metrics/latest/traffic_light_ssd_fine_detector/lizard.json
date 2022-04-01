@@ -1,0 +1,27 @@
+{
+  "package": "traffic_light_ssd_fine_detector",
+  "worst_value": {
+    "ccn": 11,
+    "nloc": 87,
+    "parameter": 6,
+    "token": 975
+  },
+  "average_value": {
+    "ccn": 2.6,
+    "nloc": 15.8,
+    "parameter": 1.6,
+    "token": 145.0
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 3,
+    "parameter": 0,
+    "token": 0
+  }
+}

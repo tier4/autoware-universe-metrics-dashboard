@@ -1,0 +1,27 @@
+{
+  "package": "shift_decider",
+  "worst_value": {
+    "ccn": 3,
+    "nloc": 13,
+    "parameter": 1,
+    "token": 103
+  },
+  "average_value": {
+    "ccn": 1.6,
+    "nloc": 8.8,
+    "parameter": 0.6,
+    "token": 57.6
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

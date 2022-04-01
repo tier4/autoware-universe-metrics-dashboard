@@ -1,0 +1,27 @@
+{
+  "package": "planning_evaluator",
+  "worst_value": {
+    "ccn": 16,
+    "nloc": 51,
+    "parameter": 3,
+    "token": 342
+  },
+  "average_value": {
+    "ccn": 3.6,
+    "nloc": 14.5,
+    "parameter": 1.2,
+    "token": 118.3
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

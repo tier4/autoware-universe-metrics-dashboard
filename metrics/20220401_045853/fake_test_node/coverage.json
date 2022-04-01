@@ -1,0 +1,11 @@
+{
+  "package": "fake_test_node",
+  "value": [
+    {
+      "label": "all",
+      "line": 90.2,
+      "function": 100.0,
+      "branch": 20.1
+    }
+  ]
+}

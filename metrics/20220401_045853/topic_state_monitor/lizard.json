@@ -1,0 +1,27 @@
+{
+  "package": "topic_state_monitor",
+  "worst_value": {
+    "ccn": 9,
+    "nloc": 40,
+    "parameter": 3,
+    "token": 352
+  },
+  "average_value": {
+    "ccn": 2.3,
+    "nloc": 10.5,
+    "parameter": 0.5,
+    "token": 80.8
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

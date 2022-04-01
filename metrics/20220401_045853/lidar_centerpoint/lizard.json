@@ -1,0 +1,27 @@
+{
+  "package": "lidar_centerpoint",
+  "worst_value": {
+    "ccn": 13,
+    "nloc": 71,
+    "parameter": 5,
+    "token": 626
+  },
+  "average_value": {
+    "ccn": 2.2,
+    "nloc": 13.8,
+    "parameter": 1.4,
+    "token": 122.5
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 3,
+    "parameter": 0,
+    "token": 0
+  }
+}

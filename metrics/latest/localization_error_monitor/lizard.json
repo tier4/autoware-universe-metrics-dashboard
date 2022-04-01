@@ -1,0 +1,27 @@
+{
+  "package": "localization_error_monitor",
+  "worst_value": {
+    "ccn": 3,
+    "nloc": 26,
+    "parameter": 2,
+    "token": 245
+  },
+  "average_value": {
+    "ccn": 1.5,
+    "nloc": 15.4,
+    "parameter": 1.1,
+    "token": 130.4
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

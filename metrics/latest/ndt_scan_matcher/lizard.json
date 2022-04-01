@@ -1,0 +1,27 @@
+{
+  "package": "ndt_scan_matcher",
+  "worst_value": {
+    "ccn": 19,
+    "nloc": 198,
+    "parameter": 5,
+    "token": 1564
+  },
+  "average_value": {
+    "ccn": 3.1,
+    "nloc": 25.8,
+    "parameter": 1.9,
+    "token": 214.1
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 2,
+    "parameter": 0,
+    "token": 0
+  }
+}

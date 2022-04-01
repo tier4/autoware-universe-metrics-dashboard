@@ -1,0 +1,11 @@
+{
+  "package": "planning_evaluator",
+  "value": [
+    {
+      "label": "all",
+      "line": 80.1,
+      "function": 79.5,
+      "branch": 47.7
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "package": "image_transport_decompressor",
+  "worst_value": {
+    "ccn": 24,
+    "nloc": 82,
+    "parameter": 1,
+    "token": 621
+  },
+  "average_value": {
+    "ccn": 12.5,
+    "nloc": 46.0,
+    "parameter": 1.0,
+    "token": 355.5
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

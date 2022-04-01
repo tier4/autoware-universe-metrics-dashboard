@@ -1,0 +1,27 @@
+{
+  "package": "behavior_velocity_planner",
+  "worst_value": {
+    "ccn": 22,
+    "nloc": 337,
+    "parameter": 10,
+    "token": 3563
+  },
+  "average_value": {
+    "ccn": 3.3,
+    "nloc": 20.4,
+    "parameter": 2.1,
+    "token": 168.3
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 1,
+    "parameter": 6,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 22,
+    "nloc": 38,
+    "parameter": 6,
+    "token": 0
+  }
+}

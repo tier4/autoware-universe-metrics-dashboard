@@ -1,0 +1,27 @@
+{
+  "package": "obstacle_stop_planner",
+  "worst_value": {
+    "ccn": 26,
+    "nloc": 151,
+    "parameter": 10,
+    "token": 1754
+  },
+  "average_value": {
+    "ccn": 3.6,
+    "nloc": 23.8,
+    "parameter": 2.8,
+    "token": 205.3
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 5,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 8,
+    "parameter": 5,
+    "token": 0
+  }
+}
