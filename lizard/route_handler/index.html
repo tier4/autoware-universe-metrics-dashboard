@@ -55,7 +55,7 @@
 <table>
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/route_handler/src/route_handler.cpp</b></td></tr>
+  Source file: <b>/__w/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/planning/route_handler/src/route_handler.cpp</b></td></tr>
 
 <tr><th>Function name</th><th></th><th>
 Cyclomatic complexity
@@ -631,15 +631,15 @@ Cyclomatic complexity
     <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getLaneletSequenceUpTo</td>
     <td></td>
     
-       <td class="lesser-value">5</td>
+       <td class="lesser-value">10</td>
     
 
     
-       <td class="lesser-value">21</td>
+       <td class="lesser-value">42</td>
     
 
     
-       <td class="value">134</td>
+       <td class="value">304</td>
     
 
     
@@ -848,7 +848,7 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getPreviousLaneletWithinRoute</td>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getPreviousLaneletsWithinRoute</td>
     <td></td>
     
        <td class="lesser-value">4</td>
@@ -859,7 +859,7 @@ Cyclomatic complexity
     
 
     
-       <td class="value">79</td>
+       <td class="value">91</td>
     
 
     
@@ -1048,6 +1048,66 @@ Cyclomatic complexity
   </tr>
   
   <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getAllLeftSharedLinestringLanelets</td>
+    <td></td>
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="lesser-value">21</td>
+    
+
+    
+       <td class="value">147</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getAllRightSharedLinestringLanelets</td>
+    <td></td>
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="lesser-value">21</td>
+    
+
+    
+       <td class="value">147</td>
+    
+
+    
+       <td class="lesser-value">2</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getAllSharedLineStringLanelets</td>
+    <td></td>
+    
+       <td class="lesser-value">3</td>
+    
+
+    
+       <td class="lesser-value">17</td>
+    
+
+    
+       <td class="value">119</td>
+    
+
+    
+       <td class="lesser-value">4</td>
+    
+  </tr>
+  
+  <tr>
     <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getLeftOppositeLanelets</td>
     <td></td>
     
@@ -1144,6 +1204,26 @@ Cyclomatic complexity
 
     
        <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getFurthestLinestring</td>
+    <td></td>
+    
+       <td class="lesser-value">9</td>
+    
+
+    
+       <td class="lesser-value">22</td>
+    
+
+    
+       <td class="value">143</td>
+    
+
+    
+       <td class="lesser-value">4</td>
     
   </tr>
   
@@ -1388,7 +1468,27 @@ Cyclomatic complexity
   </tr>
   
   <tr>
-    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getOverallGraph</td>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::isMapMsgReady</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="value">11</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getRoutingGraphPtr</td>
     <td></td>
     
        <td class="lesser-value">1</td>
@@ -1399,7 +1499,67 @@ Cyclomatic complexity
     
 
     
-       <td class="value">12</td>
+       <td class="value">11</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getTrafficRulesPtr</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">4</td>
+    
+
+    
+       <td class="value">11</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getOverallGraphPtr</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">5</td>
+    
+
+    
+       <td class="value">11</td>
+    
+
+    
+       <td class="lesser-value">0</td>
+    
+  </tr>
+  
+  <tr>
+    <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getLaneletMapPtr</td>
+    <td></td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="value">11</td>
     
 
     
@@ -1491,15 +1651,15 @@ Cyclomatic complexity
     <td style="background-color:LightSteelBlue">route_handler::RouteHandler::getLaneSequenceUpTo</td>
     <td></td>
     
-       <td class="lesser-value">5</td>
+       <td class="lesser-value">10</td>
     
 
     
-       <td class="lesser-value">24</td>
+       <td class="lesser-value">47</td>
     
 
     
-       <td class="value">136</td>
+       <td class="value">315</td>
     
 
     
@@ -1649,7 +1809,7 @@ Cyclomatic complexity
   
 
   <tr><td colspan="7" style="background-color:LightBlue;">
-  Source file: <b>/home/runner/work/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/ros_ws/src/src/autowarefoundation/autoware.universe/planning/route_handler/include/route_handler/route_handler.hpp</b></td></tr>
+  Source file: <b>/__w/autoware-universe-metrics-dashboard/autoware-universe-metrics-dashboard/planning/route_handler/include/route_handler/route_handler.hpp</b></td></tr>
 
   
 
@@ -1659,7 +1819,7 @@ Cyclomatic complexity
 <br>
 <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="footer">Generated by
-    <a href="http://www.lizard.ws/">Lizard</a> on 2022-02-20 20:18
+    <a href="http://www.lizard.ws/">Lizard</a> on 2022-04-01 05:11
     </td></tr>
 </table>
  </body>

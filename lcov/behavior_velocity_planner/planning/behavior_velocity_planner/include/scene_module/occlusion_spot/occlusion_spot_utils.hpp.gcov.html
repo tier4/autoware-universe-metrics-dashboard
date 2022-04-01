@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.filtered - planning/behavior_velocity_planner/include/scene_module/occlusion_spot/occlusion_spot_utils.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../../index.html">top level</a> - <a href="index.html">planning/behavior_velocity_planner/include/scene_module/occlusion_spot</a> - occlusion_spot_utils.hpp<span style="font-size: 80%;"> (source / <a href="occlusion_spot_utils.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.filtered</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">25.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2022-04-01 05:10:26</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+            | Branches:
+            <span class="coverLegendCov">+</span> taken
+            <span class="coverLegendNoCov">-</span> not taken
+            <span class="coverLegendNoCov">#</span> not executed
+</td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr><td><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : // Copyright 2021 Tier IV, Inc.</a>
+<a name="2"><span class="lineNum">       2 </span>                :            : //</a>
+<a name="3"><span class="lineNum">       3 </span>                :            : // Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</a>
+<a name="4"><span class="lineNum">       4 </span>                :            : // you may not use this file except in compliance with the License.</a>
+<a name="5"><span class="lineNum">       5 </span>                :            : // You may obtain a copy of the License at</a>
+<a name="6"><span class="lineNum">       6 </span>                :            : //</a>
+<a name="7"><span class="lineNum">       7 </span>                :            : //     http://www.apache.org/licenses/LICENSE-2.0</a>
+<a name="8"><span class="lineNum">       8 </span>                :            : //</a>
+<a name="9"><span class="lineNum">       9 </span>                :            : // Unless required by applicable law or agreed to in writing, software</a>
+<a name="10"><span class="lineNum">      10 </span>                :            : // distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</a>
+<a name="11"><span class="lineNum">      11 </span>                :            : // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</a>
+<a name="12"><span class="lineNum">      12 </span>                :            : // See the License for the specific language governing permissions and</a>
+<a name="13"><span class="lineNum">      13 </span>                :            : // limitations under the License.</a>
+<a name="14"><span class="lineNum">      14 </span>                :            : </a>
+<a name="15"><span class="lineNum">      15 </span>                :            : #ifndef SCENE_MODULE__OCCLUSION_SPOT__OCCLUSION_SPOT_UTILS_HPP_</a>
+<a name="16"><span class="lineNum">      16 </span>                :            : #define SCENE_MODULE__OCCLUSION_SPOT__OCCLUSION_SPOT_UTILS_HPP_</a>
+<a name="17"><span class="lineNum">      17 </span>                :            : </a>
+<a name="18"><span class="lineNum">      18 </span>                :            : #include &lt;lanelet2_extension/utility/query.hpp&gt;</a>
+<a name="19"><span class="lineNum">      19 </span>                :            : #include &lt;lanelet2_extension/utility/utilities.hpp&gt;</a>
+<a name="20"><span class="lineNum">      20 </span>                :            : #include &lt;lanelet2_extension/visualization/visualization.hpp&gt;</a>
+<a name="21"><span class="lineNum">      21 </span>                :            : #include &lt;scene_module/occlusion_spot/grid_utils.hpp&gt;</a>
+<a name="22"><span class="lineNum">      22 </span>                :            : #include &lt;tier4_autoware_utils/trajectory/trajectory.hpp&gt;</a>
+<a name="23"><span class="lineNum">      23 </span>                :            : #include &lt;utilization/util.hpp&gt;</a>
+<a name="24"><span class="lineNum">      24 </span>                :            : </a>
+<a name="25"><span class="lineNum">      25 </span>                :            : #include &lt;autoware_auto_perception_msgs/msg/object_classification.hpp&gt;</a>
+<a name="26"><span class="lineNum">      26 </span>                :            : #include &lt;autoware_auto_perception_msgs/msg/predicted_object.hpp&gt;</a>
+<a name="27"><span class="lineNum">      27 </span>                :            : #include &lt;autoware_auto_perception_msgs/msg/predicted_objects.hpp&gt;</a>
+<a name="28"><span class="lineNum">      28 </span>                :            : #include &lt;autoware_auto_planning_msgs/msg/path.hpp&gt;</a>
+<a name="29"><span class="lineNum">      29 </span>                :            : #include &lt;autoware_auto_planning_msgs/msg/path_with_lane_id.hpp&gt;</a>
+<a name="30"><span class="lineNum">      30 </span>                :            : #include &lt;visualization_msgs/msg/marker.hpp&gt;</a>
+<a name="31"><span class="lineNum">      31 </span>                :            : </a>
+<a name="32"><span class="lineNum">      32 </span>                :            : #include &lt;boost/optional.hpp&gt;</a>
+<a name="33"><span class="lineNum">      33 </span>                :            : </a>
+<a name="34"><span class="lineNum">      34 </span>                :            : #include &lt;lanelet2_core/LaneletMap.h&gt;</a>
+<a name="35"><span class="lineNum">      35 </span>                :            : #include &lt;lanelet2_core/geometry/LaneletMap.h&gt;</a>
+<a name="36"><span class="lineNum">      36 </span>                :            : #include &lt;tf2/utils.h&gt;</a>
+<a name="37"><span class="lineNum">      37 </span>                :            : #include &lt;tf2_geometry_msgs/tf2_geometry_msgs.h&gt;</a>
+<a name="38"><span class="lineNum">      38 </span>                :            : </a>
+<a name="39"><span class="lineNum">      39 </span>                :            : #include &lt;algorithm&gt;</a>
+<a name="40"><span class="lineNum">      40 </span>                :            : #include &lt;chrono&gt;</a>
+<a name="41"><span class="lineNum">      41 </span>                :            : #include &lt;string&gt;</a>
+<a name="42"><span class="lineNum">      42 </span>                :            : #include &lt;utility&gt;</a>
+<a name="43"><span class="lineNum">      43 </span>                :            : #include &lt;vector&gt;</a>
+<a name="44"><span class="lineNum">      44 </span>                :            : </a>
+<a name="45"><span class="lineNum">      45 </span>                :            : namespace tier4_autoware_utils</a>
+<a name="46"><span class="lineNum">      46 </span>                :            : {</a>
+<a name="47"><span class="lineNum">      47 </span>                :            : template &lt;&gt;</a>
+<a name="48"><span class="lineNum">      48 </span>                :            : inline geometry_msgs::msg::Pose getPose(</a>
+<a name="49"><span class="lineNum">      49 </span>                :            :   const autoware_auto_planning_msgs::msg::PathPointWithLaneId &amp; p)</a>
+<a name="50"><span class="lineNum">      50 </span>                :            : {</a>
+<a name="51"><span class="lineNum">      51 </span>                :<span class="lineNoCov">          0 :   return p.point.pose;</span></a>
+<a name="52"><span class="lineNum">      52 </span>                :            : }</a>
+<a name="53"><span class="lineNum">      53 </span>                :            : }  // namespace tier4_autoware_utils</a>
+<a name="54"><span class="lineNum">      54 </span>                :            : </a>
+<a name="55"><span class="lineNum">      55 </span>                :            : namespace behavior_velocity_planner</a>
+<a name="56"><span class="lineNum">      56 </span>                :            : {</a>
+<a name="57"><span class="lineNum">      57 </span>                :            : using autoware_auto_perception_msgs::msg::ObjectClassification;</a>
+<a name="58"><span class="lineNum">      58 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedObject;</a>
+<a name="59"><span class="lineNum">      59 </span>                :            : using autoware_auto_perception_msgs::msg::PredictedObjects;</a>
+<a name="60"><span class="lineNum">      60 </span>                :            : using autoware_auto_planning_msgs::msg::Path;</a>
+<a name="61"><span class="lineNum">      61 </span>                :            : using autoware_auto_planning_msgs::msg::PathPoint;</a>
+<a name="62"><span class="lineNum">      62 </span>                :            : using autoware_auto_planning_msgs::msg::PathPointWithLaneId;</a>
+<a name="63"><span class="lineNum">      63 </span>                :            : using autoware_auto_planning_msgs::msg::PathWithLaneId;</a>
+<a name="64"><span class="lineNum">      64 </span>                :            : using geometry_msgs::msg::Point;</a>
+<a name="65"><span class="lineNum">      65 </span>                :            : using geometry_msgs::msg::Pose;</a>
+<a name="66"><span class="lineNum">      66 </span>                :            : using lanelet::ArcCoordinates;</a>
+<a name="67"><span class="lineNum">      67 </span>                :            : using lanelet::BasicLineString2d;</a>
+<a name="68"><span class="lineNum">      68 </span>                :            : using lanelet::BasicPoint2d;</a>
+<a name="69"><span class="lineNum">      69 </span>                :            : using lanelet::BasicPolygon2d;</a>
+<a name="70"><span class="lineNum">      70 </span>                :            : using lanelet::ConstLineString2d;</a>
+<a name="71"><span class="lineNum">      71 </span>                :            : using lanelet::LaneletMapPtr;</a>
+<a name="72"><span class="lineNum">      72 </span>                :            : using lanelet::geometry::fromArcCoordinates;</a>
+<a name="73"><span class="lineNum">      73 </span>                :            : using lanelet::geometry::toArcCoordinates;</a>
+<a name="74"><span class="lineNum">      74 </span>                :            : using DetectionAreaIdx = boost::optional&lt;std::pair&lt;double, double&gt;&gt;;</a>
+<a name="75"><span class="lineNum">      75 </span>                :            : using BasicPolygons2d = std::vector&lt;lanelet::BasicPolygon2d&gt;;</a>
+<a name="76"><span class="lineNum">      76 </span>                :            : </a>
+<a name="77"><span class="lineNum">      77 </span>                :            : namespace occlusion_spot_utils</a>
+<a name="78"><span class="lineNum">      78 </span>                :            : {</a>
+<a name="79"><span class="lineNum">      79 </span>                :            : enum ROAD_TYPE { PRIVATE, PUBLIC, HIGHWAY, UNKNOWN };</a>
+<a name="80"><span class="lineNum">      80 </span>                :            : enum DETECTION_METHOD { OCCUPANCY_GRID, PREDICTED_OBJECT };</a>
+<a name="81"><span class="lineNum">      81 </span>                :            : enum PASS_JUDGE { SMOOTH_VELOCITY, CURRENT_VELOCITY };</a>
+<a name="82"><span class="lineNum">      82 </span>                :            : </a>
+<a name="83"><span class="lineNum">      83 </span>                :            : struct DetectionArea</a>
+<a name="84"><span class="lineNum">      84 </span>                :            : {</a>
+<a name="85"><span class="lineNum">      85 </span>                :            :   double min_longitudinal_offset;  // [m] detection area safety buffer from front bumper</a>
+<a name="86"><span class="lineNum">      86 </span>                :            :   double max_lateral_distance;     // [m] distance to care about occlusion spot</a>
+<a name="87"><span class="lineNum">      87 </span>                :            :   double slice_length;             // [m] size of each slice</a>
+<a name="88"><span class="lineNum">      88 </span>                :            :   double min_occlusion_spot_size;  // [m] minumum size to care about the occlusion spot</a>
+<a name="89"><span class="lineNum">      89 </span>                :            : };</a>
+<a name="90"><span class="lineNum">      90 </span>                :            : struct Velocity</a>
+<a name="91"><span class="lineNum">      91 </span>                :            : {</a>
+<a name="92"><span class="lineNum">      92 </span>                :            :   double safety_ratio;          // [-] safety margin for planning error</a>
+<a name="93"><span class="lineNum">      93 </span>                :            :   double max_stop_jerk;         // [m/s^3] emergency braking system jerk</a>
+<a name="94"><span class="lineNum">      94 </span>                :            :   double max_stop_accel;        // [m/s^2] emergency braking system deceleration</a>
+<a name="95"><span class="lineNum">      95 </span>                :            :   double max_slow_down_jerk;    // [m/s^3] maximum allowed slowdown jerk</a>
+<a name="96"><span class="lineNum">      96 </span>                :            :   double max_slow_down_accel;   // [m/s^2] maximum allowed deceleration</a>
+<a name="97"><span class="lineNum">      97 </span>                :            :   double non_effective_jerk;    // [m/s^3] too weak jerk for velocity planning.</a>
+<a name="98"><span class="lineNum">      98 </span>                :            :   double non_effective_accel;   // [m/s^2] too weak deceleration for velocity planning.</a>
+<a name="99"><span class="lineNum">      99 </span>                :            :   double min_allowed_velocity;  // [m/s]   minimum allowed velocity not to stop</a>
+<a name="100"><span class="lineNum">     100 </span>                :            :   double a_ego;                 // [m/s^2] current ego acceleration</a>
+<a name="101"><span class="lineNum">     101 </span>                :            :   double v_ego;                 // [m/s]   current ego velocity</a>
+<a name="102"><span class="lineNum">     102 </span>                :            :   double delay_time;            // [s] safety time buffer for delay response</a>
+<a name="103"><span class="lineNum">     103 </span>                :            :   double safe_margin;           // [m] maximum safety distance for any error</a>
+<a name="104"><span class="lineNum">     104 </span>                :            : };</a>
+<a name="105"><span class="lineNum">     105 </span>                :            : </a>
+<a name="106"><span class="lineNum">     106 </span>                :            : struct LatLon</a>
+<a name="107"><span class="lineNum">     107 </span>                :            : {</a>
+<a name="108"><span class="lineNum">     108 </span>                :            :   double lateral_distance;       // [m] lateral distance</a>
+<a name="109"><span class="lineNum">     109 </span>                :            :   double longitudinal_distance;  // [m] longitudinal distance</a>
+<a name="110"><span class="lineNum">     110 </span>                :            : };</a>
+<a name="111"><span class="lineNum">     111 </span>                :            : </a>
+<a name="112"><span class="lineNum">     112 </span>                :            : struct PlannerParam</a>
+<a name="113"><span class="lineNum">     113 </span>                :            : {</a>
+<a name="114"><span class="lineNum">     114 </span>                :            :   DETECTION_METHOD detection_method;</a>
+<a name="115"><span class="lineNum">     115 </span>                :            :   PASS_JUDGE pass_judge;</a>
+<a name="116"><span class="lineNum">     116 </span>                :            :   bool is_show_occlusion;        // [-]</a>
+<a name="117"><span class="lineNum">     117 </span>                :            :   bool is_show_cv_window;        // [-]</a>
+<a name="118"><span class="lineNum">     118 </span>                :            :   bool is_show_processing_time;  // [-]</a>
+<a name="119"><span class="lineNum">     119 </span>                :            :   bool filter_occupancy_grid;    // [-]</a>
+<a name="120"><span class="lineNum">     120 </span>                :            :   bool use_object_info;          // [-]</a>
+<a name="121"><span class="lineNum">     121 </span>                :            :   bool use_partition_lanelet;    // [-]</a>
+<a name="122"><span class="lineNum">     122 </span>                :            :   // parameters in yaml</a>
+<a name="123"><span class="lineNum">     123 </span>                :            :   double detection_area_length;      // [m]</a>
+<a name="124"><span class="lineNum">     124 </span>                :            :   double detection_area_max_length;  // [m]</a>
+<a name="125"><span class="lineNum">     125 </span>                :            :   double stuck_vehicle_vel;          // [m/s]</a>
+<a name="126"><span class="lineNum">     126 </span>                :            :   double lateral_distance_thr;       // [m] lateral distance threshold to consider</a>
+<a name="127"><span class="lineNum">     127 </span>                :            :   double pedestrian_vel;             // [m/s]</a>
+<a name="128"><span class="lineNum">     128 </span>                :            :   double pedestrian_radius;          // [m]</a>
+<a name="129"><span class="lineNum">     129 </span>                :            : </a>
+<a name="130"><span class="lineNum">     130 </span>                :            :   double dist_thr;   // [m]</a>
+<a name="131"><span class="lineNum">     131 </span>                :            :   double angle_thr;  // [rad]</a>
+<a name="132"><span class="lineNum">     132 </span>                :            : </a>
+<a name="133"><span class="lineNum">     133 </span>                :            :   // vehicle info</a>
+<a name="134"><span class="lineNum">     134 </span>                :            :   double half_vehicle_width;  // [m]  half vehicle_width from vehicle info</a>
+<a name="135"><span class="lineNum">     135 </span>                :            :   double baselink_to_front;   // [m]  wheel_base + front_overhang</a>
+<a name="136"><span class="lineNum">     136 </span>                :            : </a>
+<a name="137"><span class="lineNum">     137 </span>                :            :   Velocity v;</a>
+<a name="138"><span class="lineNum">     138 </span>                :            :   DetectionArea detection_area;</a>
+<a name="139"><span class="lineNum">     139 </span>                :            :   grid_utils::GridParam grid;</a>
+<a name="140"><span class="lineNum">     140 </span>                :            : };</a>
+<a name="141"><span class="lineNum">     141 </span>                :            : </a>
+<a name="142"><span class="lineNum">     142 </span>                :            : struct SafeMotion</a>
+<a name="143"><span class="lineNum">     143 </span>                :            : {</a>
+<a name="144"><span class="lineNum">     144 </span>                :            :   double stop_dist;</a>
+<a name="145"><span class="lineNum">     145 </span>                :            :   double safe_velocity;</a>
+<a name="146"><span class="lineNum">     146 </span>                :            : };</a>
+<a name="147"><span class="lineNum">     147 </span>                :            : </a>
+<a name="148"><span class="lineNum">     148 </span>                :            : struct ObstacleInfo</a>
+<a name="149"><span class="lineNum">     149 </span>                :            : {</a>
+<a name="150"><span class="lineNum">     150 </span>                :            :   SafeMotion safe_motion;  // safe motion of velocity and stop point</a>
+<a name="151"><span class="lineNum">     151 </span>                :            :   geometry_msgs::msg::Point position;</a>
+<a name="152"><span class="lineNum">     152 </span>                :            :   double max_velocity;  // [m/s] Maximum velocity of the possible obstacle</a>
+<a name="153"><span class="lineNum">     153 </span>                :            :   double ttc;           // [s] time to collision with ego</a>
+<a name="154"><span class="lineNum">     154 </span>                :            : };</a>
+<a name="155"><span class="lineNum">     155 </span>                :            : </a>
+<a name="156"><span class="lineNum">     156 </span>                :            : /**</a>
+<a name="157"><span class="lineNum">     157 </span>                :            :  * @brief representation of a possible collision between ego and some obstacle</a>
+<a name="158"><span class="lineNum">     158 </span>                :            :  *                                      ^</a>
+<a name="159"><span class="lineNum">     159 </span>                :            :  *                                      |</a>
+<a name="160"><span class="lineNum">     160 </span>                :            :  * Ego ---------collision----------intersection-------&gt; path</a>
+<a name="161"><span class="lineNum">     161 </span>                :            :  *                                      |</a>
+<a name="162"><span class="lineNum">     162 </span>                :            :  *             ------------------       |</a>
+<a name="163"><span class="lineNum">     163 </span>                :            :  *            |     Vehicle      |   obstacle</a>
+<a name="164"><span class="lineNum">     164 </span>                :            :  *             ------------------</a>
+<a name="165"><span class="lineNum">     165 </span>                :            :  */</a>
+<a name="166"><span class="lineNum">     166 </span>                :            : struct PossibleCollisionInfo</a>
+<a name="167"><span class="lineNum">     167 </span>                :            : {</a>
+<a name="168"><span class="lineNum">     168 </span>                :            :   ObstacleInfo obstacle_info;                          // For hidden obstacle</a>
+<a name="169"><span class="lineNum">     169 </span>                :            :   PathPoint collision_with_margin;                     // For baselink at collision point</a>
+<a name="170"><span class="lineNum">     170 </span>                :            :   Pose collision_pose;                                 // only use this for debugging</a>
+<a name="171"><span class="lineNum">     171 </span>                :            :   Pose intersection_pose;                              // For egp path and hidden obstacle</a>
+<a name="172"><span class="lineNum">     172 </span>                :            :   lanelet::ArcCoordinates arc_lane_dist_at_collision;  // For ego distance to obstacle in s-d</a>
+<a name="173"><span class="lineNum">     173 </span>                :            :   PossibleCollisionInfo() = default;</a>
+<a name="174"><span class="lineNum">     174 </span>                :            :   PossibleCollisionInfo(</a>
+<a name="175"><span class="lineNum">     175 </span>                :            :     const ObstacleInfo &amp; obstacle_info, const PathPoint &amp; collision_with_margin,</a>
+<a name="176"><span class="lineNum">     176 </span>                :            :     const Pose &amp; intersection_pose, const lanelet::ArcCoordinates &amp; arc_lane_dist_to_occlusion)</a>
+<a name="177"><span class="lineNum">     177 </span>                :            :   : obstacle_info(obstacle_info),</a>
+<a name="178"><span class="lineNum">     178 </span>                :            :     collision_with_margin(collision_with_margin),</a>
+<a name="179"><span class="lineNum">     179 </span>                :            :     intersection_pose(intersection_pose),</a>
+<a name="180"><span class="lineNum">     180 </span>                :<span class="lineCov">       2003 :     arc_lane_dist_at_collision(arc_lane_dist_to_occlusion)</span></a>
+<a name="181"><span class="lineNum">     181 </span>                :            :   {</a>
+<a name="182"><span class="lineNum">     182 </span>                :            :   }</a>
+<a name="183"><span class="lineNum">     183 </span>                :            : };</a>
+<a name="184"><span class="lineNum">     184 </span>                :            : </a>
+<a name="185"><span class="lineNum">     185 </span>                :            : struct DebugData</a>
+<a name="186"><span class="lineNum">     186 </span>                :            : {</a>
+<a name="187"><span class="lineNum">     187 </span>                :            :   double z;</a>
+<a name="188"><span class="lineNum">     188 </span>                :            :   std::string road_type = &quot;&quot;;</a>
+<a name="189"><span class="lineNum">     189 </span>                :            :   std::string detection_type = &quot;&quot;;</a>
+<a name="190"><span class="lineNum">     190 </span>                :            :   Polygons2d detection_area_polygons;</a>
+<a name="191"><span class="lineNum">     191 </span>                :            :   std::vector&lt;lanelet::BasicPolygon2d&gt; close_partition;</a>
+<a name="192"><span class="lineNum">     192 </span>                :            :   std::vector&lt;geometry_msgs::msg::Point&gt; parked_vehicle_point;</a>
+<a name="193"><span class="lineNum">     193 </span>                :            :   std::vector&lt;PossibleCollisionInfo&gt; possible_collisions;</a>
+<a name="194"><span class="lineNum">     194 </span>                :            :   std::vector&lt;geometry_msgs::msg::Point&gt; occlusion_points;</a>
+<a name="195"><span class="lineNum">     195 </span>                :            :   PathWithLaneId path_raw;</a>
+<a name="196"><span class="lineNum">     196 </span>                :            :   PathWithLaneId interp_path;</a>
+<a name="197"><span class="lineNum">     197 </span>                :<span class="lineNoCov">          0 :   void resetData()</span></a>
+<a name="198"><span class="lineNum">     198 </span>                :            :   {</a>
+<a name="199"><span class="lineNum">     199 </span>                :            :     close_partition.clear();</a>
+<a name="200"><span class="lineNum">     200 </span>                :            :     detection_area_polygons.clear();</a>
+<a name="201"><span class="lineNum">     201 </span>                :            :     parked_vehicle_point.clear();</a>
+<a name="202"><span class="lineNum">     202 </span>                :            :     possible_collisions.clear();</a>
+<a name="203"><span class="lineNum">     203 </span>                :            :     occlusion_points.clear();</a>
+<a name="204"><span class="lineNum">     204 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="205"><span class="lineNum">     205 </span>                :            : };</a>
+<a name="206"><span class="lineNum">     206 </span>                :            : // apply current velocity to path</a>
+<a name="207"><span class="lineNum">     207 </span>                :            : PathWithLaneId applyVelocityToPath(const PathWithLaneId &amp; path, const double v0);</a>
+<a name="208"><span class="lineNum">     208 </span>                :            : //!&lt; @brief wrapper for detection area polygon generation</a>
+<a name="209"><span class="lineNum">     209 </span>                :            : bool buildDetectionAreaPolygon(</a>
+<a name="210"><span class="lineNum">     210 </span>                :            :   Polygons2d &amp; slices, const PathWithLaneId &amp; path, const double offset,</a>
+<a name="211"><span class="lineNum">     211 </span>                :            :   const PlannerParam &amp; param);</a>
+<a name="212"><span class="lineNum">     212 </span>                :            : lanelet::ConstLanelet toPathLanelet(const PathWithLaneId &amp; path);</a>
+<a name="213"><span class="lineNum">     213 </span>                :            : // Note : consider offset_from_start_to_ego and safety margin for collision here</a>
+<a name="214"><span class="lineNum">     214 </span>                :            : void handleCollisionOffset(std::vector&lt;PossibleCollisionInfo&gt; &amp; possible_collisions, double offset);</a>
+<a name="215"><span class="lineNum">     215 </span>                :            : void clipPathByLength(</a>
+<a name="216"><span class="lineNum">     216 </span>                :            :   const PathWithLaneId &amp; path, PathWithLaneId &amp; clipped, const double max_length = 100.0);</a>
+<a name="217"><span class="lineNum">     217 </span>                :            : bool isStuckVehicle(PredictedObject obj, const double min_vel);</a>
+<a name="218"><span class="lineNum">     218 </span>                :            : std::vector&lt;PredictedObject&gt; filterDynamicObjectByDetectionArea(</a>
+<a name="219"><span class="lineNum">     219 </span>                :            :   std::vector&lt;PredictedObject&gt; &amp; objs, const Polygons2d &amp; polys);</a>
+<a name="220"><span class="lineNum">     220 </span>                :            : std::vector&lt;PredictedObject&gt; getParkedVehicles(</a>
+<a name="221"><span class="lineNum">     221 </span>                :            :   const PredictedObjects &amp; dyn_objects, const PlannerParam &amp; param,</a>
+<a name="222"><span class="lineNum">     222 </span>                :            :   std::vector&lt;Point&gt; &amp; debug_point);</a>
+<a name="223"><span class="lineNum">     223 </span>                :            : bool generatePossibleCollisionsFromObjects(</a>
+<a name="224"><span class="lineNum">     224 </span>                :            :   std::vector&lt;PossibleCollisionInfo&gt; &amp; possible_collisions, const PathWithLaneId &amp; path,</a>
+<a name="225"><span class="lineNum">     225 </span>                :            :   const PlannerParam &amp; param, const double offset_from_start_to_ego,</a>
+<a name="226"><span class="lineNum">     226 </span>                :            :   const std::vector&lt;PredictedObject&gt; &amp; dyn_objects);</a>
+<a name="227"><span class="lineNum">     227 </span>                :            : ROAD_TYPE getCurrentRoadType(</a>
+<a name="228"><span class="lineNum">     228 </span>                :            :   const lanelet::ConstLanelet &amp; current_lanelet, const LaneletMapPtr &amp; lanelet_map_ptr);</a>
+<a name="229"><span class="lineNum">     229 </span>                :            : //!&lt; @brief calculate intersection and collision point from occlusion spot</a>
+<a name="230"><span class="lineNum">     230 </span>                :            : void calculateCollisionPathPointFromOcclusionSpot(</a>
+<a name="231"><span class="lineNum">     231 </span>                :            :   PossibleCollisionInfo &amp; pc, const lanelet::BasicPoint2d &amp; obstacle_point,</a>
+<a name="232"><span class="lineNum">     232 </span>                :            :   const double offset_from_ego_to_target, const lanelet::ConstLanelet &amp; path_lanelet,</a>
+<a name="233"><span class="lineNum">     233 </span>                :            :   const PlannerParam &amp; param);</a>
+<a name="234"><span class="lineNum">     234 </span>                :            : //!&lt; @brief create hidden collision behind parked car</a>
+<a name="235"><span class="lineNum">     235 </span>                :            : void createPossibleCollisionBehindParkedVehicle(</a>
+<a name="236"><span class="lineNum">     236 </span>                :            :   std::vector&lt;PossibleCollisionInfo&gt; &amp; possible_collisions, const PathWithLaneId &amp; path,</a>
+<a name="237"><span class="lineNum">     237 </span>                :            :   const PlannerParam &amp; param, const double offset_from_ego_to_target,</a>
+<a name="238"><span class="lineNum">     238 </span>                :            :   const PredictedObjects::ConstSharedPtr &amp; dyn_obj_arr);</a>
+<a name="239"><span class="lineNum">     239 </span>                :            : //!&lt; @brief set velocity and orientation to collision point based on previous Path with laneId</a>
+<a name="240"><span class="lineNum">     240 </span>                :            : void calcSlowDownPointsForPossibleCollision(</a>
+<a name="241"><span class="lineNum">     241 </span>                :            :   const int closest_idx, const PathWithLaneId &amp; path, const double offset,</a>
+<a name="242"><span class="lineNum">     242 </span>                :            :   std::vector&lt;PossibleCollisionInfo&gt; &amp; possible_collisions);</a>
+<a name="243"><span class="lineNum">     243 </span>                :            : //!&lt; @brief convert a set of occlusion spots found on detection_area slice</a>
+<a name="244"><span class="lineNum">     244 </span>                :            : boost::optional&lt;PossibleCollisionInfo&gt; generateOneNotableCollisionFromOcclusionSpot(</a>
+<a name="245"><span class="lineNum">     245 </span>                :            :   const grid_map::GridMap &amp; grid, const std::vector&lt;grid_map::Position&gt; &amp; occlusion_spot_positions,</a>
+<a name="246"><span class="lineNum">     246 </span>                :            :   const double offset_from_start_to_ego, const Point2d base_point,</a>
+<a name="247"><span class="lineNum">     247 </span>                :            :   const lanelet::ConstLanelet &amp; path_lanelet, const PlannerParam &amp; param, DebugData &amp; debug_data);</a>
+<a name="248"><span class="lineNum">     248 </span>                :            : //!&lt; @brief generate possible collisions coming from occlusion spots on the side of the path</a>
+<a name="249"><span class="lineNum">     249 </span>                :            : bool generatePossibleCollisionsFromGridMap(</a>
+<a name="250"><span class="lineNum">     250 </span>                :            :   std::vector&lt;PossibleCollisionInfo&gt; &amp; possible_collisions, const grid_map::GridMap &amp; grid,</a>
+<a name="251"><span class="lineNum">     251 </span>                :            :   const PathWithLaneId &amp; path, const double offset_from_start_to_ego, const PlannerParam &amp; param,</a>
+<a name="252"><span class="lineNum">     252 </span>                :            :   DebugData &amp; debug_data);</a>
+<a name="253"><span class="lineNum">     253 </span>                :            : </a>
+<a name="254"><span class="lineNum">     254 </span>                :            : }  // namespace occlusion_spot_utils</a>
+<a name="255"><span class="lineNum">     255 </span>                :            : }  // namespace behavior_velocity_planner</a>
+<a name="256"><span class="lineNum">     256 </span>                :            : </a>
+<a name="257"><span class="lineNum">     257 </span>                :            : #endif  // SCENE_MODULE__OCCLUSION_SPOT__OCCLUSION_SPOT_UTILS_HPP_</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

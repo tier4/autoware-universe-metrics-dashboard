@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.filtered - planning/obstacle_avoidance_planner/src/mpt_optimizer.cpp - functions</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">planning/obstacle_avoidance_planner/src</a> - mpt_optimizer.cpp<span style="font-size: 80%;"> (<a href="mpt_optimizer.cpp.gcov.html">source</a> / functions)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.filtered</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">713</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2022-04-01 05:10:13</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">37</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+            | Branches:
+            <span class="coverLegendCov">+</span> taken
+            <span class="coverLegendNoCov">-</span> not taken
+            <span class="coverLegendNoCov">#</span> not executed
+</td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <center>
+  <table width="60%" cellpadding=1 cellspacing=1 border=0>
+    <tr><td><br></td></tr>
+    <tr>
+      <td width="80%" class="tableHead">Function Name <span class="tableHeadSort"><a href="mpt_optimizer.cpp.func.html"><img src="../../../updown.png" width=10 height=14 alt="Sort by function name" title="Sort by function name" border=0></a></span></td>
+      <td width="20%" class="tableHead">Hit count <span class="tableHeadSort"><img src="../../../glass.png" width=10 height=14 alt="Sort by hit count" title="Sort by hit count" border=0></span></td>
+    </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1072">MPTOptimizer::getMPTPoints(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;, std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;, Eigen::Matrix&lt;double, -1, 1, 0, -1, 1&gt; const&amp;, MPTOptimizer::MPTMatrix const&amp;, std::shared_ptr&lt;DebugData&gt;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#651">MPTOptimizer::executeOptimization(std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;, bool, MPTOptimizer::MPTMatrix const&amp;, MPTOptimizer::ValueMatrix const&amp;, std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#178">MPTOptimizer::getModelPredictiveTrajectory(bool, std::vector&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::vector&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;, CVMaps const&amp;, geometry_msgs::msg::Pose_&lt;std::allocator&lt;void&gt; &gt; const&amp;, double, std::shared_ptr&lt;DebugData&gt;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#165">MPTOptimizer::MPTOptimizer(bool, TrajectoryParam const&amp;, VehicleParam const&amp;, MPTParam const&amp;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#99">void (anonymous namespace)::trimPoints&lt;ReferencePoint&gt;(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#41">(anonymous namespace)::extractBounds(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, unsigned long)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#84">(anonymous namespace)::calcVehiclePose(ReferencePoint const&amp;, double, double, double)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#53">(anonymous namespace)::findWidestBounds(std::vector&lt;Bounds, std::allocator&lt;Bounds&gt; &gt; const&amp;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#151">(anonymous namespace)::slerpYawFromReferencePoints(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#140">(anonymous namespace)::getState(geometry_msgs::msg::Pose_&lt;std::allocator&lt;void&gt; &gt; const&amp;, geometry_msgs::msg::Pose_&lt;std::allocator&lt;void&gt; &gt; const&amp;)</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1308">MPTOptimizer::calcBounds(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;, bool, CVMaps const&amp;, std::shared_ptr&lt;DebugData&gt;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1187">MPTOptimizer::calcVelocity(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;, std::vector&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1627">MPTOptimizer::getClearance(cv::Mat const&amp;, geometry_msgs::msg::Point_&lt;std::allocator&lt;void&gt; &gt; const&amp;, nav_msgs::msg::MapMetaData_&lt;std::allocator&lt;void&gt; &gt; const&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1224">MPTOptimizer::calcArcLength(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1197">MPTOptimizer::calcCurvature(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1289">MPTOptimizer::addSteerWeightR(std::vector&lt;Eigen::Triplet&lt;double, int&gt;, std::allocator&lt;Eigen::Triplet&lt;double, int&gt; &gt; &gt;&amp;, std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1236">MPTOptimizer::calcExtraPoints(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1175">MPTOptimizer::calcOrientation(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1586">MPTOptimizer::getCollisionType(CVMaps const&amp;, bool, geometry_msgs::msg::Pose_&lt;std::allocator&lt;void&gt; &gt; const&amp;, double, double) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1392">MPTOptimizer::calcVehicleBounds(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;, CVMaps const&amp;, std::shared_ptr&lt;DebugData&gt;, bool) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#490">MPTOptimizer::generateMPTMatrix(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#468">MPTOptimizer::getMPTFixedPoints(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#781">MPTOptimizer::getObjectiveMatrix(MPTOptimizer::MPTMatrix const&amp;, MPTOptimizer::ValueMatrix const&amp;, std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#270">MPTOptimizer::getReferencePoints(std::vector&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;, bool, CVMaps const&amp;, std::shared_ptr&lt;DebugData&gt;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#362">MPTOptimizer::calcPlanningFromEgo(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#559">MPTOptimizer::generateValueMatrix(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::vector&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1475">MPTOptimizer::getBoundsCandidates(bool, geometry_msgs::msg::Pose_&lt;std::allocator&lt;void&gt; &gt; const&amp;, CVMaps const&amp;, std::shared_ptr&lt;DebugData&gt;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#877">MPTOptimizer::getConstraintMatrix(bool, MPTOptimizer::MPTMatrix const&amp;, std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#407">MPTOptimizer::getFixedReferencePoints(std::vector&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;) const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#1256">MPTOptimizer::calcExtraPoints(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;) const::{lambda()#1}::operator()() const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#525">MPTOptimizer::generateMPTMatrix(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;) const::{lambda()#1}::operator()() const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#277">MPTOptimizer::getReferencePoints(std::vector&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;, bool, CVMaps const&amp;, std::shared_ptr&lt;DebugData&gt;) const::{lambda()#1}::operator()() const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#390">MPTOptimizer::calcPlanningFromEgo(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt;&amp;) const::{lambda()#1}::operator()() const [clone .isra.0]</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#596">MPTOptimizer::generateValueMatrix(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::vector&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;) const::{lambda()#2}::operator()() const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#585">MPTOptimizer::generateValueMatrix(std::vector&lt;ReferencePoint, std::allocator&lt;ReferencePoint&gt; &gt; const&amp;, std::vector&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::PathPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::shared_ptr&lt;DebugData&gt;) const::{lambda()#1}::operator()() const [clone .isra.0]</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#435">MPTOptimizer::getFixedReferencePoints(std::vector&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;) const::{lambda()#2}::operator()() const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="mpt_optimizer.cpp.gcov.html#278">MPTOptimizer::getReferencePoints(std::vector&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt;, std::allocator&lt;autoware_auto_planning_msgs::msg::TrajectoryPoint_&lt;std::allocator&lt;void&gt; &gt; &gt; &gt; const&amp;, std::unique_ptr&lt;Trajectories, std::default_delete&lt;Trajectories&gt; &gt; const&amp;, bool, CVMaps const&amp;, std::shared_ptr&lt;DebugData&gt;) const::{lambda()#1}::operator()() const::{lambda()#1}::operator()() const</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+  </table>
+  <br>
+  </center>
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
