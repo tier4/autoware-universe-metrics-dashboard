@@ -1,0 +1,27 @@
+{
+  "package": "multi_object_tracker",
+  "worst_value": {
+    "ccn": 18,
+    "nloc": 93,
+    "parameter": 6,
+    "token": 1177
+  },
+  "average_value": {
+    "ccn": 3.2,
+    "nloc": 22.5,
+    "parameter": 1.4,
+    "token": 241.7
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 6,
+    "nloc": 13,
+    "parameter": 0,
+    "token": 0
+  }
+}

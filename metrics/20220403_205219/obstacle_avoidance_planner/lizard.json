@@ -1,0 +1,27 @@
+{
+  "package": "obstacle_avoidance_planner",
+  "worst_value": {
+    "ccn": 23,
+    "nloc": 265,
+    "parameter": 9,
+    "token": 1791
+  },
+  "average_value": {
+    "ccn": 3.9,
+    "nloc": 25.6,
+    "parameter": 2.8,
+    "token": 213.6
+  },
+  "over_threshold_count": {
+    "ccn": 3,
+    "nloc": 2,
+    "parameter": 8,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 16,
+    "nloc": 24,
+    "parameter": 8,
+    "token": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "package": "traffic_light_visualization",
+  "worst_value": {
+    "ccn": 21,
+    "nloc": 68,
+    "parameter": 5,
+    "token": 505
+  },
+  "average_value": {
+    "ccn": 4.1,
+    "nloc": 21.4,
+    "parameter": 2.6,
+    "token": 172.4
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

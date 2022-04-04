@@ -1,0 +1,27 @@
+{
+  "package": "surround_obstacle_checker",
+  "worst_value": {
+    "ccn": 9,
+    "nloc": 80,
+    "parameter": 5,
+    "token": 730
+  },
+  "average_value": {
+    "ccn": 2.5,
+    "nloc": 18.7,
+    "parameter": 1.6,
+    "token": 142.5
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 2,
+    "parameter": 0,
+    "token": 0
+  }
+}

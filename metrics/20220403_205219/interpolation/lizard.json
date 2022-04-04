@@ -1,0 +1,27 @@
+{
+  "package": "interpolation",
+  "worst_value": {
+    "ccn": 8,
+    "nloc": 37,
+    "parameter": 3,
+    "token": 446
+  },
+  "average_value": {
+    "ccn": 3.3,
+    "nloc": 14.8,
+    "parameter": 1.7,
+    "token": 127.4
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

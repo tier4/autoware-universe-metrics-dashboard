@@ -1,0 +1,27 @@
+{
+  "package": "lidar_apollo_instance_segmentation",
+  "worst_value": {
+    "ccn": 24,
+    "nloc": 84,
+    "parameter": 5,
+    "token": 785
+  },
+  "average_value": {
+    "ccn": 2.9,
+    "nloc": 13.9,
+    "parameter": 1.5,
+    "token": 113.8
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 3,
+    "nloc": 4,
+    "parameter": 0,
+    "token": 0
+  }
+}

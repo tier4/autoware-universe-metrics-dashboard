@@ -1,0 +1,27 @@
+{
+  "package": "mussp",
+  "worst_value": {
+    "ccn": 23,
+    "nloc": 143,
+    "parameter": 6,
+    "token": 1028
+  },
+  "average_value": {
+    "ccn": 3.9,
+    "nloc": 18.2,
+    "parameter": 2.0,
+    "token": 159.9
+  },
+  "over_threshold_count": {
+    "ccn": 2,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 6,
+    "nloc": 5,
+    "parameter": 0,
+    "token": 0
+  }
+}

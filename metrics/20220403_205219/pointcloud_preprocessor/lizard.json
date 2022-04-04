@@ -1,0 +1,27 @@
+{
+  "package": "pointcloud_preprocessor",
+  "worst_value": {
+    "ccn": 53,
+    "nloc": 202,
+    "parameter": 3,
+    "token": 1675
+  },
+  "average_value": {
+    "ccn": 4.4,
+    "nloc": 24.5,
+    "parameter": 1.4,
+    "token": 198.5
+  },
+  "over_threshold_count": {
+    "ccn": 3,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 7,
+    "nloc": 11,
+    "parameter": 0,
+    "token": 0
+  }
+}

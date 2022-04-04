@@ -1,0 +1,27 @@
+{
+  "package": "ndt_pcl_modified",
+  "worst_value": {
+    "ccn": 13,
+    "nloc": 110,
+    "parameter": 9,
+    "token": 1044
+  },
+  "average_value": {
+    "ccn": 7.0,
+    "nloc": 51.8,
+    "parameter": 2.8,
+    "token": 479.3
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 1,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 2,
+    "parameter": 1,
+    "token": 0
+  }
+}

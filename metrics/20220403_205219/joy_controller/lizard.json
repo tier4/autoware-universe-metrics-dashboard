@@ -1,0 +1,27 @@
+{
+  "package": "joy_controller",
+  "worst_value": {
+    "ccn": 16,
+    "nloc": 58,
+    "parameter": 2,
+    "token": 516
+  },
+  "average_value": {
+    "ccn": 1.9,
+    "nloc": 5.3,
+    "parameter": 0.1,
+    "token": 41.8
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

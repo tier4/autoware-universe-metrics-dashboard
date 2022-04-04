@@ -1,0 +1,11 @@
+{
+  "package": "vehicle_cmd_gate",
+  "value": [
+    {
+      "label": "all",
+      "line": 11.7,
+      "function": 17.6,
+      "branch": 1.6
+    }
+  ]
+}

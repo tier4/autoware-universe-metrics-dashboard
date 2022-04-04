@@ -1,0 +1,11 @@
+{
+  "package": "traffic_light_ssd_fine_detector",
+  "value": [
+    {
+      "label": "all",
+      "line": 0.0,
+      "function": 0.0,
+      "branch": 0.0
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "package": "simple_planning_simulator",
+  "worst_value": {
+    "ccn": 26,
+    "nloc": 77,
+    "parameter": 10,
+    "token": 831
+  },
+  "average_value": {
+    "ccn": 1.8,
+    "nloc": 8.4,
+    "parameter": 1.0,
+    "token": 71.9
+  },
+  "over_threshold_count": {
+    "ccn": 2,
+    "nloc": 0,
+    "parameter": 3,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 2,
+    "parameter": 3,
+    "token": 0
+  }
+}
