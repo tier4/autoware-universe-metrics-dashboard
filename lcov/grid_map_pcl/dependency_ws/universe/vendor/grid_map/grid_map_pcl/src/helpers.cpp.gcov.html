@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-01 05:10:33</td>
+            <td class="headerValue">2022-04-03 21:04:33</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -290,15 +290,15 @@
 <a name="180"><span class="lineNum">     180 </span>                :<span class="lineCov">         96 :   return rotationMatrix;</span></a>
 <a name="181"><span class="lineNum">     181 </span>                :            : }</a>
 <a name="182"><span class="lineNum">     182 </span>                :            : </a>
-<a name="183"><span class="lineNum">     183 </span>                :<span class="lineCov">      77087 : Eigen::Vector3d calculateMeanOfPointPositions(Pointcloud::ConstPtr inputCloud)</span></a>
+<a name="183"><span class="lineNum">     183 </span>                :<span class="lineCov">      77045 : Eigen::Vector3d calculateMeanOfPointPositions(Pointcloud::ConstPtr inputCloud)</span></a>
 <a name="184"><span class="lineNum">     184 </span>                :            : {</a>
 <a name="185"><span class="lineNum">     185 </span>                :            :   Eigen::Vector3d mean = Eigen::Vector3d::Zero();</a>
-<a name="186"><span class="lineNum">     186 </span>        [<span class="branchCov" title="Branch 0 was taken 3767400 times"> + </span><span class="branchCov" title="Branch 1 was taken 77087 times"> + </span>]:<span class="lineCov">    3844490 :   for (const auto &amp; point : inputCloud-&gt;points) {</span></a>
-<a name="187"><span class="lineNum">     187 </span>                :<span class="lineCov">    3767400 :     mean += Eigen::Vector3d(point.x, point.y, point.z);</span></a>
+<a name="186"><span class="lineNum">     186 </span>        [<span class="branchCov" title="Branch 0 was taken 3594030 times"> + </span><span class="branchCov" title="Branch 1 was taken 77045 times"> + </span>]:<span class="lineCov">    3671080 :   for (const auto &amp; point : inputCloud-&gt;points) {</span></a>
+<a name="187"><span class="lineNum">     187 </span>                :<span class="lineCov">    3594030 :     mean += Eigen::Vector3d(point.x, point.y, point.z);</span></a>
 <a name="188"><span class="lineNum">     188 </span>                :            :   }</a>
-<a name="189"><span class="lineNum">     189 </span>                :<span class="lineCov">      77087 :   mean /= inputCloud-&gt;points.size();</span></a>
+<a name="189"><span class="lineNum">     189 </span>                :<span class="lineCov">      77045 :   mean /= inputCloud-&gt;points.size();</span></a>
 <a name="190"><span class="lineNum">     190 </span>                :            : </a>
-<a name="191"><span class="lineNum">     191 </span>                :<span class="lineCov">      77087 :   return mean;</span></a>
+<a name="191"><span class="lineNum">     191 </span>                :<span class="lineCov">      77045 :   return mean;</span></a>
 <a name="192"><span class="lineNum">     192 </span>                :            : }</a>
 <a name="193"><span class="lineNum">     193 </span>                :            : </a>
 <a name="194"><span class="lineNum">     194 </span>                :<span class="lineCov">          1 : Pointcloud::Ptr loadPointcloudFromPcd(const std::string &amp; filename)</span></a>

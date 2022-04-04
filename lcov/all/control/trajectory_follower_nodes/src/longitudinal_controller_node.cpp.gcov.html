@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-01 05:10:13</td>
+            <td class="headerValue">2022-04-03 21:04:12</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">25</td>
@@ -56,9 +56,9 @@
 </td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">547</td>
+            <td class="headerCovTableEntry">544</td>
             <td class="headerCovTableEntry">1260</td>
-            <td class="headerCovTableEntryLo">43.4 %</td>
+            <td class="headerCovTableEntryLo">43.2 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -552,16 +552,16 @@
 <a name="355"><span class="lineNum">     355 </span>                :<span class="lineCov">          1 :   return result;</span></a>
 <a name="356"><span class="lineNum">     356 </span>                :            : }</a>
 <a name="357"><span class="lineNum">     357 </span>                :            : </a>
-<a name="358"><span class="lineNum">     358 </span>                :<span class="lineCov">         10 : void LongitudinalController::callbackTimerControl()</span></a>
+<a name="358"><span class="lineNum">     358 </span>                :<span class="lineCov">          9 : void LongitudinalController::callbackTimerControl()</span></a>
 <a name="359"><span class="lineNum">     359 </span>                :            : {</a>
 <a name="360"><span class="lineNum">     360 </span>                :            :   // wait for initial pointers</a>
-<a name="361"><span class="lineNum">     361 </span>                :<span class="lineCov">         10 :   if (</span></a>
-<a name="362"><span class="lineNum">     362 </span>  [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">         19 :     !m_current_velocity_ptr || !m_prev_velocity_ptr || !m_trajectory_ptr ||</span></a>
+<a name="361"><span class="lineNum">     361 </span>                :<span class="lineCov">          9 :   if (</span></a>
+<a name="362"><span class="lineNum">     362 </span>  [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">         18 :     !m_current_velocity_ptr || !m_prev_velocity_ptr || !m_trajectory_ptr ||</span></a>
 <span class="lineNum">         </span>   <span class="branchCov" title="Branch 4 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchCov" title="Branch 7 was taken 9 times"> + </span>]
-<a name="363"><span class="lineNum">     363 </span>  [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 9 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span> :<span class="lineCov">         28 :     !m_tf_buffer.canTransform(m_trajectory_ptr-&gt;header.frame_id, &quot;base_link&quot;, tf2::TimePointZero))</span></a>
-<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 9 times"> + </span><span class="branchCov" title="Branch 5 was taken 1 time"> + </span>]
+<a name="363"><span class="lineNum">     363 </span>  [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">         27 :     !m_tf_buffer.canTransform(m_trajectory_ptr-&gt;header.frame_id, &quot;base_link&quot;, tf2::TimePointZero))</span></a>
+<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
 <a name="364"><span class="lineNum">     364 </span>                :            :   {</a>
-<a name="365"><span class="lineNum">     365 </span>                :<span class="lineCov">          2 :     return;</span></a>
+<a name="365"><span class="lineNum">     365 </span>                :<span class="lineCov">          1 :     return;</span></a>
 <a name="366"><span class="lineNum">     366 </span>                :            :   }</a>
 <a name="367"><span class="lineNum">     367 </span>                :            : </a>
 <a name="368"><span class="lineNum">     368 </span>                :            :   // get current ego pose</a>

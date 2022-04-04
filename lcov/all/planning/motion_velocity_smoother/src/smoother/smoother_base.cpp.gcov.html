@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-01 05:10:13</td>
+            <td class="headerValue">2022-04-03 21:04:12</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -126,75 +126,77 @@
 <a name="48"><span class="lineNum">      48 </span>                :            : </a>
 <a name="49"><span class="lineNum">      49 </span>                :<span class="lineNoCov">          0 : void SmootherBase::setParam(const BaseParam &amp; param) { base_param_ = param; }</span></a>
 <a name="50"><span class="lineNum">      50 </span>                :            : </a>
-<a name="51"><span class="lineNum">      51 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMaxAccel() const { return base_param_.max_accel; }</span></a>
+<a name="51"><span class="lineNum">      51 </span>                :<span class="lineNoCov">          0 : SmootherBase::BaseParam SmootherBase::getBaseParam() const { return base_param_; }</span></a>
 <a name="52"><span class="lineNum">      52 </span>                :            : </a>
-<a name="53"><span class="lineNum">      53 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMinDecel() const { return base_param_.min_decel; }</span></a>
+<a name="53"><span class="lineNum">      53 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMaxAccel() const { return base_param_.max_accel; }</span></a>
 <a name="54"><span class="lineNum">      54 </span>                :            : </a>
-<a name="55"><span class="lineNum">      55 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMaxJerk() const { return base_param_.max_jerk; }</span></a>
+<a name="55"><span class="lineNum">      55 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMinDecel() const { return base_param_.min_decel; }</span></a>
 <a name="56"><span class="lineNum">      56 </span>                :            : </a>
-<a name="57"><span class="lineNum">      57 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMinJerk() const { return base_param_.min_jerk; }</span></a>
+<a name="57"><span class="lineNum">      57 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMaxJerk() const { return base_param_.max_jerk; }</span></a>
 <a name="58"><span class="lineNum">      58 </span>                :            : </a>
-<a name="59"><span class="lineNum">      59 </span>                :<span class="lineNoCov">          0 : boost::optional&lt;TrajectoryPoints&gt; SmootherBase::applyLateralAccelerationFilter(</span></a>
-<a name="60"><span class="lineNum">      60 </span>                :            :   const TrajectoryPoints &amp; input) const</a>
-<a name="61"><span class="lineNum">      61 </span>                :            : {</a>
-<a name="62"><span class="lineNum">      62 </span>                :<span class="lineNoCov">          0 :   if (input.empty()) {</span></a>
-<a name="63"><span class="lineNum">      63 </span>                :<span class="lineNoCov">          0 :     return boost::none;</span></a>
-<a name="64"><span class="lineNum">      64 </span>                :            :   }</a>
-<a name="65"><span class="lineNum">      65 </span>                :            : </a>
-<a name="66"><span class="lineNum">      66 </span>                :<span class="lineNoCov">          0 :   if (input.size() &lt; 3) {</span></a>
-<a name="67"><span class="lineNum">      67 </span>                :            :     return boost::optional&lt;TrajectoryPoints&gt;(input);  // cannot calculate lateral acc. do nothing.</a>
-<a name="68"><span class="lineNum">      68 </span>                :            :   }</a>
-<a name="69"><span class="lineNum">      69 </span>                :            : </a>
-<a name="70"><span class="lineNum">      70 </span>                :            :   // Interpolate with constant interval distance for lateral acceleration calculation.</a>
-<a name="71"><span class="lineNum">      71 </span>                :            :   constexpr double points_interval = 0.1;  // [m]</a>
-<a name="72"><span class="lineNum">      72 </span>                :            :   std::vector&lt;double&gt; out_arclength;</a>
-<a name="73"><span class="lineNum">      73 </span>                :<span class="lineNoCov">          0 :   const std::vector&lt;double&gt; in_arclength = trajectory_utils::calcArclengthArray(input);</span></a>
-<a name="74"><span class="lineNum">      74 </span>                :<span class="lineNoCov">          0 :   for (double s = 0; s &lt; in_arclength.back(); s += points_interval) {</span></a>
-<a name="75"><span class="lineNum">      75 </span>                :<span class="lineNoCov">          0 :     out_arclength.push_back(s);</span></a>
-<a name="76"><span class="lineNum">      76 </span>                :            :   }</a>
-<a name="77"><span class="lineNum">      77 </span>                :<span class="lineNoCov">          0 :   auto output = trajectory_utils::applyLinearInterpolation(in_arclength, input, out_arclength);</span></a>
-<a name="78"><span class="lineNum">      78 </span>                :<span class="lineNoCov">          0 :   if (!output) {</span></a>
-<a name="79"><span class="lineNum">      79 </span>                :<span class="lineNoCov">          0 :     RCLCPP_WARN(</span></a>
-<a name="80"><span class="lineNum">      80 </span>                :            :       rclcpp::get_logger(&quot;smoother&quot;).get_child(&quot;smoother_base&quot;),</a>
-<a name="81"><span class="lineNum">      81 </span>                :            :       &quot;interpolation failed at lateral acceleration filter.&quot;);</a>
-<a name="82"><span class="lineNum">      82 </span>                :<span class="lineNoCov">          0 :     return boost::none;</span></a>
-<a name="83"><span class="lineNum">      83 </span>                :            :   }</a>
-<a name="84"><span class="lineNum">      84 </span>                :<span class="lineNoCov">          0 :   output-&gt;back() = input.back();  // keep the final speed.</span></a>
-<a name="85"><span class="lineNum">      85 </span>                :            : </a>
-<a name="86"><span class="lineNum">      86 </span>                :            :   constexpr double curvature_calc_dist = 5.0;  // [m] calc curvature with 5m away points</a>
-<a name="87"><span class="lineNum">      87 </span>                :<span class="lineNoCov">          0 :   const size_t idx_dist =</span></a>
-<a name="88"><span class="lineNum">      88 </span>                :            :     static_cast&lt;size_t&gt;(std::max(static_cast&lt;int&gt;((curvature_calc_dist) / points_interval), 1));</a>
-<a name="89"><span class="lineNum">      89 </span>                :            : </a>
-<a name="90"><span class="lineNum">      90 </span>                :            :   // Calculate curvature assuming the trajectory points interval is constant</a>
-<a name="91"><span class="lineNum">      91 </span>                :<span class="lineNoCov">          0 :   const auto curvature_v = trajectory_utils::calcTrajectoryCurvatureFrom3Points(*output, idx_dist);</span></a>
-<a name="92"><span class="lineNum">      92 </span>                :<span class="lineNoCov">          0 :   if (!curvature_v) {</span></a>
-<a name="93"><span class="lineNum">      93 </span>                :            :     return boost::optional&lt;TrajectoryPoints&gt;(input);</a>
-<a name="94"><span class="lineNum">      94 </span>                :            :   }</a>
-<a name="95"><span class="lineNum">      95 </span>                :            : </a>
-<a name="96"><span class="lineNum">      96 </span>                :            :   //  Decrease speed according to lateral G</a>
-<a name="97"><span class="lineNum">      97 </span>                :<span class="lineNoCov">          0 :   const size_t before_decel_index =</span></a>
-<a name="98"><span class="lineNum">      98 </span>                :<span class="lineNoCov">          0 :     static_cast&lt;size_t&gt;(std::round(base_param_.decel_distance_before_curve / points_interval));</span></a>
-<a name="99"><span class="lineNum">      99 </span>                :<span class="lineNoCov">          0 :   const size_t after_decel_index =</span></a>
-<a name="100"><span class="lineNum">     100 </span>                :<span class="lineNoCov">          0 :     static_cast&lt;size_t&gt;(std::round(base_param_.decel_distance_after_curve / points_interval));</span></a>
-<a name="101"><span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 :   const double max_lateral_accel_abs = std::fabs(base_param_.max_lateral_accel);</span></a>
-<a name="102"><span class="lineNum">     102 </span>                :            : </a>
-<a name="103"><span class="lineNum">     103 </span>                :<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; output-&gt;size(); ++i) {</span></a>
-<a name="104"><span class="lineNum">     104 </span>                :<span class="lineNoCov">          0 :     double curvature = 0.0;</span></a>
-<a name="105"><span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 :     const size_t start = i &gt; after_decel_index ? i - after_decel_index : 0;</span></a>
-<a name="106"><span class="lineNum">     106 </span>                :<span class="lineNoCov">          0 :     const size_t end = std::min(output-&gt;size(), i + before_decel_index);</span></a>
-<a name="107"><span class="lineNum">     107 </span>                :<span class="lineNoCov">          0 :     for (size_t j = start; j &lt; end; ++j) {</span></a>
-<a name="108"><span class="lineNum">     108 </span>                :<span class="lineNoCov">          0 :       curvature = std::max(curvature, std::fabs(curvature_v-&gt;at(j)));</span></a>
-<a name="109"><span class="lineNum">     109 </span>                :            :     }</a>
-<a name="110"><span class="lineNum">     110 </span>                :<span class="lineNoCov">          0 :     double v_curvature_max = std::sqrt(max_lateral_accel_abs / std::max(curvature, 1.0E-5));</span></a>
-<a name="111"><span class="lineNum">     111 </span>                :<span class="lineNoCov">          0 :     v_curvature_max = std::max(v_curvature_max, base_param_.min_curve_velocity);</span></a>
-<a name="112"><span class="lineNum">     112 </span>                :<span class="lineNoCov">          0 :     if (output-&gt;at(i).longitudinal_velocity_mps &gt; v_curvature_max) {</span></a>
-<a name="113"><span class="lineNum">     113 </span>                :<span class="lineNoCov">          0 :       output-&gt;at(i).longitudinal_velocity_mps = v_curvature_max;</span></a>
-<a name="114"><span class="lineNum">     114 </span>                :            :     }</a>
-<a name="115"><span class="lineNum">     115 </span>                :            :   }</a>
-<a name="116"><span class="lineNum">     116 </span>                :            :   return output;</a>
-<a name="117"><span class="lineNum">     117 </span>                :            : }</a>
-<a name="118"><span class="lineNum">     118 </span>                :            : </a>
-<a name="119"><span class="lineNum">     119 </span>                :            : }  // namespace motion_velocity_smoother</a>
+<a name="59"><span class="lineNum">      59 </span>                :<span class="lineNoCov">          0 : double SmootherBase::getMinJerk() const { return base_param_.min_jerk; }</span></a>
+<a name="60"><span class="lineNum">      60 </span>                :            : </a>
+<a name="61"><span class="lineNum">      61 </span>                :            : boost::optional&lt;TrajectoryPoints&gt; SmootherBase::applyLateralAccelerationFilter(</a>
+<a name="62"><span class="lineNum">      62 </span>                :<span class="lineNoCov">          0 :   const TrajectoryPoints &amp; input) const</span></a>
+<a name="63"><span class="lineNum">      63 </span>                :<span class="lineNoCov">          0 : {</span></a>
+<a name="64"><span class="lineNum">      64 </span>                :            :   if (input.empty()) {</a>
+<a name="65"><span class="lineNum">      65 </span>                :            :     return boost::none;</a>
+<a name="66"><span class="lineNum">      66 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="67"><span class="lineNum">      67 </span>                :            : </a>
+<a name="68"><span class="lineNum">      68 </span>                :            :   if (input.size() &lt; 3) {</a>
+<a name="69"><span class="lineNum">      69 </span>                :            :     return boost::optional&lt;TrajectoryPoints&gt;(input);  // cannot calculate lateral acc. do nothing.</a>
+<a name="70"><span class="lineNum">      70 </span>                :            :   }</a>
+<a name="71"><span class="lineNum">      71 </span>                :            : </a>
+<a name="72"><span class="lineNum">      72 </span>                :            :   // Interpolate with constant interval distance for lateral acceleration calculation.</a>
+<a name="73"><span class="lineNum">      73 </span>                :<span class="lineNoCov">          0 :   constexpr double points_interval = 0.1;  // [m]</span></a>
+<a name="74"><span class="lineNum">      74 </span>                :<span class="lineNoCov">          0 :   std::vector&lt;double&gt; out_arclength;</span></a>
+<a name="75"><span class="lineNum">      75 </span>                :<span class="lineNoCov">          0 :   const std::vector&lt;double&gt; in_arclength = trajectory_utils::calcArclengthArray(input);</span></a>
+<a name="76"><span class="lineNum">      76 </span>                :            :   for (double s = 0; s &lt; in_arclength.back(); s += points_interval) {</a>
+<a name="77"><span class="lineNum">      77 </span>                :<span class="lineNoCov">          0 :     out_arclength.push_back(s);</span></a>
+<a name="78"><span class="lineNum">      78 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="79"><span class="lineNum">      79 </span>                :<span class="lineNoCov">          0 :   auto output = trajectory_utils::applyLinearInterpolation(in_arclength, input, out_arclength);</span></a>
+<a name="80"><span class="lineNum">      80 </span>                :            :   if (!output) {</a>
+<a name="81"><span class="lineNum">      81 </span>                :            :     RCLCPP_WARN(</a>
+<a name="82"><span class="lineNum">      82 </span>                :<span class="lineNoCov">          0 :       rclcpp::get_logger(&quot;smoother&quot;).get_child(&quot;smoother_base&quot;),</span></a>
+<a name="83"><span class="lineNum">      83 </span>                :            :       &quot;interpolation failed at lateral acceleration filter.&quot;);</a>
+<a name="84"><span class="lineNum">      84 </span>                :<span class="lineNoCov">          0 :     return boost::none;</span></a>
+<a name="85"><span class="lineNum">      85 </span>                :            :   }</a>
+<a name="86"><span class="lineNum">      86 </span>                :            :   output-&gt;back() = input.back();  // keep the final speed.</a>
+<a name="87"><span class="lineNum">      87 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="88"><span class="lineNum">      88 </span>                :            :   constexpr double curvature_calc_dist = 5.0;  // [m] calc curvature with 5m away points</a>
+<a name="89"><span class="lineNum">      89 </span>                :            :   const size_t idx_dist =</a>
+<a name="90"><span class="lineNum">      90 </span>                :            :     static_cast&lt;size_t&gt;(std::max(static_cast&lt;int&gt;((curvature_calc_dist) / points_interval), 1));</a>
+<a name="91"><span class="lineNum">      91 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="92"><span class="lineNum">      92 </span>                :<span class="lineNoCov">          0 :   // Calculate curvature assuming the trajectory points interval is constant</span></a>
+<a name="93"><span class="lineNum">      93 </span>                :            :   const auto curvature_v = trajectory_utils::calcTrajectoryCurvatureFrom3Points(*output, idx_dist);</a>
+<a name="94"><span class="lineNum">      94 </span>                :            :   if (!curvature_v) {</a>
+<a name="95"><span class="lineNum">      95 </span>                :            :     return boost::optional&lt;TrajectoryPoints&gt;(input);</a>
+<a name="96"><span class="lineNum">      96 </span>                :            :   }</a>
+<a name="97"><span class="lineNum">      97 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="98"><span class="lineNum">      98 </span>                :<span class="lineNoCov">          0 :   //  Decrease speed according to lateral G</span></a>
+<a name="99"><span class="lineNum">      99 </span>                :<span class="lineNoCov">          0 :   const size_t before_decel_index =</span></a>
+<a name="100"><span class="lineNum">     100 </span>                :<span class="lineNoCov">          0 :     static_cast&lt;size_t&gt;(std::round(base_param_.decel_distance_before_curve / points_interval));</span></a>
+<a name="101"><span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 :   const size_t after_decel_index =</span></a>
+<a name="102"><span class="lineNum">     102 </span>                :            :     static_cast&lt;size_t&gt;(std::round(base_param_.decel_distance_after_curve / points_interval));</a>
+<a name="103"><span class="lineNum">     103 </span>                :<span class="lineNoCov">          0 :   const double max_lateral_accel_abs = std::fabs(base_param_.max_lateral_accel);</span></a>
+<a name="104"><span class="lineNum">     104 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="105"><span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; output-&gt;size(); ++i) {</span></a>
+<a name="106"><span class="lineNum">     106 </span>                :<span class="lineNoCov">          0 :     double curvature = 0.0;</span></a>
+<a name="107"><span class="lineNum">     107 </span>                :<span class="lineNoCov">          0 :     const size_t start = i &gt; after_decel_index ? i - after_decel_index : 0;</span></a>
+<a name="108"><span class="lineNum">     108 </span>                :<span class="lineNoCov">          0 :     const size_t end = std::min(output-&gt;size(), i + before_decel_index);</span></a>
+<a name="109"><span class="lineNum">     109 </span>                :            :     for (size_t j = start; j &lt; end; ++j) {</a>
+<a name="110"><span class="lineNum">     110 </span>                :<span class="lineNoCov">          0 :       curvature = std::max(curvature, std::fabs(curvature_v-&gt;at(j)));</span></a>
+<a name="111"><span class="lineNum">     111 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="112"><span class="lineNum">     112 </span>                :<span class="lineNoCov">          0 :     double v_curvature_max = std::sqrt(max_lateral_accel_abs / std::max(curvature, 1.0E-5));</span></a>
+<a name="113"><span class="lineNum">     113 </span>                :<span class="lineNoCov">          0 :     v_curvature_max = std::max(v_curvature_max, base_param_.min_curve_velocity);</span></a>
+<a name="114"><span class="lineNum">     114 </span>                :            :     if (output-&gt;at(i).longitudinal_velocity_mps &gt; v_curvature_max) {</a>
+<a name="115"><span class="lineNum">     115 </span>                :            :       output-&gt;at(i).longitudinal_velocity_mps = v_curvature_max;</a>
+<a name="116"><span class="lineNum">     116 </span>                :            :     }</a>
+<a name="117"><span class="lineNum">     117 </span>                :            :   }</a>
+<a name="118"><span class="lineNum">     118 </span>                :            :   return output;</a>
+<a name="119"><span class="lineNum">     119 </span>                :            : }</a>
+<a name="120"><span class="lineNum">     120 </span>                :            : </a>
+<a name="121"><span class="lineNum">     121 </span>                :            : }  // namespace motion_velocity_smoother</a>
 </pre>
       </td>
     </tr>
