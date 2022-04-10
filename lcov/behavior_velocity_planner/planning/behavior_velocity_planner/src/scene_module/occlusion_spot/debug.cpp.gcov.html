@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:26</td>
+            <td class="headerValue">2022-04-10 20:40:14</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -373,7 +373,7 @@
 <a name="295"><span class="lineNum">     295 </span>                :<span class="lineNoCov">          0 :         debug_data_.detection_area_polygons, &quot;detection_area&quot;, module_id_, debug_data_.z),</span></a>
 <a name="296"><span class="lineNum">     296 </span>                :            :       current_time, &amp;debug_marker_array);</a>
 <a name="297"><span class="lineNum">     297 </span>                :            :   }</a>
-<a name="298"><span class="lineNum">     298 </span>                :<span class="lineNoCov">          0 :   if (!debug_data_.close_partition.empty()) {</span></a>
+<a name="298"><span class="lineNum">     298 </span>                :<span class="lineNoCov">          0 :   if (!debug_data_.close_partition.empty() &amp;&amp; param_.is_show_occlusion) {</span></a>
 <a name="299"><span class="lineNum">     299 </span>                :<span class="lineNoCov">          0 :     appendMarkerArray(</span></a>
 <a name="300"><span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :       makePolygonMarker(debug_data_.close_partition, &quot;close_partition&quot;, module_id_, debug_data_.z),</span></a>
 <a name="301"><span class="lineNum">     301 </span>                :            :       current_time, &amp;debug_marker_array);</a>

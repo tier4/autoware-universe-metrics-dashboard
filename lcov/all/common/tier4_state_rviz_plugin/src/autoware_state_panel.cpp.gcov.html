@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:12</td>
+            <td class="headerValue">2022-04-10 20:40:03</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -188,10 +188,10 @@
 <a name="110"><span class="lineNum">     110 </span>                :<span class="lineNoCov">          0 :     &quot;/vehicle/status/gear_status&quot;, 10, std::bind(&amp;AutowareStatePanel::onShift, this, _1));</span></a>
 <a name="111"><span class="lineNum">     111 </span>                :            : </a>
 <a name="112"><span class="lineNum">     112 </span>                :<span class="lineNoCov">          0 :   sub_engage_ = raw_node_-&gt;create_subscription&lt;tier4_external_api_msgs::msg::EngageStatus&gt;(</span></a>
-<a name="113"><span class="lineNum">     113 </span>                :<span class="lineNoCov">          0 :     &quot;/api/external/get/engage&quot;, 10, std::bind(&amp;AutowareStatePanel::onEngageStatus, this, _1));</span></a>
+<a name="113"><span class="lineNum">     113 </span>                :<span class="lineNoCov">          0 :     &quot;/api/autoware/get/engage&quot;, 10, std::bind(&amp;AutowareStatePanel::onEngageStatus, this, _1));</span></a>
 <a name="114"><span class="lineNum">     114 </span>                :            : </a>
 <a name="115"><span class="lineNum">     115 </span>                :<span class="lineNoCov">          0 :   client_engage_ = raw_node_-&gt;create_client&lt;tier4_external_api_msgs::srv::Engage&gt;(</span></a>
-<a name="116"><span class="lineNum">     116 </span>                :            :     &quot;/api/external/set/engage&quot;, rmw_qos_profile_services_default);</a>
+<a name="116"><span class="lineNum">     116 </span>                :            :     &quot;/api/autoware/set/engage&quot;, rmw_qos_profile_services_default);</a>
 <a name="117"><span class="lineNum">     117 </span>                :<span class="lineNoCov">          0 : }</span></a>
 <a name="118"><span class="lineNum">     118 </span>                :            : </a>
 <a name="119"><span class="lineNum">     119 </span>                :<span class="lineNoCov">          0 : void AutowareStatePanel::onGateMode(const tier4_control_msgs::msg::GateMode::ConstSharedPtr msg)</span></a>

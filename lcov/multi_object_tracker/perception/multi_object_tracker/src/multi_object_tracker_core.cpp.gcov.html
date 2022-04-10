@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:39</td>
+            <td class="headerValue">2022-04-10 20:40:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -274,191 +274,215 @@
 <a name="196"><span class="lineNum">     196 </span>                :<span class="lineNoCov">          0 :   const auto max_rad_matrix = this-&gt;declare_parameter&lt;std::vector&lt;double&gt;&gt;(&quot;max_rad_matrix&quot;);</span></a>
 <a name="197"><span class="lineNum">     197 </span>                :<span class="lineNoCov">          0 :   const auto min_iou_matrix = this-&gt;declare_parameter&lt;std::vector&lt;double&gt;&gt;(&quot;min_iou_matrix&quot;);</span></a>
 <a name="198"><span class="lineNum">     198 </span>                :            : </a>
-<a name="199"><span class="lineNum">     199 </span>                :<span class="lineNoCov">          0 :   data_association_ = std::make_unique&lt;DataAssociation&gt;(</span></a>
-<a name="200"><span class="lineNum">     200 </span>                :            :     can_assign_matrix, max_dist_matrix, max_area_matrix, min_area_matrix, max_rad_matrix,</a>
-<a name="201"><span class="lineNum">     201 </span>                :            :     min_iou_matrix);</a>
-<a name="202"><span class="lineNum">     202 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="203"><span class="lineNum">     203 </span>                :            : </a>
-<a name="204"><span class="lineNum">     204 </span>                :<span class="lineNoCov">          0 : void MultiObjectTracker::onMeasurement(</span></a>
-<a name="205"><span class="lineNum">     205 </span>                :            :   const autoware_auto_perception_msgs::msg::DetectedObjects::ConstSharedPtr input_objects_msg)</a>
-<a name="206"><span class="lineNum">     206 </span>                :            : {</a>
-<a name="207"><span class="lineNum">     207 </span>                :            :   const auto self_transform =</a>
-<a name="208"><span class="lineNum">     208 </span>                :<span class="lineNoCov">          0 :     getTransform(tf_buffer_, &quot;base_link&quot;, world_frame_id_, input_objects_msg-&gt;header.stamp);</span></a>
-<a name="209"><span class="lineNum">     209 </span>                :<span class="lineNoCov">          0 :   if (!self_transform) {</span></a>
-<a name="210"><span class="lineNum">     210 </span>                :            :     return;</a>
-<a name="211"><span class="lineNum">     211 </span>                :            :   }</a>
+<a name="199"><span class="lineNum">     199 </span>                :<span class="lineNoCov">          0 :   // tracker map</span></a>
+<a name="200"><span class="lineNum">     200 </span>                :            :   tracker_map_.insert(</a>
+<a name="201"><span class="lineNum">     201 </span>                :            :     std::make_pair(Label::CAR, this-&gt;declare_parameter&lt;std::string&gt;(&quot;car_tracker&quot;)));</a>
+<a name="202"><span class="lineNum">     202 </span>                :<span class="lineNoCov">          0 :   tracker_map_.insert(</span></a>
+<a name="203"><span class="lineNum">     203 </span>                :            :     std::make_pair(Label::TRUCK, this-&gt;declare_parameter&lt;std::string&gt;(&quot;truck_tracker&quot;)));</a>
+<a name="204"><span class="lineNum">     204 </span>                :<span class="lineNoCov">          0 :   tracker_map_.insert(</span></a>
+<a name="205"><span class="lineNum">     205 </span>                :            :     std::make_pair(Label::BUS, this-&gt;declare_parameter&lt;std::string&gt;(&quot;bus_tracker&quot;)));</a>
+<a name="206"><span class="lineNum">     206 </span>                :            :   tracker_map_.insert(</a>
+<a name="207"><span class="lineNum">     207 </span>                :            :     std::make_pair(Label::PEDESTRIAN, this-&gt;declare_parameter&lt;std::string&gt;(&quot;pedestrian_tracker&quot;)));</a>
+<a name="208"><span class="lineNum">     208 </span>                :<span class="lineNoCov">          0 :   tracker_map_.insert(</span></a>
+<a name="209"><span class="lineNum">     209 </span>                :<span class="lineNoCov">          0 :     std::make_pair(Label::BICYCLE, this-&gt;declare_parameter&lt;std::string&gt;(&quot;bicycle_tracker&quot;)));</span></a>
+<a name="210"><span class="lineNum">     210 </span>                :            :   tracker_map_.insert(</a>
+<a name="211"><span class="lineNum">     211 </span>                :            :     std::make_pair(Label::MOTORCYCLE, this-&gt;declare_parameter&lt;std::string&gt;(&quot;motorcycle_tracker&quot;)));</a>
 <a name="212"><span class="lineNum">     212 </span>                :            : </a>
-<a name="213"><span class="lineNum">     213 </span>                :            :   /* transform to world coordinate */</a>
-<a name="214"><span class="lineNum">     214 </span>                :<span class="lineNoCov">          0 :   autoware_auto_perception_msgs::msg::DetectedObjects transformed_objects;</span></a>
-<a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 :   if (!transformDetectedObjects(</span></a>
-<a name="216"><span class="lineNum">     216 </span>                :            :         *input_objects_msg, world_frame_id_, tf_buffer_, transformed_objects)) {</a>
-<a name="217"><span class="lineNum">     217 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="218"><span class="lineNum">     218 </span>                :            :   }</a>
-<a name="219"><span class="lineNum">     219 </span>                :            :   /* tracker prediction */</a>
-<a name="220"><span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 :   rclcpp::Time measurement_time = input_objects_msg-&gt;header.stamp;</span></a>
-<a name="221"><span class="lineNum">     221 </span>                :<span class="lineNoCov">          0 :   for (auto itr = list_tracker_.begin(); itr != list_tracker_.end(); ++itr) {</span></a>
-<a name="222"><span class="lineNum">     222 </span>                :<span class="lineNoCov">          0 :     (*itr)-&gt;predict(measurement_time);</span></a>
-<a name="223"><span class="lineNum">     223 </span>                :            :   }</a>
-<a name="224"><span class="lineNum">     224 </span>                :            : </a>
-<a name="225"><span class="lineNum">     225 </span>                :            :   /* global nearest neighbor */</a>
-<a name="226"><span class="lineNum">     226 </span>                :            :   std::unordered_map&lt;int, int&gt; direct_assignment, reverse_assignment;</a>
-<a name="227"><span class="lineNum">     227 </span>                :            :   Eigen::MatrixXd score_matrix = data_association_-&gt;calcScoreMatrix(</a>
-<a name="228"><span class="lineNum">     228 </span>                :<span class="lineNoCov">          0 :     transformed_objects, list_tracker_);  // row : tracker, col : measurement</span></a>
-<a name="229"><span class="lineNum">     229 </span>                :<span class="lineNoCov">          0 :   data_association_-&gt;assign(score_matrix, direct_assignment, reverse_assignment);</span></a>
-<a name="230"><span class="lineNum">     230 </span>                :            : </a>
-<a name="231"><span class="lineNum">     231 </span>                :            :   /* tracker measurement update */</a>
-<a name="232"><span class="lineNum">     232 </span>                :<span class="lineNoCov">          0 :   int tracker_idx = 0;</span></a>
-<a name="233"><span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 :   for (auto tracker_itr = list_tracker_.begin(); tracker_itr != list_tracker_.end();</span></a>
-<a name="234"><span class="lineNum">     234 </span>                :            :        ++tracker_itr, ++tracker_idx) {</a>
-<a name="235"><span class="lineNum">     235 </span>                :<span class="lineNoCov">          0 :     if (direct_assignment.find(tracker_idx) != direct_assignment.end()) {  // found</span></a>
-<a name="236"><span class="lineNum">     236 </span>                :            :       (*(tracker_itr))</a>
-<a name="237"><span class="lineNum">     237 </span>                :<span class="lineNoCov">          0 :         -&gt;updateWithMeasurement(</span></a>
-<a name="238"><span class="lineNum">     238 </span>                :<span class="lineNoCov">          0 :           transformed_objects.objects.at(direct_assignment.find(tracker_idx)-&gt;second),</span></a>
-<a name="239"><span class="lineNum">     239 </span>                :            :           measurement_time);</a>
-<a name="240"><span class="lineNum">     240 </span>                :            :     } else {  // not found</a>
-<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :       (*(tracker_itr))-&gt;updateWithoutMeasurement();</span></a>
-<a name="242"><span class="lineNum">     242 </span>                :            :     }</a>
-<a name="243"><span class="lineNum">     243 </span>                :            :   }</a>
+<a name="213"><span class="lineNum">     213 </span>                :            :   data_association_ = std::make_unique&lt;DataAssociation&gt;(</a>
+<a name="214"><span class="lineNum">     214 </span>                :<span class="lineNoCov">          0 :     can_assign_matrix, max_dist_matrix, max_area_matrix, min_area_matrix, max_rad_matrix,</span></a>
+<a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 :     min_iou_matrix);</span></a>
+<a name="216"><span class="lineNum">     216 </span>                :            : }</a>
+<a name="217"><span class="lineNum">     217 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="218"><span class="lineNum">     218 </span>                :            : void MultiObjectTracker::onMeasurement(</a>
+<a name="219"><span class="lineNum">     219 </span>                :            :   const autoware_auto_perception_msgs::msg::DetectedObjects::ConstSharedPtr input_objects_msg)</a>
+<a name="220"><span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 : {</span></a>
+<a name="221"><span class="lineNum">     221 </span>                :<span class="lineNoCov">          0 :   const auto self_transform =</span></a>
+<a name="222"><span class="lineNum">     222 </span>                :<span class="lineNoCov">          0 :     getTransform(tf_buffer_, &quot;base_link&quot;, world_frame_id_, input_objects_msg-&gt;header.stamp);</span></a>
+<a name="223"><span class="lineNum">     223 </span>                :            :   if (!self_transform) {</a>
+<a name="224"><span class="lineNum">     224 </span>                :            :     return;</a>
+<a name="225"><span class="lineNum">     225 </span>                :            :   }</a>
+<a name="226"><span class="lineNum">     226 </span>                :            : </a>
+<a name="227"><span class="lineNum">     227 </span>                :            :   /* transform to world coordinate */</a>
+<a name="228"><span class="lineNum">     228 </span>                :<span class="lineNoCov">          0 :   autoware_auto_perception_msgs::msg::DetectedObjects transformed_objects;</span></a>
+<a name="229"><span class="lineNum">     229 </span>                :<span class="lineNoCov">          0 :   if (!transformDetectedObjects(</span></a>
+<a name="230"><span class="lineNum">     230 </span>                :            :         *input_objects_msg, world_frame_id_, tf_buffer_, transformed_objects)) {</a>
+<a name="231"><span class="lineNum">     231 </span>                :            :     return;</a>
+<a name="232"><span class="lineNum">     232 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="233"><span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 :   /* tracker prediction */</span></a>
+<a name="234"><span class="lineNum">     234 </span>                :            :   rclcpp::Time measurement_time = input_objects_msg-&gt;header.stamp;</a>
+<a name="235"><span class="lineNum">     235 </span>                :<span class="lineNoCov">          0 :   for (auto itr = list_tracker_.begin(); itr != list_tracker_.end(); ++itr) {</span></a>
+<a name="236"><span class="lineNum">     236 </span>                :            :     (*itr)-&gt;predict(measurement_time);</a>
+<a name="237"><span class="lineNum">     237 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="238"><span class="lineNum">     238 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="239"><span class="lineNum">     239 </span>                :            :   /* global nearest neighbor */</a>
+<a name="240"><span class="lineNum">     240 </span>                :            :   std::unordered_map&lt;int, int&gt; direct_assignment, reverse_assignment;</a>
+<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :   Eigen::MatrixXd score_matrix = data_association_-&gt;calcScoreMatrix(</span></a>
+<a name="242"><span class="lineNum">     242 </span>                :            :     transformed_objects, list_tracker_);  // row : tracker, col : measurement</a>
+<a name="243"><span class="lineNum">     243 </span>                :            :   data_association_-&gt;assign(score_matrix, direct_assignment, reverse_assignment);</a>
 <a name="244"><span class="lineNum">     244 </span>                :            : </a>
-<a name="245"><span class="lineNum">     245 </span>                :            :   /* life cycle check */</a>
-<a name="246"><span class="lineNum">     246 </span>                :<span class="lineNoCov">          0 :   checkTrackerLifeCycle(list_tracker_, measurement_time, *self_transform);</span></a>
-<a name="247"><span class="lineNum">     247 </span>                :            :   /* sanitize trackers */</a>
-<a name="248"><span class="lineNum">     248 </span>                :<span class="lineNoCov">          0 :   sanitizeTracker(list_tracker_, measurement_time);</span></a>
-<a name="249"><span class="lineNum">     249 </span>                :            : </a>
-<a name="250"><span class="lineNum">     250 </span>                :            :   /* new tracker */</a>
-<a name="251"><span class="lineNum">     251 </span>                :<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; transformed_objects.objects.size(); ++i) {</span></a>
-<a name="252"><span class="lineNum">     252 </span>                :<span class="lineNoCov">          0 :     if (reverse_assignment.find(i) != reverse_assignment.end()) {  // found</span></a>
-<a name="253"><span class="lineNum">     253 </span>                :<span class="lineNoCov">          0 :       continue;</span></a>
-<a name="254"><span class="lineNum">     254 </span>                :            :     }</a>
-<a name="255"><span class="lineNum">     255 </span>                :<span class="lineNoCov">          0 :     list_tracker_.push_back(createNewTracker(transformed_objects.objects.at(i), measurement_time));</span></a>
-<a name="256"><span class="lineNum">     256 </span>                :            :   }</a>
-<a name="257"><span class="lineNum">     257 </span>                :            : </a>
-<a name="258"><span class="lineNum">     258 </span>                :<span class="lineNoCov">          0 :   if (publish_timer_ == nullptr) {</span></a>
-<a name="259"><span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :     publish(measurement_time);</span></a>
-<a name="260"><span class="lineNum">     260 </span>                :            :   }</a>
-<a name="261"><span class="lineNum">     261 </span>                :            : }</a>
-<a name="262"><span class="lineNum">     262 </span>                :            : </a>
-<a name="263"><span class="lineNum">     263 </span>                :<span class="lineNoCov">          0 : std::shared_ptr&lt;Tracker&gt; MultiObjectTracker::createNewTracker(</span></a>
-<a name="264"><span class="lineNum">     264 </span>                :            :   const autoware_auto_perception_msgs::msg::DetectedObject &amp; object,</a>
-<a name="265"><span class="lineNum">     265 </span>                :            :   const rclcpp::Time &amp; time) const</a>
-<a name="266"><span class="lineNum">     266 </span>                :            : {</a>
-<a name="267"><span class="lineNum">     267 </span>                :<span class="lineNoCov">          0 :   const std::uint8_t label = utils::getHighestProbLabel(object.classification);</span></a>
-<a name="268"><span class="lineNum">     268 </span>                :<span class="lineNoCov">          0 :   if (label == Label::CAR || label == Label::TRUCK || label == Label::BUS) {</span></a>
-<a name="269"><span class="lineNum">     269 </span>                :<span class="lineNoCov">          0 :     return std::make_shared&lt;MultipleVehicleTracker&gt;(time, object);</span></a>
-<a name="270"><span class="lineNum">     270 </span>                :<span class="lineNoCov">          0 :   } else if (label == Label::PEDESTRIAN) {</span></a>
-<a name="271"><span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 :     return std::make_shared&lt;PedestrianAndBicycleTracker&gt;(time, object);</span></a>
-<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :   } else if (label == Label::BICYCLE || label == Label::MOTORCYCLE) {</span></a>
-<a name="273"><span class="lineNum">     273 </span>                :<span class="lineNoCov">          0 :     return std::make_shared&lt;PedestrianAndBicycleTracker&gt;(time, object);</span></a>
-<a name="274"><span class="lineNum">     274 </span>                :            :   } else {</a>
-<a name="275"><span class="lineNum">     275 </span>                :<span class="lineNoCov">          0 :     return std::make_shared&lt;UnknownTracker&gt;(time, object);</span></a>
-<a name="276"><span class="lineNum">     276 </span>                :            :   }</a>
-<a name="277"><span class="lineNum">     277 </span>                :            : }</a>
-<a name="278"><span class="lineNum">     278 </span>                :            : </a>
-<a name="279"><span class="lineNum">     279 </span>                :<span class="lineNoCov">          0 : void MultiObjectTracker::onTimer()</span></a>
+<a name="245"><span class="lineNum">     245 </span>                :            :   /* tracker measurement update */</a>
+<a name="246"><span class="lineNum">     246 </span>                :<span class="lineNoCov">          0 :   int tracker_idx = 0;</span></a>
+<a name="247"><span class="lineNum">     247 </span>                :            :   for (auto tracker_itr = list_tracker_.begin(); tracker_itr != list_tracker_.end();</a>
+<a name="248"><span class="lineNum">     248 </span>                :<span class="lineNoCov">          0 :        ++tracker_itr, ++tracker_idx) {</span></a>
+<a name="249"><span class="lineNum">     249 </span>                :            :     if (direct_assignment.find(tracker_idx) != direct_assignment.end()) {  // found</a>
+<a name="250"><span class="lineNum">     250 </span>                :            :       (*(tracker_itr))</a>
+<a name="251"><span class="lineNum">     251 </span>                :<span class="lineNoCov">          0 :         -&gt;updateWithMeasurement(</span></a>
+<a name="252"><span class="lineNum">     252 </span>                :<span class="lineNoCov">          0 :           transformed_objects.objects.at(direct_assignment.find(tracker_idx)-&gt;second),</span></a>
+<a name="253"><span class="lineNum">     253 </span>                :<span class="lineNoCov">          0 :           measurement_time);</span></a>
+<a name="254"><span class="lineNum">     254 </span>                :            :     } else {  // not found</a>
+<a name="255"><span class="lineNum">     255 </span>                :<span class="lineNoCov">          0 :       (*(tracker_itr))-&gt;updateWithoutMeasurement();</span></a>
+<a name="256"><span class="lineNum">     256 </span>                :            :     }</a>
+<a name="257"><span class="lineNum">     257 </span>                :            :   }</a>
+<a name="258"><span class="lineNum">     258 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="259"><span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :   /* life cycle check */</span></a>
+<a name="260"><span class="lineNum">     260 </span>                :            :   checkTrackerLifeCycle(list_tracker_, measurement_time, *self_transform);</a>
+<a name="261"><span class="lineNum">     261 </span>                :            :   /* sanitize trackers */</a>
+<a name="262"><span class="lineNum">     262 </span>                :            :   sanitizeTracker(list_tracker_, measurement_time);</a>
+<a name="263"><span class="lineNum">     263 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="264"><span class="lineNum">     264 </span>                :            :   /* new tracker */</a>
+<a name="265"><span class="lineNum">     265 </span>                :            :   for (size_t i = 0; i &lt; transformed_objects.objects.size(); ++i) {</a>
+<a name="266"><span class="lineNum">     266 </span>                :            :     if (reverse_assignment.find(i) != reverse_assignment.end()) {  // found</a>
+<a name="267"><span class="lineNum">     267 </span>                :<span class="lineNoCov">          0 :       continue;</span></a>
+<a name="268"><span class="lineNum">     268 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="269"><span class="lineNum">     269 </span>                :<span class="lineNoCov">          0 :     list_tracker_.push_back(createNewTracker(transformed_objects.objects.at(i), measurement_time));</span></a>
+<a name="270"><span class="lineNum">     270 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="271"><span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :   if (publish_timer_ == nullptr) {</span></a>
+<a name="273"><span class="lineNum">     273 </span>                :<span class="lineNoCov">          0 :     publish(measurement_time);</span></a>
+<a name="274"><span class="lineNum">     274 </span>                :            :   }</a>
+<a name="275"><span class="lineNum">     275 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="276"><span class="lineNum">     276 </span>                :            : </a>
+<a name="277"><span class="lineNum">     277 </span>                :            : std::shared_ptr&lt;Tracker&gt; MultiObjectTracker::createNewTracker(</a>
+<a name="278"><span class="lineNum">     278 </span>                :            :   const autoware_auto_perception_msgs::msg::DetectedObject &amp; object,</a>
+<a name="279"><span class="lineNum">     279 </span>                :<span class="lineNoCov">          0 :   const rclcpp::Time &amp; time) const</span></a>
 <a name="280"><span class="lineNum">     280 </span>                :            : {</a>
-<a name="281"><span class="lineNum">     281 </span>                :<span class="lineNoCov">          0 :   rclcpp::Time current_time = this-&gt;now();</span></a>
-<a name="282"><span class="lineNum">     282 </span>                :<span class="lineNoCov">          0 :   const auto self_transform = getTransform(tf_buffer_, world_frame_id_, &quot;base_link&quot;, current_time);</span></a>
-<a name="283"><span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 :   if (!self_transform) {</span></a>
-<a name="284"><span class="lineNum">     284 </span>                :            :     return;</a>
-<a name="285"><span class="lineNum">     285 </span>                :            :   }</a>
-<a name="286"><span class="lineNum">     286 </span>                :            : </a>
-<a name="287"><span class="lineNum">     287 </span>                :            :   /* life cycle check */</a>
-<a name="288"><span class="lineNum">     288 </span>                :<span class="lineNoCov">          0 :   checkTrackerLifeCycle(list_tracker_, current_time, *self_transform);</span></a>
-<a name="289"><span class="lineNum">     289 </span>                :            :   /* sanitize trackers */</a>
-<a name="290"><span class="lineNum">     290 </span>                :<span class="lineNoCov">          0 :   sanitizeTracker(list_tracker_, current_time);</span></a>
-<a name="291"><span class="lineNum">     291 </span>                :            : </a>
-<a name="292"><span class="lineNum">     292 </span>                :            :   // Publish</a>
-<a name="293"><span class="lineNum">     293 </span>                :<span class="lineNoCov">          0 :   publish(current_time);</span></a>
-<a name="294"><span class="lineNum">     294 </span>                :            : }</a>
-<a name="295"><span class="lineNum">     295 </span>                :            : </a>
-<a name="296"><span class="lineNum">     296 </span>                :<span class="lineNoCov">          0 : void MultiObjectTracker::checkTrackerLifeCycle(</span></a>
-<a name="297"><span class="lineNum">     297 </span>                :            :   std::list&lt;std::shared_ptr&lt;Tracker&gt;&gt; &amp; list_tracker, const rclcpp::Time &amp; time,</a>
-<a name="298"><span class="lineNum">     298 </span>                :            :   const geometry_msgs::msg::Transform &amp; self_transform)</a>
-<a name="299"><span class="lineNum">     299 </span>                :            : {</a>
-<a name="300"><span class="lineNum">     300 </span>                :            :   /* params */</a>
-<a name="301"><span class="lineNum">     301 </span>                :            :   constexpr float max_elapsed_time = 1.0;</a>
+<a name="281"><span class="lineNum">     281 </span>                :<span class="lineNoCov">          0 :   const std::uint8_t label = utils::getHighestProbLabel(object.classification);</span></a>
+<a name="282"><span class="lineNum">     282 </span>                :<span class="lineNoCov">          0 :   const auto tracker = tracker_map_.at(label);</span></a>
+<a name="283"><span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="284"><span class="lineNum">     284 </span>                :            :   if (tracker == &quot;bicycle_tracker&quot;) {</a>
+<a name="285"><span class="lineNum">     285 </span>                :            :     return std::make_shared&lt;BicycleTracker&gt;(time, object);</a>
+<a name="286"><span class="lineNum">     286 </span>                :            :   } else if (tracker == &quot;big_vehicle_tracker&quot;) {</a>
+<a name="287"><span class="lineNum">     287 </span>                :            :     return std::make_shared&lt;BigVehicleTracker&gt;(time, object);</a>
+<a name="288"><span class="lineNum">     288 </span>                :<span class="lineNoCov">          0 :   } else if (tracker == &quot;multi_vehicle_tracker&quot;) {</span></a>
+<a name="289"><span class="lineNum">     289 </span>                :            :     return std::make_shared&lt;MultipleVehicleTracker&gt;(time, object);</a>
+<a name="290"><span class="lineNum">     290 </span>                :<span class="lineNoCov">          0 :   } else if (tracker == &quot;normal_vehicle_tracker&quot;) {</span></a>
+<a name="291"><span class="lineNum">     291 </span>                :            :     return std::make_shared&lt;NormalVehicleTracker&gt;(time, object);</a>
+<a name="292"><span class="lineNum">     292 </span>                :            :   } else if (tracker == &quot;pass_through_tracker&quot;) {</a>
+<a name="293"><span class="lineNum">     293 </span>                :<span class="lineNoCov">          0 :     return std::make_shared&lt;PassThroughTracker&gt;(time, object);</span></a>
+<a name="294"><span class="lineNum">     294 </span>                :            :   } else if (tracker == &quot;pedestrian_and_bicycle_tracker&quot;) {</a>
+<a name="295"><span class="lineNum">     295 </span>                :            :     return std::make_shared&lt;PedestrianAndBicycleTracker&gt;(time, object);</a>
+<a name="296"><span class="lineNum">     296 </span>                :<span class="lineNoCov">          0 :   } else if (tracker == &quot;pedestrian_tracker&quot;) {</span></a>
+<a name="297"><span class="lineNum">     297 </span>                :            :     return std::make_shared&lt;PedestrianTracker&gt;(time, object);</a>
+<a name="298"><span class="lineNum">     298 </span>                :            :   } else {</a>
+<a name="299"><span class="lineNum">     299 </span>                :            :     return std::make_shared&lt;UnknownTracker&gt;(time, object);</a>
+<a name="300"><span class="lineNum">     300 </span>                :            :   }</a>
+<a name="301"><span class="lineNum">     301 </span>                :            : }</a>
 <a name="302"><span class="lineNum">     302 </span>                :            : </a>
-<a name="303"><span class="lineNum">     303 </span>                :            :   /* delete tracker */</a>
-<a name="304"><span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :   for (auto itr = list_tracker.begin(); itr != list_tracker.end(); ++itr) {</span></a>
-<a name="305"><span class="lineNum">     305 </span>                :<span class="lineNoCov">          0 :     const bool is_old = max_elapsed_time &lt; (*itr)-&gt;getElapsedTimeFromLastUpdate(time);</span></a>
-<a name="306"><span class="lineNum">     306 </span>                :<span class="lineNoCov">          0 :     const bool is_specific_alive_pattern = isSpecificAlivePattern(*itr, time, self_transform);</span></a>
-<a name="307"><span class="lineNum">     307 </span>                :<span class="lineNoCov">          0 :     if (is_old &amp;&amp; !is_specific_alive_pattern) {</span></a>
-<a name="308"><span class="lineNum">     308 </span>                :            :       auto erase_itr = itr;</a>
-<a name="309"><span class="lineNum">     309 </span>                :            :       --itr;</a>
-<a name="310"><span class="lineNum">     310 </span>                :            :       list_tracker.erase(erase_itr);</a>
-<a name="311"><span class="lineNum">     311 </span>                :            :     }</a>
-<a name="312"><span class="lineNum">     312 </span>                :            :   }</a>
-<a name="313"><span class="lineNum">     313 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="314"><span class="lineNum">     314 </span>                :            : </a>
-<a name="315"><span class="lineNum">     315 </span>                :<span class="lineNoCov">          0 : void MultiObjectTracker::sanitizeTracker(</span></a>
-<a name="316"><span class="lineNum">     316 </span>                :            :   std::list&lt;std::shared_ptr&lt;Tracker&gt;&gt; &amp; list_tracker, const rclcpp::Time &amp; time)</a>
-<a name="317"><span class="lineNum">     317 </span>                :            : {</a>
-<a name="318"><span class="lineNum">     318 </span>                :            :   constexpr float min_iou = 0.1;</a>
-<a name="319"><span class="lineNum">     319 </span>                :            :   constexpr double distance_threshold = 5.0;</a>
-<a name="320"><span class="lineNum">     320 </span>                :            :   /* delete collision tracker */</a>
-<a name="321"><span class="lineNum">     321 </span>                :<span class="lineNoCov">          0 :   for (auto itr1 = list_tracker.begin(); itr1 != list_tracker.end(); ++itr1) {</span></a>
-<a name="322"><span class="lineNum">     322 </span>                :<span class="lineNoCov">          0 :     autoware_auto_perception_msgs::msg::TrackedObject object1;</span></a>
-<a name="323"><span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 :     (*itr1)-&gt;getTrackedObject(time, object1);</span></a>
-<a name="324"><span class="lineNum">     324 </span>                :<span class="lineNoCov">          0 :     for (auto itr2 = std::next(itr1); itr2 != list_tracker.end(); ++itr2) {</span></a>
-<a name="325"><span class="lineNum">     325 </span>                :<span class="lineNoCov">          0 :       autoware_auto_perception_msgs::msg::TrackedObject object2;</span></a>
-<a name="326"><span class="lineNum">     326 </span>                :<span class="lineNoCov">          0 :       (*itr2)-&gt;getTrackedObject(time, object2);</span></a>
-<a name="327"><span class="lineNum">     327 </span>                :<span class="lineNoCov">          0 :       const double distance = std::hypot(</span></a>
-<a name="328"><span class="lineNum">     328 </span>                :<span class="lineNoCov">          0 :         object1.kinematics.pose_with_covariance.pose.position.x -</span></a>
-<a name="329"><span class="lineNum">     329 </span>                :<span class="lineNoCov">          0 :           object2.kinematics.pose_with_covariance.pose.position.x,</span></a>
-<a name="330"><span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :         object1.kinematics.pose_with_covariance.pose.position.y -</span></a>
-<a name="331"><span class="lineNum">     331 </span>                :<span class="lineNoCov">          0 :           object2.kinematics.pose_with_covariance.pose.position.y);</span></a>
-<a name="332"><span class="lineNum">     332 </span>                :<span class="lineNoCov">          0 :       if (distance_threshold &lt; distance) {</span></a>
-<a name="333"><span class="lineNum">     333 </span>                :<span class="lineNoCov">          0 :         continue;</span></a>
-<a name="334"><span class="lineNum">     334 </span>                :            :       }</a>
-<a name="335"><span class="lineNum">     335 </span>                :<span class="lineNoCov">          0 :       if (min_iou &lt; utils::get2dIoU(object1, object2)) {</span></a>
-<a name="336"><span class="lineNum">     336 </span>                :<span class="lineNoCov">          0 :         if ((*itr1)-&gt;getTotalMeasurementCount() &lt; (*itr2)-&gt;getTotalMeasurementCount()) {</span></a>
-<a name="337"><span class="lineNum">     337 </span>                :            :           itr1 = list_tracker.erase(itr1);</a>
-<a name="338"><span class="lineNum">     338 </span>                :            :           --itr1;</a>
-<a name="339"><span class="lineNum">     339 </span>                :<span class="lineNoCov">          0 :           break;</span></a>
-<a name="340"><span class="lineNum">     340 </span>                :            :         } else {</a>
-<a name="341"><span class="lineNum">     341 </span>                :            :           itr2 = list_tracker.erase(itr2);</a>
-<a name="342"><span class="lineNum">     342 </span>                :            :           --itr2;</a>
-<a name="343"><span class="lineNum">     343 </span>                :            :         }</a>
-<a name="344"><span class="lineNum">     344 </span>                :            :       }</a>
-<a name="345"><span class="lineNum">     345 </span>                :            :     }</a>
-<a name="346"><span class="lineNum">     346 </span>                :            :   }</a>
-<a name="347"><span class="lineNum">     347 </span>                :<span class="lineNoCov">          0 : }</span></a>
-<a name="348"><span class="lineNum">     348 </span>                :            : </a>
-<a name="349"><span class="lineNum">     349 </span>                :            : inline bool MultiObjectTracker::shouldTrackerPublish(</a>
-<a name="350"><span class="lineNum">     350 </span>                :            :   const std::shared_ptr&lt;const Tracker&gt; tracker) const</a>
-<a name="351"><span class="lineNum">     351 </span>                :            : {</a>
-<a name="352"><span class="lineNum">     352 </span>                :            :   constexpr int measurement_count_threshold = 3;</a>
-<a name="353"><span class="lineNum">     353 </span>                :<span class="lineNoCov">          0 :   if (tracker-&gt;getTotalMeasurementCount() &lt; measurement_count_threshold) {</span></a>
-<a name="354"><span class="lineNum">     354 </span>                :<span class="lineNoCov">          0 :     return false;</span></a>
-<a name="355"><span class="lineNum">     355 </span>                :            :   }</a>
-<a name="356"><span class="lineNum">     356 </span>                :            :   return true;</a>
-<a name="357"><span class="lineNum">     357 </span>                :            : }</a>
-<a name="358"><span class="lineNum">     358 </span>                :            : </a>
-<a name="359"><span class="lineNum">     359 </span>                :<span class="lineNoCov">          0 : void MultiObjectTracker::publish(const rclcpp::Time &amp; time) const</span></a>
-<a name="360"><span class="lineNum">     360 </span>                :            : {</a>
-<a name="361"><span class="lineNum">     361 </span>                :<span class="lineNoCov">          0 :   const auto subscriber_count = tracked_objects_pub_-&gt;get_subscription_count() +</span></a>
-<a name="362"><span class="lineNum">     362 </span>                :<span class="lineNoCov">          0 :                                 tracked_objects_pub_-&gt;get_intra_process_subscription_count();</span></a>
-<a name="363"><span class="lineNum">     363 </span>                :<span class="lineNoCov">          0 :   if (subscriber_count &lt; 1) {</span></a>
-<a name="364"><span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="365"><span class="lineNum">     365 </span>                :            :   }</a>
-<a name="366"><span class="lineNum">     366 </span>                :            :   // Create output msg</a>
-<a name="367"><span class="lineNum">     367 </span>                :<span class="lineNoCov">          0 :   autoware_auto_perception_msgs::msg::TrackedObjects output_msg;</span></a>
-<a name="368"><span class="lineNum">     368 </span>                :<span class="lineNoCov">          0 :   output_msg.header.frame_id = world_frame_id_;</span></a>
-<a name="369"><span class="lineNum">     369 </span>                :<span class="lineNoCov">          0 :   output_msg.header.stamp = time;</span></a>
-<a name="370"><span class="lineNum">     370 </span>                :<span class="lineNoCov">          0 :   for (auto itr = list_tracker_.begin(); itr != list_tracker_.end(); ++itr) {</span></a>
-<a name="371"><span class="lineNum">     371 </span>                :<span class="lineNoCov">          0 :     if (!shouldTrackerPublish(*itr)) {</span></a>
-<a name="372"><span class="lineNum">     372 </span>                :<span class="lineNoCov">          0 :       continue;</span></a>
-<a name="373"><span class="lineNum">     373 </span>                :            :     }</a>
-<a name="374"><span class="lineNum">     374 </span>                :<span class="lineNoCov">          0 :     autoware_auto_perception_msgs::msg::TrackedObject object;</span></a>
-<a name="375"><span class="lineNum">     375 </span>                :<span class="lineNoCov">          0 :     (*itr)-&gt;getTrackedObject(time, object);</span></a>
-<a name="376"><span class="lineNum">     376 </span>                :<span class="lineNoCov">          0 :     output_msg.objects.push_back(object);</span></a>
-<a name="377"><span class="lineNum">     377 </span>                :            :   }</a>
-<a name="378"><span class="lineNum">     378 </span>                :            : </a>
-<a name="379"><span class="lineNum">     379 </span>                :            :   // Publish</a>
-<a name="380"><span class="lineNum">     380 </span>                :<span class="lineNoCov">          0 :   tracked_objects_pub_-&gt;publish(output_msg);</span></a>
+<a name="303"><span class="lineNum">     303 </span>                :            : void MultiObjectTracker::onTimer()</a>
+<a name="304"><span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 : {</span></a>
+<a name="305"><span class="lineNum">     305 </span>                :<span class="lineNoCov">          0 :   rclcpp::Time current_time = this-&gt;now();</span></a>
+<a name="306"><span class="lineNum">     306 </span>                :<span class="lineNoCov">          0 :   const auto self_transform = getTransform(tf_buffer_, world_frame_id_, &quot;base_link&quot;, current_time);</span></a>
+<a name="307"><span class="lineNum">     307 </span>                :<span class="lineNoCov">          0 :   if (!self_transform) {</span></a>
+<a name="308"><span class="lineNum">     308 </span>                :            :     return;</a>
+<a name="309"><span class="lineNum">     309 </span>                :            :   }</a>
+<a name="310"><span class="lineNum">     310 </span>                :            : </a>
+<a name="311"><span class="lineNum">     311 </span>                :            :   /* life cycle check */</a>
+<a name="312"><span class="lineNum">     312 </span>                :            :   checkTrackerLifeCycle(list_tracker_, current_time, *self_transform);</a>
+<a name="313"><span class="lineNum">     313 </span>                :<span class="lineNoCov">          0 :   /* sanitize trackers */</span></a>
+<a name="314"><span class="lineNum">     314 </span>                :            :   sanitizeTracker(list_tracker_, current_time);</a>
+<a name="315"><span class="lineNum">     315 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="316"><span class="lineNum">     316 </span>                :            :   // Publish</a>
+<a name="317"><span class="lineNum">     317 </span>                :            :   publish(current_time);</a>
+<a name="318"><span class="lineNum">     318 </span>                :            : }</a>
+<a name="319"><span class="lineNum">     319 </span>                :            : </a>
+<a name="320"><span class="lineNum">     320 </span>                :            : void MultiObjectTracker::checkTrackerLifeCycle(</a>
+<a name="321"><span class="lineNum">     321 </span>                :<span class="lineNoCov">          0 :   std::list&lt;std::shared_ptr&lt;Tracker&gt;&gt; &amp; list_tracker, const rclcpp::Time &amp; time,</span></a>
+<a name="322"><span class="lineNum">     322 </span>                :<span class="lineNoCov">          0 :   const geometry_msgs::msg::Transform &amp; self_transform)</span></a>
+<a name="323"><span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 : {</span></a>
+<a name="324"><span class="lineNum">     324 </span>                :<span class="lineNoCov">          0 :   /* params */</span></a>
+<a name="325"><span class="lineNum">     325 </span>                :<span class="lineNoCov">          0 :   constexpr float max_elapsed_time = 1.0;</span></a>
+<a name="326"><span class="lineNum">     326 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="327"><span class="lineNum">     327 </span>                :<span class="lineNoCov">          0 :   /* delete tracker */</span></a>
+<a name="328"><span class="lineNum">     328 </span>                :<span class="lineNoCov">          0 :   for (auto itr = list_tracker.begin(); itr != list_tracker.end(); ++itr) {</span></a>
+<a name="329"><span class="lineNum">     329 </span>                :<span class="lineNoCov">          0 :     const bool is_old = max_elapsed_time &lt; (*itr)-&gt;getElapsedTimeFromLastUpdate(time);</span></a>
+<a name="330"><span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :     const bool is_specific_alive_pattern = isSpecificAlivePattern(*itr, time, self_transform);</span></a>
+<a name="331"><span class="lineNum">     331 </span>                :<span class="lineNoCov">          0 :     if (is_old &amp;&amp; !is_specific_alive_pattern) {</span></a>
+<a name="332"><span class="lineNum">     332 </span>                :<span class="lineNoCov">          0 :       auto erase_itr = itr;</span></a>
+<a name="333"><span class="lineNum">     333 </span>                :<span class="lineNoCov">          0 :       --itr;</span></a>
+<a name="334"><span class="lineNum">     334 </span>                :            :       list_tracker.erase(erase_itr);</a>
+<a name="335"><span class="lineNum">     335 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="336"><span class="lineNum">     336 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="337"><span class="lineNum">     337 </span>                :            : }</a>
+<a name="338"><span class="lineNum">     338 </span>                :            : </a>
+<a name="339"><span class="lineNum">     339 </span>                :<span class="lineNoCov">          0 : void MultiObjectTracker::sanitizeTracker(</span></a>
+<a name="340"><span class="lineNum">     340 </span>                :            :   std::list&lt;std::shared_ptr&lt;Tracker&gt;&gt; &amp; list_tracker, const rclcpp::Time &amp; time)</a>
+<a name="341"><span class="lineNum">     341 </span>                :            : {</a>
+<a name="342"><span class="lineNum">     342 </span>                :            :   constexpr float min_iou = 0.1;</a>
+<a name="343"><span class="lineNum">     343 </span>                :            :   constexpr double distance_threshold = 5.0;</a>
+<a name="344"><span class="lineNum">     344 </span>                :            :   /* delete collision tracker */</a>
+<a name="345"><span class="lineNum">     345 </span>                :            :   for (auto itr1 = list_tracker.begin(); itr1 != list_tracker.end(); ++itr1) {</a>
+<a name="346"><span class="lineNum">     346 </span>                :            :     autoware_auto_perception_msgs::msg::TrackedObject object1;</a>
+<a name="347"><span class="lineNum">     347 </span>                :<span class="lineNoCov">          0 :     (*itr1)-&gt;getTrackedObject(time, object1);</span></a>
+<a name="348"><span class="lineNum">     348 </span>                :            :     for (auto itr2 = std::next(itr1); itr2 != list_tracker.end(); ++itr2) {</a>
+<a name="349"><span class="lineNum">     349 </span>                :            :       autoware_auto_perception_msgs::msg::TrackedObject object2;</a>
+<a name="350"><span class="lineNum">     350 </span>                :            :       (*itr2)-&gt;getTrackedObject(time, object2);</a>
+<a name="351"><span class="lineNum">     351 </span>                :            :       const double distance = std::hypot(</a>
+<a name="352"><span class="lineNum">     352 </span>                :            :         object1.kinematics.pose_with_covariance.pose.position.x -</a>
+<a name="353"><span class="lineNum">     353 </span>                :<span class="lineNoCov">          0 :           object2.kinematics.pose_with_covariance.pose.position.x,</span></a>
+<a name="354"><span class="lineNum">     354 </span>                :<span class="lineNoCov">          0 :         object1.kinematics.pose_with_covariance.pose.position.y -</span></a>
+<a name="355"><span class="lineNum">     355 </span>                :            :           object2.kinematics.pose_with_covariance.pose.position.y);</a>
+<a name="356"><span class="lineNum">     356 </span>                :            :       if (distance_threshold &lt; distance) {</a>
+<a name="357"><span class="lineNum">     357 </span>                :            :         continue;</a>
+<a name="358"><span class="lineNum">     358 </span>                :            :       }</a>
+<a name="359"><span class="lineNum">     359 </span>                :<span class="lineNoCov">          0 :       if (min_iou &lt; utils::get2dIoU(object1, object2)) {</span></a>
+<a name="360"><span class="lineNum">     360 </span>                :            :         if ((*itr1)-&gt;getTotalMeasurementCount() &lt; (*itr2)-&gt;getTotalMeasurementCount()) {</a>
+<a name="361"><span class="lineNum">     361 </span>                :<span class="lineNoCov">          0 :           itr1 = list_tracker.erase(itr1);</span></a>
+<a name="362"><span class="lineNum">     362 </span>                :<span class="lineNoCov">          0 :           --itr1;</span></a>
+<a name="363"><span class="lineNum">     363 </span>                :<span class="lineNoCov">          0 :           break;</span></a>
+<a name="364"><span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :         } else {</span></a>
+<a name="365"><span class="lineNum">     365 </span>                :            :           itr2 = list_tracker.erase(itr2);</a>
+<a name="366"><span class="lineNum">     366 </span>                :            :           --itr2;</a>
+<a name="367"><span class="lineNum">     367 </span>                :<span class="lineNoCov">          0 :         }</span></a>
+<a name="368"><span class="lineNum">     368 </span>                :<span class="lineNoCov">          0 :       }</span></a>
+<a name="369"><span class="lineNum">     369 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="370"><span class="lineNum">     370 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="371"><span class="lineNum">     371 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="372"><span class="lineNum">     372 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="373"><span class="lineNum">     373 </span>                :            : inline bool MultiObjectTracker::shouldTrackerPublish(</a>
+<a name="374"><span class="lineNum">     374 </span>                :<span class="lineNoCov">          0 :   const std::shared_ptr&lt;const Tracker&gt; tracker) const</span></a>
+<a name="375"><span class="lineNum">     375 </span>                :<span class="lineNoCov">          0 : {</span></a>
+<a name="376"><span class="lineNum">     376 </span>                :<span class="lineNoCov">          0 :   constexpr int measurement_count_threshold = 3;</span></a>
+<a name="377"><span class="lineNum">     377 </span>                :            :   if (tracker-&gt;getTotalMeasurementCount() &lt; measurement_count_threshold) {</a>
+<a name="378"><span class="lineNum">     378 </span>                :            :     return false;</a>
+<a name="379"><span class="lineNum">     379 </span>                :            :   }</a>
+<a name="380"><span class="lineNum">     380 </span>                :<span class="lineNoCov">          0 :   return true;</span></a>
 <a name="381"><span class="lineNum">     381 </span>                :            : }</a>
 <a name="382"><span class="lineNum">     382 </span>                :            : </a>
-<a name="383"><span class="lineNum">     383 </span>                :            : RCLCPP_COMPONENTS_REGISTER_NODE(MultiObjectTracker)</a>
+<a name="383"><span class="lineNum">     383 </span>                :            : void MultiObjectTracker::publish(const rclcpp::Time &amp; time) const</a>
+<a name="384"><span class="lineNum">     384 </span>                :            : {</a>
+<a name="385"><span class="lineNum">     385 </span>                :            :   const auto subscriber_count = tracked_objects_pub_-&gt;get_subscription_count() +</a>
+<a name="386"><span class="lineNum">     386 </span>                :            :                                 tracked_objects_pub_-&gt;get_intra_process_subscription_count();</a>
+<a name="387"><span class="lineNum">     387 </span>                :            :   if (subscriber_count &lt; 1) {</a>
+<a name="388"><span class="lineNum">     388 </span>                :            :     return;</a>
+<a name="389"><span class="lineNum">     389 </span>                :            :   }</a>
+<a name="390"><span class="lineNum">     390 </span>                :            :   // Create output msg</a>
+<a name="391"><span class="lineNum">     391 </span>                :            :   autoware_auto_perception_msgs::msg::TrackedObjects output_msg;</a>
+<a name="392"><span class="lineNum">     392 </span>                :            :   output_msg.header.frame_id = world_frame_id_;</a>
+<a name="393"><span class="lineNum">     393 </span>                :            :   output_msg.header.stamp = time;</a>
+<a name="394"><span class="lineNum">     394 </span>                :            :   for (auto itr = list_tracker_.begin(); itr != list_tracker_.end(); ++itr) {</a>
+<a name="395"><span class="lineNum">     395 </span>                :            :     if (!shouldTrackerPublish(*itr)) {</a>
+<a name="396"><span class="lineNum">     396 </span>                :            :       continue;</a>
+<a name="397"><span class="lineNum">     397 </span>                :            :     }</a>
+<a name="398"><span class="lineNum">     398 </span>                :            :     autoware_auto_perception_msgs::msg::TrackedObject object;</a>
+<a name="399"><span class="lineNum">     399 </span>                :            :     (*itr)-&gt;getTrackedObject(time, object);</a>
+<a name="400"><span class="lineNum">     400 </span>                :            :     output_msg.objects.push_back(object);</a>
+<a name="401"><span class="lineNum">     401 </span>                :            :   }</a>
+<a name="402"><span class="lineNum">     402 </span>                :            : </a>
+<a name="403"><span class="lineNum">     403 </span>                :            :   // Publish</a>
+<a name="404"><span class="lineNum">     404 </span>                :            :   tracked_objects_pub_-&gt;publish(output_msg);</a>
+<a name="405"><span class="lineNum">     405 </span>                :            : }</a>
+<a name="406"><span class="lineNum">     406 </span>                :            : </a>
+<a name="407"><span class="lineNum">     407 </span>                :            : RCLCPP_COMPONENTS_REGISTER_NODE(MultiObjectTracker)</a>
 </pre>
       </td>
     </tr>

@@ -295,10 +295,6 @@
   </url>
   
   <url>
-    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/laserscan_to_occupancy_grid_map/</loc>
-  </url>
-  
-  <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/lidar_apollo_instance_segmentation/</loc>
   </url>
   
@@ -420,6 +416,10 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pose_initializer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/probabilistic_occupancy_grid_map/</loc>
   </url>
   
   <url>
@@ -604,6 +604,10 @@
   
   <url>
     <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_system_msgs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_traffic_light_rviz_plugin/</loc>
   </url>
   
   <url>

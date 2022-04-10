@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:12</td>
+            <td class="headerValue">2022-04-10 20:40:03</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -255,169 +255,175 @@
 <a name="177"><span class="lineNum">     177 </span>                :<span class="lineNoCov">          0 :   return output;</span></a>
 <a name="178"><span class="lineNum">     178 </span>                :            : }</a>
 <a name="179"><span class="lineNum">     179 </span>                :            : </a>
-<a name="180"><span class="lineNum">     180 </span>                :<span class="lineNoCov">          0 : size_t getIdxByArclength(const PathWithLaneId &amp; path, const Point &amp; origin, const double signed_arc)</span></a>
+<a name="180"><span class="lineNum">     180 </span>                :<span class="lineNoCov">          0 : size_t getIdxByArclength(const PathWithLaneId &amp; path, const Pose &amp; origin, const double signed_arc)</span></a>
 <a name="181"><span class="lineNum">     181 </span>                :            : {</a>
 <a name="182"><span class="lineNum">     182 </span>                :<span class="lineNoCov">          0 :   if (path.points.empty()) {</span></a>
 <a name="183"><span class="lineNum">     183 </span>                :<span class="lineNoCov">          0 :     throw std::runtime_error(&quot;[getIdxByArclength] path points must be &gt; 0&quot;);</span></a>
 <a name="184"><span class="lineNum">     184 </span>                :            :   }</a>
 <a name="185"><span class="lineNum">     185 </span>                :            : </a>
-<a name="186"><span class="lineNum">     186 </span>                :<span class="lineNoCov">          0 :   const auto closest_idx = tier4_autoware_utils::findNearestIndex(path.points, origin);</span></a>
-<a name="187"><span class="lineNum">     187 </span>                :            : </a>
-<a name="188"><span class="lineNum">     188 </span>                :            :   using tier4_autoware_utils::calcDistance2d;</a>
-<a name="189"><span class="lineNum">     189 </span>                :            :   double sum_length = 0.0;</a>
-<a name="190"><span class="lineNum">     190 </span>                :<span class="lineNoCov">          0 :   if (signed_arc &gt;= 0.0) {</span></a>
-<a name="191"><span class="lineNum">     191 </span>                :<span class="lineNoCov">          0 :     for (size_t i = closest_idx; i &lt; path.points.size() - 1; ++i) {</span></a>
-<a name="192"><span class="lineNum">     192 </span>                :<span class="lineNoCov">          0 :       const auto next_i = i + 1;</span></a>
-<a name="193"><span class="lineNum">     193 </span>                :<span class="lineNoCov">          0 :       sum_length += calcDistance2d(path.points.at(i), path.points.at(next_i));</span></a>
-<a name="194"><span class="lineNum">     194 </span>                :<span class="lineNoCov">          0 :       if (sum_length &gt; signed_arc) {</span></a>
-<a name="195"><span class="lineNum">     195 </span>                :<span class="lineNoCov">          0 :         return next_i;</span></a>
-<a name="196"><span class="lineNum">     196 </span>                :            :       }</a>
-<a name="197"><span class="lineNum">     197 </span>                :            :     }</a>
-<a name="198"><span class="lineNum">     198 </span>                :            :     return path.points.size() - 1;</a>
-<a name="199"><span class="lineNum">     199 </span>                :            :   } else {</a>
-<a name="200"><span class="lineNum">     200 </span>                :<span class="lineNoCov">          0 :     for (size_t i = closest_idx; i &gt; 0; --i) {</span></a>
-<a name="201"><span class="lineNum">     201 </span>                :<span class="lineNoCov">          0 :       const auto next_i = i - 1;</span></a>
-<a name="202"><span class="lineNum">     202 </span>                :<span class="lineNoCov">          0 :       sum_length -= calcDistance2d(path.points.at(i), path.points.at(next_i));</span></a>
-<a name="203"><span class="lineNum">     203 </span>                :<span class="lineNoCov">          0 :       if (sum_length &lt; signed_arc) {</span></a>
-<a name="204"><span class="lineNum">     204 </span>                :<span class="lineNoCov">          0 :         return next_i;</span></a>
-<a name="205"><span class="lineNum">     205 </span>                :            :       }</a>
-<a name="206"><span class="lineNum">     206 </span>                :            :     }</a>
-<a name="207"><span class="lineNum">     207 </span>                :            :     return 0;</a>
-<a name="208"><span class="lineNum">     208 </span>                :            :   }</a>
-<a name="209"><span class="lineNum">     209 </span>                :            : }</a>
-<a name="210"><span class="lineNum">     210 </span>                :            : </a>
-<a name="211"><span class="lineNum">     211 </span>                :<span class="lineNoCov">          0 : void clipPathLength(</span></a>
-<a name="212"><span class="lineNum">     212 </span>                :            :   PathWithLaneId &amp; path, const Point base_pos, const double forward, const double backward)</a>
-<a name="213"><span class="lineNum">     213 </span>                :            : {</a>
-<a name="214"><span class="lineNum">     214 </span>                :<span class="lineNoCov">          0 :   if (path.points.size() &lt; 3) {</span></a>
-<a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 :     return;</span></a>
-<a name="216"><span class="lineNum">     216 </span>                :            :   }</a>
-<a name="217"><span class="lineNum">     217 </span>                :            : </a>
-<a name="218"><span class="lineNum">     218 </span>                :<span class="lineNoCov">          0 :   const auto start_idx = util::getIdxByArclength(path, base_pos, -backward);</span></a>
-<a name="219"><span class="lineNum">     219 </span>                :<span class="lineNoCov">          0 :   const auto end_idx = util::getIdxByArclength(path, base_pos, forward);</span></a>
-<a name="220"><span class="lineNum">     220 </span>                :            : </a>
-<a name="221"><span class="lineNum">     221 </span>                :            :   const std::vector&lt;PathPointWithLaneId&gt; clipped_points{</a>
-<a name="222"><span class="lineNum">     222 </span>                :<span class="lineNoCov">          0 :     path.points.begin() + start_idx, path.points.begin() + end_idx + 1};</span></a>
+<a name="186"><span class="lineNum">     186 </span>                :<span class="lineNoCov">          0 :   const auto boost_closest_idx = tier4_autoware_utils::findNearestIndex(</span></a>
+<a name="187"><span class="lineNum">     187 </span>                :            :     path.points, origin, std::numeric_limits&lt;double&gt;::max(), M_PI / 4.0);</a>
+<a name="188"><span class="lineNum">     188 </span>                :            : </a>
+<a name="189"><span class="lineNum">     189 </span>                :            :   // If the nearest index search with angle limit fails, search again without angle limit.</a>
+<a name="190"><span class="lineNum">     190 </span>                :<span class="lineNoCov">          0 :   size_t closest_idx = boost_closest_idx</span></a>
+<a name="191"><span class="lineNum">     191 </span>                :<span class="lineNoCov">          0 :                          ? *boost_closest_idx</span></a>
+<a name="192"><span class="lineNum">     192 </span>                :<span class="lineNoCov">          0 :                          : tier4_autoware_utils::findNearestIndex(path.points, origin.position);</span></a>
+<a name="193"><span class="lineNum">     193 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="194"><span class="lineNum">     194 </span>                :<span class="lineNoCov">          0 :   using tier4_autoware_utils::calcDistance2d;</span></a>
+<a name="195"><span class="lineNum">     195 </span>                :<span class="lineNoCov">          0 :   double sum_length = 0.0;</span></a>
+<a name="196"><span class="lineNum">     196 </span>                :            :   if (signed_arc &gt;= 0.0) {</a>
+<a name="197"><span class="lineNum">     197 </span>                :            :     for (size_t i = closest_idx; i &lt; path.points.size() - 1; ++i) {</a>
+<a name="198"><span class="lineNum">     198 </span>                :            :       const auto next_i = i + 1;</a>
+<a name="199"><span class="lineNum">     199 </span>                :            :       sum_length += calcDistance2d(path.points.at(i), path.points.at(next_i));</a>
+<a name="200"><span class="lineNum">     200 </span>                :<span class="lineNoCov">          0 :       if (sum_length &gt; signed_arc) {</span></a>
+<a name="201"><span class="lineNum">     201 </span>                :<span class="lineNoCov">          0 :         return next_i;</span></a>
+<a name="202"><span class="lineNum">     202 </span>                :<span class="lineNoCov">          0 :       }</span></a>
+<a name="203"><span class="lineNum">     203 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="204"><span class="lineNum">     204 </span>                :<span class="lineNoCov">          0 :     return path.points.size() - 1;</span></a>
+<a name="205"><span class="lineNum">     205 </span>                :            :   } else {</a>
+<a name="206"><span class="lineNum">     206 </span>                :            :     for (size_t i = closest_idx; i &gt; 0; --i) {</a>
+<a name="207"><span class="lineNum">     207 </span>                :            :       const auto next_i = i - 1;</a>
+<a name="208"><span class="lineNum">     208 </span>                :            :       sum_length -= calcDistance2d(path.points.at(i), path.points.at(next_i));</a>
+<a name="209"><span class="lineNum">     209 </span>                :            :       if (sum_length &lt; signed_arc) {</a>
+<a name="210"><span class="lineNum">     210 </span>                :            :         return next_i;</a>
+<a name="211"><span class="lineNum">     211 </span>                :<span class="lineNoCov">          0 :       }</span></a>
+<a name="212"><span class="lineNum">     212 </span>                :            :     }</a>
+<a name="213"><span class="lineNum">     213 </span>                :            :     return 0;</a>
+<a name="214"><span class="lineNum">     214 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="216"><span class="lineNum">     216 </span>                :            : </a>
+<a name="217"><span class="lineNum">     217 </span>                :            : void clipPathLength(</a>
+<a name="218"><span class="lineNum">     218 </span>                :<span class="lineNoCov">          0 :   PathWithLaneId &amp; path, const Pose base_pose, const double forward, const double backward)</span></a>
+<a name="219"><span class="lineNum">     219 </span>                :<span class="lineNoCov">          0 : {</span></a>
+<a name="220"><span class="lineNum">     220 </span>                :            :   if (path.points.size() &lt; 3) {</a>
+<a name="221"><span class="lineNum">     221 </span>                :            :     return;</a>
+<a name="222"><span class="lineNum">     222 </span>                :<span class="lineNoCov">          0 :   }</span></a>
 <a name="223"><span class="lineNum">     223 </span>                :            : </a>
-<a name="224"><span class="lineNum">     224 </span>                :<span class="lineNoCov">          0 :   path.points = clipped_points;</span></a>
-<a name="225"><span class="lineNum">     225 </span>                :            : }</a>
+<a name="224"><span class="lineNum">     224 </span>                :<span class="lineNoCov">          0 :   const auto start_idx = util::getIdxByArclength(path, base_pose, -backward);</span></a>
+<a name="225"><span class="lineNum">     225 </span>                :            :   const auto end_idx = util::getIdxByArclength(path, base_pose, forward);</a>
 <a name="226"><span class="lineNum">     226 </span>                :            : </a>
-<a name="227"><span class="lineNum">     227 </span>                :<span class="lineNoCov">          0 : std::pair&lt;TurnIndicatorsCommand, double&gt; getPathTurnSignal(</span></a>
-<a name="228"><span class="lineNum">     228 </span>                :            :   const lanelet::ConstLanelets &amp; current_lanes, const ShiftedPath &amp; path,</a>
-<a name="229"><span class="lineNum">     229 </span>                :            :   const ShiftPoint &amp; shift_point, const Pose &amp; pose, const double &amp; velocity,</a>
-<a name="230"><span class="lineNum">     230 </span>                :            :   const BehaviorPathPlannerParameters &amp; common_parameter, const double &amp; search_distance)</a>
-<a name="231"><span class="lineNum">     231 </span>                :            : {</a>
-<a name="232"><span class="lineNum">     232 </span>                :            :   TurnIndicatorsCommand turn_signal;</a>
-<a name="233"><span class="lineNum">     233 </span>                :            :   turn_signal.command = TurnIndicatorsCommand::NO_COMMAND;</a>
-<a name="234"><span class="lineNum">     234 </span>                :            :   const double max_time = std::numeric_limits&lt;double&gt;::max();</a>
-<a name="235"><span class="lineNum">     235 </span>                :            :   const double max_distance = std::numeric_limits&lt;double&gt;::max();</a>
-<a name="236"><span class="lineNum">     236 </span>                :<span class="lineNoCov">          0 :   if (path.shift_length.empty()) {</span></a>
-<a name="237"><span class="lineNum">     237 </span>                :            :     return std::make_pair(turn_signal, max_distance);</a>
-<a name="238"><span class="lineNum">     238 </span>                :            :   }</a>
-<a name="239"><span class="lineNum">     239 </span>                :<span class="lineNoCov">          0 :   const auto base_link2front = common_parameter.base_link2front;</span></a>
-<a name="240"><span class="lineNum">     240 </span>                :<span class="lineNoCov">          0 :   const auto vehicle_width = common_parameter.vehicle_width;</span></a>
-<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :   const auto shift_to_outside = vehicle_width / 2;</span></a>
-<a name="242"><span class="lineNum">     242 </span>                :<span class="lineNoCov">          0 :   const auto tl_on_threshold_lat = common_parameter.turn_light_on_threshold_dis_lat;</span></a>
-<a name="243"><span class="lineNum">     243 </span>                :<span class="lineNoCov">          0 :   const auto tl_on_threshold_long = common_parameter.turn_light_on_threshold_dis_long;</span></a>
-<a name="244"><span class="lineNum">     244 </span>                :<span class="lineNoCov">          0 :   const auto prev_sec = common_parameter.turn_light_on_threshold_time;</span></a>
-<a name="245"><span class="lineNum">     245 </span>                :            :   const double epsilon = 1e-6;</a>
-<a name="246"><span class="lineNum">     246 </span>                :<span class="lineNoCov">          0 :   const auto arc_position_current_pose = lanelet::utils::getArcCoordinates(current_lanes, pose);</span></a>
-<a name="247"><span class="lineNum">     247 </span>                :            : </a>
-<a name="248"><span class="lineNum">     248 </span>                :            :   // Start turn signal when 1 or 2 is satisfied</a>
-<a name="249"><span class="lineNum">     249 </span>                :            :   //  1. time to shift start point is less than prev_sec</a>
-<a name="250"><span class="lineNum">     250 </span>                :            :   //  2. distance to shift point is shorter than tl_on_threshold_long</a>
-<a name="251"><span class="lineNum">     251 </span>                :            : </a>
-<a name="252"><span class="lineNum">     252 </span>                :            :   // Turn signal on when conditions below are satisfied</a>
-<a name="253"><span class="lineNum">     253 </span>                :            :   //  1. lateral offset is larger than tl_on_threshold_lat for left signal</a>
-<a name="254"><span class="lineNum">     254 </span>                :            :   //                      smaller than tl_on_threshold_lat for right signal</a>
-<a name="255"><span class="lineNum">     255 </span>                :            :   //  2. side point at shift start/end point cross the line</a>
-<a name="256"><span class="lineNum">     256 </span>                :            :   double distance_to_shift_start;</a>
-<a name="257"><span class="lineNum">     257 </span>                :            :   {</a>
-<a name="258"><span class="lineNum">     258 </span>                :            :     const auto arc_position_shift_start =</a>
-<a name="259"><span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :       lanelet::utils::getArcCoordinates(current_lanes, shift_point.start);</span></a>
-<a name="260"><span class="lineNum">     260 </span>                :<span class="lineNoCov">          0 :     distance_to_shift_start = arc_position_shift_start.length - arc_position_current_pose.length;</span></a>
-<a name="261"><span class="lineNum">     261 </span>                :            :   }</a>
-<a name="262"><span class="lineNum">     262 </span>                :            : </a>
-<a name="263"><span class="lineNum">     263 </span>                :            :   const auto time_to_shift_start =</a>
-<a name="264"><span class="lineNum">     264 </span>                :<span class="lineNoCov">          0 :     (std::abs(velocity) &lt; epsilon) ? max_time : distance_to_shift_start / velocity;</span></a>
-<a name="265"><span class="lineNum">     265 </span>                :            : </a>
-<a name="266"><span class="lineNum">     266 </span>                :            :   const double diff =</a>
-<a name="267"><span class="lineNum">     267 </span>                :<span class="lineNoCov">          0 :     path.shift_length.at(shift_point.end_idx) - path.shift_length.at(shift_point.start_idx);</span></a>
+<a name="227"><span class="lineNum">     227 </span>                :<span class="lineNoCov">          0 :   const std::vector&lt;PathPointWithLaneId&gt; clipped_points{</span></a>
+<a name="228"><span class="lineNum">     228 </span>                :            :     path.points.begin() + start_idx, path.points.begin() + end_idx + 1};</a>
+<a name="229"><span class="lineNum">     229 </span>                :            : </a>
+<a name="230"><span class="lineNum">     230 </span>                :            :   path.points = clipped_points;</a>
+<a name="231"><span class="lineNum">     231 </span>                :            : }</a>
+<a name="232"><span class="lineNum">     232 </span>                :            : </a>
+<a name="233"><span class="lineNum">     233 </span>                :            : std::pair&lt;TurnIndicatorsCommand, double&gt; getPathTurnSignal(</a>
+<a name="234"><span class="lineNum">     234 </span>                :            :   const lanelet::ConstLanelets &amp; current_lanes, const ShiftedPath &amp; path,</a>
+<a name="235"><span class="lineNum">     235 </span>                :            :   const ShiftPoint &amp; shift_point, const Pose &amp; pose, const double &amp; velocity,</a>
+<a name="236"><span class="lineNum">     236 </span>                :<span class="lineNoCov">          0 :   const BehaviorPathPlannerParameters &amp; common_parameter, const double &amp; search_distance)</span></a>
+<a name="237"><span class="lineNum">     237 </span>                :            : {</a>
+<a name="238"><span class="lineNum">     238 </span>                :            :   TurnIndicatorsCommand turn_signal;</a>
+<a name="239"><span class="lineNum">     239 </span>                :<span class="lineNoCov">          0 :   turn_signal.command = TurnIndicatorsCommand::NO_COMMAND;</span></a>
+<a name="240"><span class="lineNum">     240 </span>                :<span class="lineNoCov">          0 :   const double max_time = std::numeric_limits&lt;double&gt;::max();</span></a>
+<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :   const double max_distance = std::numeric_limits&lt;double&gt;::max();</span></a>
+<a name="242"><span class="lineNum">     242 </span>                :<span class="lineNoCov">          0 :   if (path.shift_length.empty()) {</span></a>
+<a name="243"><span class="lineNum">     243 </span>                :<span class="lineNoCov">          0 :     return std::make_pair(turn_signal, max_distance);</span></a>
+<a name="244"><span class="lineNum">     244 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="245"><span class="lineNum">     245 </span>                :            :   const auto base_link2front = common_parameter.base_link2front;</a>
+<a name="246"><span class="lineNum">     246 </span>                :<span class="lineNoCov">          0 :   const auto vehicle_width = common_parameter.vehicle_width;</span></a>
+<a name="247"><span class="lineNum">     247 </span>                :            :   const auto shift_to_outside = vehicle_width / 2;</a>
+<a name="248"><span class="lineNum">     248 </span>                :            :   const auto tl_on_threshold_lat = common_parameter.turn_light_on_threshold_dis_lat;</a>
+<a name="249"><span class="lineNum">     249 </span>                :            :   const auto tl_on_threshold_long = common_parameter.turn_light_on_threshold_dis_long;</a>
+<a name="250"><span class="lineNum">     250 </span>                :            :   const auto prev_sec = common_parameter.turn_light_on_threshold_time;</a>
+<a name="251"><span class="lineNum">     251 </span>                :            :   const double epsilon = 1e-6;</a>
+<a name="252"><span class="lineNum">     252 </span>                :            :   const auto arc_position_current_pose = lanelet::utils::getArcCoordinates(current_lanes, pose);</a>
+<a name="253"><span class="lineNum">     253 </span>                :            : </a>
+<a name="254"><span class="lineNum">     254 </span>                :            :   // Start turn signal when 1 or 2 is satisfied</a>
+<a name="255"><span class="lineNum">     255 </span>                :            :   //  1. time to shift start point is less than prev_sec</a>
+<a name="256"><span class="lineNum">     256 </span>                :            :   //  2. distance to shift point is shorter than tl_on_threshold_long</a>
+<a name="257"><span class="lineNum">     257 </span>                :            : </a>
+<a name="258"><span class="lineNum">     258 </span>                :            :   // Turn signal on when conditions below are satisfied</a>
+<a name="259"><span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :   //  1. lateral offset is larger than tl_on_threshold_lat for left signal</span></a>
+<a name="260"><span class="lineNum">     260 </span>                :<span class="lineNoCov">          0 :   //                      smaller than tl_on_threshold_lat for right signal</span></a>
+<a name="261"><span class="lineNum">     261 </span>                :            :   //  2. side point at shift start/end point cross the line</a>
+<a name="262"><span class="lineNum">     262 </span>                :            :   double distance_to_shift_start;</a>
+<a name="263"><span class="lineNum">     263 </span>                :            :   {</a>
+<a name="264"><span class="lineNum">     264 </span>                :<span class="lineNoCov">          0 :     const auto arc_position_shift_start =</span></a>
+<a name="265"><span class="lineNum">     265 </span>                :            :       lanelet::utils::getArcCoordinates(current_lanes, shift_point.start);</a>
+<a name="266"><span class="lineNum">     266 </span>                :            :     distance_to_shift_start = arc_position_shift_start.length - arc_position_current_pose.length;</a>
+<a name="267"><span class="lineNum">     267 </span>                :<span class="lineNoCov">          0 :   }</span></a>
 <a name="268"><span class="lineNum">     268 </span>                :            : </a>
-<a name="269"><span class="lineNum">     269 </span>                :<span class="lineNoCov">          0 :   Pose shift_start_point = path.path.points.at(shift_point.start_idx).point.pose;</span></a>
-<a name="270"><span class="lineNum">     270 </span>                :<span class="lineNoCov">          0 :   Pose shift_end_point = path.path.points.at(shift_point.end_idx).point.pose;</span></a>
-<a name="271"><span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 :   Pose left_start_point = shift_start_point;</span></a>
-<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :   Pose right_start_point = shift_start_point;</span></a>
-<a name="273"><span class="lineNum">     273 </span>                :<span class="lineNoCov">          0 :   Pose left_end_point = shift_end_point;</span></a>
-<a name="274"><span class="lineNum">     274 </span>                :<span class="lineNoCov">          0 :   Pose right_end_point = shift_end_point;</span></a>
-<a name="275"><span class="lineNum">     275 </span>                :            :   {</a>
-<a name="276"><span class="lineNum">     276 </span>                :            :     const double start_yaw = tf2::getYaw(shift_point.start.orientation);</a>
-<a name="277"><span class="lineNum">     277 </span>                :            :     const double end_yaw = tf2::getYaw(shift_point.end.orientation);</a>
-<a name="278"><span class="lineNum">     278 </span>                :<span class="lineNoCov">          0 :     left_start_point.position.x -= std::sin(start_yaw) * (shift_to_outside);</span></a>
-<a name="279"><span class="lineNum">     279 </span>                :<span class="lineNoCov">          0 :     left_start_point.position.y += std::cos(start_yaw) * (shift_to_outside);</span></a>
-<a name="280"><span class="lineNum">     280 </span>                :<span class="lineNoCov">          0 :     right_start_point.position.x -= std::sin(start_yaw) * (-shift_to_outside);</span></a>
-<a name="281"><span class="lineNum">     281 </span>                :<span class="lineNoCov">          0 :     right_start_point.position.y += std::cos(start_yaw) * (-shift_to_outside);</span></a>
-<a name="282"><span class="lineNum">     282 </span>                :<span class="lineNoCov">          0 :     left_end_point.position.x -= std::sin(end_yaw) * (shift_to_outside);</span></a>
-<a name="283"><span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 :     left_end_point.position.y += std::cos(end_yaw) * (shift_to_outside);</span></a>
-<a name="284"><span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :     right_end_point.position.x -= std::sin(end_yaw) * (-shift_to_outside);</span></a>
-<a name="285"><span class="lineNum">     285 </span>                :<span class="lineNoCov">          0 :     right_end_point.position.y += std::cos(end_yaw) * (-shift_to_outside);</span></a>
-<a name="286"><span class="lineNum">     286 </span>                :            :   }</a>
-<a name="287"><span class="lineNum">     287 </span>                :            : </a>
-<a name="288"><span class="lineNum">     288 </span>                :            :   bool left_start_point_is_in_lane = false;</a>
-<a name="289"><span class="lineNum">     289 </span>                :            :   bool right_start_point_is_in_lane = false;</a>
-<a name="290"><span class="lineNum">     290 </span>                :            :   bool left_end_point_is_in_lane = false;</a>
-<a name="291"><span class="lineNum">     291 </span>                :            :   bool right_end_point_is_in_lane = false;</a>
-<a name="292"><span class="lineNum">     292 </span>                :            :   {</a>
-<a name="293"><span class="lineNum">     293 </span>                :<span class="lineNoCov">          0 :     for (const auto &amp; llt : current_lanes) {</span></a>
-<a name="294"><span class="lineNum">     294 </span>                :<span class="lineNoCov">          0 :       if (lanelet::utils::isInLanelet(left_start_point, llt, 0.1)) {</span></a>
-<a name="295"><span class="lineNum">     295 </span>                :            :         left_start_point_is_in_lane = true;</a>
-<a name="296"><span class="lineNum">     296 </span>                :            :       }</a>
-<a name="297"><span class="lineNum">     297 </span>                :<span class="lineNoCov">          0 :       if (lanelet::utils::isInLanelet(right_start_point, llt, 0.1)) {</span></a>
-<a name="298"><span class="lineNum">     298 </span>                :            :         right_start_point_is_in_lane = true;</a>
-<a name="299"><span class="lineNum">     299 </span>                :            :       }</a>
-<a name="300"><span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :       if (lanelet::utils::isInLanelet(left_end_point, llt, 0.1)) {</span></a>
-<a name="301"><span class="lineNum">     301 </span>                :            :         left_end_point_is_in_lane = true;</a>
+<a name="269"><span class="lineNum">     269 </span>                :<span class="lineNoCov">          0 :   const auto time_to_shift_start =</span></a>
+<a name="270"><span class="lineNum">     270 </span>                :<span class="lineNoCov">          0 :     (std::abs(velocity) &lt; epsilon) ? max_time : distance_to_shift_start / velocity;</span></a>
+<a name="271"><span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :   const double diff =</span></a>
+<a name="273"><span class="lineNum">     273 </span>                :<span class="lineNoCov">          0 :     path.shift_length.at(shift_point.end_idx) - path.shift_length.at(shift_point.start_idx);</span></a>
+<a name="274"><span class="lineNum">     274 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="275"><span class="lineNum">     275 </span>                :            :   Pose shift_start_point = path.path.points.at(shift_point.start_idx).point.pose;</a>
+<a name="276"><span class="lineNum">     276 </span>                :            :   Pose shift_end_point = path.path.points.at(shift_point.end_idx).point.pose;</a>
+<a name="277"><span class="lineNum">     277 </span>                :            :   Pose left_start_point = shift_start_point;</a>
+<a name="278"><span class="lineNum">     278 </span>                :<span class="lineNoCov">          0 :   Pose right_start_point = shift_start_point;</span></a>
+<a name="279"><span class="lineNum">     279 </span>                :<span class="lineNoCov">          0 :   Pose left_end_point = shift_end_point;</span></a>
+<a name="280"><span class="lineNum">     280 </span>                :<span class="lineNoCov">          0 :   Pose right_end_point = shift_end_point;</span></a>
+<a name="281"><span class="lineNum">     281 </span>                :<span class="lineNoCov">          0 :   {</span></a>
+<a name="282"><span class="lineNum">     282 </span>                :<span class="lineNoCov">          0 :     const double start_yaw = tf2::getYaw(shift_point.start.orientation);</span></a>
+<a name="283"><span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 :     const double end_yaw = tf2::getYaw(shift_point.end.orientation);</span></a>
+<a name="284"><span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :     left_start_point.position.x -= std::sin(start_yaw) * (shift_to_outside);</span></a>
+<a name="285"><span class="lineNum">     285 </span>                :<span class="lineNoCov">          0 :     left_start_point.position.y += std::cos(start_yaw) * (shift_to_outside);</span></a>
+<a name="286"><span class="lineNum">     286 </span>                :            :     right_start_point.position.x -= std::sin(start_yaw) * (-shift_to_outside);</a>
+<a name="287"><span class="lineNum">     287 </span>                :            :     right_start_point.position.y += std::cos(start_yaw) * (-shift_to_outside);</a>
+<a name="288"><span class="lineNum">     288 </span>                :            :     left_end_point.position.x -= std::sin(end_yaw) * (shift_to_outside);</a>
+<a name="289"><span class="lineNum">     289 </span>                :            :     left_end_point.position.y += std::cos(end_yaw) * (shift_to_outside);</a>
+<a name="290"><span class="lineNum">     290 </span>                :            :     right_end_point.position.x -= std::sin(end_yaw) * (-shift_to_outside);</a>
+<a name="291"><span class="lineNum">     291 </span>                :            :     right_end_point.position.y += std::cos(end_yaw) * (-shift_to_outside);</a>
+<a name="292"><span class="lineNum">     292 </span>                :            :   }</a>
+<a name="293"><span class="lineNum">     293 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="294"><span class="lineNum">     294 </span>                :<span class="lineNoCov">          0 :   bool left_start_point_is_in_lane = false;</span></a>
+<a name="295"><span class="lineNum">     295 </span>                :            :   bool right_start_point_is_in_lane = false;</a>
+<a name="296"><span class="lineNum">     296 </span>                :            :   bool left_end_point_is_in_lane = false;</a>
+<a name="297"><span class="lineNum">     297 </span>                :<span class="lineNoCov">          0 :   bool right_end_point_is_in_lane = false;</span></a>
+<a name="298"><span class="lineNum">     298 </span>                :            :   {</a>
+<a name="299"><span class="lineNum">     299 </span>                :            :     for (const auto &amp; llt : current_lanes) {</a>
+<a name="300"><span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :       if (lanelet::utils::isInLanelet(left_start_point, llt, 0.1)) {</span></a>
+<a name="301"><span class="lineNum">     301 </span>                :            :         left_start_point_is_in_lane = true;</a>
 <a name="302"><span class="lineNum">     302 </span>                :            :       }</a>
-<a name="303"><span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :       if (lanelet::utils::isInLanelet(right_end_point, llt, 0.1)) {</span></a>
-<a name="304"><span class="lineNum">     304 </span>                :            :         right_end_point_is_in_lane = true;</a>
+<a name="303"><span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :       if (lanelet::utils::isInLanelet(right_start_point, llt, 0.1)) {</span></a>
+<a name="304"><span class="lineNum">     304 </span>                :            :         right_start_point_is_in_lane = true;</a>
 <a name="305"><span class="lineNum">     305 </span>                :            :       }</a>
-<a name="306"><span class="lineNum">     306 </span>                :            :     }</a>
-<a name="307"><span class="lineNum">     307 </span>                :            :   }</a>
-<a name="308"><span class="lineNum">     308 </span>                :            : </a>
-<a name="309"><span class="lineNum">     309 </span>                :            :   bool cross_line = false;</a>
-<a name="310"><span class="lineNum">     310 </span>                :<span class="lineNoCov">          0 :   if (</span></a>
-<a name="311"><span class="lineNum">     311 </span>                :<span class="lineNoCov">          0 :     left_start_point_is_in_lane != left_end_point_is_in_lane ||</span></a>
-<a name="312"><span class="lineNum">     312 </span>                :<span class="lineNoCov">          0 :     right_start_point_is_in_lane != right_end_point_is_in_lane) {</span></a>
-<a name="313"><span class="lineNum">     313 </span>                :            :     cross_line = true;</a>
-<a name="314"><span class="lineNum">     314 </span>                :            :   }</a>
-<a name="315"><span class="lineNum">     315 </span>                :            : </a>
-<a name="316"><span class="lineNum">     316 </span>                :<span class="lineNoCov">          0 :   if (time_to_shift_start &lt; prev_sec || distance_to_shift_start &lt; tl_on_threshold_long) {</span></a>
-<a name="317"><span class="lineNum">     317 </span>                :<span class="lineNoCov">          0 :     if (diff &gt; tl_on_threshold_lat &amp;&amp; cross_line) {</span></a>
-<a name="318"><span class="lineNum">     318 </span>                :            :       turn_signal.command = TurnIndicatorsCommand::ENABLE_LEFT;</a>
-<a name="319"><span class="lineNum">     319 </span>                :<span class="lineNoCov">          0 :     } else if (diff &lt; -tl_on_threshold_lat &amp;&amp; cross_line) {</span></a>
-<a name="320"><span class="lineNum">     320 </span>                :            :       turn_signal.command = TurnIndicatorsCommand::ENABLE_RIGHT;</a>
-<a name="321"><span class="lineNum">     321 </span>                :            :     }</a>
-<a name="322"><span class="lineNum">     322 </span>                :            :   }</a>
-<a name="323"><span class="lineNum">     323 </span>                :            : </a>
-<a name="324"><span class="lineNum">     324 </span>                :            :   // calc distance from ego vehicle front to shift end point.</a>
-<a name="325"><span class="lineNum">     325 </span>                :            :   double distance_from_vehicle_front;</a>
-<a name="326"><span class="lineNum">     326 </span>                :            :   {</a>
-<a name="327"><span class="lineNum">     327 </span>                :            :     const auto arc_position_shift_end =</a>
-<a name="328"><span class="lineNum">     328 </span>                :<span class="lineNoCov">          0 :       lanelet::utils::getArcCoordinates(current_lanes, shift_point.end);</span></a>
-<a name="329"><span class="lineNum">     329 </span>                :            :     distance_from_vehicle_front =</a>
-<a name="330"><span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :       arc_position_shift_end.length - arc_position_current_pose.length - base_link2front;</span></a>
-<a name="331"><span class="lineNum">     331 </span>                :            :   }</a>
-<a name="332"><span class="lineNum">     332 </span>                :            : </a>
-<a name="333"><span class="lineNum">     333 </span>                :            :   // Output distance when the distance is positive and smaller than search distance</a>
-<a name="334"><span class="lineNum">     334 </span>                :<span class="lineNoCov">          0 :   if (distance_from_vehicle_front &gt;= 0.0 &amp;&amp; distance_from_vehicle_front &lt;= search_distance) {</span></a>
-<a name="335"><span class="lineNum">     335 </span>                :            :     return std::make_pair(turn_signal, distance_from_vehicle_front);</a>
-<a name="336"><span class="lineNum">     336 </span>                :            :   }</a>
-<a name="337"><span class="lineNum">     337 </span>                :            : </a>
-<a name="338"><span class="lineNum">     338 </span>                :            :   return std::make_pair(turn_signal, max_distance);</a>
-<a name="339"><span class="lineNum">     339 </span>                :            : }</a>
-<a name="340"><span class="lineNum">     340 </span>                :            : </a>
-<a name="341"><span class="lineNum">     341 </span>                :            : }  // namespace util</a>
-<a name="342"><span class="lineNum">     342 </span>                :            : }  // namespace behavior_path_planner</a>
+<a name="306"><span class="lineNum">     306 </span>                :            :       if (lanelet::utils::isInLanelet(left_end_point, llt, 0.1)) {</a>
+<a name="307"><span class="lineNum">     307 </span>                :            :         left_end_point_is_in_lane = true;</a>
+<a name="308"><span class="lineNum">     308 </span>                :            :       }</a>
+<a name="309"><span class="lineNum">     309 </span>                :            :       if (lanelet::utils::isInLanelet(right_end_point, llt, 0.1)) {</a>
+<a name="310"><span class="lineNum">     310 </span>                :<span class="lineNoCov">          0 :         right_end_point_is_in_lane = true;</span></a>
+<a name="311"><span class="lineNum">     311 </span>                :<span class="lineNoCov">          0 :       }</span></a>
+<a name="312"><span class="lineNum">     312 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="313"><span class="lineNum">     313 </span>                :            :   }</a>
+<a name="314"><span class="lineNum">     314 </span>                :            : </a>
+<a name="315"><span class="lineNum">     315 </span>                :            :   bool cross_line = false;</a>
+<a name="316"><span class="lineNum">     316 </span>                :<span class="lineNoCov">          0 :   if (</span></a>
+<a name="317"><span class="lineNum">     317 </span>                :<span class="lineNoCov">          0 :     left_start_point_is_in_lane != left_end_point_is_in_lane ||</span></a>
+<a name="318"><span class="lineNum">     318 </span>                :            :     right_start_point_is_in_lane != right_end_point_is_in_lane) {</a>
+<a name="319"><span class="lineNum">     319 </span>                :<span class="lineNoCov">          0 :     cross_line = true;</span></a>
+<a name="320"><span class="lineNum">     320 </span>                :            :   }</a>
+<a name="321"><span class="lineNum">     321 </span>                :            : </a>
+<a name="322"><span class="lineNum">     322 </span>                :            :   if (time_to_shift_start &lt; prev_sec || distance_to_shift_start &lt; tl_on_threshold_long) {</a>
+<a name="323"><span class="lineNum">     323 </span>                :            :     if (diff &gt; tl_on_threshold_lat &amp;&amp; cross_line) {</a>
+<a name="324"><span class="lineNum">     324 </span>                :            :       turn_signal.command = TurnIndicatorsCommand::ENABLE_LEFT;</a>
+<a name="325"><span class="lineNum">     325 </span>                :            :     } else if (diff &lt; -tl_on_threshold_lat &amp;&amp; cross_line) {</a>
+<a name="326"><span class="lineNum">     326 </span>                :            :       turn_signal.command = TurnIndicatorsCommand::ENABLE_RIGHT;</a>
+<a name="327"><span class="lineNum">     327 </span>                :            :     }</a>
+<a name="328"><span class="lineNum">     328 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="329"><span class="lineNum">     329 </span>                :            : </a>
+<a name="330"><span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :   // calc distance from ego vehicle front to shift end point.</span></a>
+<a name="331"><span class="lineNum">     331 </span>                :            :   double distance_from_vehicle_front;</a>
+<a name="332"><span class="lineNum">     332 </span>                :            :   {</a>
+<a name="333"><span class="lineNum">     333 </span>                :            :     const auto arc_position_shift_end =</a>
+<a name="334"><span class="lineNum">     334 </span>                :<span class="lineNoCov">          0 :       lanelet::utils::getArcCoordinates(current_lanes, shift_point.end);</span></a>
+<a name="335"><span class="lineNum">     335 </span>                :            :     distance_from_vehicle_front =</a>
+<a name="336"><span class="lineNum">     336 </span>                :            :       arc_position_shift_end.length - arc_position_current_pose.length - base_link2front;</a>
+<a name="337"><span class="lineNum">     337 </span>                :            :   }</a>
+<a name="338"><span class="lineNum">     338 </span>                :            : </a>
+<a name="339"><span class="lineNum">     339 </span>                :            :   // Output distance when the distance is positive and smaller than search distance</a>
+<a name="340"><span class="lineNum">     340 </span>                :            :   if (distance_from_vehicle_front &gt;= 0.0 &amp;&amp; distance_from_vehicle_front &lt;= search_distance) {</a>
+<a name="341"><span class="lineNum">     341 </span>                :            :     return std::make_pair(turn_signal, distance_from_vehicle_front);</a>
+<a name="342"><span class="lineNum">     342 </span>                :            :   }</a>
+<a name="343"><span class="lineNum">     343 </span>                :            : </a>
+<a name="344"><span class="lineNum">     344 </span>                :            :   return std::make_pair(turn_signal, max_distance);</a>
+<a name="345"><span class="lineNum">     345 </span>                :            : }</a>
+<a name="346"><span class="lineNum">     346 </span>                :            : </a>
+<a name="347"><span class="lineNum">     347 </span>                :            : }  // namespace util</a>
+<a name="348"><span class="lineNum">     348 </span>                :            : }  // namespace behavior_path_planner</a>
 </pre>
       </td>
     </tr>

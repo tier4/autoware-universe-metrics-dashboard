@@ -710,16 +710,6 @@
     </item>
     
     <item>
-      <title>laserscan_to_occupancy_grid_map</title>
-      <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/laserscan_to_occupancy_grid_map/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/laserscan_to_occupancy_grid_map/</guid>
-      <description>laserscan_to_occupancy_grid_map
- Test result Code coverage Test label: all     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/laserscan_to_occupancy_grid_map/coverage.all.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/laserscan_to_occupancy_grid_map\/coverage.all.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics CCN    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/laserscan_to_occupancy_grid_map/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/laserscan_to_occupancy_grid_map\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });  LOC    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;</description>
-    </item>
-    
-    <item>
       <title>lidar_apollo_instance_segmentation</title>
       <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/lidar_apollo_instance_segmentation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1027,6 +1017,16 @@
       <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/pose_initializer/</guid>
       <description>pose_initializer
  Test result Code coverage Test label: all     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/pose_initializer/coverage.all.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/pose_initializer\/coverage.all.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics CCN    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/pose_initializer/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/pose_initializer\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });  LOC    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;</description>
+    </item>
+    
+    <item>
+      <title>probabilistic_occupancy_grid_map</title>
+      <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/probabilistic_occupancy_grid_map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/probabilistic_occupancy_grid_map/</guid>
+      <description>probabilistic_occupancy_grid_map
+ Test result Code coverage Test label: all     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/probabilistic_occupancy_grid_map/coverage.all.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/probabilistic_occupancy_grid_map\/coverage.all.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics CCN    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/probabilistic_occupancy_grid_map/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/probabilistic_occupancy_grid_map\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });  LOC    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;</description>
     </item>
     
     <item>
@@ -1477,6 +1477,16 @@
       <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_system_msgs/</guid>
       <description>tier4_system_msgs
  Test result Code coverage Test label: all     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_system_msgs/coverage.all.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_system_msgs\/coverage.all.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics CCN    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_system_msgs/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_system_msgs\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });  LOC    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;</description>
+    </item>
+    
+    <item>
+      <title>tier4_traffic_light_rviz_plugin</title>
+      <link>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_traffic_light_rviz_plugin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tier4.github.io/autoware-universe-metrics-dashboard/packages/tier4_traffic_light_rviz_plugin/</guid>
+      <description>tier4_traffic_light_rviz_plugin
+ Test result Code coverage Test label: all     json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_traffic_light_rviz_plugin/coverage.all.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_traffic_light_rviz_plugin\/coverage.all.json&#39;, fig.data, fig.layout, {responsive: true}); });   You can access more detailed data on code coverage here.  Code metrics CCN    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;plotly/tier4_traffic_light_rviz_plugin/ccn.json&#34; Plotly.d3.json(json_url, function(err, fig) { Plotly.plot(&#39;plotly\/tier4_traffic_light_rviz_plugin\/ccn.json&#39;, fig.data, fig.layout, {responsive: true}); });  LOC    json_url = &#34;https://tier4.github.io/autoware-universe-metrics-dashboard/&#34; + &#34;</description>
     </item>
     
     <item>

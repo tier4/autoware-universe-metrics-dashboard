@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:38</td>
+            <td class="headerValue">2022-04-10 20:40:23</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -364,7 +364,7 @@
 <a name="286"><span class="lineNum">     286 </span>                :<span class="lineNoCov">          0 :         const double a0 = prev_closest_point_-&gt;acceleration_mps2;</span></a>
 <a name="287"><span class="lineNum">     287 </span>                :            : </a>
 <a name="288"><span class="lineNum">     288 </span>                :<span class="lineNoCov">          0 :         if (isEngageStatus(v0)) {</span></a>
-<a name="289"><span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :           max_velocity_with_deceleration_ = external_velocity_limit_;</span></a>
+<a name="289"><span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :           max_velocity_with_deceleration_ = msg-&gt;max_velocity;</span></a>
 <a name="290"><span class="lineNum">     290 </span>                :<span class="lineNoCov">          0 :           external_velocity_limit_dist_ = 0.0;</span></a>
 <a name="291"><span class="lineNum">     291 </span>                :            :         } else {</a>
 <a name="292"><span class="lineNum">     292 </span>                :            :           const double a_min =</a>

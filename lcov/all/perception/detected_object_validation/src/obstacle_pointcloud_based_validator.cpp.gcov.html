@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:12</td>
+            <td class="headerValue">2022-04-10 20:40:03</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -360,7 +360,7 @@
 <a name="282"><span class="lineNum">     282 </span>                :            :     }</a>
 <a name="283"><span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 :   } else if (object.shape.type == Shape::POLYGON) {</span></a>
 <a name="284"><span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :     RCLCPP_WARN_THROTTLE(</span></a>
-<a name="285"><span class="lineNum">     285 </span>                :            :       this-&gt;get_logger(), *this-&gt;get_clock(), 5, &quot;POLYGON type is not supported&quot;);</a>
+<a name="285"><span class="lineNum">     285 </span>                :            :       this-&gt;get_logger(), *this-&gt;get_clock(), 5000, &quot;POLYGON type is not supported&quot;);</a>
 <a name="286"><span class="lineNum">     286 </span>                :            :   }</a>
 <a name="287"><span class="lineNum">     287 </span>                :<span class="lineNoCov">          0 : }</span></a>
 <a name="288"><span class="lineNum">     288 </span>                :            : </a>
@@ -379,7 +379,7 @@
 <a name="301"><span class="lineNum">     301 </span>                :            :     }</a>
 <a name="302"><span class="lineNum">     302 </span>                :<span class="lineNoCov">          0 :     return max_dist;</span></a>
 <a name="303"><span class="lineNum">     303 </span>                :            :   } else {</a>
-<a name="304"><span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :     RCLCPP_WARN_THROTTLE(this-&gt;get_logger(), *this-&gt;get_clock(), 5, &quot;unknown shape type&quot;);</span></a>
+<a name="304"><span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :     RCLCPP_WARN_THROTTLE(this-&gt;get_logger(), *this-&gt;get_clock(), 5000, &quot;unknown shape type&quot;);</span></a>
 <a name="305"><span class="lineNum">     305 </span>                :<span class="lineNoCov">          0 :     return std::nullopt;</span></a>
 <a name="306"><span class="lineNum">     306 </span>                :            :   }</a>
 <a name="307"><span class="lineNum">     307 </span>                :            : }</a>

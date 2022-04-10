@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:26</td>
+            <td class="headerValue">2022-04-10 20:40:14</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -195,196 +195,211 @@
 <a name="116"><span class="lineNum">     116 </span>                :            :   return true;</a>
 <a name="117"><span class="lineNum">     117 </span>                :            : }</a>
 <a name="118"><span class="lineNum">     118 </span>                :            : </a>
-<a name="119"><span class="lineNum">     119 </span>                :<span class="lineNoCov">          0 : autoware_auto_planning_msgs::msg::Path interpolatePath(</span></a>
-<a name="120"><span class="lineNum">     120 </span>                :            :   const autoware_auto_planning_msgs::msg::Path &amp; path, const double length, const double interval)</a>
-<a name="121"><span class="lineNum">     121 </span>                :            : {</a>
-<a name="122"><span class="lineNum">     122 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :   const auto logger{rclcpp::get_logger(&quot;behavior_velocity_planner&quot;).get_child(&quot;path_utilization&quot;)};</span></a>
+<a name="119"><span class="lineNum">     119 </span>                :<span class="lineNoCov">          0 : /*</span></a>
+<a name="120"><span class="lineNum">     120 </span>                :            :  * Interpolate the path with a fixed interval by spline.</a>
+<a name="121"><span class="lineNum">     121 </span>                :            :  * In order to correctly inherit the position of the planned velocity points, the position of the</a>
+<a name="122"><span class="lineNum">     122 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :  * existing points in the input path are kept in the interpolated path.</span></a>
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span> 
 <span class="lineNum">         </span>   <span class="branchNoExec" title="Branch 9 was not executed"> # </span><span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span><span class="branchNoExec" title="Branch 12 was not executed"> # </span> 
 <span class="lineNum">         </span>            <span class="branchNoExec" title="Branch 13 was not executed"> # </span>]
-<a name="123"><span class="lineNum">     123 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   autoware_auto_planning_msgs::msg::Path interpolated_path;</span></a>
-<a name="124"><span class="lineNum">     124 </span>                :            : </a>
-<a name="125"><span class="lineNum">     125 </span>                :            :   const double epsilon = 0.01;</a>
-<a name="126"><span class="lineNum">     126 </span>                :            :   std::vector&lt;double&gt; x;</a>
-<a name="127"><span class="lineNum">     127 </span>                :            :   std::vector&lt;double&gt; y;</a>
-<a name="128"><span class="lineNum">     128 </span>                :            :   std::vector&lt;double&gt; z;</a>
-<a name="129"><span class="lineNum">     129 </span>                :            :   std::vector&lt;double&gt; v;</a>
-<a name="130"><span class="lineNum">     130 </span>                :            :   std::vector&lt;double&gt; s_in, s_out;</a>
-<a name="131"><span class="lineNum">     131 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (2000 &lt; path.points.size()) {</span></a>
-<a name="132"><span class="lineNum">     132 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :     RCLCPP_WARN(</span></a>
+<a name="123"><span class="lineNum">     123 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :  * The velocity is interpolated by zero-order hold, that is, the velocity of the interpolated point</span></a>
+<a name="124"><span class="lineNum">     124 </span>                :            :  * is the velocity of the closest point for the input &quot;sub-path&quot; which consists of the points before</a>
+<a name="125"><span class="lineNum">     125 </span>                :            :  * the interpolated point.</a>
+<a name="126"><span class="lineNum">     126 </span>                :            :  */</a>
+<a name="127"><span class="lineNum">     127 </span>                :            : autoware_auto_planning_msgs::msg::Path interpolatePath(</a>
+<a name="128"><span class="lineNum">     128 </span>                :            :   const autoware_auto_planning_msgs::msg::Path &amp; path, const double length, const double interval)</a>
+<a name="129"><span class="lineNum">     129 </span>                :            : {</a>
+<a name="130"><span class="lineNum">     130 </span>                :            :   const auto logger{rclcpp::get_logger(&quot;behavior_velocity_planner&quot;).get_child(&quot;path_utilization&quot;)};</a>
+<a name="131"><span class="lineNum">     131 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   autoware_auto_planning_msgs::msg::Path interpolated_path;</span></a>
+<a name="132"><span class="lineNum">     132 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 : </span></a>
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span><span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span><span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span><span class="branchNoExec" title="Branch 16 was not executed"> # </span><span class="branchNoExec" title="Branch 17 was not executed"> # </span><span class="branchNoExec" title="Branch 18 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 19 was not executed"> # </span><span class="branchNoExec" title="Branch 20 was not executed"> # </span><span class="branchNoExec" title="Branch 21 was not executed"> # </span><span class="branchNoExec" title="Branch 22 was not executed"> # </span><span class="branchNoExec" title="Branch 23 was not executed"> # </span> 
 <span class="lineNum">         </span>         <span class="branchNoExec" title="Branch 24 was not executed"> # </span><span class="branchNoExec" title="Branch 25 was not executed"> # </span>]
-<a name="133"><span class="lineNum">     133 </span>                :            :       logger, &quot;because path size is too large, calculation cost is high. size is %d.&quot;,</a>
-<a name="134"><span class="lineNum">     134 </span>                :            :       (int)path.points.size());</a>
-<a name="135"><span class="lineNum">     135 </span>                :            :   }</a>
-<a name="136"><span class="lineNum">     136 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (path.points.size() &lt; 2) {</span></a>
-<a name="137"><span class="lineNum">     137 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :     RCLCPP_WARN(logger, &quot;Do not interpolate because path size is 1.&quot;);</span></a>
+<a name="133"><span class="lineNum">     133 </span>                :            :   const double epsilon = 0.01;</a>
+<a name="134"><span class="lineNum">     134 </span>                :            :   std::vector&lt;double&gt; x;</a>
+<a name="135"><span class="lineNum">     135 </span>                :            :   std::vector&lt;double&gt; y;</a>
+<a name="136"><span class="lineNum">     136 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; z;</span></a>
+<a name="137"><span class="lineNum">     137 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :   std::vector&lt;double&gt; v;</span></a>
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span><span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span><span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span><span class="branchNoExec" title="Branch 16 was not executed"> # </span><span class="branchNoExec" title="Branch 17 was not executed"> # </span><span class="branchNoExec" title="Branch 18 was not executed"> # </span> 
 <span class="lineNum">         </span>   <span class="branchNoExec" title="Branch 19 was not executed"> # </span><span class="branchNoExec" title="Branch 20 was not executed"> # </span><span class="branchNoExec" title="Branch 21 was not executed"> # </span><span class="branchNoExec" title="Branch 22 was not executed"> # </span> 
 <span class="lineNum">         </span>            <span class="branchNoExec" title="Branch 23 was not executed"> # </span>]
-<a name="138"><span class="lineNum">     138 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     return path;</span></a>
-<a name="139"><span class="lineNum">     139 </span>                :            :   }</a>
-<a name="140"><span class="lineNum">     140 </span>                :            : </a>
-<a name="141"><span class="lineNum">     141 </span>                :<span class="lineNoCov">          0 :   double path_len = length;</span></a>
-<a name="142"><span class="lineNum">     142 </span>                :            :   {</a>
-<a name="143"><span class="lineNum">     143 </span>                :<span class="lineNoCov">          0 :     double s = 0.0;</span></a>
-<a name="144"><span class="lineNum">     144 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     for (size_t idx = 0; idx &lt; path.points.size(); ++idx) {</span></a>
-<a name="145"><span class="lineNum">     145 </span>                :<span class="lineNoCov">          0 :       const auto path_point = path.points.at(idx);</span></a>
-<a name="146"><span class="lineNum">     146 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       x.push_back(path_point.pose.position.x);</span></a>
-<a name="147"><span class="lineNum">     147 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       y.push_back(path_point.pose.position.y);</span></a>
-<a name="148"><span class="lineNum">     148 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       z.push_back(path_point.pose.position.z);</span></a>
-<a name="149"><span class="lineNum">     149 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :       v.push_back(path_point.longitudinal_velocity_mps);</span></a>
-<a name="150"><span class="lineNum">     150 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if (idx != 0) {</span></a>
-<a name="151"><span class="lineNum">     151 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         const auto path_point_prev = path.points.at(idx - 1);</span></a>
-<a name="152"><span class="lineNum">     152 </span>                :<span class="lineNoCov">          0 :         s += tier4_autoware_utils::calcDistance3d(path_point_prev.pose, path_point.pose);</span></a>
-<a name="153"><span class="lineNum">     153 </span>                :            :       }</a>
-<a name="154"><span class="lineNum">     154 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if (s &gt; path_len) {</span></a>
-<a name="155"><span class="lineNum">     155 </span>                :            :         break;</a>
-<a name="156"><span class="lineNum">     156 </span>                :            :       }</a>
-<a name="157"><span class="lineNum">     157 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       s_in.push_back(s);</span></a>
-<a name="158"><span class="lineNum">     158 </span>                :            :     }</a>
-<a name="159"><span class="lineNum">     159 </span>                :            : </a>
-<a name="160"><span class="lineNum">     160 </span>                :            :     // update path length</a>
-<a name="161"><span class="lineNum">     161 </span>                :<span class="lineNoCov">          0 :     path_len = std::min(path_len, s_in.back());</span></a>
-<a name="162"><span class="lineNum">     162 </span>                :            : </a>
-<a name="163"><span class="lineNum">     163 </span>                :            :     // Check Terminal Points</a>
-<a name="164"><span class="lineNum">     164 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (std::fabs(s_in.back() - path_len) &lt; epsilon) {</span></a>
-<a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :       s_in.back() = path_len;</span></a>
-<a name="166"><span class="lineNum">     166 </span>                :            :     } else {</a>
-<a name="167"><span class="lineNum">     167 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       s_in.push_back(path_len);</span></a>
-<a name="168"><span class="lineNum">     168 </span>                :            :     }</a>
-<a name="169"><span class="lineNum">     169 </span>                :            :   }</a>
+<a name="138"><span class="lineNum">     138 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; s_in;</span></a>
+<a name="139"><span class="lineNum">     139 </span>                :            :   if (2000 &lt; path.points.size()) {</a>
+<a name="140"><span class="lineNum">     140 </span>                :            :     RCLCPP_WARN(</a>
+<a name="141"><span class="lineNum">     141 </span>                :<span class="lineNoCov">          0 :       logger, &quot;because path size is too large, calculation cost is high. size is %d.&quot;,</span></a>
+<a name="142"><span class="lineNum">     142 </span>                :            :       (int)path.points.size());</a>
+<a name="143"><span class="lineNum">     143 </span>                :<span class="lineNoCov">          0 :   }</span></a>
+<a name="144"><span class="lineNum">     144 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (path.points.size() &lt; 2) {</span></a>
+<a name="145"><span class="lineNum">     145 </span>                :<span class="lineNoCov">          0 :     RCLCPP_WARN(logger, &quot;Do not interpolate because path size is 1.&quot;);</span></a>
+<a name="146"><span class="lineNum">     146 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     return path;</span></a>
+<a name="147"><span class="lineNum">     147 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   }</span></a>
+<a name="148"><span class="lineNum">     148 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 : </span></a>
+<a name="149"><span class="lineNum">     149 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   double path_len = length;</span></a>
+<a name="150"><span class="lineNum">     150 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   {</span></a>
+<a name="151"><span class="lineNum">     151 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     double s = 0.0;</span></a>
+<a name="152"><span class="lineNum">     152 </span>                :<span class="lineNoCov">          0 :     for (size_t idx = 0; idx &lt; path.points.size(); ++idx) {</span></a>
+<a name="153"><span class="lineNum">     153 </span>                :            :       const auto path_point = path.points.at(idx);</a>
+<a name="154"><span class="lineNum">     154 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       x.push_back(path_point.pose.position.x);</span></a>
+<a name="155"><span class="lineNum">     155 </span>                :            :       y.push_back(path_point.pose.position.y);</a>
+<a name="156"><span class="lineNum">     156 </span>                :            :       z.push_back(path_point.pose.position.z);</a>
+<a name="157"><span class="lineNum">     157 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       v.push_back(path_point.longitudinal_velocity_mps);</span></a>
+<a name="158"><span class="lineNum">     158 </span>                :            :       if (idx != 0) {</a>
+<a name="159"><span class="lineNum">     159 </span>                :            :         const auto path_point_prev = path.points.at(idx - 1);</a>
+<a name="160"><span class="lineNum">     160 </span>                :            :         s += tier4_autoware_utils::calcDistance3d(path_point_prev.pose, path_point.pose);</a>
+<a name="161"><span class="lineNum">     161 </span>                :<span class="lineNoCov">          0 :       }</span></a>
+<a name="162"><span class="lineNum">     162 </span>                :            :       if (s &gt; path_len) {</a>
+<a name="163"><span class="lineNum">     163 </span>                :            :         break;</a>
+<a name="164"><span class="lineNum">     164 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       }</span></a>
+<a name="165"><span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :       s_in.push_back(s);</span></a>
+<a name="166"><span class="lineNum">     166 </span>                :            :     }</a>
+<a name="167"><span class="lineNum">     167 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 : </span></a>
+<a name="168"><span class="lineNum">     168 </span>                :            :     // update path length</a>
+<a name="169"><span class="lineNum">     169 </span>                :            :     path_len = std::min(path_len, s_in.back());</a>
 <a name="170"><span class="lineNum">     170 </span>                :            : </a>
-<a name="171"><span class="lineNum">     171 </span>                :            :   // Calculate query points</a>
-<a name="172"><span class="lineNum">     172 </span>                :            :   // Remove query point if query point is near input path point</a>
-<a name="173"><span class="lineNum">     173 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; s_tmp = s_in;</span></a>
-<a name="174"><span class="lineNum">     174 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (double s = 0.0; s &lt; path_len; s += interval) {</span></a>
-<a name="175"><span class="lineNum">     175 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     s_tmp.push_back(s);</span></a>
-<a name="176"><span class="lineNum">     176 </span>                :            :   }</a>
-<a name="177"><span class="lineNum">     177 </span>                :<span class="lineNoCov">          0 :   std::sort(s_tmp.begin(), s_tmp.end());</span></a>
+<a name="171"><span class="lineNum">     171 </span>                :            :     // Check Terminal Points</a>
+<a name="172"><span class="lineNum">     172 </span>                :            :     if (std::fabs(s_in.back() - path_len) &lt; epsilon) {</a>
+<a name="173"><span class="lineNum">     173 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       s_in.back() = path_len;</span></a>
+<a name="174"><span class="lineNum">     174 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     } else {</span></a>
+<a name="175"><span class="lineNum">     175 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       s_in.push_back(path_len);</span></a>
+<a name="176"><span class="lineNum">     176 </span>                :            :     }</a>
+<a name="177"><span class="lineNum">     177 </span>                :<span class="lineNoCov">          0 :   }</span></a>
 <a name="178"><span class="lineNum">     178 </span>                :            : </a>
-<a name="179"><span class="lineNum">     179 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (const double s : s_tmp) {</span></a>
-<a name="180"><span class="lineNum">     180 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (!s_out.empty() &amp;&amp; std::fabs(s_out.back() - s) &lt; epsilon) {</span></a>
-<a name="181"><span class="lineNum">     181 </span>                :<span class="lineNoCov">          0 :       continue;</span></a>
-<a name="182"><span class="lineNum">     182 </span>                :            :     }</a>
-<a name="183"><span class="lineNum">     183 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     s_out.push_back(s);</span></a>
-<a name="184"><span class="lineNum">     184 </span>                :            :   }</a>
-<a name="185"><span class="lineNum">     185 </span>                :            : </a>
-<a name="186"><span class="lineNum">     186 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (s_out.empty()) {</span></a>
-<a name="187"><span class="lineNum">     187 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :     RCLCPP_WARN(logger, &quot;Do not interpolate because s_out is empty.&quot;);</span></a>
+<a name="179"><span class="lineNum">     179 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   // Calculate query points</span></a>
+<a name="180"><span class="lineNum">     180 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   // Use all values of s_in to inherit the velocity-planned point, and add some points for</span></a>
+<a name="181"><span class="lineNum">     181 </span>                :<span class="lineNoCov">          0 :   // interpolation with a constant interval if the point is not closed to the original s_in points.</span></a>
+<a name="182"><span class="lineNum">     182 </span>                :            :   // (because if this interval is very short, the interpolation will be less accurate and may fail.)</a>
+<a name="183"><span class="lineNum">     183 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   std::vector&lt;double&gt; s_out = s_in;</span></a>
+<a name="184"><span class="lineNum">     184 </span>                :            : </a>
+<a name="185"><span class="lineNum">     185 </span>                :            :   const auto has_almost_same_value = [&amp;](const auto &amp; vec, const auto x) {</a>
+<a name="186"><span class="lineNum">     186 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (vec.empty()) return false;</span></a>
+<a name="187"><span class="lineNum">     187 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :     const auto has_close = [&amp;](const auto v) { return std::abs(v - x) &lt; epsilon; };</span></a>
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span><span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span><span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span><span class="branchNoExec" title="Branch 16 was not executed"> # </span><span class="branchNoExec" title="Branch 17 was not executed"> # </span><span class="branchNoExec" title="Branch 18 was not executed"> # </span> 
 <span class="lineNum">         </span><span class="branchNoExec" title="Branch 19 was not executed"> # </span><span class="branchNoExec" title="Branch 20 was not executed"> # </span><span class="branchNoExec" title="Branch 21 was not executed"> # </span><span class="branchNoExec" title="Branch 22 was not executed"> # </span><span class="branchNoExec" title="Branch 23 was not executed"> # </span> 
 <span class="lineNum">         </span>         <span class="branchNoExec" title="Branch 24 was not executed"> # </span><span class="branchNoExec" title="Branch 25 was not executed"> # </span>]
-<a name="188"><span class="lineNum">     188 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     return path;</span></a>
-<a name="189"><span class="lineNum">     189 </span>                :            :   }</a>
-<a name="190"><span class="lineNum">     190 </span>                :            : </a>
-<a name="191"><span class="lineNum">     191 </span>                :            :   // Interpolate</a>
-<a name="192"><span class="lineNum">     192 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   const auto x_interp = interpolation::slerp(s_in, x, s_out);</span></a>
-<a name="193"><span class="lineNum">     193 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   const auto y_interp = interpolation::slerp(s_in, y, s_out);</span></a>
-<a name="194"><span class="lineNum">     194 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   const auto z_interp = interpolation::slerp(s_in, z, s_out);</span></a>
+<a name="188"><span class="lineNum">     188 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     return std::find_if(vec.begin(), vec.end(), has_close) != vec.end();</span></a>
+<a name="189"><span class="lineNum">     189 </span>                :            :   };</a>
+<a name="190"><span class="lineNum">     190 </span>                :            :   for (double s = 0.0; s &lt; path_len; s += interval) {</a>
+<a name="191"><span class="lineNum">     191 </span>                :            :     if (!has_almost_same_value(s_out, s)) {</a>
+<a name="192"><span class="lineNum">     192 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       s_out.push_back(s);</span></a>
+<a name="193"><span class="lineNum">     193 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     }</span></a>
+<a name="194"><span class="lineNum">     194 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   }</span></a>
 <a name="195"><span class="lineNum">     195 </span>                :            : </a>
-<a name="196"><span class="lineNum">     196 </span>                :            :   std::vector&lt;double&gt; v_interp;</a>
-<a name="197"><span class="lineNum">     197 </span>                :            :   size_t closest_segment_idx = 0;</a>
-<a name="198"><span class="lineNum">     198 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; s_out.size() - 1; ++i) {</span></a>
-<a name="199"><span class="lineNum">     199 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     for (size_t j = closest_segment_idx; j &lt; s_in.size() - 1; ++j) {</span></a>
-<a name="200"><span class="lineNum">     200 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :       if (s_in.at(j) &lt; s_out.at(i) + DOUBLE_EPSILON &amp;&amp; s_out.at(i) &lt; s_in.at(j + 1)) {</span></a>
+<a name="196"><span class="lineNum">     196 </span>                :            :   std::sort(s_out.begin(), s_out.end());</a>
+<a name="197"><span class="lineNum">     197 </span>                :            : </a>
+<a name="198"><span class="lineNum">     198 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (s_out.empty()) {</span></a>
+<a name="199"><span class="lineNum">     199 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     RCLCPP_WARN(logger, &quot;Do not interpolate because s_out is empty.&quot;);</span></a>
+<a name="200"><span class="lineNum">     200 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :     return path;</span></a>
 <span class="lineNum">         </span>   <span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
-<a name="201"><span class="lineNum">     201 </span>                :            :         // find closest segment in s_in</a>
-<a name="202"><span class="lineNum">     202 </span>                :            :         closest_segment_idx = j;</a>
-<a name="203"><span class="lineNum">     203 </span>                :            :       }</a>
-<a name="204"><span class="lineNum">     204 </span>                :            :     }</a>
-<a name="205"><span class="lineNum">     205 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     v_interp.push_back(v.at(closest_segment_idx));</span></a>
-<a name="206"><span class="lineNum">     206 </span>                :            :   }</a>
-<a name="207"><span class="lineNum">     207 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   v_interp.push_back(v.back());</span></a>
-<a name="208"><span class="lineNum">     208 </span>                :            : </a>
-<a name="209"><span class="lineNum">     209 </span>                :            :   // Insert path point to interpolated_path</a>
-<a name="210"><span class="lineNum">     210 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (size_t idx = 0; idx &lt; v_interp.size() - 1; ++idx) {</span></a>
-<a name="211"><span class="lineNum">     211 </span>                :            :     autoware_auto_planning_msgs::msg::PathPoint path_point;</a>
-<a name="212"><span class="lineNum">     212 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     path_point.pose.position.x = x_interp.at(idx);</span></a>
-<a name="213"><span class="lineNum">     213 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     path_point.pose.position.y = y_interp.at(idx);</span></a>
-<a name="214"><span class="lineNum">     214 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     path_point.pose.position.z = z_interp.at(idx);</span></a>
-<a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 :     path_point.longitudinal_velocity_mps = v_interp.at(idx);</span></a>
-<a name="216"><span class="lineNum">     216 </span>                :            :     const double yaw =</a>
-<a name="217"><span class="lineNum">     217 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :       std::atan2(y_interp.at(idx + 1) - y_interp.at(idx), x_interp.at(idx + 1) - x_interp.at(idx));</span></a>
-<a name="218"><span class="lineNum">     218 </span>                :            :     tf2::Quaternion quat;</a>
-<a name="219"><span class="lineNum">     219 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     quat.setRPY(0, 0, yaw);</span></a>
-<a name="220"><span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 :     path_point.pose.orientation = tf2::toMsg(quat);</span></a>
-<a name="221"><span class="lineNum">     221 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     interpolated_path.points.push_back(path_point);</span></a>
-<a name="222"><span class="lineNum">     222 </span>                :            :   }</a>
-<a name="223"><span class="lineNum">     223 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   interpolated_path.points.push_back(path.points.back());</span></a>
-<a name="224"><span class="lineNum">     224 </span>                :            : </a>
-<a name="225"><span class="lineNum">     225 </span>                :<span class="lineNoCov">          0 :   return interpolated_path;</span></a>
-<a name="226"><span class="lineNum">     226 </span>                :            : }</a>
-<a name="227"><span class="lineNum">     227 </span>                :            : </a>
-<a name="228"><span class="lineNum">     228 </span>                :<span class="lineNoCov">          0 : autoware_auto_planning_msgs::msg::Path filterLitterPathPoint(</span></a>
-<a name="229"><span class="lineNum">     229 </span>                :            :   const autoware_auto_planning_msgs::msg::Path &amp; path)</a>
-<a name="230"><span class="lineNum">     230 </span>                :            : {</a>
-<a name="231"><span class="lineNum">     231 </span>                :<span class="lineNoCov">          0 :   autoware_auto_planning_msgs::msg::Path filtered_path;</span></a>
-<a name="232"><span class="lineNum">     232 </span>                :            : </a>
-<a name="233"><span class="lineNum">     233 </span>                :            :   const double epsilon = 0.01;</a>
-<a name="234"><span class="lineNum">     234 </span>                :            :   size_t latest_id = 0;</a>
-<a name="235"><span class="lineNum">     235 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; path.points.size(); ++i) {</span></a>
-<a name="236"><span class="lineNum">     236 </span>                :            :     double dist = 0.0;</a>
-<a name="237"><span class="lineNum">     237 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (i != 0) {</span></a>
-<a name="238"><span class="lineNum">     238 </span>                :            :       const double x =</a>
-<a name="239"><span class="lineNum">     239 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         path.points.at(i).pose.position.x - path.points.at(latest_id).pose.position.x;</span></a>
-<a name="240"><span class="lineNum">     240 </span>                :            :       const double y =</a>
-<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :         path.points.at(i).pose.position.y - path.points.at(latest_id).pose.position.y;</span></a>
-<a name="242"><span class="lineNum">     242 </span>                :<span class="lineNoCov">          0 :       dist = std::sqrt(x * x + y * y);</span></a>
-<a name="243"><span class="lineNum">     243 </span>                :            :     }</a>
-<a name="244"><span class="lineNum">     244 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (i == 0 || epsilon &lt; dist /*init*/) {</span></a>
-<a name="245"><span class="lineNum">     245 </span>                :            :       latest_id = i;</a>
-<a name="246"><span class="lineNum">     246 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :       filtered_path.points.push_back(path.points.at(latest_id));</span></a>
-<a name="247"><span class="lineNum">     247 </span>                :            :     } else {</a>
-<a name="248"><span class="lineNum">     248 </span>                :<span class="lineNoCov">          0 :       filtered_path.points.back().longitudinal_velocity_mps = std::min(</span></a>
-<a name="249"><span class="lineNum">     249 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         filtered_path.points.back().longitudinal_velocity_mps,</span></a>
-<a name="250"><span class="lineNum">     250 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         path.points.at(i).longitudinal_velocity_mps);</span></a>
-<a name="251"><span class="lineNum">     251 </span>                :            :     }</a>
-<a name="252"><span class="lineNum">     252 </span>                :            :   }</a>
-<a name="253"><span class="lineNum">     253 </span>                :            : </a>
-<a name="254"><span class="lineNum">     254 </span>                :<span class="lineNoCov">          0 :   return filtered_path;</span></a>
-<a name="255"><span class="lineNum">     255 </span>                :            : }</a>
-<a name="256"><span class="lineNum">     256 </span>                :<span class="lineNoCov">          0 : autoware_auto_planning_msgs::msg::Path filterStopPathPoint(</span></a>
-<a name="257"><span class="lineNum">     257 </span>                :            :   const autoware_auto_planning_msgs::msg::Path &amp; path)</a>
-<a name="258"><span class="lineNum">     258 </span>                :            : {</a>
-<a name="259"><span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :   autoware_auto_planning_msgs::msg::Path filtered_path = path;</span></a>
-<a name="260"><span class="lineNum">     260 </span>                :            :   bool found_stop = false;</a>
-<a name="261"><span class="lineNum">     261 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; filtered_path.points.size(); ++i) {</span></a>
-<a name="262"><span class="lineNum">     262 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (std::fabs(filtered_path.points.at(i).longitudinal_velocity_mps) &lt; 0.01) {</span></a>
-<a name="263"><span class="lineNum">     263 </span>                :            :       found_stop = true;</a>
-<a name="264"><span class="lineNum">     264 </span>                :            :     }</a>
-<a name="265"><span class="lineNum">     265 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (found_stop) {</span></a>
-<a name="266"><span class="lineNum">     266 </span>                :<span class="lineNoCov">          0 :       filtered_path.points.at(i).longitudinal_velocity_mps = 0.0;</span></a>
-<a name="267"><span class="lineNum">     267 </span>                :            :     }</a>
-<a name="268"><span class="lineNum">     268 </span>                :            :   }</a>
+<a name="201"><span class="lineNum">     201 </span>                :            :   }</a>
+<a name="202"><span class="lineNum">     202 </span>                :            : </a>
+<a name="203"><span class="lineNum">     203 </span>                :            :   // Interpolate</a>
+<a name="204"><span class="lineNum">     204 </span>                :            :   const auto x_interp = interpolation::slerp(s_in, x, s_out);</a>
+<a name="205"><span class="lineNum">     205 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   const auto y_interp = interpolation::slerp(s_in, y, s_out);</span></a>
+<a name="206"><span class="lineNum">     206 </span>                :            :   const auto z_interp = interpolation::slerp(s_in, z, s_out);</a>
+<a name="207"><span class="lineNum">     207 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 : </span></a>
+<a name="208"><span class="lineNum">     208 </span>                :            :   // Find a nearest segment for each point in s_out and use the velocity of the segment's beginning</a>
+<a name="209"><span class="lineNum">     209 </span>                :            :   // point. Note that if s_out is almost the same value as s_in within DOUBLE_EPSILON range, the</a>
+<a name="210"><span class="lineNum">     210 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   // velocity of s_out should be same as the one of s_in.</span></a>
+<a name="211"><span class="lineNum">     211 </span>                :            :   std::vector&lt;double&gt; v_interp;</a>
+<a name="212"><span class="lineNum">     212 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   size_t closest_segment_idx = 0;</span></a>
+<a name="213"><span class="lineNum">     213 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; s_out.size() - 1; ++i) {</span></a>
+<a name="214"><span class="lineNum">     214 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     for (size_t j = closest_segment_idx; j &lt; s_in.size() - 1; ++j) {</span></a>
+<a name="215"><span class="lineNum">     215 </span>                :<span class="lineNoCov">          0 :       if (s_in.at(j) - DOUBLE_EPSILON &lt; s_out.at(i) &amp;&amp; s_out.at(i) &lt; s_in.at(j + 1)) {</span></a>
+<a name="216"><span class="lineNum">     216 </span>                :            :         // find closest segment in s_in</a>
+<a name="217"><span class="lineNum">     217 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         closest_segment_idx = j;</span></a>
+<a name="218"><span class="lineNum">     218 </span>                :            :       }</a>
+<a name="219"><span class="lineNum">     219 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     }</span></a>
+<a name="220"><span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 :     v_interp.push_back(v.at(closest_segment_idx));</span></a>
+<a name="221"><span class="lineNum">     221 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   }</span></a>
+<a name="222"><span class="lineNum">     222 </span>                :            :   v_interp.push_back(v.back());</a>
+<a name="223"><span class="lineNum">     223 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 : </span></a>
+<a name="224"><span class="lineNum">     224 </span>                :            :   // Insert path point to interpolated_path</a>
+<a name="225"><span class="lineNum">     225 </span>                :<span class="lineNoCov">          0 :   for (size_t idx = 0; idx &lt; v_interp.size() - 1; ++idx) {</span></a>
+<a name="226"><span class="lineNum">     226 </span>                :            :     autoware_auto_planning_msgs::msg::PathPoint path_point;</a>
+<a name="227"><span class="lineNum">     227 </span>                :            :     path_point.pose.position.x = x_interp.at(idx);</a>
+<a name="228"><span class="lineNum">     228 </span>                :<span class="lineNoCov">          0 :     path_point.pose.position.y = y_interp.at(idx);</span></a>
+<a name="229"><span class="lineNum">     229 </span>                :            :     path_point.pose.position.z = z_interp.at(idx);</a>
+<a name="230"><span class="lineNum">     230 </span>                :            :     path_point.longitudinal_velocity_mps = v_interp.at(idx);</a>
+<a name="231"><span class="lineNum">     231 </span>                :<span class="lineNoCov">          0 :     const double yaw =</span></a>
+<a name="232"><span class="lineNum">     232 </span>                :            :       std::atan2(y_interp.at(idx + 1) - y_interp.at(idx), x_interp.at(idx + 1) - x_interp.at(idx));</a>
+<a name="233"><span class="lineNum">     233 </span>                :            :     tf2::Quaternion quat;</a>
+<a name="234"><span class="lineNum">     234 </span>                :            :     quat.setRPY(0, 0, yaw);</a>
+<a name="235"><span class="lineNum">     235 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     path_point.pose.orientation = tf2::toMsg(quat);</span></a>
+<a name="236"><span class="lineNum">     236 </span>                :            :     interpolated_path.points.push_back(path_point);</a>
+<a name="237"><span class="lineNum">     237 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   }</span></a>
+<a name="238"><span class="lineNum">     238 </span>                :            :   interpolated_path.points.push_back(path.points.back());</a>
+<a name="239"><span class="lineNum">     239 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 : </span></a>
+<a name="240"><span class="lineNum">     240 </span>                :            :   return interpolated_path;</a>
+<a name="241"><span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<a name="242"><span class="lineNum">     242 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="243"><span class="lineNum">     243 </span>                :            : autoware_auto_planning_msgs::msg::Path filterLitterPathPoint(</a>
+<a name="244"><span class="lineNum">     244 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   const autoware_auto_planning_msgs::msg::Path &amp; path)</span></a>
+<a name="245"><span class="lineNum">     245 </span>                :            : {</a>
+<a name="246"><span class="lineNum">     246 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   autoware_auto_planning_msgs::msg::Path filtered_path;</span></a>
+<a name="247"><span class="lineNum">     247 </span>                :            : </a>
+<a name="248"><span class="lineNum">     248 </span>                :<span class="lineNoCov">          0 :   const double epsilon = 0.01;</span></a>
+<a name="249"><span class="lineNum">     249 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   size_t latest_id = 0;</span></a>
+<a name="250"><span class="lineNum">     250 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (size_t i = 0; i &lt; path.points.size(); ++i) {</span></a>
+<a name="251"><span class="lineNum">     251 </span>                :            :     double dist = 0.0;</a>
+<a name="252"><span class="lineNum">     252 </span>                :            :     if (i != 0) {</a>
+<a name="253"><span class="lineNum">     253 </span>                :            :       const double x =</a>
+<a name="254"><span class="lineNum">     254 </span>                :<span class="lineNoCov">          0 :         path.points.at(i).pose.position.x - path.points.at(latest_id).pose.position.x;</span></a>
+<a name="255"><span class="lineNum">     255 </span>                :            :       const double y =</a>
+<a name="256"><span class="lineNum">     256 </span>                :<span class="lineNoCov">          0 :         path.points.at(i).pose.position.y - path.points.at(latest_id).pose.position.y;</span></a>
+<a name="257"><span class="lineNum">     257 </span>                :            :       dist = std::sqrt(x * x + y * y);</a>
+<a name="258"><span class="lineNum">     258 </span>                :            :     }</a>
+<a name="259"><span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :     if (i == 0 || epsilon &lt; dist /*init*/) {</span></a>
+<a name="260"><span class="lineNum">     260 </span>                :            :       latest_id = i;</a>
+<a name="261"><span class="lineNum">     261 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       filtered_path.points.push_back(path.points.at(latest_id));</span></a>
+<a name="262"><span class="lineNum">     262 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     } else {</span></a>
+<a name="263"><span class="lineNum">     263 </span>                :            :       filtered_path.points.back().longitudinal_velocity_mps = std::min(</a>
+<a name="264"><span class="lineNum">     264 </span>                :            :         filtered_path.points.back().longitudinal_velocity_mps,</a>
+<a name="265"><span class="lineNum">     265 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         path.points.at(i).longitudinal_velocity_mps);</span></a>
+<a name="266"><span class="lineNum">     266 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="267"><span class="lineNum">     267 </span>                :            :   }</a>
+<a name="268"><span class="lineNum">     268 </span>                :            : </a>
 <a name="269"><span class="lineNum">     269 </span>                :<span class="lineNoCov">          0 :   return filtered_path;</span></a>
 <a name="270"><span class="lineNum">     270 </span>                :            : }</a>
-<a name="271"><span class="lineNum">     271 </span>                :            : </a>
-<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 : std::vector&lt;double&gt; calcEuclidDist(const std::vector&lt;double&gt; &amp; x, const std::vector&lt;double&gt; &amp; y)</span></a>
+<a name="271"><span class="lineNum">     271 </span>                :            : autoware_auto_planning_msgs::msg::Path filterStopPathPoint(</a>
+<a name="272"><span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :   const autoware_auto_planning_msgs::msg::Path &amp; path)</span></a>
 <a name="273"><span class="lineNum">     273 </span>                :            : {</a>
-<a name="274"><span class="lineNum">     274 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if (x.size() != y.size()) {</span></a>
-<a name="275"><span class="lineNum">     275 </span>                :            :     std::cerr &lt;&lt; &quot;x y vector size should be the same.&quot; &lt;&lt; std::endl;</a>
-<a name="276"><span class="lineNum">     276 </span>                :            :   }</a>
-<a name="277"><span class="lineNum">     277 </span>                :            : </a>
-<a name="278"><span class="lineNum">     278 </span>                :            :   std::vector&lt;double&gt; dist_v;</a>
-<a name="279"><span class="lineNum">     279 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   dist_v.push_back(0.0);</span></a>
-<a name="280"><span class="lineNum">     280 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for (unsigned int i = 0; i &lt; x.size() - 1; ++i) {</span></a>
-<a name="281"><span class="lineNum">     281 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :     const double dx = x.at(i + 1) - x.at(i);</span></a>
+<a name="274"><span class="lineNum">     274 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   autoware_auto_planning_msgs::msg::Path filtered_path = path;</span></a>
+<a name="275"><span class="lineNum">     275 </span>                :            :   bool found_stop = false;</a>
+<a name="276"><span class="lineNum">     276 </span>                :            :   for (size_t i = 0; i &lt; filtered_path.points.size(); ++i) {</a>
+<a name="277"><span class="lineNum">     277 </span>                :            :     if (std::fabs(filtered_path.points.at(i).longitudinal_velocity_mps) &lt; 0.01) {</a>
+<a name="278"><span class="lineNum">     278 </span>                :            :       found_stop = true;</a>
+<a name="279"><span class="lineNum">     279 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     }</span></a>
+<a name="280"><span class="lineNum">     280 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (found_stop) {</span></a>
+<a name="281"><span class="lineNum">     281 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :       filtered_path.points.at(i).longitudinal_velocity_mps = 0.0;</span></a>
 <span class="lineNum">         </span>         <span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
-<a name="282"><span class="lineNum">     282 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     const double dy = y.at(i + 1) - y.at(i);</span></a>
-<a name="283"><span class="lineNum">     283 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     dist_v.push_back(dist_v.at(i) + std::hypot(dx, dy));</span></a>
-<a name="284"><span class="lineNum">     284 </span>                :            :   }</a>
-<a name="285"><span class="lineNum">     285 </span>                :            : </a>
-<a name="286"><span class="lineNum">     286 </span>                :<span class="lineNoCov">          0 :   return dist_v;</span></a>
-<a name="287"><span class="lineNum">     287 </span>                :            : }</a>
-<a name="288"><span class="lineNum">     288 </span>                :            : }  // namespace behavior_velocity_planner</a>
+<a name="282"><span class="lineNum">     282 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     }</span></a>
+<a name="283"><span class="lineNum">     283 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   }</span></a>
+<a name="284"><span class="lineNum">     284 </span>                :            :   return filtered_path;</a>
+<a name="285"><span class="lineNum">     285 </span>                :            : }</a>
+<a name="286"><span class="lineNum">     286 </span>                :<span class="lineNoCov">          0 : </span></a>
+<a name="287"><span class="lineNum">     287 </span>                :            : std::vector&lt;double&gt; calcEuclidDist(const std::vector&lt;double&gt; &amp; x, const std::vector&lt;double&gt; &amp; y)</a>
+<a name="288"><span class="lineNum">     288 </span>                :            : {</a>
+<a name="289"><span class="lineNum">     289 </span>                :            :   if (x.size() != y.size()) {</a>
+<a name="290"><span class="lineNum">     290 </span>                :            :     std::cerr &lt;&lt; &quot;x y vector size should be the same.&quot; &lt;&lt; std::endl;</a>
+<a name="291"><span class="lineNum">     291 </span>                :            :   }</a>
+<a name="292"><span class="lineNum">     292 </span>                :            : </a>
+<a name="293"><span class="lineNum">     293 </span>                :            :   std::vector&lt;double&gt; dist_v;</a>
+<a name="294"><span class="lineNum">     294 </span>                :            :   dist_v.push_back(0.0);</a>
+<a name="295"><span class="lineNum">     295 </span>                :            :   for (unsigned int i = 0; i &lt; x.size() - 1; ++i) {</a>
+<a name="296"><span class="lineNum">     296 </span>                :            :     const double dx = x.at(i + 1) - x.at(i);</a>
+<a name="297"><span class="lineNum">     297 </span>                :            :     const double dy = y.at(i + 1) - y.at(i);</a>
+<a name="298"><span class="lineNum">     298 </span>                :            :     dist_v.push_back(dist_v.at(i) + std::hypot(dx, dy));</a>
+<a name="299"><span class="lineNum">     299 </span>                :            :   }</a>
+<a name="300"><span class="lineNum">     300 </span>                :            : </a>
+<a name="301"><span class="lineNum">     301 </span>                :            :   return dist_v;</a>
+<a name="302"><span class="lineNum">     302 </span>                :            : }</a>
+<a name="303"><span class="lineNum">     303 </span>                :            : }  // namespace behavior_velocity_planner</a>
 </pre>
       </td>
     </tr>

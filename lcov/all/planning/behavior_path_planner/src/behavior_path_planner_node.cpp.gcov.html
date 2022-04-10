@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-04-03 21:04:12</td>
+            <td class="headerValue">2022-04-10 20:40:03</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -764,11 +764,11 @@
 <a name="686"><span class="lineNum">     686 </span>                :            : </a>
 <a name="687"><span class="lineNum">     687 </span>                :<span class="lineNoCov">          0 : void BehaviorPathPlannerNode::clipPathLength(PathWithLaneId &amp; path) const</span></a>
 <a name="688"><span class="lineNum">     688 </span>                :            : {</a>
-<a name="689"><span class="lineNum">     689 </span>                :<span class="lineNoCov">          0 :   const auto ego_pos = planner_data_-&gt;self_pose-&gt;pose.position;</span></a>
+<a name="689"><span class="lineNum">     689 </span>                :<span class="lineNoCov">          0 :   const auto ego_pose = planner_data_-&gt;self_pose-&gt;pose;</span></a>
 <a name="690"><span class="lineNum">     690 </span>                :<span class="lineNoCov">          0 :   const double forward = planner_data_-&gt;parameters.forward_path_length;</span></a>
 <a name="691"><span class="lineNum">     691 </span>                :<span class="lineNoCov">          0 :   const double backward = planner_data_-&gt;parameters.backward_path_length;</span></a>
 <a name="692"><span class="lineNum">     692 </span>                :            : </a>
-<a name="693"><span class="lineNum">     693 </span>                :<span class="lineNoCov">          0 :   util::clipPathLength(path, ego_pos, forward, backward);</span></a>
+<a name="693"><span class="lineNum">     693 </span>                :<span class="lineNoCov">          0 :   util::clipPathLength(path, ego_pose, forward, backward);</span></a>
 <a name="694"><span class="lineNum">     694 </span>                :<span class="lineNoCov">          0 : }</span></a>
 <a name="695"><span class="lineNum">     695 </span>                :            : </a>
 <a name="696"><span class="lineNum">     696 </span>                :<span class="lineNoCov">          0 : PathWithLaneId BehaviorPathPlannerNode::modifyPathForSmoothGoalConnection(</span></a>
