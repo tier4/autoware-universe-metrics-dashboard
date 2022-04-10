@@ -1,0 +1,11 @@
+{
+  "package": "autoware_auto_common",
+  "value": [
+    {
+      "label": "all",
+      "line": 100.0,
+      "function": 100.0,
+      "branch": 72.2
+    }
+  ]
+}

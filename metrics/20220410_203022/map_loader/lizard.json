@@ -1,0 +1,27 @@
+{
+  "package": "map_loader",
+  "worst_value": {
+    "ccn": 7,
+    "nloc": 111,
+    "parameter": 5,
+    "token": 1060
+  },
+  "average_value": {
+    "ccn": 2.8,
+    "nloc": 28.4,
+    "parameter": 1.6,
+    "token": 249.9
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

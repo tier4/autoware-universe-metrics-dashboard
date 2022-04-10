@@ -1,0 +1,11 @@
+{
+  "package": "motion_testing",
+  "value": [
+    {
+      "label": "all",
+      "line": 65.1,
+      "function": 58.3,
+      "branch": 42.0
+    }
+  ]
+}

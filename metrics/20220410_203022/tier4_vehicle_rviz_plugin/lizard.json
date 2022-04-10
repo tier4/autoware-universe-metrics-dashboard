@@ -1,0 +1,27 @@
+{
+  "package": "tier4_vehicle_rviz_plugin",
+  "worst_value": {
+    "ccn": 7,
+    "nloc": 62,
+    "parameter": 3,
+    "token": 750
+  },
+  "average_value": {
+    "ccn": 1.8,
+    "nloc": 13.1,
+    "parameter": 0.6,
+    "token": 115.2
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 2,
+    "parameter": 0,
+    "token": 0
+  }
+}

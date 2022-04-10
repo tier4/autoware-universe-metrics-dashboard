@@ -1,0 +1,11 @@
+{
+  "package": "fault_injection",
+  "value": [
+    {
+      "label": "all",
+      "line": 82.3,
+      "function": 87.5,
+      "branch": 33.2
+    }
+  ]
+}

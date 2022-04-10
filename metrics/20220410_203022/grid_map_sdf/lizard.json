@@ -1,0 +1,27 @@
+{
+  "package": "grid_map_sdf",
+  "worst_value": {
+    "ccn": 14,
+    "nloc": 46,
+    "parameter": 3,
+    "token": 514
+  },
+  "average_value": {
+    "ccn": 2.6,
+    "nloc": 12.0,
+    "parameter": 1.5,
+    "token": 113.7
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

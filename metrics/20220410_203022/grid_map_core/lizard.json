@@ -1,0 +1,27 @@
+{
+  "package": "grid_map_core",
+  "worst_value": {
+    "ccn": 15,
+    "nloc": 134,
+    "parameter": 12,
+    "token": 903
+  },
+  "average_value": {
+    "ccn": 2.2,
+    "nloc": 11.3,
+    "parameter": 1.5,
+    "token": 81.6
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 3,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 6,
+    "nloc": 5,
+    "parameter": 3,
+    "token": 0
+  }
+}

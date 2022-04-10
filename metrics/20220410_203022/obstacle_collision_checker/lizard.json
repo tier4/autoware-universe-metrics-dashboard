@@ -1,0 +1,27 @@
+{
+  "package": "obstacle_collision_checker",
+  "worst_value": {
+    "ccn": 7,
+    "nloc": 53,
+    "parameter": 3,
+    "token": 483
+  },
+  "average_value": {
+    "ccn": 2.4,
+    "nloc": 16.0,
+    "parameter": 1.4,
+    "token": 123.7
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 1,
+    "parameter": 0,
+    "token": 0
+  }
+}

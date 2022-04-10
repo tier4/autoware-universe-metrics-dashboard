@@ -1,0 +1,27 @@
+{
+  "package": "signal_processing",
+  "worst_value": {
+    "ccn": 1,
+    "nloc": 6,
+    "parameter": 2,
+    "token": 35
+  },
+  "average_value": {
+    "ccn": 1.0,
+    "nloc": 2.3,
+    "parameter": 1.0,
+    "token": 21.0
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

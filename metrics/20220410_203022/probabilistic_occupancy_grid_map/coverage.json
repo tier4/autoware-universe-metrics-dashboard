@@ -1,0 +1,11 @@
+{
+  "package": "probabilistic_occupancy_grid_map",
+  "value": [
+    {
+      "label": "all",
+      "line": 0.0,
+      "function": 0.0,
+      "branch": 0.0
+    }
+  ]
+}

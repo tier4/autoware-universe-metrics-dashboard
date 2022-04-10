@@ -1,0 +1,27 @@
+{
+  "package": "raw_vehicle_cmd_converter",
+  "worst_value": {
+    "ccn": 11,
+    "nloc": 71,
+    "parameter": 8,
+    "token": 601
+  },
+  "average_value": {
+    "ccn": 3.2,
+    "nloc": 16.8,
+    "parameter": 2.1,
+    "token": 124.4
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 2,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 1,
+    "parameter": 2,
+    "token": 0
+  }
+}

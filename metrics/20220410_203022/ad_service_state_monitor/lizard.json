@@ -1,0 +1,27 @@
+{
+  "package": "ad_service_state_monitor",
+  "worst_value": {
+    "ccn": 27,
+    "nloc": 95,
+    "parameter": 4,
+    "token": 594
+  },
+  "average_value": {
+    "ccn": 3.5,
+    "nloc": 16.5,
+    "parameter": 1.1,
+    "token": 114.8
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 3,
+    "parameter": 0,
+    "token": 0
+  }
+}

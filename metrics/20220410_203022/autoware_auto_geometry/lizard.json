@@ -1,0 +1,27 @@
+{
+  "package": "autoware_auto_geometry",
+  "worst_value": {
+    "ccn": 10,
+    "nloc": 57,
+    "parameter": 8,
+    "token": 679
+  },
+  "average_value": {
+    "ccn": 1.9,
+    "nloc": 10.2,
+    "parameter": 2.0,
+    "token": 79.9
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 2,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 1,
+    "parameter": 2,
+    "token": 0
+  }
+}

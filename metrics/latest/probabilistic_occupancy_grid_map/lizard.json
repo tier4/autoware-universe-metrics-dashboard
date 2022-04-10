@@ -1,0 +1,27 @@
+{
+  "package": "probabilistic_occupancy_grid_map",
+  "worst_value": {
+    "ccn": 24,
+    "nloc": 148,
+    "parameter": 6,
+    "token": 1331
+  },
+  "average_value": {
+    "ccn": 3.3,
+    "nloc": 24.7,
+    "parameter": 2.5,
+    "token": 195.2
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 6,
+    "parameter": 0,
+    "token": 0
+  }
+}

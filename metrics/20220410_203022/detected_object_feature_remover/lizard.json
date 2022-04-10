@@ -1,0 +1,27 @@
+{
+  "package": "detected_object_feature_remover",
+  "worst_value": {
+    "ccn": 2,
+    "nloc": 8,
+    "parameter": 2,
+    "token": 74
+  },
+  "average_value": {
+    "ccn": 1.3,
+    "nloc": 7.7,
+    "parameter": 1.3,
+    "token": 50.3
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  }
+}

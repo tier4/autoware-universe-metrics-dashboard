@@ -1,0 +1,11 @@
+{
+  "package": "tier4_autoware_utils",
+  "value": [
+    {
+      "label": "all",
+      "line": 85.4,
+      "function": 90.9,
+      "branch": 62.3
+    }
+  ]
+}

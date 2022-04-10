@@ -1,0 +1,27 @@
+{
+  "package": "pure_pursuit",
+  "worst_value": {
+    "ccn": 19,
+    "nloc": 65,
+    "parameter": 6,
+    "token": 604
+  },
+  "average_value": {
+    "ccn": 2.7,
+    "nloc": 12.8,
+    "parameter": 1.6,
+    "token": 103.6
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 2,
+    "nloc": 2,
+    "parameter": 0,
+    "token": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "package": "shape_estimation",
+  "worst_value": {
+    "ccn": 60,
+    "nloc": 181,
+    "parameter": 5,
+    "token": 2220
+  },
+  "average_value": {
+    "ccn": 4.2,
+    "nloc": 17.6,
+    "parameter": 1.6,
+    "token": 179.3
+  },
+  "over_threshold_count": {
+    "ccn": 1,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 1,
+    "nloc": 4,
+    "parameter": 0,
+    "token": 0
+  }
+}

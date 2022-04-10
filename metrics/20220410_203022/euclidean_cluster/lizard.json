@@ -1,0 +1,27 @@
+{
+  "package": "euclidean_cluster",
+  "worst_value": {
+    "ccn": 9,
+    "nloc": 76,
+    "parameter": 6,
+    "token": 530
+  },
+  "average_value": {
+    "ccn": 1.6,
+    "nloc": 16.1,
+    "parameter": 1.7,
+    "token": 115.3
+  },
+  "over_threshold_count": {
+    "ccn": 0,
+    "nloc": 0,
+    "parameter": 0,
+    "token": 0
+  },
+  "over_recommendation_count": {
+    "ccn": 0,
+    "nloc": 3,
+    "parameter": 0,
+    "token": 0
+  }
+}
