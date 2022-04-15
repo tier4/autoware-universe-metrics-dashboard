@@ -121,7 +121,7 @@ jobs:
 
       - name: Archive static pages
         if: ${{ github.ref != 'refs/heads/main' }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: static-pages
           path: public
