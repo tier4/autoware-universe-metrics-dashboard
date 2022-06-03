@@ -16,7 +16,7 @@ jobs:
     env:
       ARTIFACTS_DIR: data
       TARGET_REPO: "autowarefoundation/autoware.universe"
-      REPOS_FILE: "build_depends.repos"
+      REPOS_FILE: "build_depends.humble.repos"
       ROS_DISTRO: "humble"
 
     steps:
