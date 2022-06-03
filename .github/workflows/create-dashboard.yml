@@ -50,27 +50,6 @@ jobs:
       - name: Remove exec_depend
         uses: autowarefoundation/autoware-github-actions/remove-exec-depend@v1
 
-      - name: Get self packages
-        id: get-self-packages
-        uses: autowarefoundation/autoware-github-actions/get-self-packages@v1
-
-      - name: Build
-        if: ${{ steps.get-self-packages.outputs.self-packages != '' }}
-        uses: autowarefoundation/autoware-github-actions/colcon-build@v1
-        with:
-          rosdistro: ${{ env.ROS_DISTRO }}
-          target-packages: ${{ steps.get-self-packages.outputs.self-packages }}
-          build-depends-repos: ${{ env.REPOS_FILE }}
-
-      - name: Test
-        if: ${{ steps.get-self-packages.outputs.self-packages != '' }}
-        id: test
-        uses: autowarefoundation/autoware-github-actions/colcon-test@v1
-        with:
-          rosdistro: galactic
-          target-packages: ${{ steps.get-self-packages.outputs.self-packages }}
-          build-depends-repos: ${{ env.REPOS_FILE }}
-
       - name: Copy .clang-tidy to root
         run: |
           cp metrics_config_dir/.clang-tidy .clang-tidy
