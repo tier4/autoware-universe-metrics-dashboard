@@ -17,7 +17,7 @@ jobs:
       ARTIFACTS_DIR: data
       TARGET_REPO: "autowarefoundation/autoware.universe"
       REPOS_FILE: "build_depends.repos"
-      ROS_DISTRO: "galactic"
+      ROS_DISTRO: "humble"
 
     steps:
       # https://github.community/t/bug-strange-no-space-left-on-device-ioexceptions-on-github-runners/17616
@@ -67,7 +67,7 @@ jobs:
         id: test
         uses: autowarefoundation/autoware-github-actions/colcon-test@v1
         with:
-          rosdistro: galactic
+          rosdistro: ${{ env.ROS_DISTRO }}
           target-packages: ${{ steps.get-self-packages.outputs.self-packages }}
           build-depends-repos: ${{ env.REPOS_FILE }}
 
